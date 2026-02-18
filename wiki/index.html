@@ -3,28 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=https://sgpi-wiki-frontend.onrender.com">
-    <title>Redirection - Wiki SGPI</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: #1a1a1a;
-            color: #fff;
-            text-align: center;
-        }
-        h1 { margin-bottom: 20px; }
-        a { color: #ffa500; }
-    </style>
+    <title>Wiki SGPI - Collection de ressources gratuites</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div>
-        <h1>📚 Wiki SGPI</h1>
-        <p>Redirection en cours...</p>
-        <p><a href="https://sgpi-wiki-frontend.onrender.com">Cliquez ici si la redirection ne fonctionne pas</a></p>
+<body class="dark-mode">
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1><a href="index.html">📚 Wiki SGPI</a></h1>
+            <div class="header-actions">
+            <!-- Le pseudo sera affiché ici dynamiquement par script.js -->
+               <a href="account.html" style="margin-right: 16px; padding: 8px 16px; background: var(--bg-hover); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; color: var(--text-primary); text-decoration: none; font-size: 0.9rem;">Mon compte</a>
+                <button id="logout-btn" class="logout-btn">Déconnexion</button>
+                <button id="theme-toggle" aria-label="Changer de thème">
+             <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+            </button>
+            <button id="menu-toggle" class="mobile-only" aria-label="Menu">☰</button>
+          </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Sidebar gauche -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <input type="text" id="search" placeholder="🔍 Rechercher..." autocomplete="off">
+            </div>
+
+            <!-- Navigation catégories -->
+            <nav class="nav-categories">
+                <h3>Catégories</h3>
+                <ul>
+                    <li><a href="confidentialite-securite.html">🔒 Confidentialité & Sécurité</a></li>
+                    <li><a href="intelligence-artificielle.html">🤖 Intelligence Artificielle</a></li>
+                    <li><a href="films-series-anime.html">🎬 Films / Séries / Anime</a></li>
+                    <li><a href="musique-podcasts-radio.html">🎵 Musique / Podcasts / Radio</a></li>
+                    <li><a href="jeux-video.html">🎮 Jeux vidéo</a></li>
+                    <li><a href="livres-bd-mangas.html">📖 Livres / BD / Mangas</a></li>
+                    <li><a href="telechargement.html">📥 Téléchargement</a></li>
+                    <li><a href="torrents.html">🌊 Torrents</a></li>
+                    <li><a href="education.html">📚 Éducation</a></li>
+                    <li><a href="mobile.html">📱 Mobile</a></li>
+                    <li><a href="systemes.html">🐧 Systèmes</a></li>
+                    <li><a href="logiciels-outils.html">💻 Logiciels / Outils</a></li>
+                    <li><a href="stockage-partage.html">💾 Stockage & Partage</a></li>
+                    <li><a href="web-internet.html">🌐 Web / Internet</a></li>
+                    <li><a href="developpement.html">👨‍💻 Développement</a></li>
+                    <li><a href="divers.html">🎲 Divers</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            
+            <div class="hero">
+                <h2>Bienvenue sur le Wiki SGPI</h2>
+                <p class="subtitle">La plus grande collection de contenus gratuits francophones</p>
+
+                <div class="disclaimer">
+                    <h3>⚠️ Avertissement</h3>
+                    <p>Ce wiki est une collection de ressources à titre <strong>informatif uniquement</strong>.</p>
+                    <p>SGPI ne cautionne ni n'encourage l'utilisation de contenus illégaux.</p>
+                    <p><strong>Vous êtes seul responsable de vos actions.</strong></p>
+                </div>
+            </div>
+
+            <div class="home-categories">
+                <h3>📂 Parcourir par catégorie</h3>
+                <div class="categories-grid">
+                    
+                    <a href="confidentialite-securite.html" class="category-card">
+                        <div class="icon">🔒</div>
+                        <h3>Confidentialité & Sécurité</h3>
+                        <p class="count">Navigateurs, VPN, extensions...</p>
+                    </a>
+
+                    <a href="intelligence-artificielle.html" class="category-card">
+                        <div class="icon">🤖</div>
+                        <h3>Intelligence Artificielle</h3>
+                        <p class="count">Chatbots, génération d'images...</p>
+                    </a>
+
+                    <a href="films-series-anime.html" class="category-card">
+                        <div class="icon">🎬</div>
+                        <h3>Films / Séries / Anime</h3>
+                        <p class="count">Streaming, téléchargement...</p>
+                    </a>
+
+                    <a href="musique-podcasts-radio.html" class="category-card">
+                        <div class="icon">🎵</div>
+                        <h3>Musique / Podcasts</h3>
+                        <p class="count">Streaming audio, MP3...</p>
+                    </a>
+
+                    <a href="jeux-video.html" class="category-card">
+                        <div class="icon">🎮</div>
+                        <h3>Jeux vidéo</h3>
+                        <p class="count">Téléchargement, émulateurs...</p>
+                    </a>
+
+                    <a href="livres-bd-mangas.html" class="category-card">
+                        <div class="icon">📖</div>
+                        <h3>Livres / BD / Mangas</h3>
+                        <p class="count">Bibliothèques, lecture en ligne...</p>
+                    </a>
+
+                    <a href="telechargement.html" class="category-card">
+                        <div class="icon">📥</div>
+                        <h3>Téléchargement</h3>
+                        <p class="count">Gestionnaires, DDL, hébergeurs...</p>
+                    </a>
+
+                    <a href="torrents.html" class="category-card">
+                        <div class="icon">🌊</div>
+                        <h3>Torrents</h3>
+                        <p class="count">Clients, trackers, indexeurs...</p>
+                    </a>
+
+                    <a href="education.html" class="category-card">
+                        <div class="icon">📚</div>
+                        <h3>Éducation</h3>
+                        <p class="count">Cours en ligne, tutoriels...</p>
+                    </a>
+
+                    <a href="mobile.html" class="category-card">
+                        <div class="icon">📱</div>
+                        <h3>Mobile</h3>
+                        <p class="count">Apps modifiées, stores alternatifs...</p>
+                    </a>
+
+                    <a href="systemes.html" class="category-card">
+                        <div class="icon">🐧</div>
+                        <h3>Systèmes</h3>
+                        <p class="count">Linux, Windows, macOS...</p>
+                    </a>
+
+                    <a href="logiciels-outils.html" class="category-card">
+                        <div class="icon">💻</div>
+                        <h3>Logiciels / Outils</h3>
+                        <p class="count">Productivité, design, montage...</p>
+                    </a>
+
+                    <a href="stockage-partage.html" class="category-card">
+                        <div class="icon">💾</div>
+                        <h3>Stockage & Partage</h3>
+                        <p class="count">Cloud, transfert de fichiers...</p>
+                    </a>
+
+                    <a href="web-internet.html" class="category-card">
+                        <div class="icon">🌐</div>
+                        <h3>Web / Internet</h3>
+                        <p class="count">Création de sites, hébergement...</p>
+                    </a>
+
+                    <a href="developpement.html" class="category-card">
+                        <div class="icon">👨‍💻</div>
+                        <h3>Développement</h3>
+                        <p class="count">Éditeurs, hosting, APIs...</p>
+                    </a>
+
+                    <a href="divers.html" class="category-card">
+                        <div class="icon">🎲</div>
+                        <h3>Divers</h3>
+                        <p class="count">Outils inclassables...</p>
+                    </a>
+
+                </div>
+            </div>
+
+        </main>
+
     </div>
+
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" class="back-to-top" aria-label="Retour en haut">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 SGPI - Wiki à usage privé | Réservé aux membres Discord</p>
+        <p>Dernière mise à jour : Février 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
