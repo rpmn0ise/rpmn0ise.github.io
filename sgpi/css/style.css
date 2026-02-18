@@ -1,0 +1,266 @@
+/* =========================
+   RESET & VARIABLES
+   ========================= */
+
+:root {
+    --bg-main: #0b0f0c;
+    --bg-secondary: #121a14;
+    --green-main: #00ff88;
+    --green-soft: #00cc6a;
+    --text-main: #d6ffe9;
+    --text-muted: #7fae95;
+    --border-soft: #1f3d2c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BASE
+   ========================= */
+
+body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.65;
+}
+
+/* Liens */
+a {
+    color: var(--green-soft);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--green-main);
+    text-decoration: underline;
+}
+
+/* =========================
+   LAYOUT GLOBAL
+   ========================= */
+
+main {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+section {
+    margin-bottom: 4rem;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+header {
+    text-align: center;
+    padding: 4rem 1.5rem 3rem;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--green-main);
+    letter-spacing: 0.05em;
+}
+
+header p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* =========================
+   TITRES
+   ========================= */
+
+h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--green-main);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 0.4rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.anchor-link {
+    text-decoration: none;
+    color: #00ff00; /* Vert terminal */
+    margin-left: 10px;
+    opacity: 0.3; /* Discret par défaut */
+    font-size: 0.8em;
+}
+
+.anchor-link:hover {
+    opacity: 1; /* Brille au survol */
+}
+
+/* =========================
+   TEXTE
+   ========================= */
+
+p {
+    margin: 0.6rem 0;
+    color: var(--text-main);
+}
+
+ul {
+    margin: 1rem 0 1rem 1.5rem;
+}
+li {
+    margin: 0.4rem 0;
+    color: var(--text-main);
+}
+
+/* =========================
+   BLOCKQUOTE / NOTE
+   ========================= */
+
+blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid var(--green-soft);
+    background-color: var(--bg-secondary);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* =========================
+   BOUTONS / CTA
+   ========================= */
+
+.button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.6rem;
+    background-color: transparent;
+    border: 1px solid var(--green-main);
+    color: var(--green-main);
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    background-color: var(--green-main);
+    color: #000;
+    text-decoration: none;
+}
+
+/* =========================
+   CODE & BLOCS TECH
+   ========================= */
+
+pre,
+code {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+pre {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: #0f1511;
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+    color: var(--green-soft);
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+code {
+    background-color: #0f1511;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    color: var(--green-soft);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    margin-top: 4rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-soft);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
+    main {
+        padding: 2rem 1.2rem;
+    }
+}
+
+
+/* =========================
+   BOUTON LOGO SGPI (HEADER)
+   ========================= */
+
+.header-internal {
+    position: relative;
+    padding-top: 3rem;
+}
+
+.sgpi-home {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+
+    text-decoration: none;
+    color: var(--green-main);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.sgpi-home:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--green-main);
+    text-decoration: none;
+}
+
+.sgpi-logo {
+    height: 26px;
+    width: auto;
+}
+
+.sgpi-text {
+    font-size: 0.9rem;
+}
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NixOS Flakes – RPMN0ISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/maintenance.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-logo">RPMN0ISE</div>
+        <ul class="nav-links">
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/rpmn0ise/sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
+            <li><a href="/rpmn0ise/linux/index.html">Linux</a></li>
+        </ul>
+    </nav>
+
+    <!-- LAYOUT -->
+<div class="layout no-right">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left">
+            <h3>Contents</h3>
+            <ul>
+                <li>Section 1</li>
+                <li>Section 2</li>
+                <li>Section 3</li>
+                <li>Section 4</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            <h1 id="nixos-flakes-deployment-workflow-a-procedural-guide">NixOS Flakes Deployment Workflow: A Procedural Guide</h1>
+<p>NixOS Flakes represent a shift toward a hermetic, reproducible, and composable system configuration. By moving away from mutable channels and environment-dependent paths, Flakes ensure that a configuration evaluated today will yield the exact same result in the future, regardless of the state of the external internet or the local system environment.</p>
+<p>This guide details the procedural steps required to transition a standard NixOS installation to a Flake-based workflow.</p>
+<h2 id="1-core-concepts-and-architecture">1. Core Concepts and Architecture</h2>
+<h3 id="the-role-of-the-lockfile">The Role of the Lockfile</h3>
+<p>In a traditional setup, system updates depend on the current state of the Nix channels. Flakes replace this with a dependency graph defined in a top-level file. The resulting versions are pinned in a JSON-formatted lockfile. This file ensures that every collaborator or secondary machine uses the identical revision of all inputs.</p>
+<h3 id="hermetic-evaluation">Hermetic Evaluation</h3>
+<p>Flakes enforce &quot;pure&quot; evaluation. This means the build process cannot access environment variables or files outside the project directory unless they are explicitly tracked by the version control system.</p>
+<h2 id="2-prerequisites">2. Prerequisites</h2>
+<p>Before proceeding, ensure the following requirements are met:</p>
+<ul>
+<li><strong>NixOS Version</strong>: A functional NixOS installation (22.11 or later is recommended).</li>
+<li><strong>Experimental Features</strong>: The Nix command-line tool and Flakes feature must be enabled.</li>
+<li><strong>Version Control</strong>: Git must be installed, as Nix Flakes prioritize files tracked by Git.</li>
+</ul>
+<h3 id="enabling-flakes">Enabling Flakes</h3>
+<p>To enable the necessary tools, modify the existing <code>/etc/nixos/configuration.nix</code> to include the experimental features. Add the following line to the configuration:</p>
+<pre><code>nix.settings.experimental-features = [ <span class="hljs-string">"nix-command"</span> <span class="hljs-string">"flakes"</span> ]<span class="hljs-comment">;</span>
+</code></pre><p>Apply this change by running:</p>
+<pre><code>sudo nixos-rebuild <span class="hljs-keyword">switch</span>
+</code></pre><h2 id="3-structural-initialization">3. Structural Initialization</h2>
+<p>The deployment workflow requires a centralized directory for all configuration logic. It is standard practice to move these files from the root-owned <code>/etc/nixos/</code> to a user-controlled directory for easier management with Git.</p>
+<h3 id="setup-commands">Setup Commands</h3>
+<p>Create a configuration directory and initialize a Git repository:</p>
+<pre><code><span class="hljs-built_in">mkdir</span> -p ~/nixos-<span class="hljs-built_in">config</span>
+cd ~/nixos-<span class="hljs-built_in">config</span>
+git init
+cp /etc/nixos<span class="hljs-comment">/*.nix .</span>
+</code></pre><h2 id="4-implementation-the-flake-entry-point">4. Implementation: The Flake Entry Point</h2>
+<p>The <code>flake.nix</code> file serves as the schema for your system. It defines where to pull packages from (Inputs) and what configurations to build (Outputs).</p>
+<h3 id="creating-flake-nix">Creating flake.nix</h3>
+<p>Create a file named <code>flake.nix</code> in your configuration directory with the following structure. Replace <code>your-hostname</code> with the actual hostname of your machine.</p>
+<pre><code>{
+  <span class="hljs-attr">description</span> = <span class="hljs-string">"NixOS Flake Configuration Guide"</span>;
+
+  <span class="hljs-attr">inputs</span> = {
+    nixpkgs.<span class="hljs-attr">url</span> = <span class="hljs-string">"github:nixos/nixpkgs/nixos-24.11"</span>;
+  };
+
+  <span class="hljs-attr">outputs</span> = { self, nixpkgs, ... }: {
+    nixosConfigurations.<span class="hljs-attr">your-hostname</span> = nixpkgs.lib.nixosSystem {
+      <span class="hljs-attr">system</span> = <span class="hljs-string">"x86_64-linux"</span>;
+      <span class="hljs-attr">modules</span> = [
+        ./configuration.nix
+      ];
+    };
+  };
+}
+</code></pre><h2 id="5-deployment-workflow">5. Deployment Workflow</h2>
+<p>The deployment process follows a strict sequence: staging changes, building the system, and committing the resulting lockfile.</p>
+<h3 id="step-1-staging">Step 1: Staging</h3>
+<p>Nix will ignore any file not tracked by Git. Even if a file exists, the build will fail unless it is added to the index.</p>
+<pre><code>git <span class="hljs-keyword">add</span><span class="bash"> .</span>
+</code></pre><h3 id="step-2-system-rebuild">Step 2: System Rebuild</h3>
+<p>The command to apply a flake configuration differs slightly from the legacy method. Use the path to the directory and specify the output name after a hash symbol.</p>
+<pre><code>sudo nixos-rebuild <span class="hljs-keyword">switch</span> --flake .<span class="hljs-comment">#your-hostname</span>
+</code></pre><h3 id="step-3-managing-updates">Step 3: Managing Updates</h3>
+<p>To update the system dependencies (e.g., pulling the latest security patches from the specified Nixpkgs branch), update the lockfile and rebuild:</p>
+<pre><code>nix flake <span class="hljs-keyword">update</span>
+sudo nixos-<span class="hljs-keyword">rebuild</span> <span class="hljs-keyword">switch</span> <span class="hljs-comment">--flake .#your-hostname</span>
+</code></pre><h2 id="6-comparison-of-workflows">6. Comparison of Workflows</h2>
+<p>Action</p>
+<p>Legacy Workflow</p>
+<p>Flake Workflow</p>
+<p><strong>Updates</strong></p>
+<p><code>nix-channel --update</code></p>
+<p><code>nix flake update</code></p>
+<p><strong>Rebuild</strong></p>
+<p><code>nixos-rebuild switch</code></p>
+<p><code>nixos-rebuild switch --flake .</code></p>
+<p><strong>Pinning</strong></p>
+<p>Manual NIX_PATH overrides</p>
+<p>Automatic via <code>flake.lock</code></p>
+<p><strong>Portability</strong></p>
+<p>Requires manual channel sync</p>
+<p>Fully portable via Git repo</p>
+<h2 id="7-limitations-and-common-pitfalls">7. Limitations and Common Pitfalls</h2>
+<ul>
+<li><strong>The &quot;Dirty&quot; Tree</strong>: If you have uncommitted changes, Nix may mark the build as &quot;dirty.&quot; This is a metadata warning and usually does not prevent the build, but it highlights that the state is not fully reproducible until committed.</li>
+<li><strong>Absolute Paths</strong>: Hardcoded paths like <code>/home/user/config</code> will often fail in a flake build due to the purity requirement. Use relative paths within the flake directory.</li>
+<li><strong>Hardware Changes</strong>: Always ensure your <code>hardware-configuration.nix</code> (generated by the installer) is included in the flake modules, as it contains the critical file system UUIDs and kernel modules.</li>
+</ul>
+<h2 id="8-troubleshooting">8. Troubleshooting</h2>
+<p>If the build fails with a &quot;file not found&quot; error despite the file being present in the directory, verify its status in Git:</p>
+<pre><code><span class="hljs-attribute">git status</span>
+</code></pre><p>If the file is listed as &quot;Untracked,&quot; run <code>git add</code> to include it in the Nix evaluation environment.</p>
+
+
+        </main>
+
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 – RPMN0ISE</p>
+    </footer>
+
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arch Linux ZFS-on-Root – RPMN0ISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/maintenance.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-logo">RPMN0ISE</div>
+        <ul class="nav-links">
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/rpmn0ise/sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
+            <li><a href="/rpmn0ise/linux/index.html">Linux</a></li>
+        </ul>
+    </nav>
+
+    <!-- LAYOUT -->
+<div class="layout no-right">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left">
+            <h3>Contents</h3>
+            <ul>
+                <li>Section 1</li>
+                <li>Section 2</li>
+                <li>Section 3</li>
+                <li>Section 4</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            <h1 id="arch-linux-zfs-on-root-implementation-guide">Arch Linux ZFS-on-Root: Implementation Guide</h1>
+<p>Deploying Arch Linux with ZFS as the root filesystem offers advanced data management features such as native encryption, atomic snapshots, and transparent compression. However, because ZFS is not part of the upstream Linux kernel due to licensing incompatibilities (CDDL vs. GPL), the implementation requires specific external modules and careful bootloader integration.</p>
+<p>This guide details the procedural workflow for a ZFS-on-Root setup using the archzfs repository and EFI boot stubs or unified kernel images.</p>
+<h2 id="1-concepts-and-architectural-constraints">1. Concepts and Architectural Constraints</h2>
+<h3 id="the-license-divergence">The License Divergence</h3>
+<p>ZFS is maintained as an out-of-tree module (OpenZFS). In the Arch Linux ecosystem, this means the kernel and the ZFS module must be synchronized. If the kernel updates before a compatible ZFS module is available, the system may fail to mount the root partition upon reboot.</p>
+<h3 id="pool-layout-strategy">Pool Layout Strategy</h3>
+<p>A standard ZFS-on-Root deployment typically involves:</p>
+<ul>
+<li><strong>EFI System Partition (ESP)</strong>: A FAT32 partition for the bootloader and kernel. ZFS cannot natively host the EFI stub.</li>
+<li><strong>zpool</strong>: A storage pool encompassing the rest of the disk, partitioned into datasets (e.g., for root, home, and logs).</li>
+</ul>
+<h2 id="2-prerequisites">2. Prerequisites</h2>
+<ul>
+<li><strong>Live Environment with ZFS Support</strong>: The standard Arch Linux ISO does not include ZFS. You must use a custom ISO or manually install the ZFS user-space tools in the live environment by adding the archzfs repository to the pacman configuration.</li>
+<li><strong>Hardware Compatibility</strong>: Ensure the target system supports UEFI. Legacy BIOS setups are significantly more complex for ZFS and are considered deprecated for this guide.</li>
+<li><strong>Data Backup</strong>: ZFS initialization involves full disk re-partitioning. Existing data will be destroyed.</li>
+</ul>
+<h2 id="3-implementation-workflow">3. Implementation Workflow</h2>
+<h3 id="phase-a-partitioning-and-pool-creation">Phase A: Partitioning and Pool Creation</h3>
+<p>The disk must be initialized with a GPT label. A primary partition (usually 512MiB to 1GiB) is assigned the EFI System type. The remaining space is designated for the ZFS pool.</p>
+<p>When creating the pool, use persistent device identifiers (found in <code>/dev/disk/by-id/</code>) rather than volatile nodes like <code>/dev/sda</code>. Specific pool properties are required for boot compatibility:</p>
+<ul>
+<li><strong>ashift=12</strong>: Optimizes for 4K sector drives.</li>
+<li><strong>atime=off</strong>: Reduces unnecessary write operations.</li>
+<li><strong>acltype=posixacl</strong>: Required for proper Linux permission handling.</li>
+</ul>
+<h3 id="phase-b-dataset-hierarchy">Phase B: Dataset Hierarchy</h3>
+<p>Create a hierarchical structure to separate the operating system from user data. This allows for snapshots of the system state without affecting the user&#39;s home directory.</p>
+<ol>
+<li>Create a root dataset container with mounting disabled.</li>
+<li>Create the active system dataset (e.g., <code>zpool/ROOT/arch</code>).</li>
+<li>Create secondary datasets for <code>/home</code>, <code>/var/log</code>, and <code>/var/cache</code>.</li>
+</ol>
+<p>Set the <code>mountpoint</code> property to <code>none</code> for the pool itself and manage the mountpoints manually or via the <code>canmount</code> property during the installation phase.</p>
+<h3 id="phase-c-system-installation">Phase C: System Installation</h3>
+<p>Mount the datasets under <code>/mnt</code>. The EFI partition should be mounted at <code>/mnt/boot</code> or <code>/mnt/efi</code>. Use the <code>pacstrap</code> script to install the base system.</p>
+<p><strong>Crucial Step</strong>: You must add the archzfs repository to the new system&#39;s <code>/etc/pacman.conf</code> before installing the kernel. Instead of the standard <code>linux</code> package, it is often safer to use <code>linux-lts</code> to ensure better stability with OpenZFS module releases.</p>
+<h3 id="phase-d-initial-ramdisk-initramfs-configuration">Phase D: Initial Ramdisk (initramfs) Configuration</h3>
+<p>The <code>mkinitcpio</code> configuration requires the addition of the <code>zfs</code> hook. This hook must be placed <em>before</em> the filesystems hook but <em>after</em> the keyboard hook. This ensures the ZFS module is loaded and the pool is imported before the kernel attempts to switch to the root filesystem.</p>
+<h3 id="phase-e-bootloader-integration">Phase E: Bootloader Integration</h3>
+<p>The bootloader must pass the <code>zfs=zpool/ROOT/arch</code> parameter to the kernel.</p>
+<ul>
+<li><strong>systemd-boot</strong>: Create a loader entry specifying the kernel, the initrd, and the ZFS boot parameters.</li>
+<li><strong>Unified Kernel Images (UKI)</strong>: Embed the kernel parameters directly into the signed EFI binary for a more secure and streamlined boot process.</li>
+</ul>
+<h2 id="4-maintenance-and-recovery">4. Maintenance and Recovery</h2>
+<h3 id="kernel-update-hazards">Kernel Update Hazards</h3>
+<p>To prevent a broken system, use a pacman hook to ignore kernel updates if the corresponding ZFS module is not yet present in the archzfs repository. Alternatively, use the <code>zfs-dkms</code> package to rebuild the module locally for every kernel update, though this requires more processing time and installed headers.</p>
+<h3 id="emergency-import">Emergency Import</h3>
+<p>If the system fails to boot, boot from a ZFS-compatible live ISO. Import the pool using the <code>zpool import -f -R /mnt &lt;pool_name&gt;</code> command. This forces the import and sets the alternative root to allow for chrooting and repairs.</p>
+<h2 id="5-limitations-and-risks">5. Limitations and Risks</h2>
+<ul>
+<li><strong>Memory Usage</strong>: ZFS employs the Adaptive Replacement Cache (ARC), which defaults to using 50% of system RAM. On systems with limited memory, this must be capped via kernel parameters.</li>
+<li><strong>Swap Files</strong>: Swapping to a ZFS dataset is unstable and can lead to deadlocks. Use a dedicated swap partition or a ZVOL with specifically tuned properties if swap is required.</li>
+<li><strong>Encryption Performance</strong>: While ZFS native encryption is robust, it occurs at the dataset level. If encryption is required for the entire pool including metadata, LUKS underlying the ZFS pool is an alternative, albeit with a performance penalty.</li>
+</ul>
+<h2 id="summary-of-options">Summary of Options</h2>
+<p>Component</p>
+<p>Recommended</p>
+<p>Alternative</p>
+<p><strong>Kernel</strong></p>
+<p><code>linux-lts</code></p>
+<p><code>linux</code> (Latest)</p>
+<p><strong>ZFS Package</strong></p>
+<p><code>zfs-linux-lts</code></p>
+<p><code>zfs-dkms</code></p>
+<p><strong>Bootloader</strong></p>
+<p><code>systemd-boot</code></p>
+<p><code>GRUB</code></p>
+<p><strong>Partitioning</strong></p>
+<p>GPT / EFI</p>
+<p>Legacy MBR (Not recommended)</p>
+        </main>
+
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 – RPMN0ISE</p>
+    </footer>
+
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

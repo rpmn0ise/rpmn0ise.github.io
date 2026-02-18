@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AppArmor Profile Generation – RPMN0ISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/maintenance.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-logo">RPMN0ISE</div>
+        <ul class="nav-links">
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/rpmn0ise/sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
+            <li><a href="/rpmn0ise/linux/index.html">Linux</a></li>
+        </ul>
+    </nav>
+
+    <!-- LAYOUT -->
+<div class="layout no-right">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left">
+            <h3>Contents</h3>
+            <ul>
+                <li>Section 1</li>
+                <li>Section 2</li>
+                <li>Section 3</li>
+                <li>Section 4</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            <h1 id="apparmor-profile-generation">AppArmor Profile Generation</h1>
+<p>Usage instructions for confining user-space applications through mandatory access control</p>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>This guide explains how to <strong>design, generate, and maintain AppArmor profiles</strong> in order to confine user-space applications using Mandatory Access Control (MAC).</p>
+<p>The focus is on <strong>understanding the profile generation workflow</strong>, from observation to enforcement, rather than on distribution-specific tooling or automation. The reader is expected to be familiar with Linux process execution, filesystem layouts, and basic security models.</p>
+<p>This document is intended for:</p>
+<ul>
+<li>System administrators</li>
+<li>Power users</li>
+<li>Developers running untrusted or semi-trusted applications</li>
+</ul>
+<p>The goal is not perfect confinement, but <em>controlled reduction of application capabilities</em>.</p>
+<h2 id="2-scope-and-non-goals">2. Scope and non-goals</h2>
+<h3 id="in-scope">In scope</h3>
+<ul>
+<li>AppArmor security model and profile structure</li>
+<li>Profile generation through observation and refinement</li>
+<li>Enforcing least-privilege policies</li>
+<li>Common failure modes and maintenance concerns</li>
+</ul>
+<h3 id="out-of-scope">Out of scope</h3>
+<ul>
+<li>SELinux comparisons in depth</li>
+<li>Kernel compilation or patching</li>
+<li>GUI profile management tools</li>
+<li>Container runtimes and orchestration</li>
+</ul>
+<h2 id="3-apparmor-security-model-overview">3. AppArmor security model overview</h2>
+<h3 id="3-1-mandatory-access-control">3.1 Mandatory Access Control</h3>
+<p>AppArmor enforces access rules <em>independently of user permissions</em>.</p>
+<p>Key characteristics:</p>
+<ul>
+<li>Policies are enforced by the kernel</li>
+<li>Decisions do not depend on UID or GID alone</li>
+<li>Denials cannot be bypassed by application logic</li>
+</ul>
+<p>MAC is additive to discretionary access control, not a replacement.</p>
+<h3 id="3-2-path-based-confinement">3.2 Path-based confinement</h3>
+<p>Unlike label-based systems, AppArmor uses <strong>filesystem paths</strong>.</p>
+<p>Implications:</p>
+<ul>
+<li>Rules match absolute paths</li>
+<li>Hard links and path aliases can matter</li>
+<li>Mount namespace changes affect policy behavior</li>
+</ul>
+<p>This simplifies reasoning but introduces fragility.</p>
+<h3 id="3-3-profiles-and-execution-context">3.3 Profiles and execution context</h3>
+<p>Each confined process:</p>
+<ul>
+<li>Is associated with a profile</li>
+<li>Inherits confinement across forks</li>
+<li>May transition to another profile on execution</li>
+</ul>
+<p>Profile attachment is deterministic and explicit.</p>
+<h2 id="4-prerequisites">4. Prerequisites</h2>
+<h3 id="system-requirements">System requirements</h3>
+<ul>
+<li>Linux kernel with AppArmor enabled</li>
+<li>AppArmor userspace utilities installed</li>
+<li>Filesystem paths stable across reboots</li>
+</ul>
+<h3 id="operational-requirements">Operational requirements</h3>
+<ul>
+<li>Root access for profile loading</li>
+<li>Ability to observe application behavior</li>
+<li>Willingness to iterate and refine rules</li>
+</ul>
+<p>A test environment is strongly recommended.</p>
+<h2 id="5-profile-lifecycle-overview">5. Profile lifecycle overview</h2>
+<p>AppArmor profiles typically evolve through four phases:</p>
+<ol>
+<li><strong>Discovery</strong></li>
+<li><strong>Learning</strong></li>
+<li><strong>Enforcement</strong></li>
+<li><strong>Maintenance</strong></li>
+</ol>
+<p>Skipping phases usually leads to breakage or over-permissive policies.</p>
+<h2 id="6-identifying-the-confinement-target">6. Identifying the confinement target</h2>
+<p>Before generating a profile, clearly define:</p>
+<ul>
+<li>The executable entry point</li>
+<li>How the application is launched</li>
+<li>Whether it spawns helper binaries</li>
+<li>Whether it loads plugins or scripts</li>
+</ul>
+<p>Ambiguous execution paths lead to incomplete confinement.</p>
+<h2 id="7-initial-profile-generation">7. Initial profile generation</h2>
+<h3 id="7-1-profile-skeleton">7.1 Profile skeleton</h3>
+<p>A minimal profile defines:</p>
+<ul>
+<li>The executable path</li>
+<li>Basic execution permissions</li>
+<li>Default deny behavior</li>
+</ul>
+<p>At this stage, the profile is intentionally incomplete.</p>
+<h3 id="7-2-complain-learning-mode">7.2 Complain (learning) mode</h3>
+<p>In learning mode:</p>
+<ul>
+<li>Access violations are logged</li>
+<li>Execution is not blocked</li>
+<li>Real behavior can be observed</li>
+</ul>
+<p>This mode is essential for dynamic or complex applications.</p>
+<p>Learning mode does not guarantee coverage of rare code paths.</p>
+<h2 id="8-observing-application-behavior">8. Observing application behavior</h2>
+<h3 id="8-1-log-driven-refinement">8.1 Log-driven refinement</h3>
+<p>During execution, AppArmor reports:</p>
+<ul>
+<li>File reads and writes</li>
+<li>Library loading</li>
+<li>Network access</li>
+<li>Capability usage</li>
+</ul>
+<p>Logs reflect <em>what happened</em>, not what is required in all cases.</p>
+<h3 id="8-2-behavioral-boundaries">8.2 Behavioral boundaries</h3>
+<p>When interpreting logs:</p>
+<ul>
+<li>Distinguish core functionality from optional features</li>
+<li>Identify transient accesses (temporary files, caches)</li>
+<li>Question unexpected network or device access</li>
+</ul>
+<p>Not all observed behavior should be allowed.</p>
+<h2 id="9-refining-the-profile">9. Refining the profile</h2>
+<h3 id="9-1-filesystem-access">9.1 Filesystem access</h3>
+<p>Rules should:</p>
+<ul>
+<li>Prefer read-only access where possible</li>
+<li>Restrict writable directories</li>
+<li>Avoid wildcarding entire trees without justification</li>
+</ul>
+<p>Overly broad file rules defeat confinement.</p>
+<h3 id="9-2-execution-control">9.2 Execution control</h3>
+<p>Pay attention to:</p>
+<ul>
+<li>Child process execution</li>
+<li>Interpreter invocation</li>
+<li>Shell escapes</li>
+</ul>
+<p>Execution permissions are often the weakest point.</p>
+<h3 id="9-3-capabilities-and-privileges">9.3 Capabilities and privileges</h3>
+<p>Allowing Linux capabilities:</p>
+<ul>
+<li>Should be explicit</li>
+<li>Must be justified</li>
+<li>Is often unnecessary for user-space tools</li>
+</ul>
+<p>Capabilities expand the attack surface.</p>
+<h2 id="10-transition-to-enforce-mode">10. Transition to enforce mode</h2>
+<p>Once the profile is sufficiently refined:</p>
+<ul>
+<li>Switch from complain to enforce</li>
+<li>Test all expected workflows</li>
+<li>Observe for unexpected denials</li>
+</ul>
+<p>Enforce mode changes application behavior by design.</p>
+<h2 id="11-handling-denials-in-production">11. Handling denials in production</h2>
+<h3 id="expected-denials">Expected denials</h3>
+<ul>
+<li>Configuration changes</li>
+<li>Plugin additions</li>
+<li>Environment variable differences</li>
+</ul>
+<h3 id="unexpected-denials">Unexpected denials</h3>
+<ul>
+<li>Kernel updates</li>
+<li>Path layout changes</li>
+<li>Dependency updates</li>
+</ul>
+<p>Denials indicate mismatch between policy and reality.</p>
+<h2 id="12-profile-maintenance">12. Profile maintenance</h2>
+<p>AppArmor profiles are not static artifacts.</p>
+<p>Maintenance requires:</p>
+<ul>
+<li>Revisiting profiles after updates</li>
+<li>Periodic log review</li>
+<li>Pruning unused permissions</li>
+</ul>
+<p>Stale rules accumulate silently.</p>
+<h2 id="13-common-mistakes-and-pitfalls">13. Common mistakes and pitfalls</h2>
+<ul>
+<li>Using broad wildcards to silence denials</li>
+<li>Forgetting indirect execution paths</li>
+<li>Confining wrapper scripts instead of real binaries</li>
+<li>Assuming path-based rules survive refactoring</li>
+<li>Treating learning mode output as authoritative</li>
+</ul>
+<p>Profiles encode assumptions that must be revisited.</p>
+<h2 id="14-limitations-and-trade-offs">14. Limitations and trade-offs</h2>
+<h3 id="strengths">Strengths</h3>
+<ul>
+<li>Simple mental model</li>
+<li>Low runtime overhead</li>
+<li>Good fit for standalone applications</li>
+</ul>
+<h3 id="weaknesses">Weaknesses</h3>
+<ul>
+<li>Path-based fragility</li>
+<li>Limited visibility into in-memory behavior</li>
+<li>Complex applications require constant tuning</li>
+</ul>
+<p>AppArmor improves security posture, not correctness.</p>
+<h2 id="15-variants-and-alternatives">15. Variants and alternatives</h2>
+<h3 id="system-wide-confinement">System-wide confinement</h3>
+<p>Used for:</p>
+<ul>
+<li>Network-facing services</li>
+<li>Background daemons</li>
+</ul>
+<p>Trade-off:</p>
+<ul>
+<li>Higher breakage risk</li>
+</ul>
+<h3 id="per-user-applications">Per-user applications</h3>
+<p>Used for:</p>
+<ul>
+<li>Browsers</li>
+<li>Media tools</li>
+<li>Custom scripts</li>
+</ul>
+<p>Trade-off:</p>
+<ul>
+<li>Harder to generalize policies</li>
+</ul>
+<h3 id="alternative-mac-systems">Alternative MAC systems</h3>
+<p>Label-based systems:</p>
+<ul>
+<li>Are more robust to path changes</li>
+<li>Are harder to reason about initially</li>
+</ul>
+<p>Choice depends on operational constraints.</p>
+<h2 id="16-conclusion">16. Conclusion</h2>
+<p>AppArmor profile generation is an <strong>iterative, observational process</strong> that trades convenience for control.</p>
+<p>Effective confinement requires:</p>
+<ul>
+<li>Understanding application behavior</li>
+<li>Accepting partial coverage</li>
+<li>Maintaining profiles over time</li>
+</ul>
+<p>Used carefully, AppArmor provides meaningful reduction of attack surface while remaining understandable and debuggable.</p>
+
+        </main>
+
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 – RPMN0ISE</p>
+    </footer>
+
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

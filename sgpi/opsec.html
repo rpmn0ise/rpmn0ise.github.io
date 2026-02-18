@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPI - Guide de Sécurité Opérationnel</title>
+    <link rel="stylesheet" href="css/oldweb.css"> <!-- Assure-toi que ton CSS est correctement lié -->
+</head>
+<body>
+
+<header class="header-internal">
+    <a href="index.html" class="sgpi-home">
+        <img src="img/sgpi-logo.png" alt="Logo SGPI" class="sgpi-logo">
+        <span class="sgpi-text">SGPI</span>
+    </a>
+
+    <h1>Guide de Sécurité Opérationnelle</h1>
+    <p>Sécurité Opérationnelle (OPSEC) : indispensable dans le cadre SGPI</p>
+</header>
+
+
+<main class="container">
+
+    <!-- Sommaire -->
+<nav class="sommaire-fixe">    <h2 id="top">SOMMAIRE</h2>
+    <ul>
+      <li><a href="#0-pr-ambule-sgpi">0. PRÉAMBULE SGPI</a></li>
+      <li><a href="#1-doctrine-de-s-curit-sgpi">1. DOCTRINE DE SÉCURITÉ SGPI</a></li>
+      <li><a href="#2-s-paration-des-environnements-pilier-central-">2. SÉPARATION DES ENVIRONNEMENTS (PILIER CENTRAL)</a></li>
+      <li><a href="#3-identit-num-rique-opsec-personnel">3. IDENTITÉ NUMÉRIQUE & OPSEC PERSONNEL</a></li>
+      <li><a href="#4-navigateurs-configuration-sgpi">4. NAVIGATEURS : CONFIGURATION SGPI</a></li>
+      <li><a href="#5-bloqueurs-de-publicit-">5. BLOQUEURS DE PUBLICITÉ</a></li>
+      <li><a href="#6-gestion-des-scripts-javascript-">6. GESTION DES SCRIPTS (JAVASCRIPT)</a></li>
+      <li><a href="#7-scripts-utilisateurs-userscripts-">7. SCRIPTS UTILISATEURS (USERSCRIPTS)</a></li>
+      <li><a href="8-extensions-de-bypass">8. EXTENSIONS DE BYPASS</a></li>
+      <li><a href="#9-t-l-chargements-protocole-sgpi">9. TÉLÉCHARGEMENTS : PROTOCOLE SGPI</a></li>
+      <li><a href="#10-typologie-des-fichiers-risques">10. TYPOLOGIE DES FICHIERS & RISQUES</a></li>
+      <li><a href="#11-publicit-s-social-engineering">11. PUBLICITÉS & SOCIAL ENGINEERING</a></li>
+      <li><a href="#12-r-seau-isolation">12. RÉSEAU & ISOLATION</a></li>
+      <li><a href="#13-mobile-plateformes-alternatives">13. MOBILE & PLATEFORMES ALTERNATIVES</a></li>
+      <li><a href="#14-gestion-des-mots-de-passe">14. GESTION DES MOTS DE PASSE</a></li>
+      <li><a href="#15-sauvegardes-reprise">15. SAUVEGARDES & REPRISE</a></li>
+      <li><a href="#16-d-tection-de-compromission">16. DÉTECTION DE COMPROMISSION</a></li>
+      <li><a href="#17-r-ponse-incident-sgpi">17. RÉPONSE À INCIDENT SGPI</a></li>
+      <li><a href="#18-erreurs-fr-quentes">18. ERREURS FRÉQUENTES</a></li>
+      <li><a href="#19-doctrine-finale-sgpi">19. DOCTRINE FINALE SGPI</a></li>
+      <li><a href="#20-volution-du-guide">20. ÉVOLUTION DU GUIDE</a></li>
+      <li><a href="#21-annexes">21. ANNEXES</a></li>
+    </ul>
+</nav>  
+
+
+
+
+    <!-- Section principale -->
+    <section>
+      <h2 id="0-pr-ambule-sgpi">0. PRÉAMBULE SGPI</h2>
+<h3 id="objectif-du-guide">Objectif du guide</h3>
+<p>Ce guide n’est pas un simple recueil de conseils de prudence élémentaire ; il constitue le <strong>protocole opérationnel de sécurité</strong> impératif pour tout membre de la SGPI. Il a pour vocation de réduire drastiquement l’exposition aux vecteurs de menace auxquels vous êtes confrontés lors de vos activités de navigation, de téléchargement, de test ou d’exploration de ressources au sein d&#39;environnements non contrôlés.</p>
+<p>Dans l&#39;écosystème de la SGPI, la curiosité technique est une force, mais sans une méthodologie de protection rigoureuse, elle devient une vulnérabilité critique. Ce document définit les procédures de réduction de la surface d&#39;attaque nécessaires pour opérer avec discernement là où la confiance est absente par défaut.</p>
+<h3 id="il-vise-prot-ger-">Il vise à protéger :</h3>
+<p>La sécurité au sein de notre structure est une responsabilité partagée. Tout manquement individuel fragilise l’édifice collectif. Ce guide protège trois échelons vitaux :</p>
+<ul>
+<li><strong>Les membres individuellement :</strong> Garantir l’intégrité de vos données personnelles (PII), la confidentialité de vos communications et la pérennité de votre matériel physique. Il s&#39;agit d&#39;empêcher que votre environnement de travail ne devienne une cible ou un point de rebond pour des acteurs tiers.</li>
+<li><strong>La communauté SGPI :</strong> Prévenir tout effet de contagion. Un membre dont la sécurité est compromise représente un vecteur potentiel d&#39;intrusion ou de surveillance pour l&#39;ensemble du groupe. La protection de chacun est la condition sine qua non de la confiance mutuelle.</li>
+<li><strong>L’infrastructure, les comptes, la réputation et la continuité du projet :</strong> Sanctuariser nos canaux d&#39;échange, nos bases de connaissances et nos outils. Préserver l&#39;anonymat global de la structure et assurer que le projet puisse perdurer à l&#39;abri des ingérences, des censures ou des tentatives de déstabilisation.</li>
+</ul>
+<h3 id="ce-guide-n-limine-pas-le-risque-">Ce guide n’élimine pas le risque.</h3>
+<p>L&#39;illusion de la sécurité totale est une faute technique. En informatique, le risque zéro n&#39;existe pas. Ce guide est un outil de gestion du risque résiduel qui repose sur trois piliers doctrinaux :</p>
+<ol>
+<li><strong>Le comprendre :</strong> Identifier les menaces (malwares, ingénierie sociale, fuites de métadonnées) pour ne jamais être pris au dépourvu.</li>
+<li><strong>Le contenir :</strong> Appliquer des principes de compartimentation et d&#39;isolation (VM, bacs à sable, réseaux distincts) pour limiter l&#39;impact d&#39;un compromis.</li>
+<li><strong>L’assumer correctement :</strong> Prendre des décisions éclairées. Agir en connaissance de cause signifie accepter que chaque action comporte une part d&#39;incertitude, et s&#39;assurer que cette part ne mette jamais en péril les intérêts supérieurs de la SGPI.</li>
+</ol>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+    <!-- Section secondaire -->
+    <section>
+      <h2 id="1-doctrine-de-s-curit-sgpi">1. DOCTRINE DE SÉCURITÉ SGPI</h2>
+<h3 id="principe-fondamental">Principe fondamental</h3>
+<p>Au sein de la SGPI, la neutralité n&#39;existe pas : <strong>tout ce qui n’est pas explicitement fiable est considéré comme hostile.</strong> La confiance n&#39;est pas un sentiment, c&#39;est une preuve technique qui doit être renouvelée à chaque interaction. Par défaut, nous opérons dans un état de méfiance systémique envers tout élément externe à notre périmètre de contrôle.</p>
+<p>Cette hostilité latente inclut, sans s&#39;y limiter :</p>
+<ul>
+<li><strong>Les sites :</strong> Même ceux paraissant légitimes peuvent être des vecteurs de <em>drive-by download</em> ou de phishing sophistiqué.</li>
+<li><strong>Les fichiers :</strong> Un binaire, une image ou un document n&#39;est jamais &quot;inerte&quot; tant que son intégrité et son comportement n&#39;ont pas été audités.</li>
+<li><strong>Les scripts :</strong> Le code est une suite d&#39;instructions ; sans analyse préalable, vous donnez les clés de votre exécution à un inconnu.</li>
+<li><strong>Les publicités :</strong> Le <em>malvertising</em> transforme les réseaux de diffusion légitimes en injecteurs de payloads. Une régie publicitaire est une faille de sécurité par design.</li>
+<li><strong>Les extensions :</strong> Chaque plugin de navigateur est une porte dérobée potentielle disposant de privilèges élevés sur vos flux de données.</li>
+<li><strong>Les utilisateurs tiers :</strong> L’ingénierie sociale est l’arme la plus efficace. Un interlocuteur inconnu est un vecteur d&#39;attaque jusqu&#39;à preuve du contraire.</li>
+</ul>
+<h3 id="hypoth-ses-de-d-part-non-n-gociables-">Hypothèses de départ (non négociables)</h3>
+<p>La doctrine SGPI repose sur l&#39;acceptation de réalités techniques souvent ignorées par le grand public. Ces axiomes ne sont pas sujets à débat :</p>
+<ul>
+<li><strong>Un site peut être compromis sans le savoir :</strong> La légitimité apparente d&#39;un domaine ne garantit en rien l&#39;absence de scripts malveillants injectés via ses dépendances ou une faille serveur.</li>
+<li><strong>Un fichier peut être piégé même s’il “fonctionne” :</strong> L&#39;exécution réussie de la charge utile apparente (un logiciel qui se lance, un document qui s&#39;affiche) peut masquer une activité malveillante persistante en arrière-plan (backdoor, info-stealer).</li>
+<li><strong>Une pub est un vecteur d’attaque :</strong> Le simple affichage d&#39;une bannière peut suffire à exploiter une vulnérabilité de navigateur. Le blocage des publicités n&#39;est pas une question de confort, mais de survie.</li>
+<li><strong>La majorité des compromissions viennent d’erreurs humaines :</strong> Le maillon faible est l&#39;opérateur. La fatigue, la précipitation ou l&#39;excès de confiance sont les alliés directs de l&#39;adversaire.</li>
+</ul>
+<h3 id="cons-quence-directe">Conséquence directe</h3>
+<p>L&#39;application stricte de cette doctrine impose une hiérarchie des valeurs immuable. <strong>La sécurité précède toujours :</strong></p>
+<ol>
+<li><strong>Le confort :</strong> Nous acceptons la lourdeur des protocoles (double authentification, isolation, machines virtuelles) car l&#39;ergonomie ne doit jamais se payer au prix de l&#39;intégrité.</li>
+<li><strong>La rapidité :</strong> Prendre le temps d&#39;analyser une ressource est plus rentable que de devoir gérer une remédiation après incident. L&#39;urgence est une erreur stratégique.</li>
+<li><strong>La curiosité :</strong> L&#39;envie d&#39;explorer ne justifie jamais une prise de risque inconsidérée. La découverte doit se faire dans un cadre maîtrisé ou ne pas se faire du tout.</li>
+</ol>
+<a href="#top">↑ Retour au sommaire</a>
+
+    </section>
+    
+    
+    <section>
+      <h2 id="2-s-paration-des-environnements-pilier-central-">2. SÉPARATION DES ENVIRONNEMENTS (PILIER CENTRAL)</h2>
+<h3 id="principe-sgpi">Principe SGPI</h3>
+<p>La compromission est souvent la conséquence d&#39;une porosité entre la sphère privée et la sphère d&#39;exploration. Le dogme est absolu : <strong>aucune activité à risque ne doit avoir lieu sur un environnement de confiance.</strong> L&#39;étanchéité entre vos données sensibles et vos manipulations techniques doit être physique ou logicielle, mais elle ne doit souffrir d&#39;aucune exception. Un seul clic hors cadre suffit à invalider des mois de prudence.</p>
+<h3 id="environnements-identifi-s">Environnements identifiés</h3>
+<p>Pour opérer avec clarté, vous devez segmenter votre espace numérique en deux zones distinctes et hermétiques :</p>
+<ul>
+<li><p>Environnement principal (Zone de Confiance) :</p>
+<p>  C’est votre sanctuaire. Il est réservé à l’usage personnel, à la gestion de vos comptes réels (identités civiles), à vos projets de développement stables et au stockage de vos données sensibles. Cet environnement est considéré comme intègre et doit le rester. On n&#39;y teste rien, on n&#39;y explore rien.</p>
+</li>
+<li><p>Environnement à risque (Zone d&#39;Exposition) :</p>
+<p>  C’est votre laboratoire de terrain. Il est dédié à la navigation sur des domaines non audités, au test de binaires suspects, aux téléchargements de sources tierces et à l’exploration de vecteurs d&#39;information hostiles. Cet environnement est considéré comme souillé par défaut.</p>
+</li>
+</ul>
+<h3 id="environnements-autoris-s-pour-activit-s-risque">Environnements autorisés pour activités à risque</h3>
+<p>L&#39;isolation repose sur l&#39;utilisation de technologies de compartimentation. Seuls ces vecteurs sont tolérés pour l&#39;exploration :</p>
+<ul>
+<li><strong>Machine virtuelle (VM) dédiée :</strong> Utilisation d&#39;hyperviseurs pour créer des instances isolées. Chaque instance doit être configurée avec des &quot;snapshots&quot; (instantanés) permettant un retour à un état sain immédiat après chaque manipulation.</li>
+<li><strong>OS secondaire isolé :</strong> Utilisation du &quot;Dual Boot&quot; sur un disque séparé ou d&#39;une partition chiffrée n&#39;ayant aucun point de montage vers le système principal.</li>
+<li><strong>Live USB jetable :</strong> Utilisation de systèmes d&#39;exploitation amnésiques (type Tails ou une distribution Linux &quot;live&quot;) qui ne laissent aucune trace sur le matériel hôte après extinction.</li>
+<li><strong>Appareil secondaire (Air-gap partiel) :</strong> Utilisation d&#39;un matériel physique distinct (vieux laptop, machine dédiée) n&#39;ayant aucune connexion directe avec votre réseau local principal et ne contenant aucune donnée personnelle.</li>
+</ul>
+<h3 id="environnements-strictement-interdits">Environnements strictement interdits</h3>
+<p>L&#39;utilisation de ces environnements pour des activités de recherche ou de test est considérée comme une faute d&#39;OPSEC majeure :</p>
+<ul>
+<li><strong>OS principal :</strong> Jamais, sous aucun prétexte. L&#39;installation d&#39;un logiciel &quot;pour voir&quot; sur votre système hôte est une compromission volontaire.</li>
+<li><strong>Session avec comptes personnels actifs :</strong> L&#39;usage de navigateurs où vos sessions (Google, Discord, Banques) sont ouvertes est proscrit. Les cookies de session et les gestionnaires de mots de passe intégrés sont les premières cibles des info-stealers.</li>
+<li><strong>Machine contenant des actifs critiques :</strong> Si l&#39;appareil contient vos clés de chiffrement, vos accès bancaires, vos documents d&#39;identité ou vos identifiants SGPI critiques, il ne doit jamais être exposé à une ressource non fiable.</li>
+</ul>
+<h3 id="r-gle-cl-">Règle clé</h3>
+<p>La validité de votre dispositif se mesure à sa capacité de destruction. <strong>Si tu ne peux pas jeter l’environnement sans regret, il est mal utilisé.</strong> Tout environnement d&#39;exploration doit être considéré comme du consommable : il doit pouvoir être formaté, supprimé ou réinitialisé en quelques secondes sans qu&#39;aucune donnée de valeur ne soit perdue.</p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+    
+    
+    <section>
+      <h2 id="3-identit-num-rique-opsec-personnel">3. IDENTITÉ NUMÉRIQUE &amp; OPSEC PERSONNEL</h2>
+<h3 id="identit-surface-d-attaque">Identité = surface d’attaque</h3>
+<p>Dans l&#39;espace numérique, votre identité n&#39;est pas un concept abstrait ; c&#39;est une empreinte technique exploitable. Chaque adresse email, chaque pseudonyme, chaque cookie persistant ou jeton d&#39;authentification (login) constitue un point de corrélation potentiel. L&#39;accumulation de ces métadonnées permet à un adversaire de pratiquer le <em>doxing</em> ou le <em>profiling</em>, transformant des fragments d&#39;informations isolés en un vecteur d&#39;attaque ciblé.</p>
+<h3 id="r-gles-sgpi">Règles SGPI</h3>
+<p>La gestion de l&#39;identité doit répondre à une logique de compartimentation stricte pour rendre toute corrélation impossible.</p>
+<ul>
+<li><strong>Une identité pour un usage :</strong> Chaque projet, chaque investigation ou chaque accès à une plateforme suspecte doit faire l&#39;objet d&#39;une identité dédiée et unique. On ne mélange pas les fonctions.</li>
+<li><strong>Jamais de réutilisation :</strong> La réutilisation d&#39;un pseudonyme, d&#39;un mot de passe ou d&#39;une adresse de récupération sur deux plateformes distinctes crée un pont logique que nous refusons. Si une identité est compromise, le lien doit s&#39;arrêter là.</li>
+<li><strong>Jamais de lien avec l&#39;identité réelle ou SGPI publique :</strong> Aucune passerelle ne doit exister entre votre identité civile (nom, prénom, photo, localisation), votre présence officielle au sein de la SGPI et vos activités d&#39;exploration. L&#39;étanchéité doit être totale et vérifiée.</li>
+</ul>
+<h3 id="interdictions-absolues">Interdictions absolues</h3>
+<p>Certains services sont conçus pour centraliser et tracer vos activités. Leur usage dans un cadre à risque est proscrit :</p>
+<ul>
+<li><strong>Connexion Google / Microsoft / Apple :</strong> L&#39;utilisation du &quot;Single Sign-On&quot; (SSO) pour se connecter à des tiers est une erreur critique. Cela permet une agrégation massive de vos données de navigation par des entités dont le modèle économique est la surveillance.</li>
+<li><strong>Comptes Discord personnels :</strong> Votre compte principal, contenant vos contacts, vos serveurs de confiance et vos historiques, ne doit jamais être ouvert ou utilisé dans un environnement d&#39;exploration.</li>
+<li><strong>Comptes GitHub, Steam, réseaux sociaux :</strong> Ces plateformes sont des mines d&#39;or pour la corrélation d&#39;identités. L&#39;utilisation d&#39;un compte lié à vos loisirs ou à votre carrière professionnelle pour accéder à des ressources douteuses est une compromission immédiate.</li>
+</ul>
+<h3 id="erreurs-fr-quentes">Erreurs fréquentes</h3>
+<p>La compromission est rarement le fruit d&#39;une attaque complexe, elle vient de la négligence :</p>
+<ul>
+<li><strong>Auto-login oublié :</strong> Laisser un navigateur mémoriser des identifiants ou se connecter automatiquement à un service lors de l&#39;ouverture d&#39;une session.</li>
+<li><strong>Cookie persistant :</strong> Ne pas nettoyer son cache et ses cookies après une session de navigation, permettant ainsi à un site de vous reconnaître lors d&#39;une visite ultérieure, même sous VPN.</li>
+<li><strong>Réutilisation “juste pour une fois” :</strong> Céder à la paresse en utilisant un compte existant pour accéder rapidement à une ressource &quot;sans importance&quot;. C&#39;est précisément ce moment de faiblesse qu&#39;attend un adversaire.</li>
+</ul>
+<p>➡️ Une identité compromise est brûlée définitivement.</p>
+<p>Si une corrélation est établie ou si un compte est suspecté d&#39;être surveillé, il doit être abandonné instantanément. On ne cherche pas à récupérer une identité souillée ; on la détruit et on en génère une nouvelle, sans aucun lien avec la précédente.</p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="4-navigateurs-configuration-sgpi">4. NAVIGATEURS : CONFIGURATION SGPI</h2>
+<h3 id="choix-du-navigateur">Choix du navigateur</h3>
+<p>Le navigateur est votre fenêtre sur l&#39;extérieur, mais c&#39;est aussi le principal vecteur de fuite de métadonnées. L&#39;usage de navigateurs propriétaires (Chrome, Edge, Safari) est proscrit pour toute activité de recherche, car ils intègrent nativement des fonctions de télémétrie impossibles à désactiver totalement.</p>
+<ul>
+<li><strong>Firefox :</strong> Le standard recommandé, à condition d&#39;être durci (<em>hardened</em>). Il offre le contrôle le plus fin sur les paramètres internes (<code>about:config</code>).</li>
+<li><strong>Brave :</strong> Une alternative acceptable pour sa gestion native du blocage des traqueurs et des publicités, bien que moins granulaire que Firefox.</li>
+<li><strong>Profil dédié &quot;SGPI-ZONE&quot; :</strong> Vous ne devez jamais utiliser votre profil de navigation quotidien. Créez un profil vierge, sans synchronisation de compte, strictement réservé à vos activités au sein de la structure.</li>
+</ul>
+<h3 id="param-tres-critiques">Paramètres critiques</h3>
+<p>Une configuration par défaut est une configuration vulnérable. Les modifications suivantes sont obligatoires pour limiter la surface d&#39;exposition :</p>
+<ul>
+<li><strong>Désactiver WebRTC :</strong> Ce protocole de communication en temps réel est une faille majeure. Il peut révéler votre adresse IP réelle (locale et publique), même derrière un VPN ou un proxy.</li>
+<li><strong>Désactiver l’ouverture automatique des fichiers :</strong> Un fichier (PDF, binaire, script) ne doit jamais s&#39;exécuter ou s&#39;ouvrir sans une action délibérée de votre part après analyse. Le navigateur ne doit rien décider pour vous.</li>
+<li><strong>Désactiver les notifications et la géolocalisation :</strong> Ces fonctions permettent de créer des points de corrélation géographique et temporelle inutiles.</li>
+<li><strong>Suppression automatique des cookies et du cache :</strong> Le navigateur doit être amnésique. Chaque fermeture de session doit purger l&#39;intégralité des données stockées pour empêcher le suivi inter-sessions.</li>
+<li><strong>Téléchargements manuels uniquement :</strong> Forcez le navigateur à demander systématiquement l&#39;emplacement de sauvegarde. Ne téléchargez rien dans les dossiers par défaut de votre système hôte.</li>
+</ul>
+<h3 id="fingerprinting-concept-">Fingerprinting (concept)</h3>
+<p>Le <em>Fingerprinting</em> (empreinte numérique) est une technique de traçage sophistiquée qui ne repose pas sur les cookies. En interrogeant votre navigateur sur sa résolution d&#39;écran, ses polices installées, sa version de moteur de rendu et ses composants matériels, un site peut générer un identifiant unique pour votre machine.</p>
+<p><strong>Même sans compte, un navigateur mal configuré identifie l’utilisateur.</strong> Pour contrer cela, la SGPI impose :</p>
+<ul>
+<li><strong>L&#39;usage d&#39;un profil dédié :</strong> Pour isoler l&#39;empreinte de vos activités SGPI de vos activités personnelles.</li>
+<li><strong>Extensions minimales :</strong> Plus vous installez d&#39;extensions (bloqueurs, traducteurs, gadgets), plus votre empreinte devient unique. Utilisez le strict nécessaire (ex: uBlock Origin configuré en mode avancé).</li>
+<li><strong>Comportement cohérent :</strong> Ne changez pas constamment la taille de votre fenêtre de navigation et évitez de modifier les paramètres de rendu qui vous distingueraient de la masse des utilisateurs du même navigateur.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="5-bloqueurs-de-publicit-">5. BLOQUEURS DE PUBLICITÉ</h2>
+<h3 id="pourquoi-la-pub-est-une-attaque">Pourquoi la pub est une attaque</h3>
+<p>Dans la doctrine SGPI, la publicité en ligne n&#39;est pas perçue comme une nuisance commerciale, mais comme un <strong>vecteur d&#39;infection actif</strong>. Le modèle des régies publicitaires repose sur l&#39;exécution de code tiers non audité sur votre machine. Cette architecture est exploitée par des acteurs hostiles via le <em>Malvertising</em> (publicité malveillante).</p>
+<p>Les menaces identifiées sont les suivantes :</p>
+<ul>
+<li><strong>Redirections forcées :</strong> Utilisation de scripts pour détourner votre navigation vers des pages de phishing ou des centres de téléchargement de malwares sans interaction de votre part.</li>
+<li><strong>Scripts injectés :</strong> Exécution de JavaScript malveillant (ex: cryptojacking, siphonnage de formulaires) via des domaines publicitaires compromis ou malveillants par design.</li>
+<li><strong>Faux boutons :</strong> Utilisation de l&#39;ingénierie sociale visuelle (boutons &quot;Download&quot;, &quot;Fermer&quot; ou &quot;Mise à jour&quot; factices) pour inciter l&#39;utilisateur à exécuter lui-même une charge utile.</li>
+<li><strong>Exploits navigateur :</strong> Exploitation de vulnérabilités &quot;0-day&quot; ou non patchées dans les moteurs de rendu (Chromium, Gecko) par le simple affichage d&#39;une bannière corrompue.</li>
+</ul>
+<h3 id="outil-recommand-">Outil recommandé</h3>
+<p>La SGPI ne tolère qu&#39;un seul standard de protection : uBlock Origin.</p>
+<p>C&#39;est le seul bloqueur de contenu efficace agissant comme un pare-feu réseau large spectre, offrant une consommation de ressources minimale et une transparence totale sur son fonctionnement.</p>
+<h3 id="configuration">Configuration</h3>
+<p>Une installation par défaut est insuffisante. Vous devez durcir l&#39;outil :</p>
+<ul>
+<li><strong>Filtres standards + malware + phishing :</strong> Activez systématiquement les listes de blocage de domaines malveillants (ex: <em>Online Malicious URL Blocklist</em>, <em>Spam404</em>, <em>Phishing Army</em>). Ces listes doivent être mises à jour avant chaque session de recherche.</li>
+<li><strong>Mode avancé si maîtrisé :</strong> Pour les opérateurs avancés, l&#39;activation du mode &quot;utilisateur averti&quot; est requise. Cela permet le blocage dynamique des scripts tiers (3p) et des cadres (frames) par défaut, ne laissant passer que ce que vous autorisez manuellement après analyse.</li>
+</ul>
+<h3 id="bloqueurs-interdits">Bloqueurs interdits</h3>
+<p>L&#39;usage des outils suivants est strictement prohibé au sein de la structure :</p>
+<ul>
+<li><strong>AdBlock / Adblock Plus :</strong> Ces extensions ont historiquement mis en place des programmes de &quot;Publicités Acceptables&quot;, monnayant le passage de certains traqueurs. Ce principe de &quot;liste blanche&quot; payante est une faille de sécurité volontaire incompatible avec l&#39;OPSEC de la SGPI.</li>
+<li><strong>Bloqueurs tiers non open-source :</strong> Tout outil dont le code n&#39;est pas auditable est une boîte noire potentiellement malveillante.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="6-gestion-des-scripts-javascript-">6. GESTION DES SCRIPTS (JAVASCRIPT)</h2>
+<h3 id="javascript-ex-cution-distante">JavaScript = exécution distante</h3>
+<p>Dans le cadre de l&#39;OPSEC SGPI, JavaScript doit être traité pour ce qu&#39;il est réellement : un langage de programmation dont vous autorisez l&#39;exécution sur <strong>votre</strong> processeur par un serveur distant. Accéder à un site avec JavaScript activé sans contrôle revient à exécuter un binaire inconnu sans aucune restriction.</p>
+<p>Par le biais de scripts malveillants ou simplement intrusifs, un site peut :</p>
+<ul>
+<li><strong>Lire :</strong> Accéder aux informations de votre session, s&#39;emparer du contenu de votre presse-papiers ou extraire des données stockées dans le stockage local du navigateur.</li>
+<li><strong>Écrire :</strong> Injecter des éléments malveillants, modifier l&#39;apparence des pages pour du phishing (DOM manipulation) ou déposer des fichiers via des failles de téléchargement.</li>
+<li><strong>Rediriger :</strong> Détourner votre flux de navigation vers des infrastructures hostiles sans aucune interaction utilisateur.</li>
+<li><strong>Profiler :</strong> Utiliser des techniques de <em>canvas fingerprinting</em> ou d&#39;énumération de périphériques pour briser votre anonymat technique et identifier votre machine de manière unique.</li>
+</ul>
+<h3 id="outils">Outils</h3>
+<p>La maîtrise de l&#39;exécution de code est obligatoire. L&#39;usage de <strong>NoScript</strong> est le standard au sein de la SGPI, mais les fonctions de blocage dynamique de scripts de <strong>uBlock Origin</strong> (en mode avancé) sont également acceptées pour les profils expérimentés.</p>
+<h3 id="r-gles-sgpi">Règles SGPI</h3>
+<p>La gestion des scripts ne doit pas être réactive, mais proactive. La structure impose les protocoles suivants :</p>
+<ul>
+<li><strong>JS bloqué par défaut :</strong> Votre navigateur doit être configuré pour interdire l&#39;exécution de tout script lors du chargement initial d&#39;une page. Vous ne devez voir que le contenu statique (HTML/CSS) tant que vous n&#39;avez pas jugé nécessaire d&#39;aller plus loin.</li>
+<li><strong>Autorisation temporaire uniquement :</strong> Si la fonctionnalité recherchée exige JavaScript, l&#39;autorisation doit être limitée à la session en cours. Ne jamais marquer un site comme &quot;Permanent&quot; ou &quot;Liste blanche&quot; dans vos outils de blocage. Chaque visite est une nouvelle analyse.</li>
+<li><strong>Refus des scripts tiers inutiles :</strong> Un site légitime utilise souvent des scripts provenant de dizaines de domaines tiers (trackers, régies, outils d&#39;analyse). La règle est simple : on n&#39;autorise que le script du domaine principal si nécessaire. Tout script provenant d&#39;un domaine tiers (<code>3p</code>) doit être considéré comme suspect et bloqué.</li>
+</ul>
+<h3 id="signal-critique">Signal critique</h3>
+<p>La capacité d&#39;un site à fonctionner sans une débauche de scripts est un indicateur de sa fiabilité. <strong>Si un site exige l’activation d’une multitude de scripts tiers ou de bibliothèques suspectes pour afficher du contenu textuel : abandon immédiat.</strong> L&#39;exigence excessive de JavaScript est souvent le signe d&#39;une infrastructure conçue pour le traçage agressif ou l&#39;exploitation de vulnérabilités. Un membre de la SGPI sait faire le deuil d&#39;une information si le coût en sécurité est trop élevé.</p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="7-scripts-utilisateurs-userscripts-">7. SCRIPTS UTILISATEURS (USERSCRIPTS)</h2>
+<h3 id="principe">Principe</h3>
+<p>L&#39;utilisation de <em>Userscripts</em> (via des extensions type Tampermonkey ou Violentmonkey) est une pratique à double tranchant. Un userscript n&#39;est pas une simple extension passive : c&#39;est du code JavaScript injecté directement dans le contexte des pages que vous visitez, <strong>exécuté avec vos propres privilèges de session</strong>. Si un script est malveillant, il possède un accès total à ce que vous voyez, ce que vous saisissez et aux jetons d&#39;authentification actifs de l&#39;onglet concerné.</p>
+<h3 id="usages-l-gitimes">Usages légitimes</h3>
+<p>Au sein de la SGPI, le recours aux userscripts doit se limiter strictement à l&#39;amélioration de l&#39;hygiène de navigation et à la neutralisation des pièges visuels :</p>
+<ul>
+<li><strong>Suppression d’overlays :</strong> Élimination forcée des fenêtres surgissantes (pop-ups), des murs de consentement ou des bannières intrusives qui masquent le contenu.</li>
+<li><strong>Nettoyage UI (User Interface) :</strong> Épuration des interfaces surchargées pour ne conserver que les données textuelles ou techniques utiles, réduisant ainsi les distractions et les risques de clics accidentels.</li>
+<li><strong>Blocage de faux boutons :</strong> Neutralisation des éléments trompeurs conçus pour induire l&#39;utilisateur en erreur (boutons de téléchargement factices, liens de redirection masqués).</li>
+</ul>
+<h3 id="r-gles-sgpi">Règles SGPI</h3>
+<p>L&#39;installation d&#39;un script utilisateur est soumise à un audit individuel obligatoire. Vous êtes responsable du code que vous laissez tourner dans votre navigateur.</p>
+<ul>
+<li><strong>Code lisible :</strong> Vous ne devez installer que des scripts dont vous comprenez la logique. Un membre de la SGPI doit être capable de lire les quelques lignes de code d&#39;un script avant de l&#39;activer.</li>
+<li><strong>Source connue :</strong> Privilégiez les dépôts audités ou les scripts que vous avez vous-même écrits. Évitez les plateformes de partage de scripts sans historique de modération.</li>
+<li><strong>Pas d’obfuscation :</strong> Tout script dont le code est volontairement obscurci, minifié à l&#39;extrême ou chiffré doit être considéré comme hostile. L&#39;opacité est une preuve de malveillance.</li>
+<li><strong>Pas d’accès global inutile :</strong> Vérifiez les en-têtes du script (<code>@match</code> ou <code>@include</code>). Un script dédié à un site spécifique ne doit jamais demander l&#39;autorisation de s&#39;exécuter sur &quot;tous les sites&quot; (<code>://*/*</code>).</li>
+</ul>
+<h3 id="interdictions">Interdictions</h3>
+<p>La quête de facilité est souvent le vecteur de la compromission. Sont formellement interdits :</p>
+<ul>
+<li><strong>Scripts “bypass magique” :</strong> Les scripts promettant de contourner illégalement des paywalls, de débrider des vitesses de téléchargement ou d&#39;accéder à des zones premium de manière miraculeuse. Ces scripts cachent presque systématiquement des fonctions de siphonnage de données (info-stealers).</li>
+<li><strong>Scripts auto-mis à jour depuis un serveur inconnu :</strong> Désactivez systématiquement la mise à jour automatique. Un script sain aujourd&#39;hui peut être remplacé par une version malveillante demain via une compromission du serveur d&#39;origine. Chaque mise à jour doit être validée manuellement.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="8-extensions-de-bypass">8. EXTENSIONS DE BYPASS</h2>
+<h3 id="r-alit-terrain">Réalité terrain</h3>
+<p>Le recours aux extensions de &quot;bypass&quot; (contournement de liens, de compteurs de temps, de murs de paiement ou de restrictions géographiques) constitue l&#39;un des vecteurs d&#39;infection les plus répandus dans le milieu de l&#39;exploration technique. Sous couvert d&#39;une fonctionnalité utilitaire séduisante, une part massive de ces outils est en réalité <strong>malveillante par destination</strong>.</p>
+<p>L&#39;accès au code source de la page visitée et la capacité d&#39;injecter du JavaScript permettent à ces extensions de capturer des identifiants, de détourner des sessions de navigation ou d&#39;exfiltrer des historiques complets vers des serveurs distants.</p>
+<h3 id="doctrine-sgpi">Doctrine SGPI</h3>
+<p>La SGPI n&#39;interdit pas l&#39;usage de ces outils, mais elle en conditionne l&#39;utilisation à un cadre de confinement strict. Le gain de temps ou l&#39;accès à une ressource ne justifie jamais la mise en péril de votre environnement de travail.</p>
+<ul>
+<li><strong>Tolérés uniquement en VM (Machine Virtuelle) :</strong> L&#39;usage d&#39;extensions de bypass est strictement réservé à vos environnements jetables. Une VM doit être perçue comme un périmètre de confinement : si l&#39;extension se révèle malveillante, l&#39;impact reste limité à une instance isolée qui sera réinitialisée après usage.</li>
+<li><strong>Jamais sur le navigateur principal :</strong> Votre navigateur hôte (celui contenant vos recherches légitimes et votre configuration stable) ne doit jamais héberger d&#39;outils de contournement. Ces extensions ont souvent des permissions étendues qui pourraient compromettre l&#39;étanchéité de votre machine.</li>
+<li><strong>Jamais avec des comptes connectés :</strong> Il est proscrit d&#39;utiliser un bypass dans une session où un compte (email, forum, cloud) est actif. L&#39;extension pourrait intercepter les jetons de session (tokens) ou les cookies d&#39;authentification sans que vous n&#39;en soyez averti.</li>
+<li><strong>Le principe de renoncement :</strong> Si un site déploie des contre-mesures agressives exigeant l&#39;installation de plusieurs outils de bypass successifs ou des configurations de sécurité affaiblies : <strong>➡️ Abandon.</strong> La persévérance face à un système de protection complexe est souvent le signe d&#39;un piège. Un membre de la SGPI sait évaluer le ratio bénéfice/risque : si la ressource est protégée au point de nécessiter une mise en danger de l&#39;OPSEC, elle n&#39;en vaut pas le prix.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="9-t-l-chargements-protocole-sgpi">9. TÉLÉCHARGEMENTS : PROTOCOLE SGPI</h2>
+<h3 id="avant">Avant</h3>
+<p>L&#39;acquisition d&#39;une ressource est la phase où l&#39;utilisateur est le plus vulnérable à l&#39;ingénierie sociale. L&#39;anticipation est votre seule défense avant que le fichier ne soit sur votre disque.</p>
+<ul>
+<li><strong>Identifier le vrai bouton :</strong> Les sites de partage sont saturés de publicités mimétiques. Apprenez à distinguer l&#39;élément de téléchargement réel des bannières hostiles. Un bouton légitime ne doit pas déclencher de pop-up intempestif ni de redirection vers un domaine tiers suspect.</li>
+<li><strong>Éviter les raccourcisseurs de liens :</strong> Les services de type <em>URL shorteners</em> masquent la destination réelle et injectent souvent des scripts de traçage ou des publicités intermédiaires. Si un lien est masqué, utilisez des outils de désanonymisation d&#39;URL pour vérifier la cible avant de cliquer.</li>
+<li><strong>Vérifier la cohérence taille/type :</strong> C’est un indicateur technique majeur. Un document texte de quelques pages ne doit pas peser 50 Mo. Un installateur de logiciel pesant quelques kilo-octets est probablement un &quot;dropper&quot; (un programme chargé de télécharger la charge utile réelle). Si la métrique ne correspond pas à la nature supposée du fichier : <strong>interruption immédiate.</strong></li>
+</ul>
+<h3 id="apr-s">Après</h3>
+<p>Une fois le fichier récupéré, il doit être traité comme un échantillon biologique hautement contagieux. Le transfert du navigateur vers le système de fichiers est une étape critique.</p>
+<ul>
+<li><strong>Ne jamais exécuter immédiatement :</strong> L&#39;automatisme &quot;télécharger-exécuter&quot; est proscrit. Le fichier doit rester dans votre dossier de téléchargement tant qu&#39;il n&#39;a pas été audité.</li>
+<li><strong>Scanner systématiquement :</strong> Utilisez des outils d&#39;analyse multi-moteurs (type VirusTotal) pour les fichiers de petite taille, tout en restant conscient que l&#39;absence de détection ne garantit pas l&#39;innocuité (risque de <em>FUD</em> - Fully Undetectable). Complétez par un scan local avec des outils d&#39;analyse comportementale si nécessaire.</li>
+<li><strong>Vérifier l’extension réelle :</strong> Les systèmes d&#39;exploitation masquent parfois les extensions par défaut. Un fichier nommé <code>rapport.pdf.exe</code> apparaîtra comme un PDF alors qu&#39;il s&#39;agit d&#39;un exécutable. Forcez l&#39;affichage des extensions et vérifiez le type MIME réel du fichier.</li>
+<li><strong>Si doute → suppression :</strong> La moindre anomalie (provenance floue, comportement suspect lors du scan, demande de droits administrateur injustifiée) doit entraîner la destruction irréversible du fichier.</li>
+</ul>
+<h3 id="principe-cl-">Principe clé</h3>
+<p>La gestion de l&#39;espace de stockage est une question de sécurité opérationnelle. <strong>Un fichier inutile = un risque inutile.</strong> Ne conservez aucune ressource dont vous n&#39;avez pas un usage immédiat et documenté. Chaque fichier dormant est une surface d&#39;attaque potentielle qui pourrait être exploitée ultérieurement ou servir de base à une infection persistante.</p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="10-typologie-des-fichiers-risques">10. TYPOLOGIE DES FICHIERS &amp; RISQUES</h2>
+<p>L&#39;analyse de la nature technique d&#39;un fichier est le préalable à toute manipulation. Dans la doctrine SGPI, l&#39;extension d&#39;un fichier n&#39;est pas une simple étiquette, mais l&#39;indice d&#39;une surface d&#39;attaque spécifique. Chaque format possède ses propres vecteurs d&#39;exploitation qu&#39;il convient de neutraliser.</p>
+<h3 id="-exe-msi-niveau-tr-s-lev-critique-">.exe, .msi — Niveau : Très élevé (Critique)</h3>
+<p>Il s’agit de binaires exécutables et de packages d&#39;installation. Par définition, ces fichiers sont conçus pour modifier le système, écrire dans le registre et interagir avec le matériel.</p>
+<ul>
+<li><strong>Risque :</strong> Exécution directe de charges utiles (payloads) malveillantes : chevaux de Troie, info-stealers ou ransomwares.</li>
+<li><strong>Protocole :</strong> Interdiction formelle d&#39;exécution hors d&#39;une machine virtuelle (VM) isolée du réseau. L&#39;analyse comportementale (sandbox) est obligatoire avant toute installation.</li>
+</ul>
+<h3 id="-js-bat-vbs-ps1-niveau-hostile">.js, .bat, .vbs, .ps1 — Niveau : Hostile</h3>
+<p>Ces fichiers sont des scripts interprétés. Ils ne nécessitent pas de compilation et peuvent être lus en clair, mais leur puissance d&#39;automatisation en fait des armes redoutables pour l&#39;administration système comme pour l&#39;attaque.</p>
+<ul>
+<li><strong>Risque :</strong> Téléchargement et exécution de malwares en arrière-plan (droppers), désactivation de pare-feu, exfiltration de configurations réseau ou chiffrement de données.</li>
+<li><strong>Protocole :</strong> Lecture impérative du code source avec un éditeur de texte avant toute exécution. Si le code est obfusqué (illisible), le fichier est considéré comme malveillant et détruit.</li>
+</ul>
+<h3 id="-zip-rar-7z-niveau-risque-moyen-vecteur-de-transport-">.zip, .rar, .7z — Niveau : Risque moyen (Vecteur de transport)</h3>
+<p>Les archives ne sont pas dangereuses par leur format, mais par ce qu&#39;elles dissimulent. Elles sont le vecteur privilégié pour contourner les scans de sécurité périmétriques.</p>
+<ul>
+<li><strong>Risque :</strong> &quot;Bombes de décompression&quot; (visant à saturer les ressources système), ou présence de fichiers hostiles (exécutables masqués) à l&#39;intérieur.</li>
+<li><strong>Protocole :</strong> Extraction uniquement dans un environnement dédié. Ne jamais faire confiance au contenu d&#39;une archive, même si elle provient d&#39;une source connue.</li>
+</ul>
+<h3 id="-iso-img-niveau-risque-lev-">.iso, .img — Niveau : Risque élevé</h3>
+<p>Les images disques sont des répliques de supports physiques. Elles permettent d&#39;embarquer des systèmes de fichiers complets et d&#39;échapper à certains antivirus qui ne scannent pas en profondeur les conteneurs virtuels.</p>
+<ul>
+<li><strong>Risque :</strong> Montage d&#39;un environnement contenant des scripts d&#39;auto-exécution ou des installateurs vérolés.</li>
+<li><strong>Protocole :</strong> Montage sur un lecteur virtuel au sein d&#39;une VM uniquement. Vérification systématique de la somme de contrôle (Hash MD5/SHA256) si la source fournit l&#39;original.</li>
+</ul>
+<h3 id="-pdf-doc-xls-niveau-exploits-possibles">.pdf, .doc, .xls — Niveau : Exploits possibles</h3>
+<p>Ces formats de documents complexes supportent les macros et le JavaScript embarqué. Ils sont le vecteur numéro un du phishing ciblé et de l&#39;espionnage industriel.</p>
+<ul>
+<li><strong>Risque :</strong> Exploitation de vulnérabilités du lecteur de PDF ou de la suite bureautique pour obtenir une exécution de code à distance (RCE). Les macros Office peuvent vider un compte bancaire ou installer une backdoor en un clic.</li>
+<li><strong>Protocole :</strong> Ouverture via des visionneuses en ligne isolées ou des lecteurs &quot;bac à sable&quot; (Sandboxed). Désactivation totale des macros et du JavaScript dans les paramètres des logiciels de lecture.</li>
+</ul>
+<h3 id="m-dias-images-vid-os-audio-niveau-m-tadonn-es-payloads">Médias (Images, Vidéos, Audio) — Niveau : Métadonnées / Payloads</h3>
+<p>Bien que souvent perçus comme inoffensifs, les fichiers multimédias sont des mines d&#39;informations et des vecteurs de dissimulation (stéganographie).</p>
+<ul>
+<li><strong>Risque :</strong> Présence de métadonnées (EXIF) révélant localisation, date, et identifiants matériels du créateur. Utilisation de vulnérabilités dans les codecs (décodeurs) pour provoquer des dépassements de tampon (buffer overflow).</li>
+<li><strong>Protocole :</strong> Nettoyage systématique des métadonnées avant tout repartage. Utilisation de lecteurs multimédias robustes et à jour (type VLC) au sein d&#39;un environnement contrôlé.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="11-publicit-s-social-engineering">11. PUBLICITÉS &amp; SOCIAL ENGINEERING</h2>
+<h3 id="techniques-courantes">Techniques courantes</h3>
+<p>Le <em>Social Engineering</em> (ingénierie sociale) appliqué à la navigation web consiste à manipuler psychologiquement l&#39;utilisateur pour qu&#39;il contourne lui-même ses propres barrières de sécurité. L&#39;adversaire ne cherche pas à briser le système, mais à exploiter la réaction réflexe de l&#39;opérateur face à une stimulation visuelle urgente ou familière.</p>
+<ul>
+<li><strong>Faux captchas :</strong> Utilisation de fenêtres de vérification factices. Le but est de vous faire cliquer sur des zones précises qui déclenchent en réalité l&#39;autorisation de notifications push malveillantes ou l&#39;exécution de scripts cachés sous l&#39;élément graphique.</li>
+<li><strong>Faux messages système :</strong> Alertes imitant l&#39;interface de votre système d&#39;exploitation (Windows, macOS ou Linux) ou de votre navigateur. Ces notifications vous informent d&#39;une défaillance imaginaire pour vous inciter à télécharger un &quot;fix&quot; ou un utilitaire de réparation qui est, en réalité, la charge utile.</li>
+<li><strong>Faux virus :</strong> Fenêtres surgissantes agressives simulant un scan antivirus en cours et affichant des infections critiques. Le stress généré par l&#39;urgence est utilisé pour suspendre votre jugement critique et vous pousser à installer un logiciel de sécurité corrompu (Rogue Software).</li>
+<li><strong>Boutons “Download” clonés :</strong> Sur les sites de partage, multiplication de boutons de téléchargement dont le design est identique à celui du site original. Ils sont placés stratégiquement là où l&#39;œil se pose naturellement, augmentant la probabilité d&#39;un clic erroné vers un partenaire publicitaire hostile.</li>
+</ul>
+<h3 id="r-gle-sgpi">Règle SGPI</h3>
+<p>La discipline mentale est votre rempart ultime. Au sein de la structure, nous appliquons une règle de tunnelisation stricte : <strong>Tu ne cliques que sur ce que tu es venu chercher.</strong></p>
+<p>Toute interaction qui dévie de votre objectif initial doit être ignorée. Si vous êtes venu chercher un document technique et qu&#39;une fenêtre vous propose une mise à jour de navigateur, une alerte de sécurité ou une interface de vérification imprévue, considérez l&#39;interaction comme compromise.</p>
+<p><strong>L&#39;opérateur SGPI ne subit pas l&#39;interface, il l&#39;utilise.</strong> Si le chemin vers la ressource est obstrué par trop de leurres, on ne tente pas de les contourner un par un : on ferme l&#39;onglet et on change de source. La persévérance dans un environnement saturé de pièges est la marque d&#39;un amateur.</p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="12-r-seau-isolation">12. RÉSEAU &amp; ISOLATION</h2>
+<p>L&#39;étanchéité d&#39;un environnement ne se limite pas à l&#39;isolation logicielle ; elle doit impérativement s&#39;étendre au flux de données. Le réseau est le système nerveux de votre machine : s&#39;il n&#39;est pas segmenté et filtré, il devient le pont par lequel un compromis en zone isolée remonte jusqu&#39;à votre infrastructure réelle.</p>
+<h3 id="vpn-virtual-private-network-">VPN (Virtual Private Network)</h3>
+<p>Le VPN est un outil de dissimulation d&#39;identité réseau, pas un bouclier contre les menaces actives. Son usage est obligatoire mais ses limites doivent être comprises.</p>
+<ul>
+<li><strong>Cache IP :</strong> Sa fonction primaire au sein de la SGPI est de masquer votre adresse IP publique réelle et votre localisation géographique face aux sites tiers. Il empêche la corrélation entre votre identité numérique de recherche et votre fournisseur d&#39;accès à Internet (FAI).</li>
+<li><strong>Ne protège pas contre les malwares :</strong> Un VPN chiffre le tunnel, il ne nettoie pas le contenu. Si vous téléchargez un binaire malveillant ou si vous exécutez un script hostile, le VPN ne bloquera pas l&#39;infection. Il n&#39;est qu&#39;une couche d&#39;anonymat, pas un antivirus.</li>
+<li><strong>Kill Switch :</strong> Toute configuration VPN sans &quot;Kill Switch&quot; actif est une faille. Si la connexion tombe, le trafic doit être instantanément coupé pour éviter toute fuite d&#39;IP réelle (<em>IP Leak</em>).</li>
+</ul>
+<h3 id="dns-domain-name-system-">DNS (Domain Name System)</h3>
+<p>Le choix de vos serveurs DNS définit la qualité de votre filtrage en amont. Ne jamais utiliser les DNS par défaut de votre FAI, qui sont des outils de surveillance et de censure.</p>
+<ul>
+<li><strong>Réduction du phishing :</strong> L&#39;utilisation de résolveurs DNS durcis (type Quad9, NextDNS ou des instances privées) permet de bloquer au niveau du protocole l&#39;accès aux domaines connus pour le phishing.</li>
+<li><strong>Blocage de domaines malveillants :</strong> Un DNS filtrant agit comme un pare-feu périmétrique. Si une charge utile tente de contacter son serveur de contrôle (C2), le DNS peut intercepter la requête et neutraliser la menace avant même que la connexion ne soit établie.</li>
+</ul>
+<h3 id="vm-machine-virtuelle-">VM (Machine Virtuelle)</h3>
+<p>La virtualisation est le pilier de notre défense. Cependant, une VM mal configurée est une cellule dont la porte est restée entrouverte. L&#39;isolation doit être hermétique.</p>
+<ul>
+<li><strong>Pas de partage de dossier :</strong> Il est strictement interdit d&#39;activer les dossiers partagés entre l&#39;hôte (votre système réel) et l&#39;invité (la VM). Un malware sophistiqué peut utiliser ces passerelles pour s&#39;auto-propager et infecter votre OS principal.</li>
+<li><strong>Pas de presse-papiers (Clipboard) partagé :</strong> La synchronisation du presse-papiers est un vecteur d&#39;exfiltration. Un script malveillant dans la VM pourrait lire les mots de passe ou les données sensibles que vous avez copiés sur votre système hôte. Le copier-coller bidirectionnel doit être désactivé par défaut.</li>
+<li><strong>Réseau NAT vs Bridge :</strong> Privilégiez le mode NAT pour isoler la VM du reste de votre réseau local (LAN). La VM ne doit pas être en mesure de &quot;voir&quot; ou d&#39;attaquer les autres appareils connectés à votre domicile.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="13-mobile-plateformes-alternatives">13. MOBILE &amp; PLATEFORMES ALTERNATIVES</h2>
+<h3 id="mobile-surface-r-duite-contr-le-faible">Mobile = surface réduite, contrôle faible</h3>
+<p>L’utilisation d’un smartphone pour des activités d’exploration technique est une hérésie en termes d’OPSEC. Contrairement à un environnement PC où vous pouvez isoler les processus et auditer les flux, le système d&#39;exploitation mobile (Android ou iOS) est une boîte noire conçue pour la collecte de données. La surface d&#39;affichage réduite empêche une vérification efficace des URL (URL masquées) et la détection des éléments d&#39;interface trompeurs (superpositions).</p>
+<ul>
+<li><strong>Télémétrie native :</strong> Le matériel (GPS, accéléromètre, identifiants IMEI/IMSI) est lié en permanence à l&#39;OS. Chaque action sur mobile est corrélée à votre identité matérielle.</li>
+<li><strong>Absence d&#39;isolation réelle :</strong> Contrairement aux VM sur desktop, les &quot;applications isolées&quot; (sandboxing mobile) communiquent souvent entre elles via des services système partagés, facilitant l&#39;exfiltration de données transversales.</li>
+</ul>
+<h3 id="apk-tiers-danger-lev-">APK tiers = danger élevé</h3>
+<p>Sur Android, l&#39;installation de fichiers APK provenant de sources externes est le vecteur d&#39;infection le plus direct.</p>
+<ul>
+<li><strong>Malwares persistants :</strong> Un APK modifié peut contenir un <em>Spyware</em> ou un <em>RAT</em> (Remote Access Trojan) capable d&#39;activer votre micro, votre caméra et de lire vos SMS (bypass de la double authentification par SMS) sans aucun signe visible.</li>
+<li><strong>Permissions abusives fréquentes :</strong> Les applications de &quot;bypass&quot; ou de &quot;tuning&quot; sur mobile demandent souvent des droits d&#39;accessibilité. Cette permission est la plus dangereuse : elle permet à l&#39;application de lire tout ce qui s&#39;affiche à l&#39;écran et de simuler des clics à votre place.</li>
+</ul>
+<h3 id="doctrine-sgpi">Doctrine SGPI</h3>
+<p>La rigueur de la structure impose une limite claire à la mobilité. <strong>La navigation à risque est formellement déconseillée sur mobile.</strong> Le smartphone doit rester un outil de communication d&#39;appoint, sécurisé par des applications de messagerie chiffrée, mais il ne doit jamais servir de laboratoire. Si vous devez impérativement manipuler une ressource sur mobile, cela doit se faire sur un appareil dédié, &quot;nu&quot; (sans carte SIM, sans compte personnel synchronisé), réinitialisé après chaque usage, et de préférence sous une ROM durcie (type GrapheneOS).</p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="14-gestion-des-mots-de-passe">14. GESTION DES MOTS DE PASSE</h2>
+<h3 id="un-service-un-mot-de-passe">Un service = un mot de passe</h3>
+<p>La réutilisation d&#39;un mot de passe est la cause numéro un des compromissions en chaîne. Dans la doctrine SGPI, l&#39;unicité est une règle absolue : chaque accès, chaque compte de test et chaque identité temporaire doit posséder ses propres identifiants. Si un service est compromis, l&#39;impact doit être nul sur le reste de votre infrastructure.</p>
+<h3 id="g-n-ration-automatique">Génération automatique</h3>
+<p>Le cerveau humain est incapable de produire une entropie suffisante. Vous ne devez jamais &quot;inventer&quot; un mot de passe.</p>
+<ul>
+<li>Utilisez systématiquement un générateur de caractères aléatoires.</li>
+<li>Longueur minimale : 16 caractères mêlant majuscules, minuscules, chiffres et symboles.</li>
+<li>Le mot de passe ne doit avoir aucune logique sémantique ou personnelle.</li>
+</ul>
+<h3 id="jamais-m-moris-temporairement-">Jamais mémorisé “temporairement”</h3>
+<p>La notion de mémorisation temporaire par le navigateur ou par l&#39;esprit est un piège.</p>
+<ul>
+<li><strong>Désactivation de la saisie automatique :</strong> Ne laissez jamais votre navigateur stocker des mots de passe dans son gestionnaire intégré, particulièrement dans les environnements à risque.</li>
+<li><strong>Usage d&#39;un gestionnaire hors-ligne ou volatil :</strong> Pour les sessions d&#39;exploration, utilisez des outils de gestion de mots de passe isolés ou détruisez les identifiants dès la fin de l&#39;opération.</li>
+</ul>
+<p>L&#39;oubli volontaire est une mesure de sécurité : si vous n&#39;avez plus besoin du compte, le mot de passe doit disparaître avec lui.</p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="15-sauvegardes-reprise">15. SAUVEGARDES &amp; REPRISE</h2>
+<h3 id="sauvegarder">Sauvegarder</h3>
+<p>La continuité opérationnelle de la SGPI repose sur la capacité à retrouver un environnement de travail fonctionnel en un temps record. La sauvegarde ne doit concerner que des éléments dont l&#39;intégrité est garantie.</p>
+<ul>
+<li><strong>Environnements propres :</strong> Créez des sauvegardes de vos systèmes d&#39;exploitation (ou VM) immédiatement après l&#39;installation et le durcissement, avant toute connexion à un réseau non fiable.</li>
+<li><strong>Configs validées :</strong> Archivez vos fichiers de configuration (<code>.conf</code>, profils de navigateurs durcis, scripts de filtrage) une fois qu&#39;ils ont été testés et validés comme stables.</li>
+</ul>
+<h3 id="ne-jamais-sauvegarder">Ne jamais sauvegarder</h3>
+<p>La sauvegarde peut devenir un vecteur de persistance pour un attaquant si elle est effectuée au mauvais moment.</p>
+<ul>
+<li><strong>Environnements douteux :</strong> Il est strictement interdit de sauvegarder un système après une session d&#39;exploration ou de test. Si le système a été exposé, il doit être considéré comme compromis.</li>
+<li><strong>Fichiers non vérifiés :</strong> Ne jamais inclure de ressources téléchargées ou de documents provenant de zones à risque dans vos sauvegardes pérennes. Une menace dormante pourrait être réinjectée lors d&#39;une restauration future.</li>
+</ul>
+<h3 id="vm-virtual-machines-">VM (Virtual Machines)</h3>
+<p>La virtualisation offre l&#39;outil de reprise le plus puissant : le Snapshot.</p>
+<ul>
+<li><strong>Snapshot avant :</strong> Prenez systématiquement un &quot;instantané&quot; de votre VM juste avant d&#39;ouvrir un lien suspect, d&#39;exécuter un fichier ou de naviguer dans une zone hostile.</li>
+<li><strong>Rollback après :</strong> Une fois l&#39;opération terminée, effectuez un &quot;rollback&quot; (retour en arrière) vers le snapshot initial, que vous ayez détecté une menace ou non. Cette pratique garantit que l&#39;environnement de la session suivante repart sur une base saine et immuable.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="16-d-tection-de-compromission">16. DÉTECTION DE COMPROMISSION</h2>
+<h3 id="signaux">Signaux</h3>
+<p>L&#39;instinct de l&#39;opérateur et l&#39;observation technique sont les premières lignes de défense. Une machine compromise présente souvent des micro-comportements anormaux qui doivent être traités comme des alertes critiques :</p>
+<ul>
+<li><strong>Pop-ups inhabituels :</strong> Apparition de fenêtres de terminal, de messages système non sollicités ou de bannières publicitaires même hors navigation.</li>
+<li><strong>Activité réseau étrange :</strong> Utilisation intensive de la bande passante alors qu&#39;aucune application n&#39;est active, ou tentatives de connexion sortantes vers des IP inconnues (visibles via un moniteur réseau).</li>
+<li><strong>Extensions installées seules :</strong> Présence de nouveaux modules dans le navigateur ou de logiciels inconnus dans la liste des programmes.</li>
+<li><strong>Ralentissements inexpliqués :</strong> Pic d&#39;utilisation du processeur (CPU) ou de la mémoire vive (RAM) suggérant une activité de minage ou de chiffrement en arrière-plan.</li>
+</ul>
+<h3 id="r-flexe">Réflexe</h3>
+<p>La curiosité est ici votre pire ennemie. Si un doute s&#39;installe, le protocole de réaction est immédiat :</p>
+<ul>
+<li><strong>Isoler :</strong> Coupez instantanément la connexion internet (physiquement ou via logiciel). Si vous êtes en VM, coupez le lien réseau virtuel.</li>
+<li><strong>Ne pas enquêter “pour voir” :</strong> N&#39;essayez pas d&#39;analyser le malware ou de comprendre son fonctionnement sur votre machine active. Vous risqueriez de déclencher des mécanismes de protection du malware (auto-destruction ou exfiltration accélérée).</li>
+<li><strong>Détruire et restaurer :</strong> Fermez l&#39;environnement, supprimez l&#39;instance compromise et restaurez votre dernier snapshot sain.</li>
+</ul>
+<p><strong>En cas de doute, la compromission est considérée comme avérée.</strong></p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="17-r-ponse-incident-sgpi">17. RÉPONSE À INCIDENT SGPI</h2>
+<h3 id="isolation-imm-diate">Isolation immédiate</h3>
+<p>Dès la détection d&#39;une anomalie ou d&#39;un comportement suspect, la première action est la rupture physique ou logique des flux.</p>
+<ul>
+<li><strong>Coupure réseau :</strong> Déconnexion instantanée du Wi-Fi ou retrait du câble Ethernet.</li>
+<li><strong>Confinement :</strong> Si l&#39;incident survient dans une VM, suspendre l&#39;instance pour figer son état avant destruction.</li>
+</ul>
+<h3 id="arr-t-des-interactions">Arrêt des interactions</h3>
+<p>Ne tentez pas de communiquer avec l&#39;attaquant, de fermer les fenêtres de discussion suspectes ou de remplir des formulaires de &quot;récupération&quot;.</p>
+<ul>
+<li>Cessez toute saisie au clavier.</li>
+<li>Ne branchez aucun support amovible (clé USB, disque dur externe) sur la machine suspecte.</li>
+</ul>
+<h3 id="suppression-ou-rollback">Suppression ou rollback</h3>
+<p>La remédiation par le nettoyage manuel est proscrite car jugée peu fiable.</p>
+<ul>
+<li><strong>Environnement virtuel :</strong> Effectuez un rollback immédiat vers le snapshot sain le plus récent.</li>
+<li><strong>Environnement physique :</strong> Si l&#39;hôte est touché, procédez à un formatage complet et à une réinstallation à partir des sauvegardes propres mentionnées en Section 15.</li>
+</ul>
+<h3 id="signalement-si-impact-collectif">Signalement si impact collectif</h3>
+<p>La sécurité de la SGPI est solidaire. Un incident isolé peut être le signe d&#39;une campagne ciblant plusieurs membres.</p>
+<ul>
+<li><strong>Alerte :</strong> Prévenez les responsables sécurité via un canal de communication sain et distinct de la machine compromise.</li>
+<li><strong>Partage :</strong> Communiquez les indicateurs de compromission (IOC) si identifiés (URL source, hash du fichier, comportement spécifique) pour protéger le reste de la communauté.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="18-erreurs-fr-quentes">18. ERREURS FRÉQUENTES</h2>
+<p>L&#39;expérience montre que la compromission n&#39;est pas une fatalité technique, mais presque toujours la conséquence d&#39;un relâchement comportemental. Voici les déviances les plus critiques observées au sein de la SGPI :</p>
+<h3 id="exc-s-de-confiance">Excès de confiance</h3>
+<p>C’est le piège le plus insidieux. Croire que parce que l&#39;on maîtrise ses outils ou que l&#39;on n&#39;a pas été infecté depuis longtemps, on peut baisser la garde.</p>
+<ul>
+<li><strong>Risque :</strong> Négliger l&#39;analyse d&#39;un fichier ou sauter l&#39;étape de la VM pour une action jugée &quot;facile&quot;. L&#39;adversaire compte sur ce moment de lassitude.</li>
+</ul>
+<h3 id="accumulation-d-extensions">Accumulation d’extensions</h3>
+<p>Installer des dizaines d&#39;outils de protection, de bypass ou d&#39;utilitaires sous prétexte de sécurité.</p>
+<ul>
+<li><strong>Risque :</strong> Chaque extension est une surface d&#39;attaque supplémentaire et un point de corrélation pour le <em>fingerprinting</em>. Une extension peut être rachetée par une régie publicitaire ou un acteur malveillant et devenir hostile via une mise à jour silencieuse.</li>
+</ul>
+<h3 id="-juste-cette-fois-">“Juste cette fois”</h3>
+<p>C&#39;est l&#39;erreur la plus commune : effectuer une manipulation risquée sur son système principal par paresse (ne pas vouloir lancer la VM, ne pas vouloir changer de profil).</p>
+<ul>
+<li><strong>Risque :</strong> Un malware n&#39;a besoin que d&#39;une fraction de seconde pour exfiltrer vos cookies de session ou vos clés de chiffrement. Il n&#39;y a pas de &quot;petite&quot; exception.</li>
+</ul>
+<h3 id="m-lange-identit-s">Mélange identités</h3>
+<p>Ouvrir un compte personnel (Gmail, Discord, Banque) dans un onglet alors qu&#39;une session de recherche SGPI est active dans un autre.</p>
+<ul>
+<li><strong>Risque :</strong> Corrélation immédiate par les traqueurs et les scripts tiers. Votre identité réelle est alors définitivement liée à vos activités de recherche, rendant caduque toute votre stratégie d&#39;anonymat.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="19-doctrine-finale-sgpi">19. DOCTRINE FINALE SGPI</h2>
+<h3 id="la-s-curit-est-une-discipline">La sécurité est une discipline</h3>
+<p>L&#39;OPSEC n&#39;est pas une liste de courses ou un réglage logiciel que l&#39;on configure une fois pour toutes. C&#39;est une <strong>discipline mentale constante</strong>. Elle exige de la rigueur, de la répétition et une vigilance de chaque instant. La sécurité s&#39;entretient comme une compétence technique : elle s&#39;érode dès que l&#39;on cesse de l&#39;exercer.</p>
+<h3 id="le-confort-est-secondaire">Le confort est secondaire</h3>
+<p>L&#39;efficacité opérationnelle et la protection des données priment systématiquement sur l&#39;ergonomie. Un processus long, fastidieux ou complexe (lancement de VM, isolation réseau, audits de scripts) est souvent le signe qu&#39;il est sécurisé. <strong>Le confort est le terreau de la complaisance</strong>, et la complaisance est la porte d&#39;entrée de l&#39;adversaire.</p>
+<h3 id="une-erreur-individuelle-peut-impacter-tout-le-groupe">Une erreur individuelle peut impacter tout le groupe</h3>
+<p>Au sein de la SGPI, l&#39;anonymat et la sécurité sont collectifs. Une fuite de données, une corrélation d&#39;identité ou une infection sur un poste de travail peut compromettre les sources, les méthodes et l&#39;intégrité de l&#39;ensemble de la structure. Vous êtes le garant de la sécurité de vos pairs autant que de la vôtre.</p>
+<h3 id="si-tu-h-sites-tu-jettes">Si tu hésites → tu jettes</h3>
+<p>C&#39;est la règle d&#39;or qui prévaut sur toutes les autres. Le doute est un signal d&#39;alarme suffisant.</p>
+<ul>
+<li>Un lien qui semble étrange ? <strong>On ne clique pas.</strong></li>
+<li>Un fichier dont la source est floue ? <strong>On l&#39;efface.</strong></li>
+<li>Un comportement de navigateur suspect ? <strong>On reset la VM.</strong></li>
+</ul>
+<p>Dans l&#39;incertitude, le renoncement n&#39;est pas un échec, c&#39;est une preuve de professionnalisme. <strong>On ne parie jamais sur la sécurité.</strong></p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="20-volution-du-guide">20. ÉVOLUTION DU GUIDE</h2>
+<h3 id="ce-guide-est-vivant">Ce guide est vivant</h3>
+<p>La sécurité n&#39;est pas un état figé, mais un processus dynamique. Ce document ne doit pas être considéré comme une vérité immuable, mais comme une base de travail à l&#39;instant $t$. Chaque membre de la SGPI a la responsabilité de contribuer à l&#39;actualisation de nos protocoles en partageant ses observations et ses découvertes techniques.</p>
+<h3 id="les-menaces-voluent">Les menaces évoluent</h3>
+<p>L&#39;adversaire adapte ses méthodes en permanence : nouvelles failles <em>0-day</em>, techniques de fingerprinting plus agressives, ou méthodes d&#39;ingénierie sociale plus fines.</p>
+<ul>
+<li>Une veille technologique constante est obligatoire.</li>
+<li>Tout contournement de nos protections actuelles constaté sur le terrain doit entraîner une révision immédiate du chapitre concerné.</li>
+</ul>
+<h3 id="les-r-gles-aussi">Les règles aussi</h3>
+<p>Si un outil recommandé (comme un navigateur ou une extension) change de politique de confidentialité ou présente une vulnérabilité structurelle, il sera immédiatement retiré de la doctrine. <strong>La loyauté de la SGPI va à la sécurité, pas aux outils.</strong></p>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      <h2 id="21-annexes">21. ANNEXES</h2>
+<p>Cette section regroupe les outils pratiques pour une application immédiate de la doctrine sur le terrain.</p>
+<hr>
+<h3 id="checklist-rapide-avant-chaque-session-">Checklist rapide (Avant chaque session)</h3>
+<ul>
+<li>[ ]  <strong>Environnement :</strong> VM lancée ou Profil Firefox/Brave &quot;SGPI-ZONE&quot; actif ?</li>
+<li>[ ]  <strong>Réseau :</strong> VPN connecté avec Kill-Switch activé ?</li>
+<li>[ ]  <strong>Filtrage :</strong> uBlock Origin à jour (listes malwares/phishing) ?</li>
+<li>[ ]  <strong>Scripts :</strong> NoScript réglé sur &quot;Tout bloquer par défaut&quot; ?</li>
+<li>[ ]  <strong>Hygiène :</strong> Aucune session personnelle (mail/réseaux sociaux) ouverte en parallèle ?</li>
+</ul>
+<h3 id="loadout-navigateur-sgpi">Loadout navigateur SGPI</h3>
+<p>Pour une étanchéité maximale, voici la pile logicielle recommandée :</p>
+<ol>
+<li><strong>Navigateur :</strong> Firefox (Hardened) ou Brave.</li>
+<li><strong>Bloqueur :</strong> uBlock Origin (Mode avancé).</li>
+<li><strong>Contrôle de scripts :</strong> NoScript.</li>
+<li><strong>Nettoyage :</strong> Cookie AutoDelete (ou paramétrage natif &quot;Supprimer à la fermeture&quot;).</li>
+<li><strong>Conteneurs :</strong> Firefox Multi-Account Containers (pour isoler les onglets entre eux).</li>
+</ol>
+<h3 id="configs-types-about-config-extraits-critiques-">Configs types (<code>about:config</code> - extraits critiques)</h3>
+<ul>
+<li><code>dom.webdriver.enabled = false</code> (Empêche la détection de l&#39;automatisation).</li>
+<li><code>media.peerconnection.enabled = false</code> (Désactive WebRTC pour éviter les fuites d&#39;IP).</li>
+<li><code>privacy.resistFingerprinting = true</code> (Active la protection native contre l&#39;empreinte numérique).</li>
+<li><code>geo.enabled = false</code> (Désactive la géolocalisation).</li>
+</ul>
+<h3 id="glossaire">Glossaire</h3>
+<ul>
+<li><strong>OPSEC :</strong> <em>Operations Security</em>. Ensemble des processus visant à protéger les informations sensibles.</li>
+<li><strong>Fingerprinting :</strong> Technique de traçage basée sur les caractéristiques uniques de votre configuration matérielle/logicielle.</li>
+<li><strong>Payload :</strong> Charge utile malveillante contenue dans un fichier ou un script.</li>
+<li><strong>Snapshot :</strong> Capture instantanée de l&#39;état d&#39;une VM, permettant un retour arrière immédiat.</li>
+<li><strong>WebRTC :</strong> Protocole de communication en temps réel, souvent responsable de fuites d&#39;adresses IP réelles.</li>
+</ul>
+<a href="#top">↑ Retour au sommaire</a>
+    </section>
+
+
+    <section>
+      
+    </section>
+
+
+    <section>
+      
+    </section>
+
+
+    <section>
+      
+    </section>
+
+
+
+
+
+
+
+    <!-- Section ressources -->
+    <section>
+        <h2>Ressources</h2>
+        <p>Liste de ressources ou liens utiles :</p>
+        <ul>
+            <li><a href="#">Ressource 1</a></li>
+            <li><a href="#">Ressource 2</a></li>
+            <li><a href="#">Ressource 3</a></li>
+        </ul>
+    </section>
+
+    <!-- Section FAQ ou Notes -->
+    <section>
+        <h2>FAQ / Notes</h2>
+        <p>Réponses aux questions fréquentes ou remarques importantes sur le contenu présenté.</p>
+        <ul>
+            <li>Question 1 : réponse détaillée</li>
+            <li>Question 2 : réponse détaillée</li>
+            <li>Question 3 : réponse détaillée</li>
+        </ul>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 SGPI — Tous droits réservés</p>
+</footer>
+
+</body>
+</html>

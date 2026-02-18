@@ -1,0 +1,635 @@
+/* =========================
+   RESET GLOBAL
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   VARIABLES
+========================= */
+:root {
+    --bg-main: #000000;             /* fond noir total */
+    --bg-secondary: #0a0a0a;        /* fond sidebar / blocs secondaires */
+    --accent: #ffffff;              /* texte principal blanc */
+    --accent-hover: #ffffff;        /* glow blanc */
+    --text-main: #ffffff;           /* texte général */
+    --text-muted: #b0b0b0;          /* texte secondaire gris clair */
+    --border-color: rgba(255,255,255,0.15); /* bordures discrètes avec glow blanc */
+    --glow: 0 0 10px var(--accent-hover);  /* glow blanc */
+}
+
+/* =========================
+   GLOBAL BODY
+========================= */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px;
+    background: linear-gradient(90deg, #000000, #0a0a0a);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 0 8px rgba(255,255,255,0.15);
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px var(--glow);
+    transition: text-shadow 0.3s;
+}
+
+.nav-logo:hover {
+    text-shadow: 0 0 18px var(--glow);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-hover);
+    text-shadow: 0 0 8px var(--glow);
+}
+
+/* =========================
+   LAYOUT GRIDS
+========================= */
+.layout {
+    display: grid;
+    grid-template-columns: 220px 1fr 220px;
+    gap: 20px;
+    padding: 30px;
+}
+
+.layout.no-right {
+    grid-template-columns: 220px 1fr;
+    gap: 20px;
+    padding: 30px;
+}
+
+.content {
+    width: 100%;
+    min-height: auto;
+}
+
+/* =========================
+   SIDEBARS
+========================= */
+.sidebar {
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    transition: box-shadow 0.3s;
+}
+
+.sidebar:hover {
+    box-shadow: 0 0 20px rgba(255,255,255,0.25);
+}
+
+.sidebar h3 {
+    margin-bottom: 10px;
+    color: var(--accent);
+    text-shadow: 0 0 4px var(--glow);
+}
+
+.sidebar h3:hover {
+    text-shadow: 0 0 12px var(--glow);
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.sidebar li:hover {
+    color: var(--text-main);
+    text-shadow: 0 0 6px var(--glow);
+}
+
+/* =========================
+   CONTENU CENTRAL
+========================= */
+.content {
+    background-color: #0a0a0a;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 10px rgba(255,255,255,0.15);
+    transition: box-shadow 0.3s;
+}
+
+.content:hover {
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.content h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--accent);
+    text-shadow: 0 0 6px var(--glow);
+}
+
+.content h1:hover {
+    text-shadow: 0 0 18px var(--glow);
+}
+
+.content h2 {
+    margin-bottom: 8px;
+    color: var(--accent);
+    text-shadow: 0 0 4px var(--glow);
+}
+
+.content h2:hover {
+    text-shadow: 0 0 12px var(--glow);
+}
+
+.content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: var(--text-main);
+    transition: text-shadow 0.2s;
+}
+
+.content p:hover {
+    text-shadow: 0 0 6px var(--glow);
+}
+
+/* =========================
+   LISTES UL / LI
+========================= */
+.content ul {
+    margin-bottom: 25px;
+    padding-left: 2.2em;
+    list-style-position: outside;
+}
+
+.content ul li::marker {
+    color: var(--accent-hover);
+    font-size: 1.2em;
+}
+
+.content ul li {
+    padding-left: 0.35em;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.content ul li:hover {
+    color: var(--text-main);
+    text-shadow: 0 0 6px var(--glow);
+}
+
+.content ul ul {
+    padding-left: 1.5em;
+    margin-bottom: 15px;
+}
+
+.content ul ul li::marker {
+    font-size: 1em;
+    color: var(--accent-hover);
+}
+
+/* =========================
+   BLOCS .block
+========================= */
+.block {
+    padding: 15px;
+    border-left: 3px solid var(--accent-hover);
+    background: rgba(255,255,255,0.05);
+    margin-bottom: 20px;
+    box-shadow: 0 0 12px rgba(255,255,255,0.2);
+}
+
+.block:hover {
+    box-shadow: 0 0 24px rgba(255,255,255,0.35);
+    border-color: var(--accent-hover);
+    background: rgba(255,255,255,0.08);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+footer:hover {
+    box-shadow: 0 0 20px rgba(255,255,255,0.25);
+}
+
+/* =========================
+   BUTTONS / LINKS GLOWS
+========================= */
+a, .error-btn {
+    transition: all 0.2s;
+    color: var(--accent);
+}
+
+a:hover, .error-btn:hover {
+    color: var(--accent-hover);
+    text-shadow: 0 0 8px var(--glow);
+    box-shadow: 0 0 14px var(--glow);
+}
+
+/* =========================
+   PAGE 404 SOBER
+========================= */
+.error-page-sober {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+    color: var(--text-main);
+}
+
+.error-container-sober {
+    max-width: 600px;
+    text-align: center;
+    padding: 40px 25px;
+    border: 1px solid var(--border-color);
+    background-color: #0a0a0a;
+    box-shadow: 0 0 14px rgba(255,255,255,0.25);
+    border-radius: 8px;
+}
+
+.error-container-sober h1 {
+    font-size: 4rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px var(--glow);
+}
+
+.error-container-sober h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.error-container-sober p {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.error-btn-sober:hover {
+    box-shadow: 0 0 12px var(--glow);
+    background-color: var(--accent-hover);
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   AUDIO PLAYER
+========================= */
+
+.audio-player {
+    background: #121212;
+    border: 1px solid #333;
+    color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    width: 350px;
+}
+
+.track-info { text-align: center; margin-bottom: 20px; }
+.track-info h2 { font-size: 1.1em; color: #00ff41; margin: 0; }
+
+.main-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.ctrl-btn {
+    background: #222;
+    border: 1px solid #444;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.ctrl-btn:hover { background: #333; border-color: #00ff41; }
+
+.progress-module, .volume-module {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.time-display { font-size: 0.8em; width: 45px; }
+
+/* Styles pour les Sliders */
+input[type="range"] {
+    flex-grow: 1;
+    cursor: pointer;
+    accent-color: #00ff41;
+}
+
+/* Playlist */
+.playlist-container {
+    margin-top: 20px;
+    border-top: 1px dashed #444;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#playlist-list {
+    list-style: none;
+    padding: 0;
+    font-size: 0.85em;
+}
+
+#playlist-list li {
+    padding: 8px;
+    border-bottom: 1px solid #222;
+    cursor: pointer;
+}
+
+#playlist-list li.active {
+    color: #00ff41;
+    background: #1a1a1a;
+}
+
+
+
+/* =========================
+   WIPE BLOCK UNDER CONSTRUCTION
+========================= */
+
+.construction-wrapper {
+  display: grid;
+  place-items: center;
+  margin: 30px 0;
+}
+
+/* largeur commune panneau + gifs */
+.construction-wrapper > * {
+  max-width: 700px;
+  width: 100%;
+}
+
+/* panneau */
+.construction-banner {
+  margin: 12px 0;
+  padding: 14px 18px;
+
+  background: #111;
+  color: #e0e0e0;
+  text-align: center;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.6;
+
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+/* gifs */
+.construction-gif {
+  text-align: center;
+}
+
+.construction-gif img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+/* =========================
+   TABLES – RPMN0ISE STYLE
+========================= */
+table {
+    width: 100%;
+    border-collapse: separate;       /* cellules séparées pour le spacing */
+    border-spacing: 12px;            /* espace entre les cellules */
+    margin: 25px 0;                  /* espace avant/après le tableau */
+    font-family: monospace;
+    background-color: #0a0a0a;
+    color: var(--text-main);
+    box-shadow: 0 0 8px rgba(255,255,255,0.1);
+}
+
+table th, table td {
+    padding: 12px 15px;              /* espace interne des cellules */
+    border: 1px solid var(--border-color);
+    text-align: left;
+    vertical-align: top;
+    transition: background 0.3s, color 0.3s, text-shadow 0.3s;
+}
+
+table th {
+    background-color: #111;
+    color: var(--accent);
+    text-shadow: 0 0 4px var(--glow);
+}
+
+table th:hover {
+    text-shadow: 0 0 12px var(--glow);
+}
+
+table td {
+    background-color: rgba(255,255,255,0.05);
+    color: var(--text-muted);
+}
+
+table tr:hover td {
+    background-color: rgba(255,255,255,0.08);
+    color: var(--text-main);
+    text-shadow: 0 0 6px var(--glow);
+}
+
+/* Espacement avec titres H3 */
+.content h3 + table,
+table + .content h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Tables responsive – scroll horizontal si trop large */
+table-wrapper {
+    overflow-x: auto;
+}
+
+table-wrapper table {
+    width: 100%;
+    min-width: 500px;
+}
+
+
+
+/* Collapsible sections */
+.collapsible {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.collapsible-toggle {
+    font-weight: bold;
+    margin-left: 10px;
+    user-select: none;
+}
+
+.collapsible-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    max-height: 1000px; /* grande valeur par défaut */
+    opacity: 1;
+}
+
+.collapsible-content.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
+
+/* Highlight temporaire pour smooth scroll */
+.highlighted {
+    background-color: rgba(255, 255, 0, 0.4);
+    transition: background-color 1s ease;
+}
+
+
+/* Bouton loupe flottant à gauche */
+#search-toggle {
+    position: fixed;
+    top: 10px;
+    left: 175px; /* Déplacement à gauche */
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #111;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 36px;
+    cursor: pointer;
+    z-index: 1000;
+    border: 1px solid #888;
+    transition: background-color 0.3s ease;
+}
+
+#search-toggle:hover {
+    background-color: #222;
+}
+
+/* Barre de recherche centrée en haut */
+#mini-search {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #888;
+    background-color: #111;
+    color: #fff;
+    z-index: 1000;
+    display: none; /* Cachée par défaut */
+}
+
+.search-match {
+    display: none;
+    background-color: rgba(255,255,0,0.2);
+    transition: background-color 0.5s ease;
+}
+
+
+
+/* =========================
+   CODE BLOCKS – REPAIRED
+========================= */
+
+pre {
+    background: #0e0e0e;
+    color: #e6e6e6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    /* Suppression des marges automatiques du navigateur */
+    margin-top: 25px !important; 
+    margin-bottom: 25px !important;
+    padding: 1.2rem !important;
+
+    /* Empêche la fusion des marges avec les éléments voisins */
+    display: block;
+    clear: both;
+    overflow-x: auto;
+    
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+}
+
+/* On s'assure que le contenu à l'intérieur ne rajoute pas d'espace */
+pre code {
+    display: block;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* Force un espace sur l'élément qui suit immédiatement le code */
+pre + p, pre + h2, pre + h3, pre + ul {
+    margin-top: 25px !important;
+}
+
+
+
+
+
+
+.

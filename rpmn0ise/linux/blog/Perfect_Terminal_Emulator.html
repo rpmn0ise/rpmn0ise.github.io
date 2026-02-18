@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page – RPMN0ISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/maintenance.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-logo">RPMN0ISE</div>
+        <ul class="nav-links">
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/rpmn0ise/sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
+            <li><a href="/rpmn0ise/linux/index.html">Linux</a></li>
+        </ul>
+    </nav>
+
+    <!-- LAYOUT -->
+<div class="layout no-right">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left">
+            <h3>Contents</h3>
+            <ul>
+                <li>Section 1</li>
+                <li>Section 2</li>
+                <li>Section 3</li>
+                <li>Section 4</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            <h1 id="the-quest-for-the-perfect-terminal-emulator-personal-testing-notes-on-latency-and-font-rendering-across-alacritty-foot-and-kitty">The Quest for the Perfect Terminal Emulator — Personal Testing Notes on Latency and Font Rendering Across Alacritty, Foot, and Kitty</h1>
+<hr>
+<h2 id="-introduction-"><strong>Introduction</strong></h2>
+<p>As a Linux user, one of the most frequent applications I interact with is my terminal emulator. It&#39;s my window into the system, a space for coding, debugging, and managing tasks. For years, I&#39;ve been trying to find the perfect terminal emulator—one that strikes a balance between speed, aesthetics, and usability. In this blog post, I&#39;ll walk through my testing of three terminal emulators that have gained a lot of attention in the Linux community: <strong>Alacritty</strong>, <strong>Foot</strong>, and <strong>Kitty</strong>.</p>
+<p>The focus of this evaluation is on two critical aspects: <strong>latency</strong> and <strong>font rendering</strong>. Both are important for providing a smooth and enjoyable experience, whether I&#39;m running simple commands, working with high-output processes, or navigating directories.</p>
+<hr>
+<h2 id="-1-latency-the-race-for-responsiveness-"><strong>1. Latency: The Race for Responsiveness</strong></h2>
+<h3 id="-what-is-latency-in-a-terminal-"><strong>What is Latency in a Terminal?</strong></h3>
+<p>When using a terminal emulator, latency refers to the time between pressing a key and seeing the result on-screen. This delay can be noticeable when typing fast or running commands that generate a lot of output. For developers, sysadmins, and anyone who spends a significant amount of time in the terminal, lower latency is essential for a fluid experience.</p>
+<h3 id="-testing-setup-"><strong>Testing Setup</strong></h3>
+<p>To test latency, I performed a series of subjective tests by typing at my normal speed, observing how quickly each terminal reacted to keystrokes. I also ran several long-running commands (such as <code>find /</code>, <code>git status</code>, and others) to see how quickly the terminal could update with new output.</p>
+<ul>
+<li><strong>Hardware:</strong> Intel i7 CPU, 16GB of RAM, NVMe SSD</li>
+<li><strong>OS:</strong> Arch Linux (with Wayland as the compositor)</li>
+<li><strong>Graphics:</strong> NVIDIA GPU with proprietary drivers</li>
+</ul>
+<h3 id="-alacritty-"><strong>Alacritty</strong></h3>
+<p>Alacritty is widely praised for its low latency, and for good reason. It&#39;s built with GPU acceleration in mind, leveraging OpenGL to render text and handle graphics. This allows it to provide extremely responsive performance with minimal delay.</p>
+<ul>
+<li><strong>Performance:</strong> Alacritty felt snappy, even when running large commands. The GPU rendering ensured that text appeared almost immediately after a key was pressed.</li>
+<li><strong>Key Event Handling:</strong> Keystroke registration felt instant, with no noticeable lag, even when multiple characters were typed in rapid succession.</li>
+</ul>
+<h3 id="-foot-"><strong>Foot</strong></h3>
+<p>Foot, a Wayland-native terminal emulator built with simplicity and performance in mind, also has impressive latency characteristics. It&#39;s not as feature-rich as Alacritty, but its minimalism aids performance.</p>
+<ul>
+<li><strong>Performance:</strong> Foot performed quite well with low latency, but it wasn&#39;t quite as responsive as Alacritty. The focus here seems to be on minimalism, and it shows in its lightweight nature. Still, typing felt smooth and almost immediate.</li>
+<li><strong>Key Event Handling:</strong> Slightly slower than Alacritty, but only in scenarios with very high throughput, like piping multiple outputs.</li>
+</ul>
+<h3 id="-kitty-"><strong>Kitty</strong></h3>
+<p>Kitty, like Alacritty, uses GPU rendering for performance but also includes several more features, such as image display and advanced font rendering options.</p>
+<ul>
+<li><strong>Performance:</strong> Kitty had a solid performance profile, though it was slightly behind Alacritty in terms of raw latency. The extra features come at the cost of a marginal increase in responsiveness.</li>
+<li><strong>Key Event Handling:</strong> Typing was responsive, but it showed a slight delay when running commands that produce a large amount of output (e.g., <code>ls -lR /</code>).</li>
+</ul>
+<h3 id="-conclusion-on-latency-"><strong>Conclusion on Latency</strong></h3>
+<ul>
+<li><strong>Best Overall:</strong> <strong>Alacritty</strong> wins for the lowest latency, consistently outperforming both Foot and Kitty. Its reliance on GPU acceleration for rendering ensures smooth performance, even under heavy workloads.</li>
+<li><strong>Runner-Up:</strong> <strong>Foot</strong> is highly responsive and lightweight but falls slightly behind Alacritty when handling fast typing.</li>
+<li><strong>Third Place:</strong> <strong>Kitty</strong> provides good performance but sacrifices some latency in favor of advanced features.</li>
+</ul>
+<hr>
+<h2 id="-2-font-rendering-crisp-clean-and-easy-on-the-eyes-"><strong>2. Font Rendering: Crisp, Clean, and Easy on the Eyes</strong></h2>
+<h3 id="-why-is-font-rendering-important-"><strong>Why is Font Rendering Important?</strong></h3>
+<p>Font rendering is crucial for readability and comfort, especially if you&#39;re spending long hours in the terminal. The way fonts are rendered can affect text sharpness, weight, and clarity. Poor font rendering can strain your eyes and reduce productivity.</p>
+<h3 id="-testing-setup-for-font-rendering-"><strong>Testing Setup for Font Rendering</strong></h3>
+<p>I tested font rendering by evaluating the clarity of both default and custom fonts across various font sizes. For consistency, I used the <strong>FiraCode</strong> font in all three terminals, though I also tested with <strong>Hack</strong> and <strong>Source Code Pro</strong> for variety.</p>
+<ul>
+<li><strong>Screen Resolution:</strong> 1920x1080p</li>
+<li><strong>Font Sizes:</strong> 12px, 14px, and 16px</li>
+<li><strong>Anti-Aliasing:</strong> Enabled for all terminals, with subpixel rendering enabled where supported.</li>
+</ul>
+<h3 id="-alacritty-"><strong>Alacritty</strong></h3>
+<p>Alacritty uses GPU-based rendering to display text, which gives it an edge in font clarity. Fonts are sharp and well-defined, especially at smaller sizes.</p>
+<ul>
+<li><strong>Rendering Quality:</strong> Text is extremely crisp, and even at 12px, there’s no noticeable pixelation. Anti-aliasing is smooth, and the text appears well-optimized for readability.</li>
+<li><strong>Customization:</strong> Alacritty supports font ligatures and provides excellent control over font settings (such as weight, style, and line height). The configuration file is straightforward to tweak for any font preferences.</li>
+</ul>
+<h3 id="-foot-"><strong>Foot</strong></h3>
+<p>Foot’s minimalism extends to its font rendering, which, while decent, isn’t as polished as Alacritty. The fonts are clear and readable but lack the crispness that Alacritty’s GPU rendering provides.</p>
+<ul>
+<li><strong>Rendering Quality:</strong> Font rendering is solid but not as fine-tuned. There’s a slight blur around the edges of characters at smaller sizes, but it&#39;s still perfectly usable.</li>
+<li><strong>Customization:</strong> Foot has basic support for font customization, but the options are more limited compared to Alacritty.</li>
+</ul>
+<h3 id="-kitty-"><strong>Kitty</strong></h3>
+<p>Kitty provides excellent font rendering with support for multiple font types and ligatures, alongside advanced anti-aliasing and subpixel rendering.</p>
+<ul>
+<li><strong>Rendering Quality:</strong> Fonts are very sharp, and the text rendering is as good as or better than Alacritty in terms of aesthetics. The advanced anti-aliasing settings and subpixel rendering make it a standout in visual quality.</li>
+<li><strong>Customization:</strong> Kitty excels here, offering advanced font options like variable fonts, multi-font rendering, and extensive font-related settings in its configuration file.</li>
+</ul>
+<h3 id="-conclusion-on-font-rendering-"><strong>Conclusion on Font Rendering</strong></h3>
+<ul>
+<li><strong>Best Overall:</strong> <strong>Kitty</strong> takes the top spot for font rendering, offering the most aesthetically pleasing output and the greatest range of font customization options.</li>
+<li><strong>Runner-Up:</strong> <strong>Alacritty</strong> offers exceptional performance but falls just short of Kitty in terms of visual quality and customization.</li>
+<li><strong>Third Place:</strong> <strong>Foot</strong> offers functional font rendering but doesn&#39;t have the same level of crispness or customization as the other two.</li>
+</ul>
+<hr>
+<h2 id="-final-thoughts-"><strong>Final Thoughts</strong></h2>
+<p>After testing Alacritty, Foot, and Kitty over the course of several months, it’s clear that each terminal excels in different areas. <strong>Alacritty</strong> stands out for its sheer speed and low latency, making it the best choice for those who prioritize responsiveness. <strong>Kitty</strong>, on the other hand, offers unparalleled font rendering and a feature-rich experience, making it ideal for those who want the best visual quality and extensive customization. <strong>Foot</strong> may not be as feature-packed, but its simplicity and performance make it a great choice for those seeking a minimal and lightweight terminal experience.</p>
+<p>Ultimately, the &quot;perfect&quot; terminal emulator depends on what you prioritize. If raw performance and latency are your top concern, <strong>Alacritty</strong> is hard to beat. However, for a balance of aesthetics, customization, and usability, <strong>Kitty</strong> is likely the best option.</p>
+<p>In the end, experimenting with these options has been a rewarding experience, and I encourage others to test these emulators for themselves to see which one best fits their workflow. The pursuit of the &quot;perfect&quot; terminal may never truly end, but with these three contenders, it&#39;s clear we&#39;re getting closer.</p>
+
+        </main>
+
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 – RPMN0ISE</p>
+    </footer>
+
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

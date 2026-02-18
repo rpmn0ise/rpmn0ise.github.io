@@ -1,0 +1,112 @@
+/* =========================
+   SGPI THEME OVERRIDE
+   ========================= */
+
+/* Scope strict : uniquement sgpi.html */
+.sgpi-page {
+
+    /* Palette SGPI */
+    --bg-main: #0b0f0c;
+    --bg-secondary: #121a14;
+
+    --accent: #00ff88;
+    --accent-hover: #00cc6a;
+
+    --text-main: #d6ffe9;
+    --text-muted: #7fae95;
+
+    --border-neon: rgba(0, 255, 136, 0.35);
+    --glow: 0 0 10px rgba(0, 255, 136, 0.4);
+}
+
+/* =========================
+   NAVBAR (recolorée)
+   ========================= */
+
+.sgpi-page .navbar {
+    background: linear-gradient(90deg, #0b0f0c, #121a14);
+    border-bottom: 1px solid var(--border-neon);
+    box-shadow: 0 0 12px rgba(0,255,136,0.15);
+}
+
+.sgpi-page .nav-logo {
+    color: var(--accent);
+    text-shadow: 0 0 6px var(--accent);
+}
+
+.sgpi-page .nav-links a:hover {
+    color: var(--accent-hover);
+    text-shadow: 0 0 12px var(--accent-hover);
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.sgpi-page .sidebar {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-neon);
+}
+
+.sgpi-page .sidebar h3 {
+    color: var(--accent);
+    text-shadow: 0 0 4px var(--accent);
+}
+
+.sgpi-page .sidebar li:hover {
+    text-shadow: 0 0 8px var(--accent);
+}
+
+/* =========================
+   CONTENU CENTRAL
+   ========================= */
+
+.sgpi-page .content {
+    background-color: #0f1511;
+    border-color: var(--border-neon);
+}
+
+.sgpi-page .content h1,
+.sgpi-page .content h2 {
+    color: var(--accent);
+    text-shadow: 0 0 6px var(--accent);
+}
+
+.sgpi-page .content p {
+    color: var(--text-muted);
+}
+
+.sgpi-page .content p:hover {
+    color: var(--text-main);
+    text-shadow: 0 0 6px var(--accent);
+}
+
+/* =========================
+   BLOCS
+   ========================= */
+
+.sgpi-page .block {
+    border-left-color: var(--accent);
+    background: rgba(0, 255, 136, 0.05);
+}
+
+.sgpi-page .block:hover {
+    border-left-color: var(--accent-hover);
+    box-shadow: 0 0 25px rgba(0,255,136,0.35);
+}
+
+/* =========================
+   LISTES
+   ========================= */
+
+.sgpi-page .content ul li::marker {
+    color: var(--accent);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.sgpi-page footer {
+    border-top-color: var(--border-neon);
+}

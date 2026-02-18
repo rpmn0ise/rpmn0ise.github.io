@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arch Linux Ricing – RPMN0ISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/maintenance.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-logo">RPMN0ISE</div>
+        <ul class="nav-links">
+            <li><a href="../../home.html">Home</a></li>   
+            <li><a href="audio.html">Audio</a></li>
+            <li><a href="gaming.html">Gaming</a></li>
+            <li><a href="tech.html">Tech</a></li>
+            <li><a href="hacking.html">Hacking</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="sport.html">Sport</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="linux.html">Linux</a></li>
+        </ul>
+    </nav>
+
+    <!-- LAYOUT -->
+    <div class="layout no-right">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left">
+            <h3>Contents</h3>
+            <ul>
+                <li>1. Introduction</li>
+                <li>2. Arch Linux for Ricing</li>
+                <li>3. Visual vs Functional Customization</li>
+                <li>4. Graphical Stack Overview</li>
+                <li>5. Configuration Philosophy</li>
+                <li>6. Visual Components</li>
+                <li>7. Workflow-Driven Ricing</li>
+                <li>8. Dotfiles and System Organization</li>
+                <li>9. Maintenance and Breakage</li>
+                <li>10. Copying vs Understanding Setups</li>
+                <li>11. When Ricing Stops Being Productive</li>
+                <li>12. Final Observations</li>
+                <li>13. Arch Linux & Ricing Resources</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            <h1>Arch Linux Ricing</h1>
+            <p>
+                A technical initiation and reference for intermediate to advanced users interested in customizing Arch Linux to create a highly personalized and efficient environment.
+            </p>
+
+            <section class="block">
+                <h2>1. What “ricing” means in the Arch Linux context</h2>
+                <p>In the Arch Linux ecosystem, ricing refers to the deliberate customization of the graphical environment, behavior, and interaction model of the system.<br>
+                It is not limited to visual theming. It usually involves:</p>
+                <ul>
+                  <li>Window manager or compositor selection</li>
+                  <li>Fonts, colors, spacing, and layout control</li>
+                  <li>Keyboard-driven workflows</li>
+                  <li>Status bars, launchers, and notifications</li>
+                  <li>System feedback (audio, brightness, power, network)</li>
+                  <li>Tight control over configuration files and runtime behavior</li>
+                </ul>
+                <p>Ricing is typically config-driven, not GUI-driven. Most changes are explicit, reversible, and text-based.</p>
+                <p>The practice originates from minimal Linux setups and BSD culture, where visual clarity, efficiency, and personal control matter more than defaults.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="2-why-arch-linux-is-commonly-used-for-ricing">2. Why Arch Linux is commonly used for ricing</h2>
+                  <p>Arch Linux does not impose a desktop environment, theme, or workflow.
+                    This absence of defaults is not an advantage by itself, but it removes friction when building a custom stack.</p>
+                  <p>Observed characteristics that matter for ricing:</p>
+                  <ul>
+                    <li>No abstraction layer between user and configuration</li>
+                    <li>Packages are close to upstream behavior</li>
+                    <li>Documentation encourages understanding rather than automation</li>
+                    <li>System components can be replaced independently</li>
+                  </ul>
+                  <p>Ricing is not easier on Arch.
+                    It is <strong>more transparent</strong>, which reduces hidden interactions once the system is understood.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="3-ricing-is-not-only-visual">3. Ricing is not only visual</h2>
+                  <p>A common misconception is that ricing equals “making the system look good”.</p>
+                  <p>In practice, experienced setups focus on:</p>
+                  <ul>
+                    <li>Predictable window placement</li>
+                    <li>Fast application launch</li>
+                    <li>Low cognitive load</li>
+                    <li>Minimal pointer usage</li>
+                    <li>Consistent visual language across tools</li>
+                  </ul>
+                  <p>Visual polish often appears <strong>after</strong> functional coherence is achieved.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="4-the-graphical-stack-what-you-are-actually-modifying">4. The graphical stack: what you are actually modifying</h2>
+<p>Before touching tools, it is important to understand what layers exist.</p>
+<h3 id="4-1-display-server">4.1 Display server</h3>
+<p>You usually operate on one of these:</p>
+<ul>
+<li><p><strong>Xorg (X11)</strong></p>
+<ul>
+<li>Mature, widely supported</li>
+<li>More configuration surface</li>
+<li>Still dominant for ricing setups</li>
+</ul>
+</li>
+<li><p><strong>Wayland</strong></p>
+<ul>
+<li>Simpler architecture</li>
+<li>Less global control</li>
+<li>Tooling is compositor-specific</li>
+</ul>
+</li>
+</ul>
+<p>The choice affects everything above it.</p>
+<h3 id="4-2-window-manager-or-compositor">4.2 Window manager or compositor</h3>
+<p>This is the core of most riced systems.</p>
+<p>Common categories:</p>
+<ul>
+<li><p><strong>Tiling window managers (X11)</strong>
+Examples: i3, bspwm, dwm, xmonad</p>
+<ul>
+<li>Explicit layout logic</li>
+<li>Keyboard-first</li>
+<li>Configuration-driven</li>
+</ul>
+</li>
+<li><p><strong>Wayland compositors</strong>
+Examples: sway, hyprland, river</p>
+<ul>
+<li>Handle both composition and window management</li>
+<li>Often scriptable, but less standardized</li>
+</ul>
+</li>
+<li><p><strong>Stacking WMs / DE components</strong>
+Rarely used for deep ricing, but possible.</p>
+</li>
+</ul>
+<p>Your window manager defines:</p>
+<ul>
+<li>How windows are arranged</li>
+<li>How focus works</li>
+<li>How input is routed</li>
+<li>How external tools integrate</li>
+</ul>
+<h3 id="4-3-supporting-user-space-components">4.3 Supporting user-space components</h3>
+<p>A riced system is a collection of small, specialized programs:</p>
+<ul>
+<li>Status bar (polybar, waybar, lemonbar)</li>
+<li>Application launcher (rofi, dmenu, wofi)</li>
+<li>Notification daemon (dunst, mako)</li>
+<li>Compositor (picom, built-in Wayland compositors)</li>
+<li>Policy agents (polkit)</li>
+<li>Audio control (pipewire, pactl wrappers)</li>
+</ul>
+<p>None of these are mandatory.
+Each one introduces configuration surface and potential failure points.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="5-configuration-philosophy">5. Configuration philosophy</h2>
+<h3 id="5-1-text-files-over-tools">5.1 Text files over tools</h3>
+<p>Most ricing is done via:</p>
+<ul>
+<li>Plain text configuration files</li>
+<li>Shell scripts</li>
+<li>Environment variables</li>
+</ul>
+<p>This has consequences:</p>
+<ul>
+<li>Changes are transparent</li>
+<li>Behavior is inspectable</li>
+<li>Version control is practical</li>
+</ul>
+<p>Graphical configuration tools are uncommon and often avoided.</p>
+<h3 id="5-2-declarative-vs-imperative-configs">5.2 Declarative vs imperative configs</h3>
+<p>You will encounter two patterns:</p>
+<ul>
+<li><p><strong>Declarative</strong>
+“This is how it should look”
+Common in WM configs, CSS-like syntax</p>
+</li>
+<li><p><strong>Imperative</strong>
+“Do this when X happens”
+Shell hooks, startup scripts, keybindings</p>
+</li>
+</ul>
+<p>Complex setups usually mix both.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="6-visual-components-and-constraints">6. Visual components and constraints</h2>
+<h3 id="6-1-fonts">6.1 Fonts</h3>
+<p>Fonts influence readability more than colors.</p>
+<p>Practical observations:</p>
+<ul>
+<li>Bitmap fonts give precise alignment but scale poorly</li>
+<li>Vector monospace fonts vary widely in hinting quality</li>
+<li>Icon fonts reduce asset management but complicate accessibility</li>
+</ul>
+<p>Font choice affects bar height, spacing, and window geometry.</p>
+<h3 id="6-2-colors-and-themes">6.2 Colors and themes</h3>
+<p>Color schemes are often shared across tools, but formats differ:</p>
+<ul>
+<li>Xresources</li>
+<li>GTK themes</li>
+<li>Bar-specific formats</li>
+<li>Terminal emulator configs</li>
+</ul>
+<p>Perfect synchronization is difficult.
+Most users accept minor inconsistencies.</p>
+<h3 id="6-3-transparency-and-compositing">6.3 Transparency and compositing</h3>
+<p>Transparency requires a compositor (on X11).</p>
+<p>Trade-offs observed:</p>
+<ul>
+<li>Visual depth vs input latency</li>
+<li>Blur effects vs GPU usage</li>
+<li>Tearing vs performance tuning</li>
+</ul>
+<p>These effects are aesthetic, not free.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="7-workflow-driven-ricing">7. Workflow-driven ricing</h2>
+<p>Advanced setups are designed around <strong>use cases</strong>, not appearance.</p>
+<p>Common patterns:</p>
+<ul>
+<li>Dedicated workspaces per task</li>
+<li>Predictable application-to-workspace mapping</li>
+<li>Scripted layout restoration</li>
+<li>Context-sensitive keybindings</li>
+</ul>
+<p>This reduces friction but increases configuration complexity.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="8-dotfiles-and-system-organization">8. Dotfiles and system organization</h2>
+<h3 id="8-1-why-dotfiles-matter">8.1 Why dotfiles matter</h3>
+<p>Ricing generates many small configuration files.</p>
+<p>Without structure:</p>
+<ul>
+<li>Debugging becomes difficult</li>
+<li>Reinstallation is painful</li>
+<li>Incremental changes are risky</li>
+</ul>
+<p>Most experienced users:</p>
+<ul>
+<li>Centralize configs</li>
+<li>Use symlinks</li>
+<li>Track changes with version control</li>
+</ul>
+<h3 id="8-2-portability-limits">8.2 Portability limits</h3>
+<p>Not all configs are portable:</p>
+<ul>
+<li>GPU-specific options</li>
+<li>Monitor layouts</li>
+<li>Input devices</li>
+<li>Font availability</li>
+</ul>
+<p>Dotfiles should be considered <strong>templates</strong>, not universal profiles.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="9-maintenance-and-breakage">9. Maintenance and breakage</h2>
+<p>Riced systems break more often than default desktops.</p>
+<p>Typical causes:</p>
+<ul>
+<li>Upstream config format changes</li>
+<li>Deprecated options</li>
+<li>Dependency behavior changes</li>
+<li>Wayland protocol evolution</li>
+</ul>
+<p>Arch does not prevent this.
+It exposes it early.</p>
+<p>Practical mitigation:</p>
+<ul>
+<li>Read update notices</li>
+<li>Test changes incrementally</li>
+<li>Keep fallback configs</li>
+<li>Avoid blind copying of third-party setups</li>
+</ul>
+            </section>
+
+            <section class="block">
+                <h2 id="10-copying-setups-vs-understanding-them">10. Copying setups vs understanding them</h2>
+<p>Public dotfiles are useful, but limited.</p>
+<p>Observed pattern:</p>
+<ul>
+<li>Beginners copy entire repositories</li>
+<li>Systems work until something breaks</li>
+<li>Debugging becomes impossible</li>
+</ul>
+<p>A more reliable approach:</p>
+<ul>
+<li>Copy small, isolated ideas</li>
+<li>Rebuild logic in your own structure</li>
+<li>Accept slower visual progress</li>
+</ul>
+<p>Ricing rewards understanding, not speed.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="11-when-ricing-stops-being-productive">11. When ricing stops being productive</h2>
+<p>Ricing has diminishing returns.</p>
+<p>Indicators:</p>
+<ul>
+<li>More time spent adjusting visuals than using the system</li>
+<li>Fear of updating packages</li>
+<li>Overly fragile startup sequences</li>
+</ul>
+<p>At that point, the system is optimized for itself, not for work.</p>
+<p>This is not failure, but a trade-off.</p>
+            </section>
+
+            <section class="block">
+                <h2 id="12-final-observations">12. Final observations</h2>
+<ul>
+<li>Ricing is system design, not decoration</li>
+<li>Arch Linux does not simplify ricing, it removes abstraction</li>
+<li>Every layer you customize adds control and responsibility</li>
+<li>No setup is optimal outside its context</li>
+<li>Verification, iteration, and restraint matter more than aesthetics</li>
+</ul>
+<p>The system you build reflects how well you understand its parts, not how closely it resembles someone else’s screenshot.</p>
+            </section>
+            
+            <section class="block">
+                <h2 id="arch-linux-ricing-resources">13. Arch Linux &amp; Ricing Resources</h2>
+<h3 id="1-official-arch-linux-resources">1. Official Arch Linux Resources</h3>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arch Linux Wiki</td>
+<td>Extensive, canonical documentation on installation, configuration, and customization.</td>
+<td><a href="https://wiki.archlinux.org/">wiki.archlinux.org</a></td>
+</tr>
+<tr>
+<td>Arch Linux Home Page</td>
+<td>Official site for downloads, announcements, and news.</td>
+<td><a href="https://archlinux.org/">archlinux.org</a></td>
+</tr>
+<tr>
+<td>Arch User Repository (AUR)</td>
+<td>Community-maintained repository for packages not in official repos.</td>
+<td><a href="https://aur.archlinux.org/">aur.archlinux.org</a></td>
+</tr>
+<tr>
+<td>Arch Forums</td>
+<td>Community discussion, problem-solving, and ricing examples.</td>
+<td><a href="https://bbs.archlinux.org/">bbs.archlinux.org</a></td>
+</tr>
+<tr>
+<td>Arch Mailing Lists</td>
+<td>Developer and user mailing lists for announcements and discussions.</td>
+<td><a href="https://lists.archlinux.org/">lists.archlinux.org</a></td>
+</tr>
+<tr>
+<td>Arch Linux Packages</td>
+<td>Official package search and information.</td>
+<td><a href="https://archlinux.org/packages/">archlinux.org/packages</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-window-managers-and-compositors">2. Window Managers and Compositors</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Tools</th>
+<th>Notes / Links</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tiling WMs (X11)</td>
+<td>i3, bspwm, dwm, xmonad, herbstluftwm</td>
+<td>i3: <a href="https://i3wm.org/">i3wm.org</a>, bspwm: <a href="https://github.com/baskerville/bspwm">github.com/baskerville/bspwm</a></td>
+</tr>
+<tr>
+<td>Stacking / Floating WMs</td>
+<td>Openbox, Fluxbox</td>
+<td>Lightweight, flexible, integrates with panels and compositors</td>
+</tr>
+<tr>
+<td>Wayland Compositors</td>
+<td>Sway, Hyprland, river, Wayfire</td>
+<td>Sway: <a href="https://swaywm.org/">swaywm.org</a>, Hyprland: <a href="https://github.com/hyprwm/Hyprland">github.com/hyprwm/Hyprland</a></td>
+</tr>
+<tr>
+<td>Compositors (X11)</td>
+<td>Picom (fork of Compton), xcompmgr</td>
+<td>Handles transparency, shadows, and fading effects</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-status-bars-panels">3. Status Bars &amp; Panels</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Polybar</td>
+<td>Highly configurable bar with modular blocks</td>
+<td><a href="https://polybar.github.io/">polybar.github.io</a></td>
+</tr>
+<tr>
+<td>Lemonbar</td>
+<td>Simple and scriptable lightweight bar</td>
+<td><a href="https://github.com/limex/lemonbar">github.com/limex/lemonbar</a></td>
+</tr>
+<tr>
+<td>Waybar</td>
+<td>Status bar for Wayland (Sway, Hyprland)</td>
+<td><a href="https://github.com/Alexays/Waybar">github.com/Alexays/Waybar</a></td>
+</tr>
+<tr>
+<td>Xmobar</td>
+<td>Minimalist Haskell-based bar for X11</td>
+<td><a href="https://github.com/jaor/xmobar">github.com/jaor/xmobar</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-launchers-runners">4. Launchers &amp; Runners</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Notes</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rofi</td>
+<td>Application launcher, menu, and window switcher</td>
+<td><a href="https://github.com/davatorium/rofi">github.com/davatorium/rofi</a></td>
+</tr>
+<tr>
+<td>dmenu</td>
+<td>Minimal launcher, highly scriptable</td>
+<td><a href="https://tools.suckless.org/dmenu/">tools.suckless.org/dmenu</a></td>
+</tr>
+<tr>
+<td>Wofi</td>
+<td>Wayland launcher similar to dmenu/rofi</td>
+<td><a href="https://hg.sr.ht/~scoopta/wofi">hg.sr.ht/~scoopta/wofi</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-notification-daemons">5. Notification Daemons</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Notes</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dunst</td>
+<td>Lightweight, scriptable, X11 notifications</td>
+<td><a href="https://dunst-project.org/">dunst-project.org</a></td>
+</tr>
+<tr>
+<td>Mako</td>
+<td>Wayland notification daemon</td>
+<td><a href="https://github.com/emersion/mako">github.com/emersion/mako</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-terminal-emulators">6. Terminal Emulators</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Notes</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alacritty</td>
+<td>GPU-accelerated, minimal config</td>
+<td><a href="https://alacritty.org/">alacritty.org</a></td>
+</tr>
+<tr>
+<td>Kitty</td>
+<td>Feature-rich, GPU-accelerated</td>
+<td><a href="https://sw.kovidgoyal.net/kitty/">sw.kovidgoyal.net/kitty/</a></td>
+</tr>
+<tr>
+<td>URxvt</td>
+<td>Highly scriptable, X11-only</td>
+<td><a href="https://wiki.archlinux.org/index.php/Rxvt-unicode">wiki.archlinux.org/index.php/Rxvt-unicode</a></td>
+</tr>
+<tr>
+<td>Foot</td>
+<td>Lightweight Wayland terminal</td>
+<td><a href="https://codeberg.org/dnkl/foot">codeberg.org/dnkl/foot</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-fonts-iconography">7. Fonts &amp; Iconography</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Resources</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Programming Fonts</td>
+<td>Fira Code, JetBrains Mono, Source Code Pro</td>
+</tr>
+<tr>
+<td>Icon Fonts</td>
+<td>Font Awesome, Material Icons, Nerd Fonts (patched for powerline/nerd)</td>
+</tr>
+<tr>
+<td>Terminal Symbols</td>
+<td>Nerd Fonts patched fonts (glyphs for bars, status lines)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-themes-and-colors">8. Themes and Colors</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Resource</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GTK Themes</td>
+<td>Adwaita-dark, Arc, Sweet, Matcha</td>
+<td>For GTK apps</td>
+</tr>
+<tr>
+<td>Icon Themes</td>
+<td>Papirus, Numix, Tela</td>
+<td>Complements GTK themes</td>
+</tr>
+<tr>
+<td>Color Schemes</td>
+<td>Base16, Gruvbox, Solarized, Catppuccin</td>
+<td>Used across terminal, bars, editors</td>
+</tr>
+<tr>
+<td>Xresources</td>
+<td>xrdb-managed color configs</td>
+<td>Terminal and X11 apps</td>
+</tr>
+</tbody>
+</table>
+<h3 id="9-scripting-automation">9. Scripting &amp; Automation</h3>
+<table>
+<thead>
+<tr>
+<th>Tool / Concept</th>
+<th>Notes</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shell scripting</td>
+<td>Bash, Zsh, Fish</td>
+<td>Startup scripts, WM autostart, workflow automation</td>
+</tr>
+<tr>
+<td>Systemd user units</td>
+<td>Run scripts, daemons, and timers</td>
+<td><a href="https://wiki.archlinux.org/index.php/Systemd/User">wiki.archlinux.org/index.php/Systemd/User</a></td>
+</tr>
+<tr>
+<td>sxhkd</td>
+<td>X11 hotkey daemon for keybindings</td>
+<td><a href="https://github.com/baskerville/sxhkd">github.com/baskerville/sxhkd</a></td>
+</tr>
+<tr>
+<td>Wayland hotkeys</td>
+<td>Sway/Hyprland config</td>
+<td>Sway: <a href="https://swaywm.org/">swaywm.org</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="10-audio-media">10. Audio &amp; Media</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Notes</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PipeWire</td>
+<td>Modern audio/video server</td>
+<td><a href="https://pipewire.org/">pipewire.org</a></td>
+</tr>
+<tr>
+<td>Pulseaudio (legacy)</td>
+<td>Still widely used</td>
+<td><a href="https://freedesktop.org/wiki/Software/PulseAudio/">freedesktop.org/wiki/Software/PulseAudio</a></td>
+</tr>
+<tr>
+<td>MPD + ncmpcpp</td>
+<td>Terminal music player</td>
+<td><a href="https://wiki.archlinux.org/index.php/MPD">wiki.archlinux.org/index.php/MPD</a></td>
+</tr>
+<tr>
+<td>Alsamixer</td>
+<td>CLI mixer tool</td>
+<td><a href="https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture">wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="11-dotfile-management-version-control">11. Dotfile Management &amp; Version Control</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Notes</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git</td>
+<td>Track dotfiles</td>
+<td><a href="https://git-scm.com/">git-scm.com</a></td>
+</tr>
+<tr>
+<td>GNU Stow</td>
+<td>Symlink management</td>
+<td><a href="https://www.gnu.org/software/stow/">www.gnu.org/software/stow/</a></td>
+</tr>
+<tr>
+<td>Chezmoi</td>
+<td>Dotfile manager</td>
+<td><a href="https://github.com/twpayne/chezmoi">github.com/twpayne/chezmoi</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-key-learning-community-resources">12. Key Learning &amp; Community Resources</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Resource</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arch Wiki Sections</td>
+<td><a href="https://wiki.archlinux.org/title/Ricing">Ricing</a></td>
+</tr>
+<tr>
+<td>YouTube Channels</td>
+<td>Luke Smith, Chris Titus Tech (advanced ricing tutorials)</td>
+</tr>
+<tr>
+<td>Reddit</td>
+<td>r/unixporn – showcase, configs, dotfiles</td>
+</tr>
+<tr>
+<td>GitHub / GitLab</td>
+<td>Public dotfiles repos: search “Arch Linux dotfiles” or “i3 configs”</td>
+</tr>
+<tr>
+<td>IRC / Matrix</td>
+<td>#archlinux: <a href="https://libera.chat/">freenode / libera.chat</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-utilities-for-ricing-and-workflow">13. Utilities for Ricing and Workflow</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feh</td>
+<td>Background images / wallpaper management</td>
+</tr>
+<tr>
+<td>nitrogen</td>
+<td>Wallpaper management (X11)</td>
+</tr>
+<tr>
+<td>rofi-pass</td>
+<td>Password management integration with launcher</td>
+</tr>
+<tr>
+<td>maim</td>
+<td>Screenshots</td>
+</tr>
+<tr>
+<td>xclip / wl-clipboard</td>
+<td>Clipboard integration</td>
+</tr>
+<tr>
+<td>brightnessctl</td>
+<td>Backlight control</td>
+</tr>
+<tr>
+<td>playerctl</td>
+<td>Control media players via CLI / WM scripts</td>
+</tr>
+<tr>
+<td>pacman-contrib</td>
+<td>Useful pacman scripts for package management</td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-advanced-experimental-tools">14. Advanced / Experimental Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hyprctl</td>
+<td>Hyprland management CLI</td>
+</tr>
+<tr>
+<td>swaylock / swayidle</td>
+<td>Wayland lock and idle management</td>
+</tr>
+<tr>
+<td>redshift / gammastep</td>
+<td>Screen temperature / blue light adjustment</td>
+</tr>
+<tr>
+<td>xrandr / wlr-randr</td>
+<td>Multi-monitor configuration and dynamic setups</td>
+</tr>
+<tr>
+<td>wmutils</td>
+<td>Lightweight window management utilities</td>
+</tr>
+</tbody>
+</table>
+<p>This list is <strong>not exhaustive</strong> but provides a wide coverage of:</p>
+<ul>
+<li>Core components (WM, compositor, terminal)</li>
+<li>Aesthetic elements (fonts, icons, themes)</li>
+<li>Automation and scripting</li>
+<li>Media and audio control</li>
+<li>Maintenance, version control, and community resources</li>
+</ul>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 – RPMN0ISE</p>
+    </footer>
+
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page – RPMN0ISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/maintenance.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-logo">RPMN0ISE</div>
+        <ul class="nav-links">
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/rpmn0ise/sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
+            <li><a href="/rpmn0ise/linux/index.html">Linux</a></li>
+        </ul>
+    </nav>
+
+    <!-- LAYOUT -->
+<div class="layout no-right">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left">
+            <h3>Contents</h3>
+            <ul>
+                <li>Section 1</li>
+                <li>Section 2</li>
+                <li>Section 3</li>
+                <li>Section 4</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            <h1 id="wayland-on-nvidia-a-12-month-retrospective-tracking-the-stability-improvements-and-remaining-artifacts-in-my-daily-setup">Wayland on NVIDIA: A 12-Month Retrospective — Tracking the Stability Improvements and Remaining Artifacts in My Daily Setup</h1>
+<hr>
+<h2 id="-introduction-"><strong>Introduction</strong></h2>
+<p>It&#39;s been a year since I made the switch to Wayland on my NVIDIA-powered Linux setup. As many know, the journey to full Wayland support on NVIDIA hardware has been a rocky one, marked by frustration, inconsistent performance, and missing features. But things have changed significantly in the past twelve months. In this blog post, I&#39;ll reflect on my experience with Wayland on NVIDIA, tracking the progress made, the stability improvements I&#39;ve observed, and the remaining quirks and artifacts that continue to affect my daily use.</p>
+<p>For context, I am using a mid-to-high-end NVIDIA GPU in a Linux environment with a focus on general productivity, light gaming, and development tasks. My setup includes the latest stable distributions of Fedora, Arch Linux, and a few different Wayland compositors such as Sway and GNOME.</p>
+<hr>
+<h2 id="-a-year-of-progress-stability-and-feature-improvements-"><strong>A Year of Progress: Stability and Feature Improvements</strong></h2>
+<h3 id="-1-initial-struggles-"><strong>1. Initial Struggles</strong></h3>
+<p>When I first attempted to use Wayland on NVIDIA a year ago, the experience was far from smooth. Many compositors would fail to launch, and the few that did resulted in performance issues that rendered the system practically unusable. The fundamental challenge was the lack of proper support for NVIDIA’s proprietary drivers, which were (and still are) essential for optimal GPU performance on Linux.</p>
+<p>In the early months, Wayland support on NVIDIA was sparse. The proprietary NVIDIA driver stack did not support the <em>Direct Rendering Infrastructure 3 (DRI3)</em> standard required for smooth Wayland operation. This meant that using Wayland on NVIDIA was often accompanied by graphical glitches, input lag, and other significant issues.</p>
+<h3 id="-2-the-shift-with-nvidia-s-egl-streams-"><strong>2. The Shift with NVIDIA’s EGL Streams</strong></h3>
+<p>By mid-2022, NVIDIA began making strides toward improving Wayland compatibility with its introduction of <strong>EGLStreams</strong> support in its proprietary drivers. EGLStreams allow applications to render directly to the GPU via the EGL API, bypassing the limitations of X11 and making Wayland compositors more functional.</p>
+<p>Compositors like GNOME and Sway began to add support for EGLStreams, which marked a turning point for me. Stability started to improve noticeably, with fewer crashes and more reliable rendering of applications. The performance, while still not quite on par with X11, was far better than what I experienced in the early days of using Wayland.</p>
+<h3 id="-3-system-stability-a-measured-improvement-"><strong>3. System Stability: A Measured Improvement</strong></h3>
+<p>As the months went on, I observed several key improvements in the stability of my daily setup:</p>
+<ul>
+<li><strong>Graphical Performance</strong>: There were marked improvements in graphical performance when switching between applications and managing window arrangements. Compositors like GNOME and Sway started to handle window transitions more smoothly with less stuttering.</li>
+<li><strong>App Compatibility</strong>: Many applications that previously had issues under Wayland (such as those relying heavily on X11-specific extensions) started working seamlessly, thanks to better compatibility layers like <em>XWayland</em>.</li>
+<li><strong>Support for Multiple Monitors</strong>: In the past, configuring multiple monitors with Wayland on NVIDIA was prone to crashing or misaligning display outputs. With the advent of more stable drivers and compositors, I now have a fully functioning multi-monitor setup with Wayland, which was previously a dealbreaker for me.</li>
+</ul>
+<p>However, while progress has been significant, not all issues were resolved. Several artifacts and issues remain, even after a year of usage.</p>
+<hr>
+<h2 id="-lingering-artifacts-and-remaining-issues-"><strong>Lingering Artifacts and Remaining Issues</strong></h2>
+<h3 id="-1-tearing-and-v-sync-issues-"><strong>1. Tearing and V-Sync Issues</strong></h3>
+<p>Despite the improvements, tearing — the visual artifact that occurs when the display refresh rate doesn&#39;t align with the frame rate — remains a persistent issue in some applications and games. This is particularly true for video playback and high-motion content in games. While V-Sync support has improved with Wayland, it&#39;s not always reliable across all compositors, and tearing still occasionally occurs when using EGLStreams.</p>
+<p>In contrast, on X11, tearing was largely mitigated using simple methods like enabling the “TearFree” option for the NVIDIA driver, but under Wayland, achieving similar results often requires more complex tuning or relies on compositor-specific workarounds that may not work universally.</p>
+<h3 id="-2-nvidia-gpu-specific-artifacts-"><strong>2. NVIDIA GPU-Specific Artifacts</strong></h3>
+<p>Using the proprietary NVIDIA driver on Wayland still carries over some unique issues, most notably:</p>
+<ul>
+<li><strong>Window Flickering</strong>: Occasionally, windows will flicker or render incorrectly when switching focus or when transitioning between fullscreen and windowed modes.</li>
+<li><strong>Slow Window Resizing</strong>: In some compositors, resizing windows can feel sluggish or unresponsive. This isn&#39;t always the case, but it remains a notable annoyance in certain use cases.</li>
+</ul>
+<p>These artifacts are not present when using the open-source Nouveau driver (which is considerably less performant), and it&#39;s clear that NVIDIA&#39;s proprietary drivers still aren&#39;t fully optimized for Wayland in all scenarios.</p>
+<h3 id="-3-lack-of-full-hardware-acceleration-in-some-applications-"><strong>3. Lack of Full Hardware Acceleration in Some Applications</strong></h3>
+<p>While hardware-accelerated video playback has improved with Wayland, some applications still struggle to make use of NVIDIA’s GPU, especially those that rely on legacy APIs. For example, when watching videos on certain web-based players (such as YouTube), the GPU utilization is not as efficient as it would be on X11. This results in higher CPU usage and lower overall performance.</p>
+<p>Additionally, certain productivity tools, such as CAD software or high-performance video editing apps, still do not work optimally under Wayland on NVIDIA, requiring users to fall back on X11 for those specific tasks.</p>
+<hr>
+<h2 id="-improved-workflow-what-s-working-well-now-"><strong>Improved Workflow: What’s Working Well Now</strong></h2>
+<p>Despite these persistent issues, there are several aspects of my workflow that have become more stable and reliable over the past year:</p>
+<h3 id="-1-gnome-on-wayland-"><strong>1. GNOME on Wayland</strong></h3>
+<p>GNOME, as one of the most popular desktop environments with native Wayland support, has seen the most consistent improvements. Key areas that work well include:</p>
+<ul>
+<li><strong>Gestures and Touchscreen Support</strong>: On a touchscreen laptop, gestures work fluidly, and multi-touch support is considerably better than on X11.</li>
+<li><strong>Display Management</strong>: Managing screen scaling, particularly with high DPI monitors, has been smoother under Wayland than with X11.</li>
+<li><strong>App Launch Speed</strong>: The initial launch of applications feels snappier, and the overall responsiveness of GNOME has improved.</li>
+</ul>
+<h3 id="-2-sway-and-i3-on-wayland-"><strong>2. Sway and i3 on Wayland</strong></h3>
+<p>If you&#39;re a fan of tiling window managers, Sway (a Wayland compositor compatible with i3 configs) is now a great option. My experience with Sway has been largely positive, with:</p>
+<ul>
+<li><strong>Improved Input Latency</strong>: There&#39;s no longer any noticeable lag when switching between workspaces or resizing windows.</li>
+<li><strong>Better Resource Utilization</strong>: Sway is highly efficient with resources, and my system feels more responsive with Wayland than it did on X11.</li>
+<li><strong>Customization</strong>: The ability to customize my setup to fit my workflow has been seamless, and I&#39;ve seen no noticeable slowdown when making heavy use of my configuration.</li>
+</ul>
+<hr>
+<h2 id="-conclusion-still-a-work-in-progress-"><strong>Conclusion: Still a Work in Progress</strong></h2>
+<p>After twelve months of using Wayland with NVIDIA, the experience has undoubtedly improved. Stability has seen significant gains, and I no longer dread switching to Wayland when booting up my system. However, there are still noticeable artifacts and performance gaps, especially when it comes to tearing, GPU acceleration, and certain legacy application support. The NVIDIA proprietary drivers continue to lag behind in full optimization for Wayland, making it clear that there’s more work to be done.</p>
+<p>That said, I remain optimistic. Each month brings more improvements, and the momentum behind Wayland adoption continues to grow. While the journey isn&#39;t perfect, Wayland on NVIDIA is certainly becoming more usable for daily computing, and I am excited to see how the ecosystem continues to evolve.</p>
+<p>For now, I&#39;ll continue to work around the lingering issues and keep an eye on the development of both NVIDIA’s drivers and the Wayland protocol. It’s a thrilling time to be part of this transition, even if it’s still a bit bumpy.</p>
+
+        </main>
+
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 – RPMN0ISE</p>
+    </footer>
+
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

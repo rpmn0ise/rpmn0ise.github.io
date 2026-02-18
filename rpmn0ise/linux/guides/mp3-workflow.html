@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Managing MP3 Files on Linux – RPMN0ISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/maintenance.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">RPMN0ISE</div>
+        <ul class="nav-links">
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/rpmn0ise/sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
+            <li><a href="/rpmn0ise/linux/index.html">Linux</a></li>
+        </ul>
+    </nav>
+
+    <div class="layout no-right">
+
+        <aside class="sidebar left">
+            <h3>Contents</h3>
+            <ul>
+                <li>Section 1</li>
+                <li>Section 2</li>
+                <li>Section 3</li>
+                <li>Section 4</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1 id="managing-mp3-files-on-linux">Managing MP3 Files on Linux</h1>
+<h3 id="a-pragmatic-arch-linux-workflow">A pragmatic Arch Linux workflow</h3>
+<p>This guide documents two recurring operations when handling large music collections on Linux systems: flattening directory trees and cleaning filenames.</p>
+<p>Typical use cases include unpacked ZIP archives, album dumps, or scene releases. No GUI tools, just shell.</p>
+<h2 id="1-flattening-a-music-collection-recursive-mp3-extraction-">1. Flattening a music collection (recursive MP3 extraction)</h2>
+<h3 id="context">Context</h3>
+<p>Music archives often come with unnecessary depth:</p>
+<ul>
+<li>one directory per track</li>
+<li>mixed content (covers, .nfo, .txt, logs)</li>
+<li>inconsistent structures</li>
+</ul>
+<p>The goal is simple: extract only .mp3 files into one directory, without touching the originals.</p>
+<h3 id="step-1-position-yourself-correctly">Step 1 — Position yourself correctly</h3>
+<p>Move into the directory that contains all subfolders you want to process.</p>
+<p>Command: cd /path/to/your/music/root</p>
+<p>Example: cd ~/hardmusic</p>
+<p>Confirm your location using the command: pwd</p>
+<h3 id="step-2-create-a-collection-directory">Step 2 — Create a collection directory</h3>
+<p>Command: mkdir all_my_music</p>
+<p>If the directory already exists, use: mkdir -p all_my_music</p>
+<h3 id="step-3-recursively-copy-all-mp3-files">Step 3 — Recursively copy all MP3 files</h3>
+<p>Command: find . -type f -iname &quot;*.mp3&quot; -exec cp -v {} all_my_music/ ;</p>
+<p>This copies every MP3 found below the current directory into the folder named all_my_music.</p>
+<h3 id="what-this-actually-does">What this actually does</h3>
+<ul>
+<li>find . Walks the directory tree from the current location.</li>
+<li>-type f Ensures only regular files are processed.</li>
+<li>-iname &quot;*.mp3&quot; Performs a case-insensitive match for .mp3, .MP3, and similar variations.</li>
+<li>-exec cp -v {} all_my_music/ ; Copies each file and logs the operation to the terminal.</li>
+</ul>
+<p>No metadata is modified. Only filenames and paths are involved.</p>
+<h3 id="faster-variant-large-collections-">Faster variant (large collections)</h3>
+<p>For thousands of files, use this to reduce process overhead:</p>
+<p>Command: find . -type f -iname &quot;*.mp3&quot; -print0 | xargs -0 cp -t all_my_music/</p>
+<h3 id="warning-duplicate-filenames">Warning: Duplicate filenames</h3>
+<p>Flattening destroys directory context. If two files share the same name, the last one copied will overwrite the previous one.</p>
+<p>Mitigations:</p>
+<ul>
+<li>Use rsync with the ignore-existing flag.</li>
+<li>Pre-rename files with album or directory prefixes.</li>
+<li>Do not flatten; keep per-album folders instead.</li>
+</ul>
+<p>RPMN0ISE note: blind flattening is convenient, not clean. Use it knowingly.</p>
+<h2 id="2-removing-track-numbers-from-filenames">2. Removing track numbers from filenames</h2>
+<h3 id="context">Context</h3>
+<p>Many releases prefix filenames with track indices, such as: 01 N-XD - CHAOS.mp3 02 Hysta, N-XD - Next To You.mp3</p>
+<p>This section removes that noise without touching tags or audio data.</p>
+<h3 id="method-pure-bash">Method — Pure Bash</h3>
+<p>Run this loop inside the directory containing the MP3 files:</p>
+<p>for f in *.mp3; do mv -v &quot;{f#[0-9][0-9] }&quot;; done</p>
+<p>Result: N-XD - CHAOS.mp3 Hysta, N-XD - Next To You.mp3</p>
+<h3 id="how-it-works">How it works</h3>
+<ul>
+<li>for f in *.mp3 Iterates over MP3 files only.</li>
+<li>mv -v Renames the file and logs the change.</li>
+<li>&quot;${f#[0-9][0-9] }&quot; Uses Bash parameter expansion to remove exactly two digits and a space from the beginning of the filename.</li>
+</ul>
+<p>No regex tools. No external dependencies. Shell-native.</p>
+<h3 id="variant-variable-length-track-numbers">Variant — Variable-length track numbers</h3>
+<p>If filenames start with different lengths (like 1, 01, or 001), use:</p>
+<p>for f in <em>.mp3; do mv -v &quot;{f#[0-9]</em> }&quot;; done</p>
+<p>This strips any numeric prefix found before the first space.</p>
+<h3 id="dry-run-recommended-">Dry-run (recommended)</h3>
+<p>Always preview bulk renames before executing them:</p>
+<p>for f in *.mp3; do echo mv -v &quot;{f#[0-9][0-9] }&quot;; done</p>
+<p>If the output looks correct, run the command again without the word echo.</p>
+<h2 id="final-notes">Final notes</h2>
+<p>This workflow relies on:</p>
+<ul>
+<li>find for controlled recursion.</li>
+<li>Bash parameter expansion for deterministic renaming.</li>
+<li>Zero metadata manipulation.</li>
+<li>Zero external tooling.</li>
+</ul>
+<p>It is distribution-agnostic, scriptable, predictable, and reversible if tested properly.</p>
+<p>This is not a media manager. It is filesystem hygiene, Linux-style.</p>
+<p>RPMN0ISE philosophy applies: understand the command before you run it.</p>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2026 – RPMN0ISE</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

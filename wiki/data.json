@@ -1,0 +1,34 @@
+{
+  "lastUpdate": "15/02/2026",
+  "categories": [
+    {
+      "name": "Confidentialité & Sécurité",
+      "slug": "confidentialite-securite",
+      "icon": "🔒",
+      "subcategories": [
+        {
+          "name": "Navigateurs",
+          "slug": "navigateurs",
+          "resources": [
+            {
+              "name": "Brave Browser",
+              "url": "https://brave.com/fr/",
+              "description": "Navigateur basé sur Chromium avec bloqueur de pubs intégré et protection de la vie privée avancée.",
+              "type": "software",
+              "recommended": true,
+              "new": false
+            },
+            {
+              "name": "LibreWolf",
+              "url": "https://librewolf.net/",
+              "description": "Fork de Firefox axé sur la confidentialité, sans télémétrie et avec uBlock Origin préinstallé.",
+              "type": "software",
+              "recommended": true,
+              "new": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

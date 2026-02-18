@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linux Knowledge Base – RPMN0ISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/maintenance.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">RPMN0ISE</div>
+        <ul class="nav-links">
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/rpmn0ise/sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
+            <li><a href="/rpmn0ise/linux/index.html">Linux</a></li>
+        </ul>
+    </nav>
+
+    <div class="layout no-right">
+
+        <aside class="sidebar left">
+            <h3>Contents</h3>
+            <ul>
+                <li><a href="#kernel">Kernel & Core</a></li>
+                <li><a href="#filesystems">Filesystems & Storage</a></li>
+                <li><a href="#networking">Networking Stack</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Linux Knowledge Base</h1>
+            <p>
+                Centralized repository of technical facts, conceptual notes, and architectural references for Linux-based systems. 
+                This index documents system internals and theoretical standards in a neutral, descriptive format.
+            </p>
+
+            <section id="kernel">
+                <h2>Kernel & Core</h2>
+                <ul>
+                    <li>[2026-01] [NEW] <a href="https://rentry.co/eBPF_Subsystem_Architecture">eBPF Subsystem Architecture</a> - Notes on helper functions and maps in modern kernels.</li>
+                    <li>[2025-08] <a href="https://rentry.co/Memory_Management_Cgroups_v2">Memory Management: Cgroups v2</a> - Reference documentation on resource isolation and hierarchy.</li>
+                    <li>[2024-11] [WIP] <a href="https://rentry.co/Systemd_Boot_Sequence">Systemd Boot Sequence</a> - Descriptive map of target units and initialization phases.</li>
+                </ul>
+            </section>
+
+            <section id="filesystems">
+                <h2>Filesystems & Storage</h2>
+                <ul>
+                    <li>[2025-10] [NEW] <a href="https://rentry.co/Btrfs_Send-Receive_Logic">Btrfs Send/Receive Logic</a> - Conceptual overview of subvolume snapshot transfer mechanisms.</li>
+                    <li>[2025-03] <a href="https://rentry.co/XFS_On-Disk_Format_Reference">XFS On-Disk Format Reference</a> - Factual data regarding allocation groups and inode structures.</li>
+                    <li>[2022-05] <a href="https://rentry.co/EXT3_Journaling_Modes">EXT3 Journaling Modes [OBSOLETE]</a> - Comparative notes on data=journal vs data=ordered behaviors.</li>
+                </ul>
+            </section>
+
+            <section id="networking">
+                <h2>Networking Stack</h2>
+                <ul>
+                    <li>[2025-12] [NEW] <a href="https://rentry.co/Netfilter_vs_Nftables">Netfilter vs Nftables</a> - Technical comparison of hook points and bytecode execution.</li>
+                    <li>[2025-05] <a href="https://rentry.co/QUIC_Protocol_Implementation">QUIC Protocol Implementation</a> - Notes on user-space UDP handling and congestion control.</li>
+                    <li>[2024-02] [WIP] <a href="https://rentry.co/WireGuard_Cryptographic_Primitives">WireGuard Cryptographic Primitives</a> - Reference list of protocols used for the tunnel layer.</li>
+                </ul>
+            </section>
+        </main>
+
+    </div>
+
+    <footer>
+        <p>© 2026 – RPMN0ISE</p>
+    </footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
