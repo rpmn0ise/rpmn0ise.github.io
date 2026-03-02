@@ -1,9 +1,8 @@
 ---
 layout: page
 title: Wiki
+permalink: /wiki/
 ---
-
-
 
 # 📚 WIKI SGPI - Index Général
 
