@@ -1,1 +1,29 @@
+site_name: RPMN0ISE Wiki
+site_url: https://rpmn0ise.github.io/wiki/
+use_directory_urls: false
 
+theme:
+  name: material
+  language: fr
+  palette:
+    - scheme: slate # Mode sombre automatique
+      primary: black
+      accent: indigo
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  - toc:
+      permalink: true # Pour avoir les liens directs sur les titres
