@@ -1,18 +1,3 @@
-<script>
-  // Protection simple par mot de passe
-  var pass = sessionStorage.getItem('sgpi_auth');
-  if (pass !== "TON_MOT_DE_PASSE") {
-      var input = prompt("Accès réservé à la SGPI. Entrez le mot de passe :");
-      if (input === "TON_MOT_DE_PASSE") {
-          sessionStorage.setItem('sgpi_auth', input);
-      } else {
-          alert("Accès refusé.");
-          window.location.href = "../index.html";
-      }
-  }
-</script>
-
-
 # 🏴‍☠️ SGPI Wiki : La Collection Ultime
 
 Bienvenue sur le wiki de la **Société Générale des Pirates Informatiques**. Inspiré par l'esprit *FreeMediaHeckYeah*, cet annuaire regroupe les meilleures ressources du net, de la zone blanche à la zone grise.
