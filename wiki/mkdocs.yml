@@ -1,31 +1,25 @@
-site_name: RPMN0ISE Wiki
+site_name: SGPI Wiki
 site_url: https://rpmn0ise.github.io/wiki/
 use_directory_urls: false
 
 theme:
   name: material
   language: fr
-  # Configuration des couleurs (Mode Sombre style FMHY)
   palette:
-    - scheme: slate
+    - scheme: slate # Mode sombre profond
       primary: black
-      accent: indigo
+      accent: red    # Couleur "Pirate/Hacker"
   features:
-    - navigation.tabs          # Menu en haut
-    - navigation.sections      # Sections cliquables à gauche
-    - navigation.expand        # Auto-développement des menus
-    - navigation.top           # Bouton retour en haut
-    - search.suggest           # Recherche intelligente
-    - search.highlight         # Surlignage des résultats
-    - content.code.copy        # Bouton copier sur le code
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+    - content.code.copy
 
 markdown_extensions:
   - attr_list
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - toc:
-      permalink: true
