@@ -2,7 +2,7 @@ name: publish wiki
 on:
   push:
     branches:
-      - main  # Vérifiez que votre branche principale s'appelle bien main
+      - main  # Vérifie que ta branche s'appelle bien 'main' et non 'master'
 
 permissions:
   contents: write
@@ -23,11 +23,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install mkdocs-material
-          # Ajoutez ici d'autres extensions si nécessaire
 
       - name: Build Wiki
         run: |
-          # On construit le wiki qui se trouve dans le dossier /wiki
           cd wiki
           mkdocs build
           
@@ -35,8 +33,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # On publie le contenu du dossier 'site' généré par MkDocs
-          # vers le sous-dossier 'wiki' de la branche de destination
           publish_dir: ./wiki/site
           destination_dir: wiki
-          keep_files: true # TRÈS IMPORTANT : garde votre index.html actuel !
+          keep_files: true
