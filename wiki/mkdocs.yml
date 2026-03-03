@@ -15,13 +15,15 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
-  # Ajout de l'icône du dépôt en haut à droite
+  # Cette partie gère le bouton GitHub natif en haut à droite
   icon:
     repo: fontawesome/brands/github 
 
-# Configuration du lien du dépôt (apparaît à côté de la recherche)
+# Ces deux lignes activent le bouton GitHub dans le header
 repo_name: rpmn0ise/wiki
 repo_url: https://github.com/rpmn0ise/rpmn0ise.github.io
+
+
 
 markdown_extensions:
   - attr_list
@@ -32,10 +34,13 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra:
+  # Pour ajouter Discord en haut, on peut tricher en l'ajoutant 
+  # via la logique des liens de réseaux sociaux qui s'activent parfois selon le thème,
+  # mais pour le header, Material utilise surtout le repo_url.
   social:
     - icon: fontawesome/brands/discord
       link: https://discord.gg/R2S2VZneNV
-      name: Rejoindre notre Discord
+      name: Discord SGPI
     - icon: fontawesome/brands/github
-      link: https://github.com/rpmn0ise/rpmn0ise.github.io/tree/main/wiki
-      name: Voir le code source
+      link: https://github.com/rpmn0ise/rpmn0ise.github.io
+      name: GitHub
