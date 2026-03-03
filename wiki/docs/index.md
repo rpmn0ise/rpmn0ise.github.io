@@ -1,8 +1,14 @@
 <script>
-  var password = prompt("Accès réservé à la SGPI. Entrez le mot de passe :");
-  if (password != "TON_MOT_DE_PASSE_DISCORD") {
-    alert("Accès refusé.");
-    window.location.href = "https://google.com";
+  // Protection simple par mot de passe
+  var pass = sessionStorage.getItem('sgpi_auth');
+  if (pass !== "TON_MOT_DE_PASSE") {
+      var input = prompt("Accès réservé à la SGPI. Entrez le mot de passe :");
+      if (input === "TON_MOT_DE_PASSE") {
+          sessionStorage.setItem('sgpi_auth', input);
+      } else {
+          alert("Accès refusé.");
+          window.location.href = "../index.html";
+      }
   }
 </script>
 
