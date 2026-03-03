@@ -5,25 +5,27 @@ use_directory_urls: false
 theme:
   name: material
   language: fr
+  # Configuration des couleurs (Mode Sombre style FMHY)
   palette:
-    - scheme: slate # Mode sombre automatique
+    - scheme: slate
       primary: black
       accent: indigo
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.expand
-    - search.suggest
-    - search.highlight
-    - content.code.copy
+    - navigation.tabs          # Menu en haut
+    - navigation.sections      # Sections cliquables à gauche
+    - navigation.expand        # Auto-développement des menus
+    - navigation.top           # Bouton retour en haut
+    - search.suggest           # Recherche intelligente
+    - search.highlight         # Surlignage des résultats
+    - content.code.copy        # Bouton copier sur le code
 
 markdown_extensions:
   - attr_list
   - admonition
   - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.superfences
   - toc:
-      permalink: true # Pour avoir les liens directs sur les titres
+      permalink: true
