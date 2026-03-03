@@ -33,10 +33,10 @@ Bienvenue sur le wiki de la **Société Générale des Pirates Informatiques**. 
 
 * 🔒 [**Confidentialité & Sécurité**](securite.md) — *Adblocking, VPN, Antivirus et protection des données.*
 * 🤖 [**Intelligence Artificielle**](ia.md) — *Chatbots, Générateurs d'images et outils de Machine Learning.*
-* 🎬 [**Films & Séries**](cinema.md) — *Streaming, DDL, Torrents et IPTV.*
+* 🎬 [**Films & Séries**](film-series.md) — *Streaming, DDL, Torrents et IPTV.*
 * 🎵 [**Musique**](musique.md) — *Streaming audio, Radio et outils de production.*
-* 🎮 [**Jeux Vidéo**](jeux.md) — *Repacks, Emulation, ROMs et outils gaming.*
-* 📚 [**Livres & Mangas**](lecture.md) — *Ebooks, Audiobooks et scan de mangas.*
+* 🎮 [**Jeux Vidéo**](jeux-videos.md) — *Repacks, Emulation, ROMs et outils gaming.*
+* 📚 [**Livres & Mangas**](livre-mangas.md) — *Ebooks, Audiobooks et scan de mangas.*
 * 📥 [**Téléchargement Direct**](ddl.md) — *Sites DDL, Débrideurs et Usenet.*
 * 🌊 [**Torrents**](torrents.md) — *Trackers publics/privés et clients de téléchargement.*
 * 🎓 [**Éducation & Formation**](education.md) — *Cours, Sciences, Langues et IT.*
@@ -48,6 +48,6 @@ Bienvenue sur le wiki de la **Société Générale des Pirates Informatiques**. 
 
 ---
 
-### 🤝 Contribuer
+## 🤝 Contribuer
 Une ressource est morte ? Un nouveau site incroyable vient de sortir ? 
 Proposez vos liens directement sur notre **Discord** pour que nous puissions mettre à jour le wiki après vérification.
