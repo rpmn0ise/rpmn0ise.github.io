@@ -2,7 +2,7 @@ name: publish wiki
 on:
   push:
     branches:
-      - main  # Vérifie que ta branche s'appelle bien 'main' et non 'master'
+      - main
 
 permissions:
   contents: write
@@ -26,13 +26,26 @@ jobs:
 
       - name: Build Wiki
         run: |
+          # On entre dans le dossier wiki pour construire le site
           cd wiki
           mkdocs build
           
+      - name: Prepare Root Site
+        run: |
+          # Cette étape copie ton site principal dans le dossier de déploiement
+          # pour éviter la 404 à la racine du site
+          cp index.html wiki/site/index.html
+          cp -r assets wiki/site/assets || true
+          cp -r css wiki/site/css || true
+          cp -r js wiki/site/js || true
+          cp robots.txt wiki/site/robots.txt || true
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # On publie tout le contenu du site construit
           publish_dir: ./wiki/site
-          destination_dir: wiki
+          # On garde 'wiki' comme destination pour que l'URL reste /wiki/
+          destination_dir: . 
           keep_files: true
