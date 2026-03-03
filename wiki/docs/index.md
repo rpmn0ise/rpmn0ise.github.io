@@ -1,3 +1,12 @@
+<script>
+  var password = prompt("Accès réservé à la SGPI. Entrez le mot de passe :");
+  if (password != "TON_MOT_DE_PASSE_DISCORD") {
+    alert("Accès refusé.");
+    window.location.href = "https://google.com";
+  }
+</script>
+
+
 # 🏴‍☠️ SGPI Wiki : La Collection Ultime
 
 Bienvenue sur le wiki de la **Société Générale des Pirates Informatiques**. Inspiré par l'esprit *FreeMediaHeckYeah*, cet annuaire regroupe les meilleures ressources du net, de la zone blanche à la zone grise.
