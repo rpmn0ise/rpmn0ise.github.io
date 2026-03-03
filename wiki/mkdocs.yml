@@ -6,15 +6,22 @@ theme:
   name: material
   language: fr
   palette:
-    - scheme: slate # Mode sombre profond
+    - scheme: slate
       primary: black
-      accent: red    # Couleur "Pirate/Hacker"
+      accent: red
   features:
     - navigation.tabs
     - navigation.sections
     - search.suggest
     - search.highlight
     - content.code.copy
+  # Ajout de l'icône du dépôt en haut à droite
+  icon:
+    repo: fontawesome/brands/github 
+
+# Configuration du lien du dépôt (apparaît à côté de la recherche)
+repo_name: rpmn0ise/wiki
+repo_url: https://github.com/rpmn0ise/rpmn0ise.github.io
 
 markdown_extensions:
   - attr_list
