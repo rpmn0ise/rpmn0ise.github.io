@@ -1,3 +1,25 @@
+<script>
+async function checkAuth() {
+  const hash = "eff32de3f75650c428d5d6afd5f6dfd93b431e8702a88153cca0a961cafd8956"; // Remplace par ton SHA-256
+  if (sessionStorage.getItem('sgpi_hash') !== hash) {
+    const input = prompt("Accès sécurisé SGPI - Entrez le code :");
+    const encoder = new TextEncoder();
+    const data = encoder.encode(input);
+    const buffer = await crypto.subtle.digest('SHA-256', data);
+    const inputHash = Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    if (inputHash === hash) {
+      sessionStorage.setItem('sgpi_hash', inputHash);
+      location.reload();
+    } else {
+      alert("Accès refusé.");
+      window.location.href = "../index.html";
+    }
+  }
+}
+checkAuth();
+</script>
+
 # 🏴‍☠️ SGPI Wiki : La Collection Ultime
 
 Bienvenue sur le wiki de la **Société Générale des Pirates Informatiques**. Inspiré par l'esprit *FreeMediaHeckYeah*, cet annuaire regroupe les meilleures ressources du net, de la zone blanche à la zone grise.
