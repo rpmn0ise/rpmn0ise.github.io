@@ -4,28 +4,36 @@
     <meta charset="UTF-8">
     <title>Music & Sound – RPMN0ISE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/theme-config.css">
+    <link rel="stylesheet" href="/css/style-gaming.css">
     <script src="/maintenance.js"></script>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="nav-logo">RPMN0ISE</div>
+    <div class="nav-container">
+        <a href="/" class="nav-logo" data-glitch>RPMN0ISE</a>
         <ul class="nav-links">
             <li><a href="/rpmn0ise/home.html">Home</a></li>
             <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
             <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
             <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
             <li><a href="/rpmn0ise/music/index.html">Music</a></li>
-            <li><a href="/rpmn0ise/sgpi-oldweb.html">SGPI</a></li>
+            <li><a href="/sgpi">SGPI</a></li>
             <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
-            <li><a href="/rpmn0ise/linux/index.html">Linux</a></li>
         </ul>
+        
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
     </nav>
 
 <div class="layout no-right">
   
-    <aside class="sidebar left">
+    <aside class="sidebar-gaming">
         <h3>Content</h3>
         <ul>
             <li>Hard Music</li>
@@ -43,7 +51,7 @@
             emotion, and a constant source of focus and inspiration.
         </p>
 
-        <section class="block">
+        <section class="card">
             <h2>My favorite Genre</h2>
             <h3>HardMusic - Energy</h3>
             <p>Hard music represents raw power and intensity. Fast BPM, aggressive kicks, and deep basslines that are meant to be felt as much as heard.</p>
@@ -56,7 +64,7 @@
         </section>
 
 
-        <section class="block">
+        <section class="card">
             <h2>Playlists & Discovery</h2>
             <ul>
                 <li>Discovery playlists</li>
@@ -66,7 +74,7 @@
             </ul>
         </section>
 
-        <section class="block">
+        <section class="card">
             <h2>Online collection - File Garden Hosted</h2>
             <p> This page is a personal music link depot. It lists direct links to audio files or folders hosted on File Garden, used for listening and downloading music.</p>
             <a href="/rpmn0ise/music/file-garden.html">Go to the collection page</a>
@@ -76,12 +84,18 @@
 </div>
 
 <footer>
-    <p>© 2026 – RPMN0ISE</p>
+    <p>© 2026 RPMN0ISE • Built with passion for tech and gaming</p>
+    <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-xs);">
+        Powered by <span style="color: var(--accent-primary);">Nord Theme</span>
+    </p>
 </footer>
 
 
 <script src="/js/main.js"></script>
 
 
+
+<!-- Gaming UI Script -->
+<script src="/js/gaming-ui.js"></script>
 </body>
 </html>

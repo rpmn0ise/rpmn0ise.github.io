@@ -10,24 +10,29 @@
 <body class="sgpi-page">
 
 <nav class="navbar">
-    <div class="nav-logo">RPMN0ISE</div>
+    <div class="nav-container">
+        <a href="/" class="nav-logo" data-glitch>RPMN0ISE</a>
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="audio.html">Audio</a></li>
-        <li><a href="gaming.html">Gaming</a></li>
-        <li><a href="tech.html">Tech</a></li>
-        <li><a href="hacking.html">Hacking</a></li>
-        <li><a href="music.html">Music</a></li>
-        <li><a href="sgpi.html">SGPI</a></li>
-        <li><a href="sport.html">Sport</a></li>
-        <li><a href="hardware.html">Hardware</a></li>
-        <li><a href="linux.html">Linux</a></li>
-    </ul>
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/sgpi">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
+        </ul>
+        
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
 </nav>
 
 <div class="layout no-right">
   
-    <aside class="sidebar left">
+    <aside class="sidebar-gaming">
         <h3>SGPI</h3>
         <ul>
             <li>Community</li>
@@ -44,14 +49,14 @@
             experimentation, and digital culture.
         </p>
 
-        <section class="block">
+        <section class="card">
             <h2>What is SGPI?</h2>
             <p>SGPI brings together people interested in technology, cybersecurity,
                 open source software, operating systems, and digital experimentation.
                 It is a place to learn, exchange, and build skills.</p>
         </section>
 
-        <section class="block">
+        <section class="card">
             <h2>Community Philosophy</h2>
             <ul>
                 <li>Curiosity and learning first</li>
@@ -61,19 +66,19 @@
             </ul>
         </section>
 
-        <section class="block">
+        <section class="card">
             <h2>My Role</h2>
             <p>I am the founder of SGPI. This project reflects my interest in technology,
                 cybersecurity, and structured learning through community-driven exchange.</p>
         </section>
 
-        <section class="block">
+        <section class="card">
             <h2>Access & Orientation</h2>
             <p>SGPI is not designed for mass audiences. Access is oriented toward people
                 genuinely interested in tech, cyber, and open source culture.</p>
         </section>
 
-        <section class="block">
+        <section class="card">
             <h2>External Access</h2>
             <p>This page acts as a bridge between my personal website and the SGPI platform.
                 Links and access points may be provided here.</p>
@@ -84,8 +89,14 @@
 </div>
 
 <footer>
-    <p>© 2026 – RPMN0ISE</p>
+    <p>© 2026 RPMN0ISE • Built with passion for tech and gaming</p>
+    <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-xs);">
+        Powered by <span style="color: var(--accent-primary);">Nord Theme</span>
+    </p>
 </footer>
 
+
+<!-- Gaming UI Script -->
+<script src="/js/gaming-ui.js"></script>
 </body>
 </html>

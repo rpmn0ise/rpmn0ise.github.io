@@ -2,70 +2,321 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RPMN0ISE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/maintenance.js"></script>
+    <title>RPMN0ISE | Gaming Hub</title>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="RPMN0ISE's gaming hub - Tech, Linux, audio, and cyber culture">
+    <meta name="keywords" content="gaming, tech, linux, audio, cyber">
+    <meta name="author" content="RPMN0ISE">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/theme-config.css">
+    <link rel="stylesheet" href="/css/style-gaming.css">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
 
-<!-- NAVBAR MINIMAL -->
+<!-- LOADING SCREEN -->
+<div class="loading-screen">
+    <div class="loader"></div>
+    <div class="loading-text">INITIALIZING...</div>
+</div>
+
+<!-- PARTICLES BACKGROUND -->
+<div id="particles-js"></div>
+
+<!-- NAVBAR -->
 <nav class="navbar">
-    <div class="nav-logo">RPMN0ISE's website</div>
+    <div class="nav-container">
+        <div class="nav-logo" data-glitch>RPMN0ISE</div>
+        
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#wiki">Wiki</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
 </nav>
 
-<!-- CENTRAL CONTENT -->
-<div class="layout" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
-
-    <main class="content" style="text-align: center;">
-
-        <h1>Welcome to RPMN0ISE's hub</h1>
-
-        <p>
-            A personal place for tech, Linux, audio, gaming, and cyber culture.<br>
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1 class="hero-title" data-parallax="0.2">
+            WELCOME TO<br>THE HUB
+        </h1>
+        
+        <p class="hero-subtitle fade-in stagger-1">
+            A personal place for <span>tech</span>, <span>Linux</span>, <span>audio</span>, and <span>cyber culture</span>.<br>
             Honest, clean, and built with purpose.
         </p>
-
-        <section class="block">
-            <p>
-                This site is best enjoyed on a desktop or larger screen. Mobile works too, but the full experience shines on PC. The site is currently under contruction, many change can appear.
-            </p>
-        </section>
-
-        <section class="block">
-            <p>
-                Dive into detailed guides, personal projects, and curated insights.<br>
-                Whether you’re here for tech, audio, or gaming, there’s something to explore.
-            </p>
-        </section>
-
-        <!-- ENTER BUTTON -->
-        <a href="rpmn0ise/home.html"
-           style="
-           display: inline-block;
-           margin-top: 20px;
-           padding: 12px 28px;
-           border: 1px solid var(--accent);
-           color: var(--accent);
-           text-decoration: none;
-           font-size: 0.95rem;
-           letter-spacing: 1px;
-           ">
-            ENTER THE SITE
-        </a>
-
-        <p style="margin-top: 18px; font-size: 0.9rem; color: var(--text-muted);">
-            Come back any time — new content may drop soon.
+        
+        <p class="hero-subtitle fade-in stagger-2" style="font-size: var(--font-size-base); max-width: 600px; margin: 0 auto var(--spacing-2xl);">
+            This site is best enjoyed on a desktop or larger screen. The full experience shines on PC, 
+            but mobile works too. Currently under construction, many changes can appear.
         </p>
+        
+        <div class="fade-in stagger-3" style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+            <a href="rpmn0ise/home.html" class="btn btn-primary btn-large">
+                <span>ENTER THE SITE</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M7 3L14 10L7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            
+            <a href="#about" class="btn btn-ghost btn-large">
+                <span>LEARN MORE</span>
+            </a>
+        </div>
+        
+        <p class="fade-in stagger-4" style="margin-top: var(--spacing-xl); font-size: var(--font-size-sm); color: var(--text-muted);">
+            Come back any time — new content may drop soon
+        </p>
+    </div>
+</section>
 
-    </main>
+<!-- ABOUT SECTION -->
+<section id="about">
+    <h2 class="section-title">WHAT YOU'LL FIND</h2>
+    
+    <div class="grid grid-3">
+        <div class="card">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">💻</div>
+            <h3 class="card-title">Tech & Linux</h3>
+            <p class="card-content">
+                Deep dives into Linux configurations, system optimization, 
+                and cutting-edge tech insights. From Arch ricing to server management.
+            </p>
+        </div>
+        
+        <div class="card">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🎵</div>
+            <h3 class="card-title">Audio Engineering</h3>
+            <p class="card-content">
+                Guides on audio production, mixing techniques, and sound design. 
+                Professional workflows and tools for music creators.
+            </p>
+        </div>
+        
+        <div class="card">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🎮</div>
+            <h3 class="card-title">Gaming Culture</h3>
+            <p class="card-content">
+                Game guides, performance optimization, and insights into 
+                gaming culture. From competitive strategies to casual fun.
+            </p>
+        </div>
+        
+        <div class="card">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🔒</div>
+            <h3 class="card-title">Cyber Security</h3>
+            <p class="card-content">
+                Privacy tools, OPSEC guides, and security best practices. 
+                Protecting your digital footprint in the modern age.
+            </p>
+        </div>
+        
+        <div class="card">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">📚</div>
+            <h3 class="card-title">Wiki SGPI</h3>
+            <p class="card-content">
+                The largest collection of free francophone resources. 
+                Carefully curated and organized for easy access.
+            </p>
+        </div>
+        
+        <div class="card">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">⚡</div>
+            <h3 class="card-title">Projects</h3>
+            <p class="card-content">
+                Personal projects, experiments, and tools. 
+                Open-source contributions and creative endeavors.
+            </p>
+        </div>
+    </div>
+</section>
 
-</div>
+<!-- STATS SECTION -->
+<section style="background: var(--bg-secondary); margin: var(--spacing-2xl) 0; padding: var(--spacing-2xl); border-radius: var(--border-radius-lg);">
+    <div class="grid grid-4">
+        <div style="text-align: center;">
+            <div class="counter" data-target="1000" style="font-family: var(--font-display); font-size: var(--font-size-4xl); color: var(--accent-primary); font-weight: 800;">0</div>
+            <p style="color: var(--text-muted); margin-top: var(--spacing-sm);">Resources</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <div class="counter" data-target="50" style="font-family: var(--font-display); font-size: var(--font-size-4xl); color: var(--accent-primary); font-weight: 800;">0</div>
+            <p style="color: var(--text-muted); margin-top: var(--spacing-sm);">Guides</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <div class="counter" data-target="10" style="font-family: var(--font-display); font-size: var(--font-size-4xl); color: var(--accent-primary); font-weight: 800;">0</div>
+            <p style="color: var(--text-muted); margin-top: var(--spacing-sm);">Projects</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <div class="counter" data-target="24" style="font-family: var(--font-display); font-size: var(--font-size-4xl); color: var(--accent-primary); font-weight: 800;">0</div>
+            <p style="color: var(--text-muted); margin-top: var(--spacing-sm);">Hours/Day Online</p>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects">
+    <h2 class="section-title">FEATURED PROJECTS</h2>
+    
+    <div class="grid grid-2">
+        <div class="card">
+            <h3 class="card-title">Wiki SGPI</h3>
+            <p class="card-content">
+                The largest collection of free francophone resources. Movies, music, 
+                books, games, and more. Carefully organized with a 3-level structure.
+            </p>
+            <a href="/sgpi" class="btn btn-ghost" style="margin-top: var(--spacing-lg);">
+                EXPLORE WIKI
+            </a>
+        </div>
+        
+        <div class="card">
+            <h3 class="card-title">Server Survival</h3>
+            <p class="card-content">
+                Comprehensive guides for server management, from basic setup to 
+                advanced configurations. Linux, Docker, and cloud infrastructure.
+            </p>
+            <a href="/server-survival" class="btn btn-ghost" style="margin-top: var(--spacing-lg);">
+                VIEW GUIDES
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" style="text-align: center;">
+    <h2 class="section-title" style="display: block; text-align: center; margin-bottom: var(--spacing-2xl);">GET IN TOUCH</h2>
+    
+    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
+        Questions, suggestions, or just want to chat? Reach out through any of these platforms.
+    </p>
+    
+    <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-ghost">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"/>
+            </svg>
+            GitHub
+        </a>
+        
+        <a href="#" class="btn btn-ghost">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M18.335 7.165c0-.063-.063-.125-.063-.188 0-.062 0-.062-.063-.125-.062-.063-.062-.063-.125-.125l-7.437-6.25c-.375-.313-.938-.313-1.313 0L2 6.665c-.063 0-.063.062-.063.062 0 .063-.062.063-.062.125 0 .063-.063.063-.063.125-.062.063-.062.063-.062.125v10c0 .688.563 1.25 1.25 1.25h13.75c.688 0 1.25-.562 1.25-1.25V7.29c0-.063 0-.125 0-.125zM10 3.227L15.523 7.5h-2.148c-.688 0-1.25.563-1.25 1.25v3.125H7.875V8.75c0-.687-.562-1.25-1.25-1.25H4.477L10 3.227zm5.625 13.523h-11.25v-6.875h1.25v3.75c0 .688.563 1.25 1.25 1.25h5.625c.688 0 1.25-.562 1.25-1.25v-3.75h1.875v6.875z"/>
+            </svg>
+            Discord
+        </a>
+        
+        <a href="#" class="btn btn-ghost">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 5.138 3.879 9.385 8.857 9.935v-7.02H6.195V10h2.662V7.775c0-2.626 1.563-4.078 3.957-4.078 1.146 0 2.344.204 2.344.204v2.577h-1.321c-1.301 0-1.705.807-1.705 1.636V10h2.9l-.463 2.915h-2.437v7.02C16.121 19.385 20 15.138 20 10z"/>
+            </svg>
+            Social
+        </a>
+    </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-    <p>© 2026 – RPMN0ISE</p>
+    <p>© 2026 RPMN0ISE • Built with passion for tech and gaming</p>
+    <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-xs);">
+        Powered by <span style="color: var(--accent-primary);">Nord Theme</span> • 
+        Designed with <span style="color: var(--accent-danger);">❤️</span>
+    </p>
 </footer>
+
+<!-- Scripts -->
+<script src="/js/gaming-ui.js"></script>
+
+<!-- Particles.js Config -->
+<script>
+particlesJS('particles-js', {
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            value: '#88c0d0'
+        },
+        shape: {
+            type: 'circle'
+        },
+        opacity: {
+            value: 0.3,
+            random: true
+        },
+        size: {
+            value: 3,
+            random: true
+        },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#88c0d0',
+            opacity: 0.2,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false
+        }
+    },
+    interactivity: {
+        detect_on: 'canvas',
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'grab'
+            },
+            onclick: {
+                enable: true,
+                mode: 'push'
+            },
+            resize: true
+        },
+        modes: {
+            grab: {
+                distance: 140,
+                line_linked: {
+                    opacity: 0.5
+                }
+            },
+            push: {
+                particles_nb: 4
+            }
+        }
+    },
+    retina_detect: true
+});
+</script>
 
 </body>
 </html>

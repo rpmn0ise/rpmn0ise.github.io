@@ -4,33 +4,39 @@
     <meta charset="UTF-8">
     <title>Arch Linux Ricing – RPMN0ISE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/theme-config.css">
+    <link rel="stylesheet" href="/css/style-gaming.css">
     <script src="/maintenance.js"></script>
 </head>
 <body>
 
     <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="nav-logo">RPMN0ISE</div>
+    <div class="nav-container">
+        <a href="/" class="nav-logo" data-glitch>RPMN0ISE</a>
         <ul class="nav-links">
-            <li><a href="../../home.html">Home</a></li>   
-            <li><a href="audio.html">Audio</a></li>
-            <li><a href="gaming.html">Gaming</a></li>
-            <li><a href="tech.html">Tech</a></li>
-            <li><a href="hacking.html">Hacking</a></li>
-            <li><a href="music.html">Music</a></li>
-            <li><a href="sgpi-oldweb.html">SGPI</a></li>
-            <li><a href="sport.html">Sport</a></li>
-            <li><a href="hardware.html">Hardware</a></li>
-            <li><a href="linux.html">Linux</a></li>
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/sgpi">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
         </ul>
+        
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
     </nav>
 
     <!-- LAYOUT -->
     <div class="layout no-right">
 
         <!-- LEFT SIDEBAR -->
-        <aside class="sidebar left">
+        <aside class="sidebar-gaming">
             <h3>Contents</h3>
             <ul>
                 <li>1. Introduction</li>
@@ -56,7 +62,7 @@
                 A technical initiation and reference for intermediate to advanced users interested in customizing Arch Linux to create a highly personalized and efficient environment.
             </p>
 
-            <section class="block">
+            <section class="card">
                 <h2>1. What “ricing” means in the Arch Linux context</h2>
                 <p>In the Arch Linux ecosystem, ricing refers to the deliberate customization of the graphical environment, behavior, and interaction model of the system.<br>
                 It is not limited to visual theming. It usually involves:</p>
@@ -72,7 +78,7 @@
                 <p>The practice originates from minimal Linux setups and BSD culture, where visual clarity, efficiency, and personal control matter more than defaults.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="2-why-arch-linux-is-commonly-used-for-ricing">2. Why Arch Linux is commonly used for ricing</h2>
                   <p>Arch Linux does not impose a desktop environment, theme, or workflow.
                     This absence of defaults is not an advantage by itself, but it removes friction when building a custom stack.</p>
@@ -87,7 +93,7 @@
                     It is <strong>more transparent</strong>, which reduces hidden interactions once the system is understood.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="3-ricing-is-not-only-visual">3. Ricing is not only visual</h2>
                   <p>A common misconception is that ricing equals “making the system look good”.</p>
                   <p>In practice, experienced setups focus on:</p>
@@ -101,7 +107,7 @@
                   <p>Visual polish often appears <strong>after</strong> functional coherence is achieved.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="4-the-graphical-stack-what-you-are-actually-modifying">4. The graphical stack: what you are actually modifying</h2>
 <p>Before touching tools, it is important to understand what layers exist.</p>
 <h3 id="4-1-display-server">4.1 Display server</h3>
@@ -167,7 +173,7 @@ Rarely used for deep ricing, but possible.</p>
 Each one introduces configuration surface and potential failure points.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="5-configuration-philosophy">5. Configuration philosophy</h2>
 <h3 id="5-1-text-files-over-tools">5.1 Text files over tools</h3>
 <p>Most ricing is done via:</p>
@@ -198,7 +204,7 @@ Shell hooks, startup scripts, keybindings</p>
 <p>Complex setups usually mix both.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="6-visual-components-and-constraints">6. Visual components and constraints</h2>
 <h3 id="6-1-fonts">6.1 Fonts</h3>
 <p>Fonts influence readability more than colors.</p>
@@ -230,7 +236,7 @@ Most users accept minor inconsistencies.</p>
 <p>These effects are aesthetic, not free.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="7-workflow-driven-ricing">7. Workflow-driven ricing</h2>
 <p>Advanced setups are designed around <strong>use cases</strong>, not appearance.</p>
 <p>Common patterns:</p>
@@ -243,7 +249,7 @@ Most users accept minor inconsistencies.</p>
 <p>This reduces friction but increases configuration complexity.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="8-dotfiles-and-system-organization">8. Dotfiles and system organization</h2>
 <h3 id="8-1-why-dotfiles-matter">8.1 Why dotfiles matter</h3>
 <p>Ricing generates many small configuration files.</p>
@@ -270,7 +276,7 @@ Most users accept minor inconsistencies.</p>
 <p>Dotfiles should be considered <strong>templates</strong>, not universal profiles.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="9-maintenance-and-breakage">9. Maintenance and breakage</h2>
 <p>Riced systems break more often than default desktops.</p>
 <p>Typical causes:</p>
@@ -291,7 +297,7 @@ It exposes it early.</p>
 </ul>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="10-copying-setups-vs-understanding-them">10. Copying setups vs understanding them</h2>
 <p>Public dotfiles are useful, but limited.</p>
 <p>Observed pattern:</p>
@@ -309,7 +315,7 @@ It exposes it early.</p>
 <p>Ricing rewards understanding, not speed.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="11-when-ricing-stops-being-productive">11. When ricing stops being productive</h2>
 <p>Ricing has diminishing returns.</p>
 <p>Indicators:</p>
@@ -322,7 +328,7 @@ It exposes it early.</p>
 <p>This is not failure, but a trade-off.</p>
             </section>
 
-            <section class="block">
+            <section class="card">
                 <h2 id="12-final-observations">12. Final observations</h2>
 <ul>
 <li>Ricing is system design, not decoration</li>
@@ -334,7 +340,7 @@ It exposes it early.</p>
 <p>The system you build reflects how well you understand its parts, not how closely it resembles someone else’s screenshot.</p>
             </section>
             
-            <section class="block">
+            <section class="card">
                 <h2 id="arch-linux-ricing-resources">13. Arch Linux &amp; Ricing Resources</h2>
 <h3 id="1-official-arch-linux-resources">1. Official Arch Linux Resources</h3>
 <table>
@@ -791,12 +797,18 @@ It exposes it early.</p>
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2026 – RPMN0ISE</p>
-    </footer>
+    <p>© 2026 RPMN0ISE • Built with passion for tech and gaming</p>
+    <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-xs);">
+        Powered by <span style="color: var(--accent-primary);">Nord Theme</span>
+    </p>
+</footer>
 
 
 <script src="/js/main.js"></script>
 
 
+
+<!-- Gaming UI Script -->
+<script src="/js/gaming-ui.js"></script>
 </body>
 </html>

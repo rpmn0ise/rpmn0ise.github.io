@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <title>SPL vs Sound Quality – RPMN0ISE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/theme-config.css">
+    <link rel="stylesheet" href="/css/style-gaming.css">
     <script src="/maintenance.js"></script>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="nav-logo">RPMN0ISE</div>
+    <div class="nav-container">
+        <a href="/" class="nav-logo" data-glitch>RPMN0ISE</a>
         <ul class="nav-links">
-            <li><a href="../../home.html">Home</a></li>
-            <li><a href="audio.html">Audio</a></li>
-            <li><a href="gaming.html">Gaming</a></li>
-            <li><a href="tech.html">Tech</a></li>
-            <li><a href="hacking.html">Hacking</a></li>
-            <li><a href="music.html">Music</a></li>
-            <li><a href="sgpi-oldweb.html">SGPI</a></li>
-            <li><a href="sport.html">Sport</a></li>
-            <li><a href="hardware.html">Hardware</a></li>
-            <li><a href="linux.html">Linux</a></li>
+            <li><a href="/rpmn0ise/home.html">Home</a></li>
+            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
+            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
+            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
+            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
+            <li><a href="/sgpi">SGPI</a></li>
+            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
         </ul>
+        
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
     </nav>
 
     <div class="layout">
 
-        <aside class="sidebar left">
+        <aside class="sidebar-gaming">
             <h3>Contents</h3>
             <ul>
                 <li><a href="#intro">Introduction</a></li>
@@ -43,7 +49,7 @@
                 In the pursuit of the perfect audio experience, enthusiasts often find themselves at a crossroads between raw power and refined detail. On this page, we explore the fundamental differences between SPL (Sound Pressure Level) and SQ (Sound Quality), and why the ultimate system usually lives at the intersection of both.
             </p>
 
-            <section class="block" id="intro">
+            <section class="card" id="intro">
                 <h2>Introduction</h2>
                 <p>
                     In audio engineering, performance is generally categorized into two distinct philosophies. <strong>SPL</strong> measures the sheer physical force of a system—how much air it can move—while <strong>SQ (Sound Quality)</strong> focuses on the fidelity and accuracy of the reproduction relative to the original recording.
@@ -58,7 +64,7 @@
                 </ul>
             </section>
 
-            <section class="block" id="spl">
+            <section class="card" id="spl">
                 <h2>What is SPL? (Sound Pressure Level)</h2>
                 <p>
                     SPL is the technical term for what we perceive as "loudness." Measured in decibels (dB), it represents the pressure of sound waves traveling through the air. In the audio world, SPL enthusiasts focus on maximizing this pressure, often building systems that can be felt as much as they are heard.
@@ -74,7 +80,7 @@
                 </ul>
             </section>
 
-            <section class="block" id="sound-quality">
+            <section class="card" id="sound-quality">
                 <h2>Sound Quality (SQ)</h2>
                 <p>
                     Sound Quality is the pursuit of "High Fidelity" (Hi-Fi). The goal of an SQ system is to disappear, leaving only the music behind. When you listen to a high-SQ system, you shouldn't feel like you are listening to speakers; you should feel like you are sitting in front of the artist.
@@ -90,7 +96,7 @@
                 </ul>
             </section>
 
-            <section class="block" id="tradeoff">
+            <section class="card" id="tradeoff">
                 <h2>SPL vs Sound Quality: The Tradeoff</h2>
                 <p>
                     The "perfect" system is often a compromise. If you build a system solely for SPL, you might use heavy, stiff speaker cones that can handle power but lack the speed and delicacy to reproduce high-frequency details. Conversely, a delicate SQ speaker might shatter under the immense pressure of a high-SPL environment.
@@ -110,7 +116,7 @@
 
         </main>
 
-        <aside class="sidebar right">
+        <aside class="sidebar-gaming">
             <h3>Quick Links</h3>
             <ul>
                 <li><a href="audio.html">Audio Overview</a></li>
@@ -132,12 +138,18 @@
     </div>
 
     <footer>
-        <p>© 2026 – RPMN0ISE</p>
-    </footer>
+    <p>© 2026 RPMN0ISE • Built with passion for tech and gaming</p>
+    <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-xs);">
+        Powered by <span style="color: var(--accent-primary);">Nord Theme</span>
+    </p>
+</footer>
 
 
 <script src="/js/main.js"></script>
 
 
+
+<!-- Gaming UI Script -->
+<script src="/js/gaming-ui.js"></script>
 </body>
 </html>
