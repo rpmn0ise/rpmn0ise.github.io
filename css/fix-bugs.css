@@ -1,0 +1,413 @@
+/* =========================
+   CORRECTIFS BUGS - Gaming UI
+   Fix pour les pages internes
+========================= */
+
+/* === FIX 1: Layout Grid Pages Internes === */
+.layout,
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--spacing-xl, 32px);
+    max-width: 1400px;
+    margin: 90px auto 0;
+    padding: 0 var(--spacing-xl, 32px);
+    min-height: calc(100vh - 200px);
+}
+
+/* Layout sans sidebar droite */
+.layout.no-right {
+    grid-template-columns: 250px 1fr;
+}
+
+/* Layout sans sidebar */
+.layout.no-sidebar {
+    grid-template-columns: 1fr;
+    max-width: 900px;
+}
+
+/* === FIX 2: Sidebar Styling === */
+.sidebar,
+.sidebar-left,
+.sidebar-gaming,
+aside.left,
+aside.sidebar {
+    background: var(--glass-bg, rgba(59, 66, 82, 0.7));
+    backdrop-filter: var(--glass-blur, blur(10px));
+    border: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+    border-radius: var(--border-radius-lg, 12px);
+    padding: var(--spacing-xl, 32px);
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+    box-shadow: var(--shadow-md, 0 4px 16px rgba(0, 0, 0, 0.4));
+}
+
+.sidebar h3,
+.sidebar-gaming h3 {
+    font-family: var(--font-display, 'Orbitron', sans-serif);
+    color: var(--accent-primary, #88c0d0);
+    margin-bottom: var(--spacing-md, 16px);
+    font-size: var(--font-size-lg, 1.125rem);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sidebar ul,
+.sidebar-gaming ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li,
+.sidebar-gaming li {
+    margin: var(--spacing-sm, 8px) 0;
+}
+
+.sidebar a,
+.sidebar-gaming a {
+    color: var(--text-secondary, #d8dee9);
+    text-decoration: none;
+    display: block;
+    padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+    border-left: 2px solid transparent;
+    transition: all var(--transition-fast, 0.15s ease);
+    font-size: var(--font-size-sm, 0.875rem);
+}
+
+.sidebar a:hover,
+.sidebar-gaming a:hover {
+    color: var(--accent-primary, #88c0d0);
+    border-left-color: var(--accent-primary, #88c0d0);
+    padding-left: var(--spacing-md, 16px);
+    background: var(--bg-secondary, #3b4252);
+    text-shadow: var(--glow-primary, 0 0 20px rgba(136, 192, 208, 0.6));
+}
+
+/* === FIX 3: Main Content === */
+.content,
+main.content,
+.content-gaming {
+    min-width: 0;
+    background: transparent;
+}
+
+/* === FIX 4: Navbar Fix === */
+.navbar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-fixed, 300);
+}
+
+.nav-container {
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl, 32px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Fix logo "> RPMN0ISE" */
+.nav-logo {
+    font-family: var(--font-display, 'Orbitron', sans-serif);
+    font-size: var(--font-size-2xl, 1.5rem);
+    font-weight: 700;
+    color: var(--accent-primary, #88c0d0);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: var(--glow-primary, 0 0 20px rgba(136, 192, 208, 0.6));
+    text-decoration: none;
+}
+
+/* Remove "> " prefix if present */
+.nav-logo::before {
+    content: '' !important;
+    display: none !important;
+}
+
+/* === FIX 5: Nav Links Desktop === */
+.nav-links {
+    display: flex;
+    gap: var(--spacing-lg, 24px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* === FIX 6: Hamburger Menu - HIDE on Desktop === */
+.nav-toggle {
+    display: none !important;
+}
+
+/* === FIX 7: Footer Fix === */
+footer {
+    background: var(--bg-secondary, #3b4252);
+    border-top: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+    padding: var(--spacing-2xl, 48px) var(--spacing-xl, 32px);
+    text-align: center;
+    margin-top: var(--spacing-2xl, 48px);
+    position: relative;
+    width: 100%;
+}
+
+footer p {
+    color: var(--text-muted, #81a1c1);
+    font-size: var(--font-size-sm, 0.875rem);
+    margin: var(--spacing-xs, 4px) 0;
+}
+
+/* === FIX 8: Cards/Blocks === */
+.card,
+.block,
+section.card,
+section.block {
+    background: var(--glass-bg, rgba(59, 66, 82, 0.7));
+    backdrop-filter: var(--glass-blur, blur(10px));
+    border: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+    border-radius: var(--border-radius-lg, 12px);
+    padding: var(--spacing-xl, 32px);
+    margin-bottom: var(--spacing-xl, 32px);
+    box-shadow: var(--shadow-md, 0 4px 16px rgba(0, 0, 0, 0.4));
+    transition: all var(--transition-normal, 0.3s ease);
+    position: relative;
+    overflow: hidden;
+}
+
+/* === FIX 9: Responsive Mobile === */
+@media (max-width: 968px) {
+    /* Show hamburger on mobile */
+    .nav-toggle {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--spacing-sm, 8px);
+    }
+    
+    .nav-toggle span {
+        width: 25px;
+        height: 3px;
+        background: var(--accent-primary, #88c0d0);
+        border-radius: 2px;
+        transition: all var(--transition-normal, 0.3s ease);
+        box-shadow: var(--glow-primary, 0 0 20px rgba(136, 192, 208, 0.6));
+    }
+    
+    /* Mobile menu */
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--glass-bg, rgba(59, 66, 82, 0.95));
+        backdrop-filter: var(--glass-blur, blur(10px));
+        padding: var(--spacing-xl, 32px);
+        gap: var(--spacing-md, 16px);
+        transform: translateX(-100%);
+        transition: transform var(--transition-normal, 0.3s ease);
+        border-bottom: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+        box-shadow: var(--shadow-lg, 0 8px 32px rgba(0, 0, 0, 0.5));
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        transform: translateX(0);
+    }
+    
+    /* Layout mobile */
+    .layout,
+    .content-wrapper {
+        grid-template-columns: 1fr !important;
+        margin-top: 70px;
+        padding: var(--spacing-md, 16px);
+    }
+    
+    /* Sidebar mobile */
+    .sidebar,
+    .sidebar-gaming,
+    aside {
+        order: 2;
+        margin-top: var(--spacing-xl, 32px);
+        border-top: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+        padding-top: var(--spacing-xl, 32px);
+        position: static;
+    }
+    
+    .content,
+    main.content {
+        order: 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .nav-container {
+        padding: 0 var(--spacing-md, 16px);
+    }
+    
+    .nav-logo {
+        font-size: var(--font-size-xl, 1.25rem);
+    }
+    
+    .card,
+    .block {
+        padding: var(--spacing-lg, 24px);
+    }
+}
+
+/* === FIX 10: Page Spacing === */
+body {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Ensure content doesn't hide behind navbar */
+main,
+.content,
+.layout {
+    padding-top: 0;
+}
+
+/* === FIX 11: Prevent horizontal scroll === */
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* === FIX 12: Typography === */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary, #eceff4);
+    margin-bottom: var(--spacing-md, 16px);
+}
+
+h1 {
+    font-family: var(--font-display, 'Orbitron', sans-serif);
+    font-size: var(--font-size-3xl, 2rem);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+h2 {
+    font-family: var(--font-display, 'Orbitron', sans-serif);
+    font-size: var(--font-size-2xl, 1.5rem);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    color: var(--text-secondary, #d8dee9);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md, 16px);
+}
+
+a {
+    color: var(--accent-primary, #88c0d0);
+    text-decoration: none;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+a:hover {
+    color: var(--accent-secondary, #5e81ac);
+    text-shadow: var(--glow-primary, 0 0 20px rgba(136, 192, 208, 0.6));
+}
+
+/* === FIX 13: Lists === */
+ul, ol {
+    color: var(--text-secondary, #d8dee9);
+    margin-bottom: var(--spacing-md, 16px);
+    padding-left: var(--spacing-xl, 32px);
+}
+
+li {
+    margin: var(--spacing-xs, 4px) 0;
+}
+
+/* === FIX 14: Code blocks (if any) === */
+pre, code {
+    background: var(--bg-tertiary, #434c5e);
+    border: var(--border-secondary, 1px solid rgba(216, 222, 233, 0.1));
+    border-radius: var(--border-radius-sm, 4px);
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+}
+
+code {
+    padding: 2px 6px;
+    font-size: 0.9em;
+}
+
+pre {
+    padding: var(--spacing-md, 16px);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md, 16px);
+}
+
+/* === FIX 15: Images === */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-md, 8px);
+}
+
+/* === FIX 16: Search box styling === */
+input[type="search"],
+input[type="text"] {
+    background: var(--bg-tertiary, #434c5e);
+    border: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+    border-radius: var(--border-radius-md, 8px);
+    color: var(--text-primary, #eceff4);
+    padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+    font-family: var(--font-primary, 'Inter', sans-serif);
+    width: 100%;
+    max-width: 300px;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+input[type="search"]:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent-primary, #88c0d0);
+    box-shadow: var(--glow-primary, 0 0 20px rgba(136, 192, 208, 0.6));
+}
+
+/* === FIX 17: Audio player styling === */
+audio {
+    width: 100%;
+    margin: var(--spacing-md, 16px) 0;
+}
+
+/* === FIX 18: ChatBox styling === */
+#chat-box,
+.chat-box,
+.chatbox {
+    background: var(--bg-secondary, #3b4252);
+    border: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+    border-radius: var(--border-radius-lg, 12px);
+    padding: var(--spacing-lg, 24px);
+    margin-top: var(--spacing-xl, 32px);
+}
+
+/* === FIX 19: Construction warning === */
+.construction-wrapper,
+.under-construction {
+    background: linear-gradient(45deg, #000 25%, #ebcb8b 25%, #ebcb8b 50%, #000 50%, #000 75%, #ebcb8b 75%, #ebcb8b);
+    background-size: 40px 40px;
+    padding: var(--spacing-xs, 4px);
+    margin: var(--spacing-xl, 32px) 0;
+    border-radius: var(--border-radius-md, 8px);
+}
+
+.construction-wrapper h2,
+.construction-wrapper p {
+    background: var(--nord0, #2e3440);
+    padding: var(--spacing-md, 16px);
+    margin: 0;
+    color: var(--accent-warning, #ebcb8b);
+}
