@@ -1,0 +1,322 @@
+/* =========================
+   CORRECTIFS HOME.HTML
+   Fix double navbar, search box, chatbox
+========================= */
+
+/* === FIX 1: Remove Duplicate Navbar === */
+/* S'il y a 2 navbars, cache la deuxième */
+nav.navbar ~ nav.navbar {
+    display: none !important;
+}
+
+/* Assure une seule navbar fixed */
+nav.navbar:first-of-type {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: var(--z-fixed, 300) !important;
+}
+
+/* === FIX 2: Search Box Position === */
+/* Si le search est en bas, le repositionner */
+input[type="search"],
+input[placeholder*="Search"],
+input[placeholder*="search"] {
+    position: static !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+}
+
+/* Search box dans sidebar */
+.sidebar input[type="search"],
+.sidebar-gaming input[type="search"] {
+    width: 100%;
+    margin-bottom: var(--spacing-md, 16px);
+    background: var(--bg-tertiary, #434c5e);
+    border: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+    border-radius: var(--border-radius-md, 8px);
+    color: var(--text-primary, #eceff4);
+    padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+}
+
+/* Search box fixed en bas à gauche (si voulu) */
+.search-fixed {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+    background: var(--glass-bg, rgba(59, 66, 82, 0.9));
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-md, 16px);
+    border-radius: var(--border-radius-lg, 12px);
+    border: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+    box-shadow: var(--shadow-lg, 0 8px 32px rgba(0, 0, 0, 0.5));
+}
+
+/* Cache le search box en bas de page par défaut */
+body > input[type="search"] {
+    display: none !important;
+}
+
+/* === FIX 3: ChatBox Position === */
+#chat-box,
+.chat-box,
+.chatbox,
+[class*="chatbox"],
+[id*="chatbox"] {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 350px !important;
+    max-width: calc(100vw - 40px) !important;
+    height: auto !important;
+    max-height: 500px !important;
+    z-index: 200 !important;
+    background: var(--glass-bg, rgba(59, 66, 82, 0.95)) !important;
+    backdrop-filter: blur(10px) !important;
+    border: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3)) !important;
+    border-radius: var(--border-radius-lg, 12px) !important;
+    box-shadow: var(--shadow-xl, 0 16px 64px rgba(0, 0, 0, 0.6)) !important;
+    padding: var(--spacing-lg, 24px) !important;
+    overflow-y: auto !important;
+}
+
+/* Header ChatBox */
+.chatbox h2,
+.chat-box h2,
+#chat-box h2 {
+    font-family: var(--font-display, 'Orbitron', sans-serif);
+    color: var(--accent-primary, #88c0d0);
+    font-size: var(--font-size-lg, 1.125rem);
+    margin-bottom: var(--spacing-md, 16px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Messages ChatBox */
+.chatbox .message,
+.chat-box .message,
+#chat-box .message {
+    background: var(--bg-tertiary, #434c5e);
+    padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+    border-radius: var(--border-radius-md, 8px);
+    margin-bottom: var(--spacing-sm, 8px);
+    color: var(--text-secondary, #d8dee9);
+}
+
+/* Input ChatBox */
+.chatbox input,
+.chat-box input,
+#chat-box input {
+    width: 100%;
+    background: var(--bg-tertiary, #434c5e);
+    border: var(--border-secondary, 1px solid rgba(216, 222, 233, 0.1));
+    border-radius: var(--border-radius-md, 8px);
+    color: var(--text-primary, #eceff4);
+    padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+    margin-top: var(--spacing-md, 16px);
+}
+
+/* Toggle ChatBox */
+.chatbox-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-primary, linear-gradient(135deg, #88c0d0 0%, #5e81ac 100%));
+    border: none;
+    color: var(--nord0, #2e3440);
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg, 0 8px 32px rgba(0, 0, 0, 0.5));
+    transition: all var(--transition-normal, 0.3s ease);
+    z-index: 199;
+}
+
+.chatbox-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(136, 192, 208, 0.8);
+}
+
+/* === FIX 4: Sidebar avec Search === */
+/* Si tu veux le search dans la sidebar */
+.sidebar-search {
+    margin-bottom: var(--spacing-xl, 32px);
+}
+
+.sidebar-search input {
+    width: 100%;
+    background: var(--bg-tertiary, #434c5e);
+    border: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+    border-radius: var(--border-radius-md, 8px);
+    color: var(--text-primary, #eceff4);
+    padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+    font-size: var(--font-size-sm, 0.875rem);
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.sidebar-search input:focus {
+    outline: none;
+    border-color: var(--accent-primary, #88c0d0);
+    box-shadow: var(--glow-primary, 0 0 20px rgba(136, 192, 208, 0.6));
+}
+
+.sidebar-search input::placeholder {
+    color: var(--text-muted, #81a1c1);
+}
+
+/* === FIX 5: Construction Warning === */
+/* S'assure que la bannière est bien positionnée */
+.construction-wrapper,
+.under-construction {
+    position: relative !important;
+    margin: var(--spacing-xl, 32px) 0 !important;
+    width: 100% !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+}
+
+/* === FIX 6: Éviter Conflits de Position === */
+/* Éléments qui ne doivent PAS être fixed */
+.sidebar,
+.sidebar-gaming,
+.content,
+main,
+section:not(.hero) {
+    position: relative !important;
+}
+
+/* Sauf la sidebar qui est sticky */
+.sidebar,
+.sidebar-gaming {
+    position: sticky !important;
+    top: 90px !important;
+}
+
+/* === FIX 7: Footer Toujours en Bas === */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.layout,
+.content-wrapper,
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto !important;
+}
+
+/* === FIX 8: Z-index Layers === */
+/* Ordre de superposition correct */
+.navbar {
+    z-index: 300 !important;
+}
+
+.chatbox,
+#chat-box {
+    z-index: 200 !important;
+}
+
+.chatbox-toggle {
+    z-index: 199 !important;
+}
+
+.search-fixed {
+    z-index: 100 !important;
+}
+
+.sidebar {
+    z-index: 10 !important;
+}
+
+.content {
+    z-index: 1 !important;
+}
+
+/* === FIX 9: Responsive Mobile === */
+@media (max-width: 968px) {
+    /* ChatBox mobile */
+    .chatbox,
+    #chat-box {
+        bottom: 10px !important;
+        right: 10px !important;
+        left: 10px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+    
+    /* Search mobile */
+    .search-fixed {
+        bottom: 10px;
+        left: 10px;
+        right: auto;
+    }
+    
+    /* Toggle ChatBox mobile */
+    .chatbox-toggle {
+        bottom: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* === FIX 10: Scroll Behavior === */
+/* Empêcher le double scroll */
+html {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+/* ChatBox scroll interne */
+.chatbox,
+#chat-box {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* === FIX 11: Navbar Unique === */
+/* Force une seule navbar */
+body > nav.navbar:not(:first-of-type) {
+    display: none !important;
+}
+
+/* Ou cache les navbars après la première */
+nav.navbar:nth-of-type(n+2) {
+    display: none !important;
+}
+
+/* === FIX 12: Page Spacing === */
+/* Ajuste le spacing pour éviter overlap */
+body {
+    padding-top: 0 !important;
+}
+
+/* Premier élément après navbar */
+.layout,
+.content-wrapper,
+main:first-of-type {
+    margin-top: 90px !important;
+}
+
+/* Si hero section en premier */
+.hero:first-child,
+section.hero:first-child {
+    margin-top: 0 !important;
+    padding-top: 100px !important;
+}

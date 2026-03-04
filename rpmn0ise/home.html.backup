@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/css/theme-config.css">
     <link rel="stylesheet" href="/css/style-gaming.css">
     <link rel="stylesheet" href="/css/fix-bugs.css">
-    <link rel="stylesheet" href="/css/fix-home.css">
 </head>
 
 <body>
+
 
     <!-- NAVBAR -->
     <nav class="navbar">
@@ -110,6 +110,7 @@
             <li>Experiments and unfinished projects</li>
           </ul>
 
+
           <h2>Community</h2>
           <p>
           SGPI is a private French tech community focused on piracy, Linux, security, tools, and digital culture.
@@ -127,6 +128,13 @@
 </ul>
 
   
+
+
+
+
+
+
+
 
           
 
@@ -161,7 +169,10 @@
     </p>
 </footer>
 
+
 <script src="/js/main.js"></script>
+
+
 
 <!-- Gaming UI Script -->
 <script src="/js/gaming-ui.js"></script>
