@@ -1,91 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Linux Guides – RPMN0ISE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/theme-config.css">
-    <link rel="stylesheet" href="/css/style-gaming.css">
-    <link rel="stylesheet" href="/css/fix-bugs.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linux Guides</title>
+<link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+<header>
+    <h1>Linux Guides</h1>
+    <a href="../index.html">← Back to Linux</a>
+</header>
 
-    <nav class="navbar">
-    <div class="nav-container">
-        <a href="/" class="nav-logo" data-glitch>RPMN0ISE</a>
-        <ul class="nav-links">
-            <li><a href="/rpmn0ise/home.html">Home</a></li>
-            <li><a href="/rpmn0ise/audio/index.html">Audio</a></li>
-            <li><a href="/rpmn0ise/gaming/index.html">Gaming</a></li>
-            <li><a href="/rpmn0ise/hacking/index.html">Hacking</a></li>
-            <li><a href="/rpmn0ise/music/index.html">Music</a></li>
-            <li><a href="/sgpi">SGPI</a></li>
-            <li><a href="/rpmn0ise/hardware/index.html">Hardware</a></li>
-        </ul>
-        
-        <button class="nav-toggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-    </nav>
+<main>
+<ul id="list"></ul>
+</main>
 
-    <div class="layout no-right">
+<script>
+async function listMarkdown() {
+    const listEl = document.getElementById('list');
+    const files = [
+        'arch_zfs-on-root.md',
+        'apparmor-p-gen.md',
+        'debian11-server.md',
+        'luks2_cryptsetup.md',
+        'mp3-workflow.md',
+        'nixos_flakes.md'
+    ]; // <-- Ici tu peux mettre la liste de fichiers Markdown. 
+    // Plus tard on peut générer cette liste automatiquement avec un script Python avant le push.
 
-        <aside class="sidebar-gaming">
-            <h3>Contents</h3>
-            <ul>
-                <li><a href="#installation">Installation</a></li>
-                <li><a href="#system-hardening">System Hardening</a></li>
-                <li><a href="#automation">Automation</a></li>
-            </ul>
-        </aside>
+    files.forEach(f=>{
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `view.html?file=${f}`;
+        a.textContent = f.replace('.md','').replace(/_/g,' ');
+        li.appendChild(a);
+        listEl.appendChild(li);
+    });
+}
 
-        <main class="content">
-            <h1>Linux Guides</h1>
-            <p>
-                Technical documentation and operational procedures for Linux systems. 
-                This index provides structured usage guides for deployment, configuration, and maintenance.
-            </p>
-
-            <section id="installation">
-                <h2>Installation</h2>
-                <ul>
-                    <li>[2026-01] [NEW] <a href="https://rentry.co/NixOS_Flakes_Deployment_Workflow_A_Procedural_Guide">NixOS Flakes Deployment Workflow</a> - Procedural guide for reproducible system configurations using modern Nix flakes.</li>
-                    <li>[2025-08] [WIP] <a href="https://rentry.co/Arch_Linux_ZFS-on-Root_Implementation_Guide">Arch Linux ZFS-on-Root Setup</a> - Current state of ZFS root filesystem implementation and bootloader integration.</li>
-                    <li>[2023-04] <a href="https://rentry.co/Debian_11_Bullseye_Minimal_Server_Legacy_installation_Guide">Debian 11 Minimal Server</a> [OBSOLETE] - Legacy installation steps for retired production environments.</li>
-                </ul>
-            </section>
-
-            <section id="system-hardening">
-                <h2>System Hardening</h2>
-                <ul>
-                    <li>[2025-11] <a href="https://rentry.co/LUKS2_Cryptsetup_with_TPM2">LUKS2 Cryptsetup with TPM2</a> - Technical steps for automated disk decryption via hardware-backed security.</li>
-                    <li>[2025-02] <a href="https://rentry.co/AppArmor_Profile_Generation">AppArmor Profile Generation</a> - Usage instructions for confining user-space applications through mandatory access control.</li>
-                </ul>
-            </section>
-
-            <section id="automation">
-                <h2>Automation</h2>
-                <ul>
-                  <li>[2026-01] <a href="https://rentry.co/Managing_MP3_Files_on_Linux">Managing MP3 Files on Linux</a> A pragmatic Arch Linux workflow</li>
-                </ul>
-            </section>
-        </main>
-
-    </div>
-
-    <footer>
-    <p>© 2026 RPMN0ISE • Built with passion for tech and gaming</p>
-    <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-xs);">
-        Powered by <span style="color: var(--accent-primary);">Nord Theme</span>
-    </p>
-</footer>
-
-<script src="/js/main.js"></script>
-
-<!-- Gaming UI Script -->
-<script src="/js/gaming-ui.js"></script>
+listMarkdown();
+</script>
 </body>
 </html>
