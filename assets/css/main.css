@@ -1,0 +1,32 @@
+/* GAMING UI - Main CSS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap');
+
+:root {
+--nord0:#2e3440;--nord1:#3b4252;--nord2:#434c5e;--nord3:#4c566a;
+--nord4:#d8dee9;--nord5:#e5e9f0;--nord6:#eceff4;
+--nord7:#8fbcbb;--nord8:#88c0d0;--nord9:#81a1c1;--nord10:#5e81ac;
+--accent-primary:#88c0d0;--accent-secondary:#5e81ac;
+--bg-primary:#2e3440;--bg-secondary:#3b4252;--bg-tertiary:#434c5e;
+--text-primary:#eceff4;--text-secondary:#d8dee9;--text-muted:#81a1c1;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;min-height:100vh}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Navbar - voir navbar-enhanced.css pour active state */
+nav{background:rgba(59,66,82,0.95);padding:15px 30px;border-bottom:1px solid rgba(136,192,208,0.3);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav ul{list-style:none;display:flex;gap:25px;flex-wrap:wrap;align-items:center}
+nav a{color:var(--text-primary);text-decoration:none;transition:all 0.3s;padding:5px 0}
+nav a:hover{color:var(--accent-primary)}
+
+/* Cards */
+.card{background:rgba(59,66,82,0.7);padding:30px;border-radius:15px;border:1px solid rgba(136,192,208,0.3);margin-bottom:20px;transition:all 0.3s}
+.card:hover{border-color:var(--accent-primary);box-shadow:0 8px 25px rgba(0,0,0,0.4);transform:translateY(-5px)}
+
+/* Footer */
+footer{background:var(--bg-secondary);padding:40px 20px;text-align:center;margin-top:100px;border-top:1px solid rgba(136,192,208,0.3)}
+footer p{color:var(--text-secondary);font-size:0.95rem}
+
+/* Responsive */
+@media(max-width:768px){nav ul{flex-direction:column;gap:15px}}

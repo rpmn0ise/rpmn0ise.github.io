@@ -1,0 +1,123 @@
+/* ====================================
+   NAVBAR ENHANCED - Active State
+   ==================================== */
+
+/* Navigation container */
+nav {
+    background: rgba(59, 66, 82, 0.95);
+    padding: 15px 30px;
+    border-bottom: 1px solid rgba(136, 192, 208, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+}
+
+/* Liens normaux */
+nav a {
+    color: #d8dee9;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    position: relative;
+    display: inline-block;
+    font-size: 0.95rem;
+}
+
+/* Logo spécial */
+nav a.logo,
+nav a.nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    color: #88c0d0;
+}
+
+/* ====================================
+   LIEN ACTIF - BRILLANT !
+   ==================================== */
+
+nav a.active {
+    /* Couleur éclatante */
+    color: #88c0d0 !important;
+    
+    /* Texte gras */
+    font-weight: 700 !important;
+    
+    /* Underline cyan */
+    text-decoration: underline !important;
+    text-decoration-color: #88c0d0 !important;
+    text-decoration-thickness: 3px !important;
+    text-underline-offset: 8px !important;
+    
+    /* Glow effect brillant */
+    text-shadow: 
+        0 0 10px rgba(136, 192, 208, 0.8),
+        0 0 20px rgba(136, 192, 208, 0.5),
+        0 0 30px rgba(136, 192, 208, 0.3) !important;
+    
+    /* Background subtle */
+    background: rgba(136, 192, 208, 0.1);
+    border-radius: 6px;
+}
+
+/* ====================================
+   HOVER STATES
+   ==================================== */
+
+/* Hover liens non-actifs */
+nav a:not(.active):hover {
+    color: #88c0d0;
+    transform: translateY(-2px);
+}
+
+/* Hover lien actif (encore plus brillant) */
+nav a.active:hover {
+    text-shadow: 
+        0 0 15px rgba(136, 192, 208, 1),
+        0 0 25px rgba(136, 192, 208, 0.7),
+        0 0 35px rgba(136, 192, 208, 0.5) !important;
+    background: rgba(136, 192, 208, 0.15);
+}
+
+/* ====================================
+   RESPONSIVE MOBILE
+   ==================================== */
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    nav a {
+        display: block;
+        width: 100%;
+    }
+    
+    nav a.active {
+        padding: 10px 15px;
+    }
+}
+
+/* ====================================
+   AUTO-DETECT PAGE ACTIVE (JS)
+   ==================================== */
+
+/* Ce CSS est appliqué automatiquement par le script ci-dessous */

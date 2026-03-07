@@ -192,8 +192,6 @@
             .hero-title { font-size: 2rem; }
         }
     </style>
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="stylesheet" href="/assets/css/navbar-enhanced.css">
 </head>
 <body>
 
@@ -356,7 +354,5 @@ window.addEventListener('load', () => {
 });
 </script>
 
-<script src="/assets/js/widgets.js"></script>
-<script src="/assets/js/eastereggs.js"></script>
 </body>
 </html>
