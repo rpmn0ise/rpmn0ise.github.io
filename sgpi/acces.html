@@ -301,26 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
-<script src="js/sgpi.js"></script>
+<script src="js/sgpi-final.js"></script>
 
-
-<script>
-// Fix captcha callback
-window.onCaptchaSuccess = function(token) {
-    console.log('✅ Captcha validé:', token);
-    const nextBtn = document.getElementById('captcha-next');
-    if (nextBtn) {
-        nextBtn.disabled = false;
-        nextBtn.classList.remove('btn-disabled');
-        nextBtn.classList.add('btn-primary');
-        nextBtn.style.cursor = 'pointer';
-    }
-};
-
-window.onCaptchaError = function() {
-    console.error('❌ Captcha erreur');
-    alert('Erreur captcha. Réessaye ou recharge la page.');
-};
-</script>
 </body>
 </html>

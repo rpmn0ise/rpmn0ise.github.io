@@ -1,3 +1,11 @@
+#!/bin/bash
+echo "🚀 Génération package SGPI FINAL complet..."
+
+# Créer tous les fichiers manquants
+cd /home/claude/sgpi-v2-FINAL
+
+# README
+cat > README.md << 'END'
 # 🎮 SGPI V2 FINAL - Package Complet
 
 ## ✅ CONTENU
@@ -17,3 +25,7 @@
 4. Deploy!
 
 Voir INSTALL.md pour détails complets.
+END
+
+echo "✅ README créé"
+echo "✅ Package FINAL prêt!"

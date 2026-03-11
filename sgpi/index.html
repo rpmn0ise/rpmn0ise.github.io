@@ -1,247 +1,94 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SGPI - Communauté française tech underground. Wiki, tutos zone grise, ressources libres.">
-    <title>SGPI - Communauté Tech Underground</title>
-    <link rel="stylesheet" href="css/sgpi-style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SGPI - Communauté tech underground française. Wiki, tutos, ressources.">
+<title>SGPI - Communauté Tech Underground</title>
+<link rel="stylesheet" href="css/sgpi-style.css">
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
-    <div class="header-content">
-        <div class="logo">
-            <img src="assets/logo-sgpi-v2.png" alt="SGPI Logo" onerror="this.style.display='none'">
-            <h1>SGPI</h1>
-        </div>
-        
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Accueil</a></li>
-                <li><a href="wiki/index.html">Wiki</a></li>
-                <li><a href="pages/projets.html">Projets</a></li>
-                <li><a href="pages/about.html">À propos</a></li>
-                <li><a href="acces.html" class="btn btn-primary">Join Discord</a></li>
-                <li><button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button></li>
-            </ul>
-        </nav>
-    </div>
+<div class="header-content">
+<div class="logo"><h1>SGPI</h1></div>
+<nav><ul>
+<li><a href="index.html" class="active">Accueil</a></li>
+<li><a href="wiki/index.html">Wiki</a></li>
+<li><a href="wiki/tutos.html">Tutos</a></li>
+<li><a href="pages/projets.html">Projets</a></li>
+<li><a href="pages/about.html">À propos</a></li>
+<li><a href="acces.html" class="btn btn-primary">Join Discord</a></li>
+<li><button id="theme-toggle" class="theme-toggle">☀️</button></li>
+</ul></nav>
+</div>
 </header>
 
-<!-- HERO SECTION -->
 <section class="hero">
-    <h1>🎮 SGPI</h1>
-    <p class="tagline">Communauté Tech Underground</p>
-    <p class="description">
-        Partage de ressources, tutos zone grise, discussions libres.<br>
-        Français • Friendly • Pro
-    </p>
-    <a href="acces.html" class="btn btn-primary btn-large">Rejoindre le Discord →</a>
+<h1>🎮 SGPI</h1>
+<p class="tagline">Communauté Tech Underground</p>
+<p class="description">Partage de ressources • Tutos • Discussions libres<br>Français • Friendly • Pro</p>
+<a href="acces.html" class="btn btn-primary btn-large">Rejoindre le Discord →</a>
 </section>
 
-<!-- MAIN CONTENT -->
 <main class="container">
 
-    <!-- QUI SOMMES-NOUS -->
-    <section class="mb-xl">
-        <h2>🧠 Qui sommes-nous ?</h2>
-        <div class="card">
-            <p>
-                La <strong>SGPI</strong> est une communauté française dédiée au partage de 
-                <strong>ressources tech</strong>, <strong>tutos zone grise</strong> et 
-                <strong>discussions libres</strong> sur Discord.
-            </p>
-            <p>
-                Pas de blabla, pas d'élitisme. Juste du contenu utile, des gens cools, 
-                et une ambiance friendly mais pro. On assume notre position en zone grise 
-                tout en restant responsables.
-            </p>
-            <p>
-                <strong>Notre mission :</strong> Centraliser les ressources difficiles à trouver, 
-                partager des connaissances, et créer un espace où chacun peut apprendre sans jugement.
-            </p>
-        </div>
-    </section>
+<section class="mb-xl">
+<h2>🧠 Qui sommes-nous ?</h2>
+<div class="grid grid-2">
+<div class="card">
+<p>La <strong>SGPI</strong> est une communauté française tech underground. On partage des ressources, des tutos (zone grise incluse), et on discute librement sur Discord.</p>
+<p>Pas d'élitisme, juste du contenu utile et des gens cools. Friendly mais pro.</p>
+</div>
+<div class="card discord-widget">
+<h3 style="margin-bottom: 16px;">💬 Serveur Discord</h3>
+<iframe src="https://discord.com/widget?id=1427573150882992203&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+<p class="text-muted mt-md"><small>Change TON_SERVER_ID dans index.html</small></p>
+</div>
+</div>
+</section>
 
-    <!-- CE QU'ON PARTAGE -->
-    <section class="mb-xl">
-        <h2>📚 Ce qu'on partage</h2>
-        <div class="grid grid-3">
-            <div class="card">
-                <div class="icon">📖</div>
-                <h3>Wiki Collaboratif</h3>
-                <p>
-                    + de 15 catégories couvrant confidentialité, IA, films, musique, 
-                    jeux, livres, téléchargement, torrents, éducation, mobile, OS, 
-                    logiciels, création web et plus.
-                </p>
-                <a href="wiki/index.html" class="btn btn-secondary">Explorer le Wiki →</a>
-            </div>
-            
-            <div class="card">
-                <div class="icon">🔓</div>
-                <h3>Tutos Zone Grise</h3>
-                <p>
-                    Guides pratiques : activation Windows/Office, cracks, bypass paywalls, 
-                    OPSEC, anonymat, outils alternatifs. Tout ce qui est "difficile" à trouver.
-                </p>
-                <a href="wiki/tutos/" class="btn btn-secondary">Voir les Tutos →</a>
-            </div>
-            
-            <div class="card">
-                <div class="icon">💬</div>
-                <h3>Discord Actif</h3>
-                <p>
-                    Discussions libres, entraide, partage de découvertes, projets communs. 
-                    Une vraie commu, pas juste un dépôt de liens.
-                </p>
-                <a href="acces.html" class="btn btn-secondary">Rejoindre →</a>
-            </div>
-        </div>
-    </section>
+<section class="mb-xl">
+<h2>📚 Ce qu'on partage</h2>
+<div class="grid grid-3">
+<div class="card"><div class="icon">📖</div><h3>Wiki Collaboratif</h3>
+<p>15+ catégories : Confidentialité, IA, Films, Musique, Jeux, Livres, DDL, Torrents, Éducation, Mobile, OS, Logiciels, Web, Dev, Divers.</p>
+<a href="wiki/index.html" class="btn btn-secondary">Explorer →</a></div>
+<div class="card"><div class="icon">🔧</div><h3>Tutos Détaillés</h3>
+<p>Jeux vidéo (BeamNG, Assetto Corsa), zone grise (activation Windows, cracks), utilitaires (clé bootable, etc.).</p>
+<a href="wiki/tutos.html" class="btn btn-secondary">Voir Tutos →</a></div>
+<div class="card"><div class="icon">💬</div><h3>Discord Actif</h3>
+<p>Discussions, entraide, partage. Une vraie commu, pas un dépôt de liens.</p>
+<a href="acces.html" class="btn btn-secondary">Rejoindre →</a></div>
+</div>
+</section>
 
-    <!-- CATÉGORIES WIKI APERÇU -->
-    <section class="mb-xl">
-        <h2>🗂️ Aperçu des Catégories Wiki</h2>
-        <div class="card">
-            <div class="grid grid-3">
-                <div>
-                    <h4>🔒 Confidentialité & Sécurité</h4>
-                    <p class="text-muted">Adblock, VPN, Antivirus, Vie privée, Réseau, Surveillance</p>
-                </div>
-                <div>
-                    <h4>🤖 Intelligence Artificielle</h4>
-                    <p class="text-muted">Chatbots, Génération contenu, Outils IA, ML, Apps</p>
-                </div>
-                <div>
-                    <h4>🎬 Films & Séries</h4>
-                    <p class="text-muted">Streaming, Téléchargement, Torrents, Live TV, Tracking</p>
-                </div>
-                <div>
-                    <h4>🎵 Musique</h4>
-                    <p class="text-muted">Streaming audio, Podcasts, Téléchargement, Royalty free</p>
-                </div>
-                <div>
-                    <h4>🎮 Jeux Vidéo</h4>
-                    <p class="text-muted">Téléchargement, Émulation, Retro, Browser games</p>
-                </div>
-                <div>
-                    <h4>📚 Livres & Mangas</h4>
-                    <p class="text-muted">Ebooks, Audiobooks, Comics, Documents, Apps</p>
-                </div>
-                <div>
-                    <h4>⬇️ Téléchargement Direct</h4>
-                    <p class="text-muted">Sites DDL, Gestionnaires, Usenet, FOSS</p>
-                </div>
-                <div>
-                    <h4>🌐 Torrents</h4>
-                    <p class="text-muted">Sites, Clients, Trackers, Index, Outils</p>
-                </div>
-                <div>
-                    <h4>🎓 Éducation & Formation</h4>
-                    <p class="text-muted">MOOCs, Sciences, Langues, Dev/IT, Jeux éducatifs</p>
-                </div>
-            </div>
-            <div class="text-center mt-lg">
-                <a href="wiki/index.html" class="btn btn-primary">Voir Toutes les Catégories →</a>
-            </div>
-        </div>
-    </section>
+<section class="mb-xl">
+<h2>❌ Ce qu'on n'est PAS</h2>
+<div class="card">
+<ul style="list-style:none;padding-left:0;">
+<li style="margin-bottom:12px;">❌ Un site public mainstream</li>
+<li style="margin-bottom:12px;">❌ Un support technique gratuit</li>
+<li style="margin-bottom:12px;">❌ Élitiste (niveau 4/10 - modéré)</li>
+<li style="margin-bottom:12px;">❌ Encouragement à l'illégal (zone grise ≠ illégal)</li>
+</ul>
+</div>
+</section>
 
-    <!-- CE QU'ON N'EST PAS -->
-    <section class="mb-xl">
-        <h2>❌ Ce qu'on n'est PAS</h2>
-        <div class="card">
-            <ul style="list-style: none; padding-left: 0;">
-                <li style="margin-bottom: 12px;">❌ <strong>Un site public mainstream</strong> - On est semi-privé pour une raison</li>
-                <li style="margin-bottom: 12px;">❌ <strong>Un support technique</strong> - On partage, pas de SAV gratuit</li>
-                <li style="margin-bottom: 12px;">❌ <strong>Un dépôt anarchique</strong> - Tout est organisé et maintenu</li>
-                <li style="margin-bottom: 12px;">❌ <strong>Élitiste</strong> - Pas de gatekeeping stupide, juste des règles simples</li>
-                <li style="margin-bottom: 12px;">❌ <strong>Illégal</strong> - Zone grise oui, encourager l'illégal non</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- COMMENT NOUS REJOINDRE -->
-    <section class="mb-xl">
-        <h2>🚪 Comment nous rejoindre</h2>
-        <div class="card">
-            <h3>Processus d'accès (simplifié)</h3>
-            <ol style="line-height: 2;">
-                <li><strong>Captcha</strong> - Vérification anti-bot basique</li>
-                <li><strong>Question</strong> - Pourquoi tu veux rejoindre ? (20-500 chars)</li>
-                <li><strong>Règles</strong> - Lecture et acceptation</li>
-                <li><strong>Lien Discord</strong> - Accès direct au serveur !</li>
-            </ol>
-            
-            <h3 class="mt-lg">Système de rôles Discord</h3>
-            <div class="grid grid-3 mt-md">
-                <div style="padding: 16px; background: rgba(0,255,136,0.1); border-radius: 8px;">
-                    <strong>🟢 Candidat</strong><br>
-                    <small class="text-muted">Accès limité, observation</small>
-                </div>
-                <div style="padding: 16px; background: rgba(0,212,255,0.1); border-radius: 8px;">
-                    <strong>🔵 Membre</strong><br>
-                    <small class="text-muted">Accès complet après validation</small>
-                </div>
-                <div style="padding: 16px; background: rgba(255,0,136,0.1); border-radius: 8px;">
-                    <strong>🔴 Admin</strong><br>
-                    <small class="text-muted">Gestion + modération wiki</small>
-                </div>
-            </div>
-            
-            <div class="text-center mt-lg">
-                <a href="acces.html" class="btn btn-primary btn-large">Commencer le Processus →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- RÈGLES COURTES -->
-    <section class="mb-xl">
-        <h2>📜 Règles Essentielles</h2>
-        <div class="card">
-            <ul style="list-style: none; padding-left: 0;">
-                <li style="margin-bottom: 12px;">✅ <strong>Respect</strong> - Sois cool avec les autres membres</li>
-                <li style="margin-bottom: 12px;">✅ <strong>Discrétion</strong> - Ce qui se passe dans la SGPI reste dans la SGPI</li>
-                <li style="margin-bottom: 12px;">✅ <strong>Contribution</strong> - Partage si tu as quelque chose d'utile</li>
-                <li style="margin-bottom: 12px;">✅ <strong>Zone grise OK</strong> - Mais rien d'illégal ou dangereux</li>
-                <li style="margin-bottom: 12px;">❌ <strong>Spam interdit</strong> - Publicité = ban</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="text-center mb-xl">
-        <h2>Prêt à rejoindre ?</h2>
-        <p class="text-secondary mb-lg">
-            Rejoins une communauté de passionnés qui partagent tes intérêts.<br>
-            Pas de blabla, juste du contenu de qualité et des gens cools.
-        </p>
-        <a href="acces.html" class="btn btn-primary btn-large">Rejoindre le Discord →</a>
-        <p class="text-muted mt-md">
-            Ou <a href="wiki/index.html">explore le wiki</a> avant de rejoindre
-        </p>
-    </section>
+<section class="text-center mb-xl">
+<h2>Prêt à rejoindre ?</h2>
+<p class="text-secondary mb-lg">Accès simplifié : Captcha → Question → Règles → Lien Discord</p>
+<a href="acces.html" class="btn btn-primary btn-large">Rejoindre Maintenant →</a>
+</section>
 
 </main>
 
-<!-- FOOTER -->
 <footer>
-    <p>&copy; 2026 SGPI - Communauté Tech Underground</p>
-    <p class="text-muted">
-        <a href="pages/about.html">À propos</a> • 
-        <a href="wiki/index.html">Wiki</a> • 
-        <a href="acces.html">Discord</a>
-    </p>
-    <p class="text-muted" style="font-size: 0.85rem; margin-top: 16px;">
-        ⚠️ Zone grise assumée • Responsabilité individuelle • Discrétion recommandée
-    </p>
+<p>&copy; 2026 SGPI - Communauté Tech Underground</p>
+<p class="text-muted"><a href="pages/about.html">À propos</a> • <a href="wiki/index.html">Wiki</a> • <a href="acces.html">Discord</a></p>
+<p class="text-muted" style="font-size:0.85rem;margin-top:16px;">⚠️ Zone grise assumée • Responsabilité individuelle • Discrétion</p>
 </footer>
 
-<!-- SCRIPTS -->
-<script src="js/sgpi.js"></script>
-
+<script src="js/sgpi-final.js"></script>
 </body>
 </html>
