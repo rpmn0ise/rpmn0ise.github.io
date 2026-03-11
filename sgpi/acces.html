@@ -3,298 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPI - Accès Discord</title>
+    <link rel="stylesheet" href="css/sgpi-style.css">
     
-    <!-- 🆕 Autoriser les requêtes vers le backend Render -->
-    <meta http-equiv="Content-Security-Policy" 
-          content="default-src 'self'; 
-                   script-src 'self' 'unsafe-inline' https://js.hcaptcha.com https://newassets.hcaptcha.com; 
-                   style-src 'self' 'unsafe-inline'; 
-                   connect-src 'self' https://sgpi-backend.onrender.com https://hcaptcha.com https://newassets.hcaptcha.com; 
-                   frame-src https://newassets.hcaptcha.com; 
-                   img-src 'self' data:;">
-    
-    <title>SGPI — Accès au serveur</title>
-    <link rel="stylesheet" href="css/oldweb.css">
-    <link rel="stylesheet" href="/css/fix-bugs.css">
+    <!-- hCaptcha -->
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    
+    <style>
+        .access-step {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            max-width: 700px;
+            margin: 0 auto var(--spacing-lg);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--neon-green);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            margin-right: var(--spacing-sm);
+        }
+        
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: var(--bg-tertiary) !important;
+            border-color: var(--border-color) !important;
+        }
+        
+        #discord-link {
+            background: var(--bg-secondary);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--neon-green);
+            word-break: break-all;
+            text-align: center;
+            border: 2px solid var(--neon-green);
+            box-shadow: var(--glow-green);
+        }
+        
+        .rules-list {
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid var(--neon-green);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+        
+        .rules-list li {
+            margin-bottom: var(--spacing-sm);
+        }
+    </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-    <h1>SGPI — Accès au serveur</h1>
-    <p>Procédure d'admission contrôlée. Lecture obligatoire.</p>
+    <div class="header-content">
+        <div class="logo">
+            <img src="assets/logo-sgpi-v2.png" alt="SGPI Logo" onerror="this.style.display='none'">
+            <h1>SGPI</h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="wiki/index.html">Wiki</a></li>
+                <li><a href="pages/projets.html">Projets</a></li>
+                <li><a href="pages/about.html">À propos</a></li>
+                <li><a href="acces.html" class="btn btn-primary active">Join Discord</a></li>
+                <li><button id="theme-toggle" class="theme-toggle">☀️</button></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
+<!-- HERO -->
+<section class="hero">
+    <h1>🚪 Accès Discord</h1>
+    <p class="tagline">4 étapes simples pour rejoindre la communauté</p>
+</section>
+
+<!-- MAIN -->
 <main class="container">
 
-    <!-- Section Accès -->
-    <section>
-        <h2 id="proc-dure-d-entr-e">Procédure d'entrée</h2>
-        <p>L'accès à la SGPI est <strong>volontairement restreint</strong>.
-        Il n'est ni automatique, ni immédiat, ni garanti.</p>
-        <p>La structure privilégie la <strong>stabilité</strong>, la <strong>discrétion</strong> et la <strong>cohérence interne</strong>, pas le volume.</p>
-    </section>
-
-    <!-- Modalités -->
-    <section>
-        <h2 id="principe-d-entr-e">Principe d'entrée</h2>
-        <p>L'accès se fait <strong>par paliers</strong>.</p>
-        <p>Chaque nouvel arrivant débute avec un <strong>accès minimal</strong>.
-        Les ouvertures suivantes dépendent exclusivement du comportement, de la posture et de l'intégration.</p>
-        <p>Il ne s'agit pas de prouver quoi que ce soit.
-        C'est une <strong>phase d'observation réciproque</strong>.</p>
-    </section>
-
-    <section>
-        <h2 id="fonctionnement-des-admissions">Fonctionnement des admissions</h2>
-        <ul>
-            <li><p><strong>Admissions limitées : </strong>
-            Les ouvertures sont rares et contrôlées.</p></li>
-            <li><p><strong>Fenêtre unique : </strong>
-            Les demandes sont possibles <strong>le vendredi uniquement</strong>.</p></li>
-            <li><p><strong>Progression interne : </strong>
-            Aucun accès direct aux espaces avancés.</p></li>
-            <li><p><strong>Aucune promesse : </strong>
-            Lire, respecter et attendre n'implique aucune validation automatique.</p></li>
-            <li><p><strong>Zéro urgence : </strong>
-            Insister, relancer ou forcer ferme définitivement l'accès.</p></li>
-        </ul>
-        <p>Le rythme est lent <strong>par design</strong>.
-        Ceux que cela dérange ne sont simplement pas la cible.</p>
-    </section>
-    
-    <!-- Accès technique -->
-    <section>
-        <h2>État des accès</h2>
-
-        <div id="access-closed">
-            <p>
-                🔒 <strong>Accès actuellement fermé.</strong><br>
-                Prochaine ouverture vendredi prochain dans :
-            </p>
-            <p id="countdown"></p>
-        </div>
-
-        <div id="access-open" style="display:none;">
-            <p>Accès ouvert.<br>
-            Le chemin doit être complété intégralement.</p>
-
-            <div id="path">
-
-                <!-- 🆕 ÉTAPE 0 : Captcha -->
-                <div class="step" id="step0">
-                    <p><strong>Vérification humaine</strong></p>
-                    <p>Complète le captcha pour débuter le parcours.</p>
-                    
-                    <div class="h-captcha" 
-                         data-sitekey="d0405860-4f9e-4fa4-b222-3f34132886f6" 
-                         data-callback="onCaptchaSuccess">
-                    </div>
-                    
-                    <p id="captcha-error" style="color: red; display: none;">
-                        ❌ Captcha invalide ou erreur serveur
-                    </p>
-                </div>
-
-                <!-- ÉTAPE 1 (masquée par défaut) -->
-                <div class="step" id="step1" style="display:none;">
-                    <p><strong>Étape 1 — Décodage Base64</strong></p>
-                    <pre>QkxBQ0sgR0FURQ==</pre>
-                    <input id="s1" placeholder="résultat">
-                    <button onclick="check1()">Valider</button>
-                </div>
-
-                <!-- ÉTAPE 2 -->
-                <div class="step" id="step2" style="display:none;">
-                    <p><strong>Étape 2 — Conversion de la chaine de caractère</strong></p>
-                    <pre>6-9-12-13-19-0-5-20-0-19-5-18-9-5-19-0-4-1-14-19-0-12-1-0-6-18-1-14-3-8-9-19-5-0-13-1-18-22-5-12</pre>
-                    <p>Indice : alphabet → position</p>
-                    <input id="s2" placeholder="résultat">
-                    <button onclick="check2()">Valider</button>
-                </div>
-
-                <!-- ÉTAPE 3 -->
-                <div class="step" id="step3" style="display:none;">
-                    <p><strong>Étape 3 — Validation finale</strong></p>
-                    <pre>R2FyYW50aXIgbGEgZGlzY2lwbGluZSwgbGEgc8OpY3VyaXTDqSBldCBs4oCZZXhjZWxsZW5jZSB0ZWNobmlxdWUu</pre>
-                    <input id="s3" placeholder="phrase attendue">
-                    <button type="button" onclick="check3()">Valider</button>
-                </div>
-
-
+    <!-- STEP 1: CAPTCHA -->
+    <div class="access-step" id="step1">
+        <h2><span class="step-number">1</span>Vérification Humaine</h2>
+        <p>Captcha simple pour éviter les bots. Pas de prise de tête.</p>
+        
+        <div style="margin: var(--spacing-lg) 0; text-align: center;">
+            <div class="h-captcha" 
+                 data-sitekey="d0405860-4f9e-4fa4-b222-3f34132886f6" 
+                 data-callback="onCaptchaSuccess"
+                 data-error-callback="onCaptchaError">
             </div>
         </div>
-    </section>
+        
+        <p id="captcha-error" class="text-danger" style="display: none;">
+            ❌ Erreur captcha. Réessaye ou recharge la page.
+        </p>
+        
+        <button id="captcha-next" 
+                class="btn btn-primary btn-disabled" 
+                disabled 
+                onclick="nextFromCaptcha()">
+            Suivant →
+        </button>
+    </div>
 
-    <!-- a lire -->
-    <section>
-        <h2 id="-lire-avant-toute-demande">À lire avant toute demande</h2>
-        <ul>
-            <li>aucun message privé ne sera pris en compte</li>
-            <li>aucune aide individuelle à l'admission</li>
-            <li>toute tentative de contournement = exclusion définitive</li>
-        </ul>
-        <p>Ces règles filtrent dès l'entrée.
-        Elles sont appliquées sans exception.</p>
-    </section>
+    <!-- STEP 2: QUESTION -->
+    <div class="access-step" id="step2" style="display: none;">
+        <h2><span class="step-number">2</span>Pourquoi rejoindre ?</h2>
+        <p>
+            Dis-nous en quelques mots pourquoi tu veux rejoindre la SGPI.<br>
+            Pas besoin d'écrire un roman, juste 1-2 phrases honnêtes.
+        </p>
+        
+        <div class="form-group mt-lg">
+            <label for="why-join">Ta réponse (20-500 caractères) :</label>
+            <textarea id="why-join" 
+                      rows="5" 
+                      placeholder="Exemple : Je cherche des ressources tech et des tutos zone grise, et j'aimerais échanger avec des gens qui partagent ces intérêts."
+                      maxlength="500"></textarea>
+            <small class="text-muted">
+                <span id="char-count">0</span>/500 caractères
+            </small>
+        </div>
+        
+        <button class="btn btn-primary mt-lg" onclick="nextFromQuestion()">
+            Suivant →
+        </button>
+        <button class="btn btn-secondary mt-lg" onclick="showStep(1)" style="margin-left: 12px;">
+            ← Retour
+        </button>
+    </div>
 
-    <section>
-        <h2 id="en-r-sum-">En résumé</h2>
-        <ul>
-            <li>tu peux observer avant d'entrer</li>
-            <li>personne ne te doit un accès</li>
-            <li>la patience est un signal positif</li>
-            <li>le cadre ne s'adapte pas aux individus</li>
-        </ul>
-        <p>👉 Si ces conditions te conviennent, attends la prochaine ouverture.</p>
-    </section>
-    
+    <!-- STEP 3: RÈGLES -->
+    <div class="access-step" id="step3" style="display: none;">
+        <h2><span class="step-number">3</span>Règles à Respecter</h2>
+        <p>
+            Lis ces règles attentivement. Elles sont simples mais essentielles 
+            pour maintenir une communauté de qualité.
+        </p>
+        
+        <div class="rules-list">
+            <h3 style="color: var(--neon-green); margin-bottom: var(--spacing-md);">
+                📜 Règles SGPI
+            </h3>
+            
+            <ul style="line-height: 2;">
+                <li>
+                    <strong>🤝 Respect</strong><br>
+                    Sois respectueux envers tous les membres. Pas de toxicité, 
+                    pas de harcèlement, pas de discrimination.
+                </li>
+                
+                <li>
+                    <strong>🤐 Discrétion</strong><br>
+                    Ce qui se passe dans la SGPI reste dans la SGPI. 
+                    Ne partage pas de contenu ou liens privés à l'extérieur.
+                </li>
+                
+                <li>
+                    <strong>🚫 Pas de spam</strong><br>
+                    Publicité, self-promo abusive, flood = ban immédiat.
+                </li>
+                
+                <li>
+                    <strong>⚖️ Zone grise assumée</strong><br>
+                    On partage des ressources zone grise (cracks, tutos, etc.). 
+                    C'est OK. Mais rien d'illégal ou dangereux (malware, phishing, etc.).
+                </li>
+                
+                <li>
+                    <strong>📚 Contribution</strong><br>
+                    Si tu as des ressources utiles, partage ! La SGPI est collaborative.
+                </li>
+                
+                <li>
+                    <strong>🎯 Responsabilité individuelle</strong><br>
+                    Ce que tu fais avec les ressources partagées est TA responsabilité. 
+                    Pas la nôtre, pas celle de la communauté.
+                </li>
+            </ul>
+        </div>
+        
+        <div class="form-group mt-lg">
+            <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" id="accept-rules" style="width: auto; margin-right: 12px;">
+                <span>J'ai lu et j'accepte les règles de la SGPI</span>
+            </label>
+        </div>
+        
+        <button class="btn btn-primary mt-lg" onclick="nextFromRules()">
+            Suivant →
+        </button>
+        <button class="btn btn-secondary mt-lg" onclick="showStep(2)" style="margin-left: 12px;">
+            ← Retour
+        </button>
+    </div>
+
+    <!-- STEP 4: DISCORD LINK -->
+    <div class="access-step" id="step4" style="display: none;">
+        <h2><span class="step-number">4</span>Bienvenue ! 🎉</h2>
+        <p>
+            Félicitations ! Voici ton lien d'accès au Discord SGPI.<br>
+            Rejoins-nous et commence à explorer la communauté !
+        </p>
+        
+        <div class="mt-lg mb-lg">
+            <h3 class="text-center">Lien Discord :</h3>
+            <div id="discord-link" class="mt-md">
+                https://discord.gg/R2S2VZneNV
+            </div>
+            
+            <div class="text-center mt-md">
+                <button class="btn btn-secondary" id="copy-btn" onclick="copyDiscordLink()">
+                    📋 Copier le lien
+                </button>
+            </div>
+        </div>
+        
+        <div class="card mt-lg" style="background: rgba(0,212,255,0.05); border-color: var(--neon-cyan);">
+            <h3 style="color: var(--neon-cyan);">ℹ️ Après avoir rejoint</h3>
+            <ul style="line-height: 1.8;">
+                <li>Tu auras le rôle <strong>Candidat</strong> au début</li>
+                <li>Accès limité à quelques salons pour te familiariser</li>
+                <li>Sois actif, respectueux et contributif</li>
+                <li>Les admins t'accorderont l'accès complet après validation</li>
+            </ul>
+        </div>
+        
+        <div class="text-center mt-lg">
+            <a href="https://discord.gg/R2S2VZneNV" 
+               target="_blank" 
+               class="btn btn-primary btn-large">
+                🚀 Rejoindre Maintenant
+            </a>
+        </div>
+        
+        <p class="text-center text-muted mt-lg">
+            <small>
+                En cas de problème, contacte un admin sur Discord après avoir rejoint.<br>
+                Tu peux aussi <a href="index.html">revenir à l'accueil</a> pour explorer le wiki.
+            </small>
+        </p>
+    </div>
+
+    <!-- INFO SUPPLÉMENTAIRE -->
+    <div style="max-width: 700px; margin: var(--spacing-xl) auto 0;">
+        <div class="card" style="background: rgba(255, 170, 0, 0.05); border-color: var(--warning);">
+            <h3 style="color: var(--warning);">⚠️ Important</h3>
+            <p>
+                <strong>Le lien Discord peut changer.</strong> Si le lien ne fonctionne pas, 
+                c'est probablement qu'il a été mis à jour pour des raisons de sécurité.
+            </p>
+            <p>
+                Reviens sur cette page régulièrement pour vérifier le lien actuel.
+            </p>
+        </div>
+    </div>
+
 </main>
 
+<!-- FOOTER -->
 <footer>
-    <p>&copy; 2026 SGPI — Tous droits réservés</p>
+    <p>&copy; 2026 SGPI - Communauté Tech Underground</p>
+    <p class="text-muted">
+        <a href="index.html">Accueil</a> • 
+        <a href="wiki/index.html">Wiki</a> • 
+        <a href="pages/about.html">À propos</a>
+    </p>
 </footer>
 
-
+<!-- SCRIPTS -->
 <script>
-/* --- CAPTCHA VALIDATION (version redirect) --- */
-let captchaToken = null;
-
-function onCaptchaSuccess(token) {
-    captchaToken = token;
-    console.log("Captcha complété");
+// Character counter pour textarea
+document.addEventListener('DOMContentLoaded', () => {
+    const textarea = document.getElementById('why-join');
+    const counter = document.getElementById('char-count');
     
-    // Pas de fetch, juste afficher la suite
-    document.getElementById("step0").style.opacity = "0.4";
-    document.getElementById("step1").style.display = "block";
-}
-
-/* --- GESTION DU VENDREDI + COMPTE À REBOURS --- */
-(function () {
-    const now = new Date();
-    const day = now.getDay();
-
-    const closed = document.getElementById("access-closed");
-    const open = document.getElementById("access-open");
-    const countdown = document.getElementById("countdown");
-
-    if (day === 0) {  // Vendredi
-        closed.style.display = "none";
-        open.style.display = "block";
-        return;
+    if (textarea && counter) {
+        textarea.addEventListener('input', () => {
+            counter.textContent = textarea.value.length;
+        });
     }
-
-    const nextFriday = new Date(now);
-    const daysUntilFriday = (5 - day + 7) % 7 || 7;
-    nextFriday.setDate(now.getDate() + daysUntilFriday);
-    nextFriday.setHours(0,0,0,0);
-
-    function tick() {
-        const diff = nextFriday - new Date();
-        if (diff <= 0) location.reload();
-
-        const d = Math.floor(diff / 86400000);
-        const h = Math.floor(diff / 3600000) % 24;
-        const m = Math.floor(diff / 60000) % 60;
-        const s = Math.floor(diff / 1000) % 60;
-
-        countdown.textContent = `${d}j ${h}h ${m}m ${s}s`;
-    }
-
-    tick();
-    setInterval(tick, 1000);
-})();
-
-/* --- CHEMIN MULTI-ÉTAPES --- */
-function normalize(v) {
-    return v.trim().toUpperCase();
-}
-
-function check1() {
-    if (!captchaToken) {
-        alert("⚠️ Erreur : complète d'abord le captcha.");
-        return;
-    }
-    
-    if (normalize(document.getElementById("s1").value) === "BLACK GATE") {
-        document.getElementById("step2").style.display = "block";
-        document.getElementById("step1").style.opacity = "0.4";
-    }
-}
-
-function check2() {
-    if (!captchaToken) {
-        alert("⚠️ Erreur système. Recharge la page.");
-        location.reload();
-        return;
-    }
-    
-    if (normalize(document.getElementById("s2").value) === "FILMS ET SERIES DANS LA FRANCHISE MARVEL") {
-        document.getElementById("step3").style.display = "block";
-        document.getElementById("step2").style.opacity = "0.4";
-    }
-}
-
-function clean(v) {
-    return v
-        .trim()
-        .toUpperCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^\w\s]/g, "");
-}
-
-const INTERNAL_SECRET = "SGPI_STATIC_KEY_2026_INTERNAL";
-
-function generateDailyPhrase() {
-    const today = new Date().toISOString().slice(0,10);
-    const phrases = [
-        "Garantir la discipline, la sécurité et l'excellence technique."
-    ];
-    let hash = 0;
-    const seed = today + INTERNAL_SECRET;
-    for (let i = 0; i < seed.length; i++) hash += seed.charCodeAt(i);
-    return phrases[hash % phrases.length];
-}
-
-async function sha256(text) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(text);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-}
-
-async function check3() {
-    // Vérification captcha
-    if (!captchaToken) {
-        alert("⚠️ Erreur système. Recharge la page.");
-        location.reload();
-        return;
-    }
-    
-    const input = clean(document.getElementById("s3").value);
-    const expectedPhrase = clean(generateDailyPhrase());
-
-    const inputHash = await sha256(input);
-    const expectedHash = await sha256(expectedPhrase);
-
-    if (inputHash === expectedHash) {
-        // Redirection vers le backend avec le token
-        console.log("Énigmes résolues, redirection vers validation finale...");
-        
-        const encodedToken = btoa(captchaToken);
-        window.location.href = `https://sgpi-backend.onrender.com/api/final-validation?t=${encodedToken}`;
-    } else {
-        alert("❌ Réponse incorrecte");
-    }
-}
+});
 </script>
+<script src="js/sgpi.js"></script>
 
-
-
-
-<!-- Gaming UI Script -->
-<script src="/js/gaming-ui.js"></script>
 </body>
 </html>

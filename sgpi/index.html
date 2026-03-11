@@ -3,175 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGPI - Accueil</title>
-    <link rel="stylesheet" href="css/oldweb.css">
-    <link rel="stylesheet" href="/css/fix-bugs.css">
+    <meta name="description" content="SGPI - Communauté française tech underground. Wiki, tutos zone grise, ressources libres.">
+    <title>SGPI - Communauté Tech Underground</title>
+    <link rel="stylesheet" href="css/sgpi-style.css">
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-    <h1><strong>SGPI - Société Général  des Pirates Informatiques</strong></h1>
-    <p><strong>Accéder. Explorer. Partager.</strong></p>
-    <p> Un espace communautaire dédié au piratage, aux contournements et aux ressources numériques libres d’accès.</p>
+    <div class="header-content">
+        <div class="logo">
+            <img src="assets/logo-sgpi-v2.png" alt="SGPI Logo" onerror="this.style.display='none'">
+            <h1>SGPI</h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="wiki/index.html">Wiki</a></li>
+                <li><a href="pages/projets.html">Projets</a></li>
+                <li><a href="pages/about.html">À propos</a></li>
+                <li><a href="acces.html" class="btn btn-primary">Join Discord</a></li>
+                <li><button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
+<!-- HERO SECTION -->
+<section class="hero">
+    <h1>🎮 SGPI</h1>
+    <p class="tagline">Communauté Tech Underground</p>
+    <p class="description">
+        Partage de ressources, tutos zone grise, discussions libres.<br>
+        Français • Friendly • Pro
+    </p>
+    <a href="acces.html" class="btn btn-primary btn-large">Rejoindre le Discord →</a>
+</section>
 
+<!-- MAIN CONTENT -->
 <main class="container">
-  
-<nav class="sommaire-fixe">    <h2 id="top">0 — SOMMAIRE</h2>
-    <ul>
-      <li><a href="#section1">I — C’est quoi la SGPI ?</a></li>
-      <li><a href="#section2">II — Pour qui ?</a></li>
-      <li><a href="#section3">III — Ce que tu trouveras</a></li>
-      <li><a href="#section4">IV — Ce que la SGPI n’est pas</a></li>
-      <li><a href="#section5">V — Comment ça fonctionne ?</a></li>
-      <li><a href="#section6">VI — Cadre & responsabilité</a></li>
-      <li><a href="#section7">VII — Contenus accessibles</a></li>
-      <li><a href="#section8">VIII — Est-ce que c’est fait pour toi ?</a></li>
-      <li><a href="#section9">IX — Rejoindre la SGPI</a></li>
-      <li><a href="#section10"></a></li>
-    </ul>
-</nav>  
-  <section>
-    <h2 id="section1">I — C’est quoi la SGPI ? <a href="#section1" class="anchor-link">#</a></h2>
-    <p>La SGPI est un <strong>serveur communautaire structuré</strong> centré sur les pratiques alternatives du numérique.</p>
-<p>Ici, on partage des méthodes, des ressources, des outils et des accès.
-Pas de mise en scène, pas de discours inutiles, pas de vitrine publique.</p>
-<p>La SGPI s’adresse à ceux qui veulent <strong>aller plus loin que les usages standards</strong>, explorer ce qui est habituellement caché, verrouillé ou réservé.</p>
-    <a href="#top">↑ Retour au sommaire</a>
-</section>
 
+    <!-- QUI SOMMES-NOUS -->
+    <section class="mb-xl">
+        <h2>🧠 Qui sommes-nous ?</h2>
+        <div class="card">
+            <p>
+                La <strong>SGPI</strong> est une communauté française dédiée au partage de 
+                <strong>ressources tech</strong>, <strong>tutos zone grise</strong> et 
+                <strong>discussions libres</strong> sur Discord.
+            </p>
+            <p>
+                Pas de blabla, pas d'élitisme. Juste du contenu utile, des gens cools, 
+                et une ambiance friendly mais pro. On assume notre position en zone grise 
+                tout en restant responsables.
+            </p>
+            <p>
+                <strong>Notre mission :</strong> Centraliser les ressources difficiles à trouver, 
+                partager des connaissances, et créer un espace où chacun peut apprendre sans jugement.
+            </p>
+        </div>
+    </section>
 
-<section>
-    <h2 id="section2">II — Pour qui ? <a href="#section2" class="anchor-link">#</a></h2>
-<p>La SGPI est faite pour toi si :</p>
-<ul>
-<li>tu t’intéresses au <strong>piratage</strong>, aux bypass et aux contournements</li>
-<li>tu cherches des <strong>ressources gratuites</strong>, difficiles à trouver ou centralisées ailleurs</li>
-<li>tu préfères apprendre par l’exploration et l’échange</li>
-<li>tu apprécies les espaces discrets et organisés</li>
-</ul>
-<p>Tu n’as pas besoin d’un niveau précis.
-Ce qui compte, c’est la curiosité, la retenue et le respect du cadre.</p>
-    <a href="#top">↑ Retour au sommaire</a>
-</section>
+    <!-- CE QU'ON PARTAGE -->
+    <section class="mb-xl">
+        <h2>📚 Ce qu'on partage</h2>
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="icon">📖</div>
+                <h3>Wiki Collaboratif</h3>
+                <p>
+                    + de 15 catégories couvrant confidentialité, IA, films, musique, 
+                    jeux, livres, téléchargement, torrents, éducation, mobile, OS, 
+                    logiciels, création web et plus.
+                </p>
+                <a href="wiki/index.html" class="btn btn-secondary">Explorer le Wiki →</a>
+            </div>
+            
+            <div class="card">
+                <div class="icon">🔓</div>
+                <h3>Tutos Zone Grise</h3>
+                <p>
+                    Guides pratiques : activation Windows/Office, cracks, bypass paywalls, 
+                    OPSEC, anonymat, outils alternatifs. Tout ce qui est "difficile" à trouver.
+                </p>
+                <a href="wiki/tutos/" class="btn btn-secondary">Voir les Tutos →</a>
+            </div>
+            
+            <div class="card">
+                <div class="icon">💬</div>
+                <h3>Discord Actif</h3>
+                <p>
+                    Discussions libres, entraide, partage de découvertes, projets communs. 
+                    Une vraie commu, pas juste un dépôt de liens.
+                </p>
+                <a href="acces.html" class="btn btn-secondary">Rejoindre →</a>
+            </div>
+        </div>
+    </section>
 
-<section>
-    <h2 id="section3">III — Ce que tu trouveras <a href="#section3" class="anchor-link">#</a></h2>
-    <ul>
-<li>🗂️ <strong>Bibliothèques de ressources gratuites</strong></li>
-<li>🔓 <strong>Méthodes de bypass et de contournement</strong></li>
-<li>🧠 <strong>Partages d’expériences et d’approches</strong></li>
-<li>🛠️ <strong>Outils, scripts, techniques</strong></li>
-<li>🧩 <strong>Un cadre structuré pour éviter le désordre</strong></li>
-</ul>
-<p>Tout est organisé pour faciliter l’accès à l’information sans exposition inutile.</p>
-    <a href="#top">↑ Retour au sommaire</a>
-    
-</section>
+    <!-- CATÉGORIES WIKI APERÇU -->
+    <section class="mb-xl">
+        <h2>🗂️ Aperçu des Catégories Wiki</h2>
+        <div class="card">
+            <div class="grid grid-3">
+                <div>
+                    <h4>🔒 Confidentialité & Sécurité</h4>
+                    <p class="text-muted">Adblock, VPN, Antivirus, Vie privée, Réseau, Surveillance</p>
+                </div>
+                <div>
+                    <h4>🤖 Intelligence Artificielle</h4>
+                    <p class="text-muted">Chatbots, Génération contenu, Outils IA, ML, Apps</p>
+                </div>
+                <div>
+                    <h4>🎬 Films & Séries</h4>
+                    <p class="text-muted">Streaming, Téléchargement, Torrents, Live TV, Tracking</p>
+                </div>
+                <div>
+                    <h4>🎵 Musique</h4>
+                    <p class="text-muted">Streaming audio, Podcasts, Téléchargement, Royalty free</p>
+                </div>
+                <div>
+                    <h4>🎮 Jeux Vidéo</h4>
+                    <p class="text-muted">Téléchargement, Émulation, Retro, Browser games</p>
+                </div>
+                <div>
+                    <h4>📚 Livres & Mangas</h4>
+                    <p class="text-muted">Ebooks, Audiobooks, Comics, Documents, Apps</p>
+                </div>
+                <div>
+                    <h4>⬇️ Téléchargement Direct</h4>
+                    <p class="text-muted">Sites DDL, Gestionnaires, Usenet, FOSS</p>
+                </div>
+                <div>
+                    <h4>🌐 Torrents</h4>
+                    <p class="text-muted">Sites, Clients, Trackers, Index, Outils</p>
+                </div>
+                <div>
+                    <h4>🎓 Éducation & Formation</h4>
+                    <p class="text-muted">MOOCs, Sciences, Langues, Dev/IT, Jeux éducatifs</p>
+                </div>
+            </div>
+            <div class="text-center mt-lg">
+                <a href="wiki/index.html" class="btn btn-primary">Voir Toutes les Catégories →</a>
+            </div>
+        </div>
+    </section>
 
-<section>
-    <h2 id="section4">IV — Ce que la SGPI n’est pas <a href="#section4" class="anchor-link">#</a></h2>
-    <ul>
-<li>❌ Un espace public ou vitrine</li>
-<li>❌ Un support à la demande</li>
-<li>❌ Un dépôt anarchique de liens</li>
-<li>❌ Un lieu de démonstration ou de surenchère</li>
-</ul>
-<p>La discrétion, la clarté et la maîtrise priment.</p>
-    <a href="#top">↑ Retour au sommaire</a>
-</section>
+    <!-- CE QU'ON N'EST PAS -->
+    <section class="mb-xl">
+        <h2>❌ Ce qu'on n'est PAS</h2>
+        <div class="card">
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 12px;">❌ <strong>Un site public mainstream</strong> - On est semi-privé pour une raison</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Un support technique</strong> - On partage, pas de SAV gratuit</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Un dépôt anarchique</strong> - Tout est organisé et maintenu</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Élitiste</strong> - Pas de gatekeeping stupide, juste des règles simples</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Illégal</strong> - Zone grise oui, encourager l'illégal non</li>
+            </ul>
+        </div>
+    </section>
 
-<section>
-    <h2 id="section5">V — Comment ça fonctionne ? <a href="#section5" class="anchor-link">#</a></h2>
-    <p>L’accès au serveur est <strong>progressif et contrôlé</strong>.</p>
-<ul>
-<li>Les inscriptions ne sont pas permanentes</li>
-<li>Les nouveaux arrivants ont un accès limité au départ</li>
-<li>L’ouverture dépend de l’implication et du comportement</li>
-</ul>
-<p>Ce fonctionnement permet de préserver la qualité et la stabilité de l’espace.</p>
-    <a href="#top">↑ Retour au sommaire</a>
-</section>
+    <!-- COMMENT NOUS REJOINDRE -->
+    <section class="mb-xl">
+        <h2>🚪 Comment nous rejoindre</h2>
+        <div class="card">
+            <h3>Processus d'accès (simplifié)</h3>
+            <ol style="line-height: 2;">
+                <li><strong>Captcha</strong> - Vérification anti-bot basique</li>
+                <li><strong>Question</strong> - Pourquoi tu veux rejoindre ? (20-500 chars)</li>
+                <li><strong>Règles</strong> - Lecture et acceptation</li>
+                <li><strong>Lien Discord</strong> - Accès direct au serveur !</li>
+            </ol>
+            
+            <h3 class="mt-lg">Système de rôles Discord</h3>
+            <div class="grid grid-3 mt-md">
+                <div style="padding: 16px; background: rgba(0,255,136,0.1); border-radius: 8px;">
+                    <strong>🟢 Candidat</strong><br>
+                    <small class="text-muted">Accès limité, observation</small>
+                </div>
+                <div style="padding: 16px; background: rgba(0,212,255,0.1); border-radius: 8px;">
+                    <strong>🔵 Membre</strong><br>
+                    <small class="text-muted">Accès complet après validation</small>
+                </div>
+                <div style="padding: 16px; background: rgba(255,0,136,0.1); border-radius: 8px;">
+                    <strong>🔴 Admin</strong><br>
+                    <small class="text-muted">Gestion + modération wiki</small>
+                </div>
+            </div>
+            
+            <div class="text-center mt-lg">
+                <a href="acces.html" class="btn btn-primary btn-large">Commencer le Processus →</a>
+            </div>
+        </div>
+    </section>
 
-<section>
-    <h2 id="section6">VI — Cadre & responsabilité <a href="#section6" class="anchor-link">#</a></h2>
-    <p>La SGPI repose sur :</p>
-<ul>
-<li>la discrétion</li>
-<li>le respect des autres membres</li>
-<li>l’autonomie individuelle</li>
-</ul>
-<p>Chacun est libre de ses choix et responsable de son utilisation des ressources.
-Aucun contenu n’est mis en avant sans contexte.</p>
-    <p><strong>Ignorer les règles, c'est choisir de partir.</strong></p>
-    <a href="#top">↑ Retour au sommaire</a>
-</section>
+    <!-- RÈGLES COURTES -->
+    <section class="mb-xl">
+        <h2>📜 Règles Essentielles</h2>
+        <div class="card">
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 12px;">✅ <strong>Respect</strong> - Sois cool avec les autres membres</li>
+                <li style="margin-bottom: 12px;">✅ <strong>Discrétion</strong> - Ce qui se passe dans la SGPI reste dans la SGPI</li>
+                <li style="margin-bottom: 12px;">✅ <strong>Contribution</strong> - Partage si tu as quelque chose d'utile</li>
+                <li style="margin-bottom: 12px;">✅ <strong>Zone grise OK</strong> - Mais rien d'illégal ou dangereux</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Spam interdit</strong> - Publicité = ban</li>
+            </ul>
+        </div>
+    </section>
 
-<section>
-    <h2 id="section7">VII — Contenus accessibles <a href="#section7" class="anchor-link">#</a></h2>
-    <p>Une partie des travaux et ressources de la SGPI est accessible sans être membre :</p>
-<ul>
-<li>sélections de ressources</li>
-<li>documents et outils partagés</li>
-<li>veilles et compilations</li>
-</ul>
-<p>Le reste est réservé à l’espace interne.</p>
-    <a href="#top">↑ Retour au sommaire</a>
-</section>
+    <!-- CTA FINAL -->
+    <section class="text-center mb-xl">
+        <h2>Prêt à rejoindre ?</h2>
+        <p class="text-secondary mb-lg">
+            Rejoins une communauté de passionnés qui partagent tes intérêts.<br>
+            Pas de blabla, juste du contenu de qualité et des gens cools.
+        </p>
+        <a href="acces.html" class="btn btn-primary btn-large">Rejoindre le Discord →</a>
+        <p class="text-muted mt-md">
+            Ou <a href="wiki/index.html">explore le wiki</a> avant de rejoindre
+        </p>
+    </section>
 
-<section>
-    <h2 id="section8">VIII — Est-ce que c’est fait pour toi ? <a href="#section8" class="anchor-link">#</a></h2>
-    <p>Si tu cherches :</p>
-<ul>
-<li>un espace discret</li>
-<li>des ressources concrètes</li>
-<li>une communauté sérieuse et structurée</li>
-</ul>
-<p>Alors oui.</p>
-<p>Si tu cherches du bruit, de la visibilité ou des réponses instantanées,
-ce n’est probablement pas le bon endroit.</p>
-    <a href="#top">↑ Retour au sommaire</a>
-</section>
-
-<section>
-    <h2 id="section9">IX — Rejoindre la SGPI <a href="#section9" class="anchor-link">#</a></h2>
-    <p>Les accès sont ouverts <strong>par périodes</strong>.</p>
-    <p>👉 Consulte la page d’accès pour connaître l’état des inscriptions et les conditions d’entrée.</p>
-    <a href="acces.html" class="button">Découvrir le processus</a><br>
-    <a href="#top">↑ Retour au sommaire</a>
-</section>
-
-<section>
-    <h2>Projets publics</h2>
-    <p>Vous trouverez sur ce site :</p>
-    <ul>
-        <li>Veilles publiques</li>
-        <li>Documentation technique</li>
-        <li>Outils ou analyses partiellement publiques</li>
-    </ul>
-</section>
-
-<section>
-    <h2>Projets publics</h2>
-    <p>Vous trouverez sur ce site :</p>
-    <ul>
-        <li>Veilles publiques</li>
-        <li>Documentation technique</li>
-        <li>Outils ou analyses partiellement publiques</li>
-    </ul>
-</section>
-
-<section>
-    <h2>CHEAT SHEET</h2>
-    <p><a href=" cheat-sheet.html">Consultez la cheat sheet html</a></p>
-</section>
 </main>
+
+<!-- FOOTER -->
 <footer>
-    &copy; 2026 SGPI — Société Générale des Pirates Informatiques
+    <p>&copy; 2026 SGPI - Communauté Tech Underground</p>
+    <p class="text-muted">
+        <a href="pages/about.html">À propos</a> • 
+        <a href="wiki/index.html">Wiki</a> • 
+        <a href="acces.html">Discord</a>
+    </p>
+    <p class="text-muted" style="font-size: 0.85rem; margin-top: 16px;">
+        ⚠️ Zone grise assumée • Responsabilité individuelle • Discrétion recommandée
+    </p>
 </footer>
 
-<!-- Gaming UI Script -->
-<script src="/js/gaming-ui.js"></script>
+<!-- SCRIPTS -->
+<script src="js/sgpi.js"></script>
+
 </body>
 </html>
