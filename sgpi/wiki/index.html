@@ -1,795 +1,247 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SGPI Wiki - Ressources Complètes</title>
-<link rel="stylesheet" href="../css/sgpi-style.css">
-<style>
-.search-box{background:var(--bg-card);padding:20px;border-radius:var(--radius-lg);margin-bottom:30px;border:2px solid var(--neon-green)}
-.search-box input{width:100%;padding:12px;font-size:1.1rem;margin-bottom:10px}
-.wiki-category{margin-bottom:30px}
-.wiki-category h2{cursor:pointer;padding:15px;background:var(--bg-secondary);border-radius:var(--radius-md);border:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center}
-.wiki-category h2:hover{border-color:var(--neon-green);background:rgba(0,255,136,0.1)}
-.wiki-subcategory{margin:15px 0 15px 30px}
-.wiki-subcategory h3{font-size:1.3rem;margin-bottom:10px;color:var(--neon-cyan)}
-.wiki-links{margin-left:20px;line-height:2}
-.wiki-link{color:var(--text-secondary);padding:4px 0;display:block}
-.wiki-link:hover{color:var(--neon-green);padding-left:10px}
-.collapse-icon{color:var(--neon-green);font-size:1.2rem}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SGPI - Communauté française tech underground. Wiki, tutos zone grise, ressources libres.">
+    <title>SGPI - Communauté Tech Underground</title>
+    <link rel="stylesheet" href="css/sgpi-style.css">
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-<div class="header-content">
-<div class="logo"><a href="../index.html"><h1>SGPI</h1></a></div>
-<nav><ul>
-<li><a href="../index.html">Accueil</a></li>
-<li><a href="index.html" class="active">Wiki</a></li>
-<li><a href="tutos.html">Tutos</a></li>
-<li><a href="../pages/projets.html">Projets</a></li>
-<li><a href="../pages/about.html">À propos</a></li>
-<li><a href="../acces.html" class="btn btn-primary">Join Discord</a></li>
-<li><button id="theme-toggle" class="theme-toggle">☀️</button></li>
-</ul></nav>
-</div>
+    <div class="header-content">
+        <div class="logo">
+            <img src="assets/logo-sgpi-v2.png" alt="SGPI Logo" onerror="this.style.display='none'">
+            <h1>SGPI</h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="wiki/index.html">Wiki</a></li>
+                <li><a href="pages/projets.html">Projets</a></li>
+                <li><a href="pages/about.html">À propos</a></li>
+                <li><a href="acces.html" class="btn btn-primary">Join Discord</a></li>
+                <li><button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
+<!-- HERO SECTION -->
 <section class="hero">
-<h1>📚 SGPI Wiki</h1>
-<p class="tagline">Ressources tech complètes</p>
+    <h1>🎮 SGPI</h1>
+    <p class="tagline">Communauté Tech Underground</p>
+    <p class="description">
+        Partage de ressources, tutos zone grise, discussions libres.<br>
+        Français • Friendly • Pro
+    </p>
+    <a href="acces.html" class="btn btn-primary btn-large">Rejoindre le Discord →</a>
 </section>
 
+<!-- MAIN CONTENT -->
 <main class="container">
 
-<div class="search-box">
-<input type="text" id="wiki-search" placeholder="🔍 Rechercher dans le wiki..." oninput="searchWiki()">
-<p id="search-results" class="text-muted"></p>
-</div>
-
-<div class="card mb-lg">
-<p><strong>Le Wiki SGPI</strong> centralise des ressources tech organisées par catégories. Tout le contenu est maintenu par la communauté.</p>
-<p class="text-muted">💡 Utilise la recherche ci-dessus ou explore les catégories. Clique sur une catégorie pour la déplier.</p>
-<p class="text-warning">⚠️ <strong>Les liens sont ajoutés progressivement.</strong> Propose tes ressources sur Discord !</p>
-</div>
-
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-1')">
-<span>🔒 Confidentialité & Sécurité</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-1" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Adblocking</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Filtres & Extensions</span>
-<span class="wiki-link">• DNS Adblocking</span>
-<span class="wiki-link">• Mobile</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>VPN & Proxy</h3>
-<div class="wiki-links">
-<span class="wiki-link">• VPN Servers</span>
-<span class="wiki-link">• VPN Clients</span>
-<span class="wiki-link">• Proxy</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Antivirus / Anti-Malware</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Scanners de fichiers</span>
-<span class="wiki-link">• Vérification sites web</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Vie privée</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Navigateur & extension privacy</span>
-<span class="wiki-link">• Emails & messageries chiffrées</span>
-<span class="wiki-link">• Gestion mots de passe & 2FA</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Réseau & Sécurité</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Firewall / Wi-Fi sécurisé</span>
-<span class="wiki-link">• Surveillance réseau</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Surveillance & traçage</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Tracking & fingerprinting</span>
-<span class="wiki-link">• Monitoring fuites de données</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-2')">
-<span>🤖 Intelligence Artificielle</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-2" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Chatbots & IA conversationnelle</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Officiels</span>
-<span class="wiki-link">• Multi-modèles</span>
-<span class="wiki-link">• Local Frontends</span>
-<span class="wiki-link">• RP & Roleplay</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Génération de contenu</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Texte & Code</span>
-<span class="wiki-link">• Image</span>
-<span class="wiki-link">• Vidéo</span>
-<span class="wiki-link">• Audio</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Outils IA</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Prompts & Index</span>
-<span class="wiki-link">• Writing Tools</span>
-<span class="wiki-link">• Coding Tools</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Index & Benchmarks</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Benchmarks spécialisés</span>
-<span class="wiki-link">• Comparateurs & classement IA</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Machine Learning</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Frameworks</span>
-<span class="wiki-link">• Tutoriels & ressources</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Applications spécialisées</h3>
-<div class="wiki-links">
-<span class="wiki-link">• IA musicale, design, dev, gaming</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-3')">
-<span>🎬 Films & Séries</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-3" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Streaming Sites</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Multi-serveur & embeds</span>
-<span class="wiki-link">• Gratuit avec pubs</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Téléchargement / DDL</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Films, séries, anime, éducatif</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Torrenting</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Torrents publics & privés</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Streaming spécialisé</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Anime, cartoons, drama, classiques</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Live TV & Sports</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Live TV</span>
-<span class="wiki-link">• Live Sports</span>
-<span class="wiki-link">• IPTV</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Smart TV & mobiles</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Android TV</span>
-<span class="wiki-link">• Firestick</span>
-<span class="wiki-link">• iOS apps</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Tracking / Bases</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Suivi séries</span>
-<span class="wiki-link">• recommandations</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Sous-titres & outils</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Sous-titres</span>
-<span class="wiki-link">• Lecteurs</span>
-<span class="wiki-link">• Guides</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-4')">
-<span>🎵 Musique</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-4" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Streaming Audio</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Apps & sites</span>
-<span class="wiki-link">• Genre spécifique</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Podcasts & Radio</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Podcasts</span>
-<span class="wiki-link">• Radio internet</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Téléchargement / DDL</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Audio direct</span>
-<span class="wiki-link">• Ripping</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Torrenting Audio</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Torrents albums</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Royalty Free</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Musique libre</span>
-<span class="wiki-link">• Soundtracks</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Outils Audio</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Lecteurs</span>
-<span class="wiki-link">• Éditeurs</span>
-<span class="wiki-link">• Plugins</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-5')">
-<span>🎮 Jeux Vidéo</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-5" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Téléchargement & DDL</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Repacks</span>
-<span class="wiki-link">• Cracks</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Emulation / ROMs</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Consoles</span>
-<span class="wiki-link">• ROMs</span>
-<span class="wiki-link">• Émulateurs</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Jeux Retro</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Abandonware</span>
-<span class="wiki-link">• Ports</span>
-<span class="wiki-link">• Remakes</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Browser / Indie</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Multi-jeux</span>
-<span class="wiki-link">• RPG</span>
-<span class="wiki-link">• Shooters</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Tabletop / Puzzle</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Échecs</span>
-<span class="wiki-link">• Cartes</span>
-<span class="wiki-link">• D&D</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Outils Gaming</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Launchers</span>
-<span class="wiki-link">• Mods</span>
-<span class="wiki-link">• Minecraft tools</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-6')">
-<span>📚 Livres, BD & Mangas</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-6" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Ebooks</h3>
-<div class="wiki-links">
-<span class="wiki-link">• PDF</span>
-<span class="wiki-link">• Calibre</span>
-<span class="wiki-link">• Lecteurs</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Audiobooks</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Streaming</span>
-<span class="wiki-link">• DDL</span>
-<span class="wiki-link">• Apps</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Manga & Comics</h3>
-<div class="wiki-links">
-<span class="wiki-link">• BD</span>
-<span class="wiki-link">• Mangas</span>
-<span class="wiki-link">• Fanfiction</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Documents & Éducation</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Manuels</span>
-<span class="wiki-link">• STEM</span>
-<span class="wiki-link">• Académique</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Bases & Tracking</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Recommandations</span>
-<span class="wiki-link">• Catalogues</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Sites et Apps</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Lecture en ligne</span>
-<span class="wiki-link">• Archives</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-7')">
-<span>📥 Téléchargement Direct</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-7" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Sites DDL</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Films</span>
-<span class="wiki-link">• Séries</span>
-<span class="wiki-link">• Jeux</span>
-<span class="wiki-link">• Musique</span>
-<span class="wiki-link">• Ebooks</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Gestionnaires</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Outils premium free</span>
-<span class="wiki-link">• Extensions</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Usenet</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Indexers</span>
-<span class="wiki-link">• Providers</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Logiciels / FOSS</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Freeware</span>
-<span class="wiki-link">• Linux</span>
-<span class="wiki-link">• Windows</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Outils de recherche</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Annuaires</span>
-<span class="wiki-link">• Moteurs</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-8')">
-<span>🌐 Torrents</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-8" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Sites Torrent</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Films</span>
-<span class="wiki-link">• Séries</span>
-<span class="wiki-link">• Anime</span>
-<span class="wiki-link">• Jeux</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Clients Torrent</h3>
-<div class="wiki-links">
-<span class="wiki-link">• qBittorrent</span>
-<span class="wiki-link">• Streaming</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Trackers</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Privés</span>
-<span class="wiki-link">• Publics</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Index</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Suivi releases</span>
-<span class="wiki-link">• Recommandations</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Outils & Apps</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Automation</span>
-<span class="wiki-link">• Scripts</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-9')">
-<span>🎓 Éducation & Formation</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-9" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Cours & MOOCs</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Streaming</span>
-<span class="wiki-link">• DDL</span>
-<span class="wiki-link">• Spécialisations</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Science / Math / Tech</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Physique</span>
-<span class="wiki-link">• Chimie</span>
-<span class="wiki-link">• Programmation</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Langues</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Apprentissage</span>
-<span class="wiki-link">• Européens</span>
-<span class="wiki-link">• Asiatiques</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Développement / IT</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Web dev</span>
-<span class="wiki-link">• Data science</span>
-<span class="wiki-link">• Cybersecurity</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Jeux éducatifs</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Chess</span>
-<span class="wiki-link">• D&D</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Outils</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Dictionnaires</span>
-<span class="wiki-link">• Encyclopédies</span>
-<span class="wiki-link">• Wiki tools</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-10')">
-<span>📱 Mobile</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-10" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Android</h3>
-<div class="wiki-links">
-<span class="wiki-link">• APKs moddés</span>
-<span class="wiki-link">• Root</span>
-<span class="wiki-link">• Personnalisation</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>iOS</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Apps</span>
-<span class="wiki-link">• Jailbreak</span>
-<span class="wiki-link">• Sideload</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Émulation mobile</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Android sur PC</span>
-<span class="wiki-link">• Emulateurs</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Apps & Utilitaires</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Messageries</span>
-<span class="wiki-link">• Productivité</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Mobile Torrenting</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Apps torrents</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Mobile Gaming</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Launchers</span>
-<span class="wiki-link">• Mods</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-11')">
-<span>💻 Systèmes d'exploitation</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-11" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Windows</h3>
-<div class="wiki-links">
-<span class="wiki-link">• ISOs</span>
-<span class="wiki-link">• Activation</span>
-<span class="wiki-link">• Updates</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Linux</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Distributions</span>
-<span class="wiki-link">• Apps</span>
-<span class="wiki-link">• CLI</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>macOS</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Apps</span>
-<span class="wiki-link">• Outils</span>
-<span class="wiki-link">• Tweaks</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Raspberry Pi</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Serveurs</span>
-<span class="wiki-link">• Projets DIY</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Hackintosh</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Installation</span>
-<span class="wiki-link">• Dual boot</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-12')">
-<span>🛠️ Logiciels & Outils</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-12" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Bureautique</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Suites office</span>
-<span class="wiki-link">• Éditeurs</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Audio / Vidéo / Image</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Édition</span>
-<span class="wiki-link">• Création</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Développement</h3>
-<div class="wiki-links">
-<span class="wiki-link">• IDEs</span>
-<span class="wiki-link">• Toolkits</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Internet</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Navigateurs</span>
-<span class="wiki-link">• Messageries</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Gaming Tools</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Mods</span>
-<span class="wiki-link">• Optimisations</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Système</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Monitors</span>
-<span class="wiki-link">• Virtualisation</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-13')">
-<span>🌐 Web & Création</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-13" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Web Tools</h3>
-<div class="wiki-links">
-<span class="wiki-link">• SEO</span>
-<span class="wiki-link">• Scraping</span>
-<span class="wiki-link">• Paywall bypass</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Social Media</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Telegram</span>
-<span class="wiki-link">• Discord</span>
-<span class="wiki-link">• Reddit</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Text & Fonts</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Éditeurs</span>
-<span class="wiki-link">• Markdown</span>
-<span class="wiki-link">• Unicode</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Images / Vidéos</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Création</span>
-<span class="wiki-link">• 3D</span>
-<span class="wiki-link">• Animation</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Audio / Music</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Plugins</span>
-<span class="wiki-link">• Édition</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Web Dev</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Front-end</span>
-<span class="wiki-link">• Back-end</span>
-<span class="wiki-link">• CMS</span>
-</div></div>
-</div></div>
-
-<div class="wiki-category">
-<h2 onclick="toggleCategory('cat-14')">
-<span>🔧 Divers</span>
-<span class="collapse-icon">▶</span>
-</h2>
-<div id="cat-14" style="display:none;">
-
-<div class="wiki-subcategory">
-<h3>Non Français</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Ressources étrangères</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Lifestyle</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Recettes</span>
-<span class="wiki-link">• Voyage</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Santé</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Santé mentale</span>
-<span class="wiki-link">• Nutrition</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Finance</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Jobs</span>
-<span class="wiki-link">• Crypto</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Shopping</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Jeux gratuits</span>
-<span class="wiki-link">• Deals</span>
-</div></div>
-
-<div class="wiki-subcategory">
-<h3>Fun</h3>
-<div class="wiki-links">
-<span class="wiki-link">• Forums</span>
-<span class="wiki-link">• Sites interactifs</span>
-</div></div>
-</div></div>
+    <!-- QUI SOMMES-NOUS -->
+    <section class="mb-xl">
+        <h2>🧠 Qui sommes-nous ?</h2>
+        <div class="card">
+            <p>
+                La <strong>SGPI</strong> est une communauté française dédiée au partage de 
+                <strong>ressources tech</strong>, <strong>tutos zone grise</strong> et 
+                <strong>discussions libres</strong> sur Discord.
+            </p>
+            <p>
+                Pas de blabla, pas d'élitisme. Juste du contenu utile, des gens cools, 
+                et une ambiance friendly mais pro. On assume notre position en zone grise 
+                tout en restant responsables.
+            </p>
+            <p>
+                <strong>Notre mission :</strong> Centraliser les ressources difficiles à trouver, 
+                partager des connaissances, et créer un espace où chacun peut apprendre sans jugement.
+            </p>
+        </div>
+    </section>
+
+    <!-- CE QU'ON PARTAGE -->
+    <section class="mb-xl">
+        <h2>📚 Ce qu'on partage</h2>
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="icon">📖</div>
+                <h3>Wiki Collaboratif</h3>
+                <p>
+                    + de 15 catégories couvrant confidentialité, IA, films, musique, 
+                    jeux, livres, téléchargement, torrents, éducation, mobile, OS, 
+                    logiciels, création web et plus.
+                </p>
+                <a href="wiki/index.html" class="btn btn-secondary">Explorer le Wiki →</a>
+            </div>
+            
+            <div class="card">
+                <div class="icon">🔓</div>
+                <h3>Tutos Zone Grise</h3>
+                <p>
+                    Guides pratiques : activation Windows/Office, cracks, bypass paywalls, 
+                    OPSEC, anonymat, outils alternatifs. Tout ce qui est "difficile" à trouver.
+                </p>
+                <a href="wiki/tutos/" class="btn btn-secondary">Voir les Tutos →</a>
+            </div>
+            
+            <div class="card">
+                <div class="icon">💬</div>
+                <h3>Discord Actif</h3>
+                <p>
+                    Discussions libres, entraide, partage de découvertes, projets communs. 
+                    Une vraie commu, pas juste un dépôt de liens.
+                </p>
+                <a href="acces.html" class="btn btn-secondary">Rejoindre →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATÉGORIES WIKI APERÇU -->
+    <section class="mb-xl">
+        <h2>🗂️ Aperçu des Catégories Wiki</h2>
+        <div class="card">
+            <div class="grid grid-3">
+                <div>
+                    <h4>🔒 Confidentialité & Sécurité</h4>
+                    <p class="text-muted">Adblock, VPN, Antivirus, Vie privée, Réseau, Surveillance</p>
+                </div>
+                <div>
+                    <h4>🤖 Intelligence Artificielle</h4>
+                    <p class="text-muted">Chatbots, Génération contenu, Outils IA, ML, Apps</p>
+                </div>
+                <div>
+                    <h4>🎬 Films & Séries</h4>
+                    <p class="text-muted">Streaming, Téléchargement, Torrents, Live TV, Tracking</p>
+                </div>
+                <div>
+                    <h4>🎵 Musique</h4>
+                    <p class="text-muted">Streaming audio, Podcasts, Téléchargement, Royalty free</p>
+                </div>
+                <div>
+                    <h4>🎮 Jeux Vidéo</h4>
+                    <p class="text-muted">Téléchargement, Émulation, Retro, Browser games</p>
+                </div>
+                <div>
+                    <h4>📚 Livres & Mangas</h4>
+                    <p class="text-muted">Ebooks, Audiobooks, Comics, Documents, Apps</p>
+                </div>
+                <div>
+                    <h4>⬇️ Téléchargement Direct</h4>
+                    <p class="text-muted">Sites DDL, Gestionnaires, Usenet, FOSS</p>
+                </div>
+                <div>
+                    <h4>🌐 Torrents</h4>
+                    <p class="text-muted">Sites, Clients, Trackers, Index, Outils</p>
+                </div>
+                <div>
+                    <h4>🎓 Éducation & Formation</h4>
+                    <p class="text-muted">MOOCs, Sciences, Langues, Dev/IT, Jeux éducatifs</p>
+                </div>
+            </div>
+            <div class="text-center mt-lg">
+                <a href="wiki/index.html" class="btn btn-primary">Voir Toutes les Catégories →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CE QU'ON N'EST PAS -->
+    <section class="mb-xl">
+        <h2>❌ Ce qu'on n'est PAS</h2>
+        <div class="card">
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 12px;">❌ <strong>Un site public mainstream</strong> - On est semi-privé pour une raison</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Un support technique</strong> - On partage, pas de SAV gratuit</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Un dépôt anarchique</strong> - Tout est organisé et maintenu</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Élitiste</strong> - Pas de gatekeeping stupide, juste des règles simples</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Illégal</strong> - Zone grise oui, encourager l'illégal non</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- COMMENT NOUS REJOINDRE -->
+    <section class="mb-xl">
+        <h2>🚪 Comment nous rejoindre</h2>
+        <div class="card">
+            <h3>Processus d'accès (simplifié)</h3>
+            <ol style="line-height: 2;">
+                <li><strong>Captcha</strong> - Vérification anti-bot basique</li>
+                <li><strong>Question</strong> - Pourquoi tu veux rejoindre ? (20-500 chars)</li>
+                <li><strong>Règles</strong> - Lecture et acceptation</li>
+                <li><strong>Lien Discord</strong> - Accès direct au serveur !</li>
+            </ol>
+            
+            <h3 class="mt-lg">Système de rôles Discord</h3>
+            <div class="grid grid-3 mt-md">
+                <div style="padding: 16px; background: rgba(0,255,136,0.1); border-radius: 8px;">
+                    <strong>🟢 Candidat</strong><br>
+                    <small class="text-muted">Accès limité, observation</small>
+                </div>
+                <div style="padding: 16px; background: rgba(0,212,255,0.1); border-radius: 8px;">
+                    <strong>🔵 Membre</strong><br>
+                    <small class="text-muted">Accès complet après validation</small>
+                </div>
+                <div style="padding: 16px; background: rgba(255,0,136,0.1); border-radius: 8px;">
+                    <strong>🔴 Admin</strong><br>
+                    <small class="text-muted">Gestion + modération wiki</small>
+                </div>
+            </div>
+            
+            <div class="text-center mt-lg">
+                <a href="acces.html" class="btn btn-primary btn-large">Commencer le Processus →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RÈGLES COURTES -->
+    <section class="mb-xl">
+        <h2>📜 Règles Essentielles</h2>
+        <div class="card">
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 12px;">✅ <strong>Respect</strong> - Sois cool avec les autres membres</li>
+                <li style="margin-bottom: 12px;">✅ <strong>Discrétion</strong> - Ce qui se passe dans la SGPI reste dans la SGPI</li>
+                <li style="margin-bottom: 12px;">✅ <strong>Contribution</strong> - Partage si tu as quelque chose d'utile</li>
+                <li style="margin-bottom: 12px;">✅ <strong>Zone grise OK</strong> - Mais rien d'illégal ou dangereux</li>
+                <li style="margin-bottom: 12px;">❌ <strong>Spam interdit</strong> - Publicité = ban</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="text-center mb-xl">
+        <h2>Prêt à rejoindre ?</h2>
+        <p class="text-secondary mb-lg">
+            Rejoins une communauté de passionnés qui partagent tes intérêts.<br>
+            Pas de blabla, juste du contenu de qualité et des gens cools.
+        </p>
+        <a href="acces.html" class="btn btn-primary btn-large">Rejoindre le Discord →</a>
+        <p class="text-muted mt-md">
+            Ou <a href="wiki/index.html">explore le wiki</a> avant de rejoindre
+        </p>
+    </section>
 
 </main>
 
+<!-- FOOTER -->
 <footer>
-<p>&copy; 2026 SGPI</p>
-<p class="text-muted"><a href="../index.html">Accueil</a> • <a href="../pages/about.html">À propos</a></p>
+    <p>&copy; 2026 SGPI - Communauté Tech Underground</p>
+    <p class="text-muted">
+        <a href="pages/about.html">À propos</a> • 
+        <a href="wiki/index.html">Wiki</a> • 
+        <a href="acces.html">Discord</a>
+    </p>
+    <p class="text-muted" style="font-size: 0.85rem; margin-top: 16px;">
+        ⚠️ Zone grise assumée • Responsabilité individuelle • Discrétion recommandée
+    </p>
 </footer>
 
-<script src="../js/sgpi-final.js"></script>
+<!-- SCRIPTS -->
+<script src="js/sgpi.js"></script>
+
 </body>
 </html>
