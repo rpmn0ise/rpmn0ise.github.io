@@ -7,11 +7,10 @@
 <link rel="stylesheet" href="css/sgpi-style.css">
 <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 <style>
-.access-step{background:var(--bg-card);border:2px solid var(--border-color);border-radius:var(--radius-lg);padding:var(--spacing-xl);max-width:700px;margin:0 auto var(--spacing-lg)}
-.step-number{display:inline-block;width:40px;height:40px;background:var(--neon-green);color:var(--bg-primary);border-radius:50%;text-align:center;line-height:40px;font-weight:700;font-family:'Orbitron',sans-serif;margin-right:var(--spacing-sm)}
-.btn-disabled{opacity:0.5;cursor:not-allowed!important;background:var(--bg-tertiary)!important;border-color:var(--border-color)!important}
-#discord-link{background:var(--bg-secondary);padding:var(--spacing-md);border-radius:var(--radius-md);font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--neon-green);word-break:break-all;text-align:center;border:2px solid var(--neon-green);box-shadow:var(--glow-green)}
-.rules-list{background:rgba(0,255,136,0.05);border-left:3px solid var(--neon-green);padding:var(--spacing-md);margin:var(--spacing-md) 0}
+.access-step{background:var(--bg-card);border:2px solid var(--border-color);border-radius:var(--radius-lg);padding:var(--spacing-xl);max-width:700px;margin:0 auto 2rem}
+.step-number{display:inline-block;width:40px;height:40px;background:var(--neon-green);color:var(--bg-primary);border-radius:50%;text-align:center;line-height:40px;font-weight:700;font-family:'Orbitron',sans-serif;margin-right:12px}
+.btn-disabled{opacity:0.5;cursor:not-allowed!important;background:var(--bg-tertiary)!important;border-color:var(--border-color)!important;pointer-events:none}
+#discord-link{background:var(--bg-secondary);padding:1rem;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--neon-green);word-break:break-all;text-align:center;border:2px solid var(--neon-green);box-shadow:0 0 10px rgba(0,255,136,0.5)}
 </style>
 </head>
 <body>
@@ -22,7 +21,7 @@
 <nav><ul>
 <li><a href="index.html">Accueil</a></li>
 <li><a href="wiki/index.html">Wiki</a></li>
-<li><a href="wiki/tutos.html">Tutos</a></li>
+<li><a href="pages/tutos.html">Tutos</a></li>
 <li><a href="pages/projets.html">Projets</a></li>
 <li><a href="pages/about.html">À propos</a></li>
 <li><a href="acces.html" class="btn btn-primary active">Join Discord</a></li>
@@ -41,53 +40,46 @@
 <div class="access-step" id="step1">
 <h2><span class="step-number">1</span>Vérification Humaine</h2>
 <p>Captcha anti-bot. Pas de prise de tête.</p>
-<div style="margin:var(--spacing-lg) 0;text-align:center">
-<div class="h-captcha" data-sitekey="d0405860-4f9e-4fa4-b222-3f34132886f6"></div>
+<div style="margin:2rem 0;text-align:center">
+<div class="h-captcha" 
+     data-sitekey="d0405860-4f9e-4fa4-b222-3f34132886f6"
+     data-callback="captchaVerified"></div>
 </div>
-<p id="captcha-error" class="text-danger" style="display:none">❌ Erreur captcha. Réessaye.</p>
-<button id="captcha-next" class="btn btn-primary btn-disabled" disabled onclick="nextFromCaptcha()">Suivant →</button>
+<p id="captcha-error" style="color:#ff3366;display:none">❌ Erreur captcha. Réessaye.</p>
+<button id="captcha-next" class="btn btn-primary btn-disabled" disabled onclick="nextStep()">SUIVANT →</button>
 </div>
 
 <div class="access-step" id="step2" style="display:none">
 <h2><span class="step-number">2</span>Pourquoi rejoindre ?</h2>
 <p>Dis-nous en quelques mots pourquoi tu veux rejoindre la SGPI.</p>
-<div class="form-group mt-lg">
+<div class="form-group" style="margin-top:2rem">
 <label for="why-join">Ta réponse (20-500 caractères) :</label>
-<textarea id="why-join" rows="5" placeholder="Ex: Je cherche des ressources tech et des tutos zone grise..." maxlength="500"></textarea>
-<small class="text-muted"><span id="char-count">0</span>/500 caractères</small>
+<textarea id="why-join" rows="5" placeholder="Ex: Je cherche des ressources tech..." maxlength="500" style="width:100%;padding:12px;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;color:var(--text-primary);font-family:inherit"></textarea>
+<small style="color:var(--text-muted)"><span id="char-count">0</span>/500 caractères</small>
 </div>
-<button class="btn btn-primary mt-lg" onclick="nextFromQuestion()">Suivant →</button>
-<button class="btn btn-secondary mt-lg" onclick="showStep(1)" style="margin-left:12px">← Retour</button>
+<button class="btn btn-primary" style="margin-top:2rem" onclick="submitAnswer()">SUIVANT →</button>
+<button class="btn btn-secondary" style="margin-top:2rem;margin-left:12px" onclick="showStep(1)">← RETOUR</button>
 </div>
 
 <div class="access-step" id="step3" style="display:none">
 <h2><span class="step-number">3</span>Lien Discord Révélé 🎉</h2>
 <p>Félicitations ! Voici ton lien d'accès au Discord SGPI.</p>
-<div class="mt-lg mb-lg">
-<h3 class="text-center">Lien Discord :</h3>
-<div id="discord-link" class="mt-md">https://discord.gg/R2S2VZneNV</div>
-<div class="text-center mt-md">
-<button class="btn btn-secondary" onclick="copyDiscordLink()">📋 Copier</button>
+<div style="margin:2rem 0">
+<h3 style="text-align:center">Lien Discord :</h3>
+<div id="discord-link" style="margin-top:1rem">https://discord.gg/CHANGE_MOI_MANUELLEMENT</div>
+<div style="text-align:center;margin-top:1rem">
+<button class="btn btn-secondary" onclick="copyLink()">📋 Copier</button>
 </div>
 </div>
-<div class="card mt-lg" style="background:rgba(255,170,0,0.05);border-color:var(--warning)">
-<h3 style="color:var(--warning)">⚠️ Étape Finale sur Discord</h3>
+<div class="card" style="background:rgba(255,170,0,0.05);border-color:#ffaa00;padding:1.5rem;margin-top:2rem">
+<h3 style="color:#ffaa00">⚠️ Étape Finale sur Discord</h3>
 <p>Après avoir cliqué sur le lien, Discord te demandera :</p>
 <p style="font-family:'JetBrains Mono',monospace;background:var(--bg-secondary);padding:12px;border-radius:4px;margin:12px 0">"Quelle est l'adresse du site SGPI en base64 ?"</p>
 <p><strong>Réponse :</strong> <code style="color:var(--neon-green)">aHR0cHM6Ly9ycG1uMGlzZS5naXRodWIuaW8vc2dwaS8=</code></p>
-<p class="text-muted mt-sm">Copie-colle cette réponse exactement pour accéder au serveur !</p>
+<p style="margin-top:8px;color:var(--text-muted)">Copie-colle cette réponse exactement !</p>
 </div>
-<div class="card mt-lg" style="background:rgba(0,212,255,0.05);border-color:var(--info)">
-<h3 style="color:var(--info)">ℹ️ Après avoir rejoint</h3>
-<ul style="line-height:1.8">
-<li>Rôle <strong>Candidat 🟢</strong> au début</li>
-<li>Accès lecture aux salons de base</li>
-<li>Tu peux écrire dans #général</li>
-<li>Sois actif et respectueux pour devenir Membre 🔵</li>
-</ul>
-</div>
-<div class="text-center mt-lg">
-<a href="https://discord.gg/R2S2VZneNV" target="_blank" class="btn btn-primary btn-large">🚀 Rejoindre Maintenant</a>
+<div style="text-align:center;margin-top:2rem">
+<a href="https://discord.gg/CHANGE_MOI_MANUELLEMENT" target="_blank" class="btn btn-primary btn-large">🚀 Rejoindre Maintenant</a>
 </div>
 </div>
 
@@ -95,46 +87,57 @@
 
 <footer>
 <p>&copy; 2026 SGPI - Communauté Tech Underground</p>
-<p class="text-muted">📚 150+ ressources • 60+ tutos • 🟢 Discord actif</p>
+<p style="color:var(--text-muted)">📚 150+ ressources • 60+ tutos • 🟢 Discord actif</p>
 </footer>
 
 <script>
-// FIX BUG CAPTCHA - Callback globale
-window.onCaptchaSuccess = function(token) {
-    console.log('✅ Captcha validé:', token);
-    document.getElementById('captcha-error').style.display = 'none';
+// GLOBAL STATE
+let captchaToken = null;
+
+// FIX CAPTCHA - Callback globale
+window.captchaVerified = function(token) {
+    console.log('✅ Captcha validé !', token);
+    captchaToken = token;
+    
+    // Activer bouton
     const btn = document.getElementById('captcha-next');
     btn.disabled = false;
     btn.classList.remove('btn-disabled');
     btn.style.cursor = 'pointer';
+    
+    document.getElementById('captcha-error').style.display = 'none';
 };
 
-window.onCaptchaError = function() {
+// Error callback
+window.captchaError = function() {
     console.error('❌ Captcha erreur');
     document.getElementById('captcha-error').style.display = 'block';
 };
 
-// Steps
-let currentStep = 1;
+// Steps navigation
 function showStep(n) {
     document.querySelectorAll('.access-step').forEach(el => el.style.display = 'none');
     document.getElementById('step'+n).style.display = 'block';
-    currentStep = n;
 }
 
-function nextFromCaptcha() {
+function nextStep() {
+    if (!captchaToken) {
+        alert('❌ Valide le captcha d\'abord !');
+        return;
+    }
     showStep(2);
 }
 
-async function nextFromQuestion() {
+async function submitAnswer() {
     const answer = document.getElementById('why-join').value.trim();
+    
     if (!answer || answer.length < 20) {
         alert('❌ Réponds avec au moins 20 caractères.');
         return;
     }
     
-    // WEBHOOK DISCORD - Envoyer réponse
-    const webhookUrl = 'https://discord.com/api/webhooks/1481390304979320936/hkQmi11R89QlcjnYM0zeSMXvdFdxxGDB4S8rSLbKW26tR_vmSx5_dqi-h21LOV56Y-FK';
+    // Webhook Discord
+    const webhookUrl = 'https://discord.com/api/webhooks/TON_WEBHOOK_ID/TON_WEBHOOK_TOKEN';
     try {
         await fetch(webhookUrl, {
             method: 'POST',
@@ -143,20 +146,19 @@ async function nextFromQuestion() {
                 embeds: [{
                     title: '📝 Nouvelle Postulation',
                     description: answer,
-                    color: 0x00ff88,
-                    timestamp: new Date().toISOString(),
-                    footer: {text: 'SGPI Postulations'}
+                    color: 65408,
+                    timestamp: new Date().toISOString()
                 }]
             })
         });
     } catch(e) {
-        console.log('Webhook error (normal si pas configuré):', e);
+        console.log('Webhook (optionnel):', e);
     }
     
     showStep(3);
 }
 
-function copyDiscordLink() {
+function copyLink() {
     const link = document.getElementById('discord-link').textContent;
     navigator.clipboard.writeText(link).then(() => {
         alert('✅ Lien copié !');
@@ -167,7 +169,7 @@ function copyDiscordLink() {
 document.addEventListener('DOMContentLoaded', () => {
     const textarea = document.getElementById('why-join');
     const counter = document.getElementById('char-count');
-    if (textarea && counter) {
+    if (textarea) {
         textarea.addEventListener('input', () => {
             counter.textContent = textarea.value.length;
         });
