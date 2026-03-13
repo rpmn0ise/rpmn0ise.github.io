@@ -3,69 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGPI Wiki - Ressources Complètes</title>
+    <title>SGPI Wiki - Hub Ressources</title>
     <link rel="stylesheet" href="../css/sgpi-style.css">
     <style>
-        .wiki-category {
+        /* Layout avec sidebar */
+        .wiki-layout {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* Sidebar gauche */
+        .sidebar-categories {
+            width: 260px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
-            margin-bottom: var(--spacing-lg);
         }
-        .wiki-category h2 {
-            cursor: pointer;
+        
+        .sidebar-categories h3 {
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .categories-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .categories-list li {
+            margin: 4px 0;
+        }
+        
+        .categories-list a {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: var(--spacing-sm);
-            border-radius: var(--radius-sm);
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 6px;
             transition: all 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
-        .wiki-category h2:hover {
+        
+        .categories-list a:hover {
             background: rgba(0, 255, 136, 0.1);
+            color: var(--neon-green);
+            transform: translateX(4px);
         }
-        .collapse-icon {
-            transition: transform 0.3s ease;
-            font-size: 0.8em;
+        
+        /* Main content */
+        .wiki-main {
+            flex: 1;
+            min-width: 0;
         }
-        .collapsed .collapse-icon {
-            transform: rotate(0deg);
-        }
-        .expanded .collapse-icon {
-            transform: rotate(90deg);
-        }
-        .wiki-subcategories {
-            margin-top: var(--spacing-md);
-            margin-left: var(--spacing-lg);
-        }
-        .wiki-subcategories h3 {
-            color: var(--neon-cyan);
-            font-size: 1.2rem;
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-        }
-        .wiki-subcategories ul {
-            list-style: none;
-            padding-left: var(--spacing-md);
-        }
-        .wiki-subcategories li {
-            margin: var(--spacing-xs) 0;
-            padding-left: var(--spacing-md);
-            border-left: 2px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-        .wiki-subcategories li:hover {
-            border-color: var(--neon-green);
-            padding-left: var(--spacing-lg);
-        }
-        .search-box {
+        
+        /* Search bar */
+        .search-section {
             margin-bottom: var(--spacing-xl);
         }
+        
+        .search-box {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
         .search-box input {
             width: 100%;
-            max-width: 600px;
-            padding: var(--spacing-md);
+            padding: 1rem 1.5rem;
+            padding-left: 3rem;
             font-size: 1.1rem;
             border: 2px solid var(--border-color);
             border-radius: var(--radius-lg);
@@ -73,9 +88,224 @@
             color: var(--text-primary);
             transition: all 0.3s ease;
         }
+        
         .search-box input:focus {
+            outline: none;
             border-color: var(--neon-green);
             box-shadow: var(--glow-green);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            color: var(--text-muted);
+        }
+        
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: var(--spacing-xl) 0;
+            padding: var(--spacing-lg);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-green);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        
+        /* Categories grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .category-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.2);
+        }
+        
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+        
+        .category-title {
+            color: var(--neon-cyan);
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+        
+        .category-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: var(--spacing-md);
+            min-height: 3em;
+        }
+        
+        .category-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-sm);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .resource-count {
+            color: var(--neon-green);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .category-arrow {
+            color: var(--neon-cyan);
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover .category-arrow {
+            transform: translateX(4px);
+        }
+        
+        /* Latest additions */
+        .latest-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .latest-section h3 {
+            color: var(--neon-cyan);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .latest-items {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+        
+        .latest-tag {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--neon-green);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--neon-green);
+        }
+        
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+            border: 2px solid var(--neon-green);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+        
+        .cta-section h3 {
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .wiki-layout {
+                flex-direction: column;
+            }
+            
+            .sidebar-categories {
+                width: 100%;
+                position: static;
+                max-height: none;
+            }
+            
+            .stats-bar {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-md);
+            }
+            
+            .category-card {
+                padding: var(--spacing-md);
+            }
+            
+            .category-icon {
+                font-size: 2rem;
+            }
+            
+            .category-title {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -90,7 +320,7 @@
             <ul>
                 <li><a href="../index.html">Accueil</a></li>
                 <li><a href="index.html" class="active">Wiki</a></li>
-                <li><a href="tutos.html">Tutos</a></li>
+                <li><a href="../pages/tutos.html">Tutos</a></li>
                 <li><a href="../pages/projets.html">Projets</a></li>
                 <li><a href="../pages/about.html">À propos</a></li>
                 <li><a href="../acces.html" class="btn btn-primary">Join Discord</a></li>
@@ -102,686 +332,275 @@
 
 <section class="hero">
     <h1>📚 SGPI Wiki</h1>
-    <p class="tagline">Ressources, liens et guides de la communauté</p>
+    <p class="tagline">Hub de ressources tech de la communauté</p>
 </section>
 
 <main class="container">
 
-<div class="card mb-lg">
-    <p style="font-size: 1.1rem;">
-        Bienvenue sur le <strong>Wiki SGPI</strong>. Plus de <strong>150+ ressources</strong> organisées 
-        en <strong>14 catégories</strong>. Tout le contenu est maintenu par la communauté.
+<div class="card mb-xl">
+    <p style="font-size: 1.15rem; line-height: 1.7;">
+        Bienvenue sur le <strong>Wiki SGPI</strong>, ton hub centralisé de ressources tech. 
+        Plus de <strong>150+ ressources</strong> organisées en <strong>14 catégories</strong> 
+        couvrant tout ce dont tu as besoin : confidentialité, IA, streaming, jeux, logiciels et bien plus.
     </p>
-    <p class="text-muted">
-        💡 <strong>Astuce :</strong> Utilise la recherche ou Ctrl+F pour trouver rapidement ce que tu cherches.
+    <p style="color: var(--text-secondary); margin-top: 1rem;">
+        Tout est gratuit, maintenu à jour par la communauté, et accessible à tous. 
+        Choisis une catégorie ci-dessous pour commencer ton exploration.
     </p>
 </div>
 
-<div class="search-box text-center mb-xl">
-    <input type="text" 
-           id="wiki-search" 
-           placeholder="🔍 Rechercher dans le wiki..."
-           autocomplete="off">
-</div>
+<div class="wiki-layout">
 
-<div id="wiki-content">
+<!-- SIDEBAR GAUCHE -->
+<aside class="sidebar-categories">
+    <h3>📂 Navigation</h3>
+    <ul class="categories-list">
+        <li><a href="categories/confidentialite.html">🔒 Confidentialité</a></li>
+        <li><a href="categories/ia.html">🤖 IA</a></li>
+        <li><a href="categories/films.html">🎬 Films & Séries</a></li>
+        <li><a href="categories/musique.html">🎵 Musique</a></li>
+        <li><a href="categories/jeux.html">🎮 Jeux Vidéo</a></li>
+        <li><a href="categories/livres.html">📚 Livres & Mangas</a></li>
+        <li><a href="categories/ddl.html">📥 DDL</a></li>
+        <li><a href="categories/torrents.html">🌊 Torrents</a></li>
+        <li><a href="categories/education.html">🎓 Éducation</a></li>
+        <li><a href="categories/mobile.html">📱 Mobile</a></li>
+        <li><a href="categories/os.html">💻 OS</a></li>
+        <li><a href="categories/logiciels.html">🛠️ Logiciels</a></li>
+        <li><a href="categories/web.html">🌐 Web & Création</a></li>
+        <li><a href="categories/divers.html">🔧 Divers</a></li>
+    </ul>
+</aside>
 
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🔒-confidentialité--sécurité')">
-        <span>🔒 Confidentialité & Sécurité</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🔒-confidentialité--sécurité" class="wiki-subcategories">
-        <h3>Adblocking</h3>
-        <ul>
-            <li>Filtres & Extensions → <a href='#'>À remplir</a></li>
-            <li>DNS Adblocking → <a href='#'>À remplir</a></li>
-            <li>Mobile → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>VPN & Proxy</h3>
-        <ul>
-            <li>VPN Servers → <a href='#'>À remplir</a></li>
-            <li>VPN Clients → <a href='#'>À remplir</a></li>
-            <li>Proxy → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Antivirus / Anti-Malware</h3>
-        <ul>
-            <li>Scanners de fichiers → <a href='#'>À remplir</a></li>
-            <li>Vérification sites web → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Vie privée</h3>
-        <ul>
-            <li>Navigateur & extensions → <a href='#'>À remplir</a></li>
-            <li>Emails & messageries → <a href='#'>À remplir</a></li>
-            <li>Gestion mots de passe & 2FA → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Réseau & Sécurité</h3>
-        <ul>
-            <li>Firewall / Wi-Fi → <a href='#'>À remplir</a></li>
-            <li>Surveillance réseau → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Surveillance & traçage</h3>
-        <ul>
-            <li>Tracking & fingerprinting → <a href='#'>À remplir</a></li>
-            <li>Monitoring fuites → <a href='#'>À remplir</a></li>
-        </ul>
+<!-- MAIN CONTENT -->
+<div class="wiki-main">
+
+<!-- SEARCH -->
+<div class="search-section">
+    <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" 
+               id="wiki-search" 
+               placeholder="Rechercher une catégorie ou ressource..."
+               autocomplete="off">
     </div>
 </div>
 
-
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🤖-intelligence-artificielle')">
-        <span>🤖 Intelligence Artificielle</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🤖-intelligence-artificielle" class="wiki-subcategories">
-        <h3>Chatbots & IA conversationnelle</h3>
-        <ul>
-            <li>Officiels → <a href='#'>À remplir</a></li>
-            <li>Multi-modèles → <a href='#'>À remplir</a></li>
-            <li>Local Frontends → <a href='#'>À remplir</a></li>
-            <li>RP & Roleplay → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Génération de contenu</h3>
-        <ul>
-            <li>Texte & Code → <a href='#'>À remplir</a></li>
-            <li>Image → <a href='#'>À remplir</a></li>
-            <li>Vidéo → <a href='#'>À remplir</a></li>
-            <li>Audio → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Outils IA</h3>
-        <ul>
-            <li>Prompts & Index → <a href='#'>À remplir</a></li>
-            <li>Writing Tools → <a href='#'>À remplir</a></li>
-            <li>Coding Tools → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Index & Benchmarks</h3>
-        <ul>
-            <li>Benchmarks → <a href='#'>À remplir</a></li>
-            <li>Comparateurs → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Machine Learning</h3>
-        <ul>
-            <li>Frameworks → <a href='#'>À remplir</a></li>
-            <li>Tutoriels → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Applications spécialisées</h3>
-        <ul>
-            <li>Musique → <a href='#'>À remplir</a></li>
-            <li>Design → <a href='#'>À remplir</a></li>
-            <li>Dev → <a href='#'>À remplir</a></li>
-            <li>Gaming → <a href='#'>À remplir</a></li>
-        </ul>
+<!-- STATS -->
+<div class="stats-bar">
+    <div class="stat-item">
+        <span class="stat-number">150+</span>
+        <span class="stat-label">Ressources</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">14</span>
+        <span class="stat-label">Catégories</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">MAJ régulières</span>
     </div>
 </div>
 
-
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🎬-films--séries')">
-        <span>🎬 Films & Séries</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🎬-films--séries" class="wiki-subcategories">
-        <h3>Streaming Sites</h3>
-        <ul>
-            <li>Multi-serveur → <a href='#'>À remplir</a></li>
-            <li>Gratuit avec pubs → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Téléchargement / DDL</h3>
-        <ul>
-            <li>Films → <a href='#'>À remplir</a></li>
-            <li>Séries → <a href='#'>À remplir</a></li>
-            <li>Anime → <a href='#'>À remplir</a></li>
-            <li>Éducatif → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Torrenting</h3>
-        <ul>
-            <li>Publics → <a href='#'>À remplir</a></li>
-            <li>Privés → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Streaming spécialisé</h3>
-        <ul>
-            <li>Anime → <a href='#'>À remplir</a></li>
-            <li>Cartoons → <a href='#'>À remplir</a></li>
-            <li>Drama → <a href='#'>À remplir</a></li>
-            <li>Classiques → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Live TV & Sports</h3>
-        <ul>
-            <li>Live TV → <a href='#'>À remplir</a></li>
-            <li>Sports → <a href='#'>À remplir</a></li>
-            <li>IPTV → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Smart TV & mobiles</h3>
-        <ul>
-            <li>Android TV → <a href='#'>À remplir</a></li>
-            <li>Firestick → <a href='#'>À remplir</a></li>
-            <li>iOS → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Tracking / Bases</h3>
-        <ul>
-            <li>Suivi séries → <a href='#'>À remplir</a></li>
-            <li>Recommandations → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Sous-titres & outils</h3>
-        <ul>
-            <li>Sous-titres → <a href='#'>À remplir</a></li>
-            <li>Lecteurs → <a href='#'>À remplir</a></li>
-            <li>Guides → <a href='#'>À remplir</a></li>
-        </ul>
+<!-- LATEST ADDITIONS -->
+<div class="latest-section">
+    <h3>🆕 Derniers ajouts</h3>
+    <div class="latest-items">
+        <span class="latest-tag">ProtonVPN</span>
+        <span class="latest-tag">Stable Diffusion</span>
+        <span class="latest-tag">uBlock Origin</span>
+        <span class="latest-tag">qBittorrent</span>
+        <span class="latest-tag">Jellyfin</span>
+        <span class="latest-tag">Bitwarden</span>
     </div>
 </div>
 
+<!-- CATEGORIES GRID -->
+<div class="categories-grid">
 
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🎵-musique')">
-        <span>🎵 Musique</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🎵-musique" class="wiki-subcategories">
-        <h3>Streaming Audio</h3>
-        <ul>
-            <li>Apps → <a href='#'>À remplir</a></li>
-            <li>Genre spécifique → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Podcasts & Radio</h3>
-        <ul>
-            <li>Streaming podcasts → <a href='#'>À remplir</a></li>
-            <li>Radio internet → <a href='#'>À remplir</a></li>
-            <li>Lofi → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Téléchargement / DDL</h3>
-        <ul>
-            <li>Audio direct → <a href='#'>À remplir</a></li>
-            <li>Ripping → <a href='#'>À remplir</a></li>
-            <li>Bots Telegram → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Torrenting Audio</h3>
-        <ul>
-            <li>Torrents albums → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Royalty Free & Soundtracks</h3>
-        <ul>
-            <li>Musique libre → <a href='#'>À remplir</a></li>
-            <li>Bandes son → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Outils Audio</h3>
-        <ul>
-            <li>Lecteurs → <a href='#'>À remplir</a></li>
-            <li>Serveurs → <a href='#'>À remplir</a></li>
-            <li>Éditeurs → <a href='#'>À remplir</a></li>
-            <li>Plugins → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
+    <a href="categories/confidentialite.html" class="category-card">
+        <span class="category-icon">🔒</span>
+        <h3 class="category-title">Confidentialité & Sécurité</h3>
+        <p class="category-description">
+            VPN, adblock, antivirus, vie privée, réseau, surveillance
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 25 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
+    <a href="categories/ia.html" class="category-card">
+        <span class="category-icon">🤖</span>
+        <h3 class="category-title">Intelligence Artificielle</h3>
+        <p class="category-description">
+            Chatbots, génération contenu, outils IA, ML, benchmarks
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 18 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🎮-jeux-vidéo')">
-        <span>🎮 Jeux Vidéo</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🎮-jeux-vidéo" class="wiki-subcategories">
-        <h3>Téléchargement & DDL</h3>
-        <ul>
-            <li>Repacks → <a href='#'>À remplir</a></li>
-            <li>Linux/Mac/Windows → <a href='#'>À remplir</a></li>
-            <li>Cracks → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Emulation / ROMs</h3>
-        <ul>
-            <li>Consoles → <a href='#'>À remplir</a></li>
-            <li>ROMs → <a href='#'>À remplir</a></li>
-            <li>Émulateurs → <a href='#'>À remplir</a></li>
-            <li>Homebrew → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Jeux Retro</h3>
-        <ul>
-            <li>Ports → <a href='#'>À remplir</a></li>
-            <li>Remakes → <a href='#'>À remplir</a></li>
-            <li>Revival → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Browser / Indie</h3>
-        <ul>
-            <li>Multi-jeux → <a href='#'>À remplir</a></li>
-            <li>RPG → <a href='#'>À remplir</a></li>
-            <li>Shooters → <a href='#'>À remplir</a></li>
-            <li>Simulations → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Tabletop / Puzzle</h3>
-        <ul>
-            <li>Échecs → <a href='#'>À remplir</a></li>
-            <li>Cartes → <a href='#'>À remplir</a></li>
-            <li>D&D → <a href='#'>À remplir</a></li>
-            <li>Crosswords → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Outils Gaming</h3>
-        <ul>
-            <li>Launchers → <a href='#'>À remplir</a></li>
-            <li>Mods → <a href='#'>À remplir</a></li>
-            <li>Optimisations → <a href='#'>À remplir</a></li>
-            <li>Minecraft → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
+    <a href="categories/films.html" class="category-card">
+        <span class="category-icon">🎬</span>
+        <h3 class="category-title">Films & Séries</h3>
+        <p class="category-description">
+            Streaming, DDL, torrents, live TV, tracking, sous-titres
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 32 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
+    <a href="categories/musique.html" class="category-card">
+        <span class="category-icon">🎵</span>
+        <h3 class="category-title">Musique</h3>
+        <p class="category-description">
+            Streaming audio, podcasts, téléchargement, royalty free
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 15 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('📚-livres,-bd--mangas')">
-        <span>📚 Livres, BD & Mangas</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="📚-livres,-bd--mangas" class="wiki-subcategories">
-        <h3>Ebooks</h3>
-        <ul>
-            <li>PDF → <a href='#'>À remplir</a></li>
-            <li>Calibre → <a href='#'>À remplir</a></li>
-            <li>Lecteurs → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Audiobooks</h3>
-        <ul>
-            <li>Streaming → <a href='#'>À remplir</a></li>
-            <li>DDL → <a href='#'>À remplir</a></li>
-            <li>Apps → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Manga & Comics</h3>
-        <ul>
-            <li>BD → <a href='#'>À remplir</a></li>
-            <li>Mangas → <a href='#'>À remplir</a></li>
-            <li>Light novels → <a href='#'>À remplir</a></li>
-            <li>Fanfiction → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Documents & Éducation</h3>
-        <ul>
-            <li>Manuels → <a href='#'>À remplir</a></li>
-            <li>STEM → <a href='#'>À remplir</a></li>
-            <li>Histoire → <a href='#'>À remplir</a></li>
-            <li>Académique → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Bases & Tracking</h3>
-        <ul>
-            <li>Recommandations → <a href='#'>À remplir</a></li>
-            <li>Catalogues → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Sites et Apps</h3>
-        <ul>
-            <li>Lecture en ligne → <a href='#'>À remplir</a></li>
-            <li>Archives → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
+    <a href="categories/jeux.html" class="category-card">
+        <span class="category-icon">🎮</span>
+        <h3 class="category-title">Jeux Vidéo</h3>
+        <p class="category-description">
+            Téléchargement, émulation, retro, outils gaming, mods
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 22 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
+    <a href="categories/livres.html" class="category-card">
+        <span class="category-icon">📚</span>
+        <h3 class="category-title">Livres & Mangas</h3>
+        <p class="category-description">
+            Ebooks, audiobooks, manga, comics, documents, apps
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 14 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('📥-téléchargement-direct')">
-        <span>📥 Téléchargement Direct</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="📥-téléchargement-direct" class="wiki-subcategories">
-        <h3>Sites DDL</h3>
-        <ul>
-            <li>Films → <a href='#'>À remplir</a></li>
-            <li>Séries → <a href='#'>À remplir</a></li>
-            <li>Jeux → <a href='#'>À remplir</a></li>
-            <li>Musique → <a href='#'>À remplir</a></li>
-            <li>Ebooks → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Gestionnaires / Débrideurs</h3>
-        <ul>
-            <li>Outils premium → <a href='#'>À remplir</a></li>
-            <li>Extensions → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Usenet</h3>
-        <ul>
-            <li>Indexers → <a href='#'>À remplir</a></li>
-            <li>Providers → <a href='#'>À remplir</a></li>
-            <li>Downloaders → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Logiciels / FOSS</h3>
-        <ul>
-            <li>Freeware → <a href='#'>À remplir</a></li>
-            <li>Linux → <a href='#'>À remplir</a></li>
-            <li>Mac → <a href='#'>À remplir</a></li>
-            <li>Windows → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Outils de recherche</h3>
-        <ul>
-            <li>Annuaires → <a href='#'>À remplir</a></li>
-            <li>Moteurs → <a href='#'>À remplir</a></li>
-            <li>Extensions → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
+    <a href="categories/ddl.html" class="category-card">
+        <span class="category-icon">📥</span>
+        <h3 class="category-title">Téléchargement Direct</h3>
+        <p class="category-description">
+            Sites DDL, gestionnaires, débrideurs, usenet, FOSS
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 16 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
+    <a href="categories/torrents.html" class="category-card">
+        <span class="category-icon">🌊</span>
+        <h3 class="category-title">Torrents</h3>
+        <p class="category-description">
+            Sites, clients, trackers, index, outils automation
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 19 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🌊-torrents')">
-        <span>🌊 Torrents</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🌊-torrents" class="wiki-subcategories">
-        <h3>Sites Torrent</h3>
-        <ul>
-            <li>Films → <a href='#'>À remplir</a></li>
-            <li>Séries → <a href='#'>À remplir</a></li>
-            <li>Musique → <a href='#'>À remplir</a></li>
-            <li>Anime → <a href='#'>À remplir</a></li>
-            <li>Jeux → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Clients Torrent</h3>
-        <ul>
-            <li>qBittorrent → <a href='#'>À remplir</a></li>
-            <li>Streaming → <a href='#'>À remplir</a></li>
-            <li>Remote → <a href='#'>À remplir</a></li>
-            <li>Mobile → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Trackers</h3>
-        <ul>
-            <li>Privés → <a href='#'>À remplir</a></li>
-            <li>Publics → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Index / Bases</h3>
-        <ul>
-            <li>Suivi releases → <a href='#'>À remplir</a></li>
-            <li>Recommandations → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Outils & Apps</h3>
-        <ul>
-            <li>Automation → <a href='#'>À remplir</a></li>
-            <li>Scripts → <a href='#'>À remplir</a></li>
-            <li>Extensions → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
+    <a href="categories/education.html" class="category-card">
+        <span class="category-icon">🎓</span>
+        <h3 class="category-title">Éducation & Formation</h3>
+        <p class="category-description">
+            MOOCs, science, langues, dev/IT, jeux éducatifs
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 12 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
+    <a href="categories/mobile.html" class="category-card">
+        <span class="category-icon">📱</span>
+        <h3 class="category-title">Mobile</h3>
+        <p class="category-description">
+            Android, iOS, émulation, apps, torrenting mobile
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 17 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🎓-éducation--formation')">
-        <span>🎓 Éducation & Formation</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🎓-éducation--formation" class="wiki-subcategories">
-        <h3>Cours & MOOCs</h3>
-        <ul>
-            <li>Streaming → <a href='#'>À remplir</a></li>
-            <li>DDL → <a href='#'>À remplir</a></li>
-            <li>Spécialisations → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Science / Math / Tech</h3>
-        <ul>
-            <li>Physique → <a href='#'>À remplir</a></li>
-            <li>Chimie → <a href='#'>À remplir</a></li>
-            <li>Biologie → <a href='#'>À remplir</a></li>
-            <li>Programmation → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Langues</h3>
-        <ul>
-            <li>Apprentissage → <a href='#'>À remplir</a></li>
-            <li>Européens → <a href='#'>À remplir</a></li>
-            <li>Asiatiques → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Développement / IT</h3>
-        <ul>
-            <li>Web dev → <a href='#'>À remplir</a></li>
-            <li>Data science → <a href='#'>À remplir</a></li>
-            <li>Cybersecurity → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Jeux éducatifs</h3>
-        <ul>
-            <li>Chess → <a href='#'>À remplir</a></li>
-            <li>Rubik's → <a href='#'>À remplir</a></li>
-            <li>D&D → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Outils éducatifs</h3>
-        <ul>
-            <li>Dictionnaires → <a href='#'>À remplir</a></li>
-            <li>Encyclopédies → <a href='#'>À remplir</a></li>
-            <li>Calculatrices → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
+    <a href="categories/os.html" class="category-card">
+        <span class="category-icon">💻</span>
+        <h3 class="category-title">Systèmes d'exploitation</h3>
+        <p class="category-description">
+            Windows, Linux, macOS, Raspberry Pi, hackintosh
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 13 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
+    <a href="categories/logiciels.html" class="category-card">
+        <span class="category-icon">🛠️</span>
+        <h3 class="category-title">Logiciels & Outils</h3>
+        <p class="category-description">
+            Bureautique, audio/vidéo, dev, internet, gaming, système
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 28 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('📱-mobile')">
-        <span>📱 Mobile</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="📱-mobile" class="wiki-subcategories">
-        <h3>Android</h3>
-        <ul>
-            <li>APKs → <a href='#'>À remplir</a></li>
-            <li>Optimisation → <a href='#'>À remplir</a></li>
-            <li>Root → <a href='#'>À remplir</a></li>
-            <li>Camera → <a href='#'>À remplir</a></li>
-            <li>Streaming → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>iOS</h3>
-        <ul>
-            <li>Apps → <a href='#'>À remplir</a></li>
-            <li>Jailbreak → <a href='#'>À remplir</a></li>
-            <li>Sideload → <a href='#'>À remplir</a></li>
-            <li>Adblocking → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Émulation mobile</h3>
-        <ul>
-            <li>Android sur PC → <a href='#'>À remplir</a></li>
-            <li>Emulateurs → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Apps & Utilitaires</h3>
-        <ul>
-            <li>Messageries → <a href='#'>À remplir</a></li>
-            <li>Productivité → <a href='#'>À remplir</a></li>
-            <li>Météo → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Mobile Torrenting</h3>
-        <ul>
-            <li>Apps Android/iOS → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Mobile Gaming</h3>
-        <ul>
-            <li>Launchers → <a href='#'>À remplir</a></li>
-            <li>Mods → <a href='#'>À remplir</a></li>
-            <li>Optimisation → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
+    <a href="categories/web.html" class="category-card">
+        <span class="category-icon">🌐</span>
+        <h3 class="category-title">Web & Création</h3>
+        <p class="category-description">
+            Web tools, social media, design, fonts, hosting, dev
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 21 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
-
-
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('💻-systèmes-dexploitation')">
-        <span>💻 Systèmes d'exploitation</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="💻-systèmes-d'exploitation" class="wiki-subcategories">
-        <h3>Windows</h3>
-        <ul>
-            <li>ISOs → <a href='#'>À remplir</a></li>
-            <li>Activation → <a href='#'>À remplir</a></li>
-            <li>Réparation → <a href='#'>À remplir</a></li>
-            <li>Updates → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Linux</h3>
-        <ul>
-            <li>Distributions → <a href='#'>À remplir</a></li>
-            <li>Guides → <a href='#'>À remplir</a></li>
-            <li>Apps → <a href='#'>À remplir</a></li>
-            <li>CLI → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>macOS</h3>
-        <ul>
-            <li>Apps → <a href='#'>À remplir</a></li>
-            <li>Outils → <a href='#'>À remplir</a></li>
-            <li>System tweaks → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Raspberry Pi & Unix</h3>
-        <ul>
-            <li>Serveurs → <a href='#'>À remplir</a></li>
-            <li>Projets DIY → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Hackintosh / Multi-OS</h3>
-        <ul>
-            <li>Installation → <a href='#'>À remplir</a></li>
-            <li>Dual boot → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
-
-
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🛠️-logiciels--outils')">
-        <span>🛠️ Logiciels & Outils</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🛠️-logiciels--outils" class="wiki-subcategories">
-        <h3>Bureautique & Textes</h3>
-        <ul>
-            <li>Office → <a href='#'>À remplir</a></li>
-            <li>Éditeurs → <a href='#'>À remplir</a></li>
-            <li>Mindmapping → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Audio / Vidéo / Image</h3>
-        <ul>
-            <li>Édition → <a href='#'>À remplir</a></li>
-            <li>Création → <a href='#'>À remplir</a></li>
-            <li>Conversion → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Développement</h3>
-        <ul>
-            <li>IDEs → <a href='#'>À remplir</a></li>
-            <li>Toolkits → <a href='#'>À remplir</a></li>
-            <li>Web dev → <a href='#'>À remplir</a></li>
-            <li>Game dev → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Internet / Réseaux</h3>
-        <ul>
-            <li>Navigateurs → <a href='#'>À remplir</a></li>
-            <li>Sécurité → <a href='#'>À remplir</a></li>
-            <li>OSINT → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Gaming Tools</h3>
-        <ul>
-            <li>Mods → <a href='#'>À remplir</a></li>
-            <li>Launchers → <a href='#'>À remplir</a></li>
-            <li>Optimisations → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Système & Hardware</h3>
-        <ul>
-            <li>Monitors → <a href='#'>À remplir</a></li>
-            <li>GPU → <a href='#'>À remplir</a></li>
-            <li>CLI → <a href='#'>À remplir</a></li>
-            <li>Virtualisation → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
-
-
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🌐-web--création')">
-        <span>🌐 Web & Création</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🌐-web--création" class="wiki-subcategories">
-        <h3>Web Tools</h3>
-        <ul>
-            <li>SEO → <a href='#'>À remplir</a></li>
-            <li>Scraping → <a href='#'>À remplir</a></li>
-            <li>Archiving → <a href='#'>À remplir</a></li>
-            <li>Paywall bypass → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Social Media</h3>
-        <ul>
-            <li>Telegram → <a href='#'>À remplir</a></li>
-            <li>Discord → <a href='#'>À remplir</a></li>
-            <li>Reddit → <a href='#'>À remplir</a></li>
-            <li>YouTube → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Text & Fonts</h3>
-        <ul>
-            <li>Éditeurs → <a href='#'>À remplir</a></li>
-            <li>Markdown → <a href='#'>À remplir</a></li>
-            <li>LaTeX → <a href='#'>À remplir</a></li>
-            <li>Unicode → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Images / Vidéos</h3>
-        <ul>
-            <li>Création → <a href='#'>À remplir</a></li>
-            <li>Retouche → <a href='#'>À remplir</a></li>
-            <li>3D → <a href='#'>À remplir</a></li>
-            <li>Animation → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Audio / Music</h3>
-        <ul>
-            <li>Création → <a href='#'>À remplir</a></li>
-            <li>Plugins → <a href='#'>À remplir</a></li>
-            <li>Synthèse → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Web Dev & Hosting</h3>
-        <ul>
-            <li>Front-end → <a href='#'>À remplir</a></li>
-            <li>Back-end → <a href='#'>À remplir</a></li>
-            <li>CMS → <a href='#'>À remplir</a></li>
-            <li>API → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
-
-
-<div class="wiki-category expanded">
-    <h2 onclick="toggleWikiCategory('🔧-divers')">
-        <span>🔧 Divers</span>
-        <span class="collapse-icon">▶</span>
-    </h2>
-    <div id="🔧-divers" class="wiki-subcategories">
-        <h3>Non Français</h3>
-        <ul>
-            <li>Ressources étrangères → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Lifestyle</h3>
-        <ul>
-            <li>Recettes → <a href='#'>À remplir</a></li>
-            <li>Voyage → <a href='#'>À remplir</a></li>
-            <li>Météo → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Santé & Bien-être</h3>
-        <ul>
-            <li>Santé mentale → <a href='#'>À remplir</a></li>
-            <li>Physique → <a href='#'>À remplir</a></li>
-            <li>Nutrition → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Finance & Carrière</h3>
-        <ul>
-            <li>Jobs → <a href='#'>À remplir</a></li>
-            <li>Crypto → <a href='#'>À remplir</a></li>
-            <li>Startups → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Shopping / Free</h3>
-        <ul>
-            <li>Jeux gratuits → <a href='#'>À remplir</a></li>
-            <li>Deals → <a href='#'>À remplir</a></li>
-            <li>Suivi prix → <a href='#'>À remplir</a></li>
-        </ul>
-        <h3>Fun / Sites utiles</h3>
-        <ul>
-            <li>Forums → <a href='#'>À remplir</a></li>
-            <li>Webcams → <a href='#'>À remplir</a></li>
-            <li>Sites interactifs → <a href='#'>À remplir</a></li>
-        </ul>
-    </div>
-</div>
-
+    <a href="categories/divers.html" class="category-card">
+        <span class="category-icon">🔧</span>
+        <h3 class="category-title">Divers</h3>
+        <p class="category-description">
+            Lifestyle, santé, finance, shopping, fun, sites utiles
+        </p>
+        <div class="category-meta">
+            <span class="resource-count">📊 9 ressources</span>
+            <span class="category-arrow">Explorer →</span>
+        </div>
+    </a>
 
 </div>
 
-<div class="card mt-xl" style="background: rgba(0,212,255,0.05); border-color: var(--info);">
-    <h3 style="color: var(--info);">ℹ️ Comment contribuer ?</h3>
-    <p>
-        Tu as des ressources à partager ? Propose-les sur Discord dans <strong>#wiki-suggestions</strong> !
+<!-- CTA -->
+<div class="cta-section">
+    <h3>💡 Contribuer au Wiki</h3>
+    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+        Tu connais une ressource utile qui manque ? Partage-la avec la communauté !
     </p>
-    <p>
-        Les admins mettent à jour le wiki régulièrement avec les meilleures suggestions.
-    </p>
+    <a href="../acces.html" class="btn btn-primary btn-large">
+        Rejoindre Discord →
+    </a>
+</div>
+
+</div>
+
 </div>
 
 </main>
@@ -789,41 +608,26 @@
 <footer>
     <p>&copy; 2026 SGPI - Communauté Tech Underground</p>
     <p class="text-muted">
-        📚 150+ ressources • 25+ tutos • 🟢 Discord actif
+        📚 150+ ressources • 14 catégories • 60+ tutos • 🟢 Discord actif
     </p>
 </footer>
 
 <script src="../js/sgpi.js"></script>
 <script>
-// Toggle catégories
-function toggleWikiCategory(id) {
-    const content = document.getElementById(id);
-    const parent = content.parentElement;
-    
-    if (content.style.display === 'none') {
-        content.style.display = 'block';
-        parent.classList.add('expanded');
-        parent.classList.remove('collapsed');
-    } else {
-        content.style.display = 'none';
-        parent.classList.add('collapsed');
-        parent.classList.remove('expanded');
-    }
-}
-
-// Search wiki
+// Search filter
 document.getElementById('wiki-search').addEventListener('input', function(e) {
     const query = e.target.value.toLowerCase();
-    const categories = document.querySelectorAll('.wiki-category');
+    const cards = document.querySelectorAll('.category-card');
     
-    if (!query) {
-        categories.forEach(cat => cat.style.display = 'block');
-        return;
-    }
-    
-    categories.forEach(cat => {
-        const text = cat.textContent.toLowerCase();
-        cat.style.display = text.includes(query) ? 'block' : 'none';
+    cards.forEach(card => {
+        const title = card.querySelector('.category-title').textContent.toLowerCase();
+        const desc = card.querySelector('.category-description').textContent.toLowerCase();
+        
+        if (title.includes(query) || desc.includes(query) || !query) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
     });
 });
 </script>
