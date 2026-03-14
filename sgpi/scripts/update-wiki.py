@@ -102,7 +102,7 @@ def generate_category_page(category_id, md_file):
 <nav><ul>
 <li><a href="../../index.html">Accueil</a></li>
 <li><a href="../index.html" class="active">Wiki</a></li>
-<li><a href="../../pages/tutos.html">Tutos</a></li>
+<li><a href="../../wiki/tutos.html">Tutos</a></li>
 <li><a href="../../pages/projets.html">Projets</a></li>
 <li><a href="../../pages/about.html">À propos</a></li>
 <li><a href="../../acces.html" class="btn btn-primary">Discord</a></li>
