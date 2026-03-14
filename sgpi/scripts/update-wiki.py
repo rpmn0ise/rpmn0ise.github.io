@@ -127,7 +127,6 @@ def generate_category_page(category_id, md_file):
 </aside>
 
 <div class="wiki-main">
-<h1>{category_name}</h1>
 <div id="wiki-content">
 {html_content}
 </div>
