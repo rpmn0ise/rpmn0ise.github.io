@@ -11,6 +11,10 @@
 .step-number{display:inline-block;width:40px;height:40px;background:var(--neon-green);color:var(--bg-primary);border-radius:50%;text-align:center;line-height:40px;font-weight:700;font-family:'Orbitron',sans-serif;margin-right:12px}
 .btn-disabled{opacity:0.5;cursor:not-allowed!important;background:var(--bg-tertiary)!important;border-color:var(--border-color)!important;pointer-events:none}
 #discord-link{background:var(--bg-secondary);padding:1rem;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--neon-green);word-break:break-all;text-align:center;border:2px solid var(--neon-green);box-shadow:0 0 10px rgba(0,255,136,0.5)}
+.form-group{margin-bottom:1.5rem}
+.form-group label{display:block;margin-bottom:8px;color:var(--text-secondary);font-weight:500}
+.form-group input,.form-group textarea{width:100%;padding:12px;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;color:var(--text-primary);font-family:inherit;font-size:1rem;transition:all .3s}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--neon-green);box-shadow:0 0 10px rgba(0,255,136,0.3)}
 </style>
 </head>
 <body>
@@ -21,7 +25,7 @@
 <nav><ul>
 <li><a href="index.html">Accueil</a></li>
 <li><a href="wiki/index.html">Wiki</a></li>
-<li><a href="pages/tutos.html">Tutos</a></li>
+<li><a href="wiki/tutos.html">Tutos</a></li>
 <li><a href="pages/projets.html">Projets</a></li>
 <li><a href="pages/about.html">À propos</a></li>
 <li><a href="acces.html" class="btn btn-primary active">Join Discord</a></li>
@@ -37,6 +41,7 @@
 
 <main class="container">
 
+<!-- STEP 1: CAPTCHA -->
 <div class="access-step" id="step1">
 <h2><span class="step-number">1</span>Vérification Humaine</h2>
 <p>Captcha anti-bot. Pas de prise de tête.</p>
@@ -49,37 +54,58 @@
 <button id="captcha-next" class="btn btn-primary btn-disabled" disabled onclick="nextStep()">SUIVANT →</button>
 </div>
 
+<!-- STEP 2: QUESTIONS -->
 <div class="access-step" id="step2" style="display:none">
-<h2><span class="step-number">2</span>Pourquoi rejoindre ?</h2>
-<p>Dis-nous en quelques mots pourquoi tu veux rejoindre la SGPI.</p>
-<div class="form-group" style="margin-top:2rem">
-<label for="why-join">Ta réponse (20-500 caractères) :</label>
-<textarea id="why-join" rows="5" placeholder="Ex: Je cherche des ressources tech..." maxlength="500" style="width:100%;padding:12px;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;color:var(--text-primary);font-family:inherit"></textarea>
-<small style="color:var(--text-muted)"><span id="char-count">0</span>/500 caractères</small>
-</div>
-<button class="btn btn-primary" style="margin-top:2rem" onclick="submitAnswer()">SUIVANT →</button>
-<button class="btn btn-secondary" style="margin-top:2rem;margin-left:12px" onclick="showStep(1)">← RETOUR</button>
+<h2><span class="step-number">2</span>Formulaire de postulation</h2>
+<p>Quelques infos rapides avant de rejoindre.</p>
+
+<div class="form-group">
+<label for="discord-username">Nom d'utilisateur Discord <span style="color:#ff3366">*</span></label>
+<input type="text" 
+       id="discord-username" 
+       placeholder="ex: rpmn0ise ou rpmn0ise#0000"
+       maxlength="50"
+       required>
+<small style="color:var(--text-muted)">Ton pseudo Discord (avec ou sans #0000)</small>
 </div>
 
+<div class="form-group">
+<label for="why-join">Pourquoi rejoindre la SGPI ? <span style="color:#ff3366">*</span></label>
+<textarea id="why-join" 
+          rows="5" 
+          placeholder="Ex: Je cherche des ressources tech et des tutos zone grise, et j'aimerais échanger avec la communauté."
+          maxlength="500"
+          required></textarea>
+<small style="color:var(--text-muted)"><span id="char-count">0</span>/500 caractères</small>
+</div>
+
+<button class="btn btn-primary" onclick="submitForm()">SUIVANT →</button>
+<button class="btn btn-secondary" onclick="showStep(1)" style="margin-left:12px">← RETOUR</button>
+</div>
+
+<!-- STEP 3: DISCORD LINK -->
 <div class="access-step" id="step3" style="display:none">
 <h2><span class="step-number">3</span>Lien Discord Révélé 🎉</h2>
 <p>Félicitations ! Voici ton lien d'accès au Discord SGPI.</p>
+
 <div style="margin:2rem 0">
 <h3 style="text-align:center">Lien Discord :</h3>
-<div id="discord-link" style="margin-top:1rem">https://discord.gg/R2S2VZneNV</div>
+<div id="discord-link" style="margin-top:1rem">https://discord.gg/CHANGE_MOI_MANUELLEMENT</div>
 <div style="text-align:center;margin-top:1rem">
 <button class="btn btn-secondary" onclick="copyLink()">📋 Copier</button>
 </div>
 </div>
+
 <div class="card" style="background:rgba(255,170,0,0.05);border-color:#ffaa00;padding:1.5rem;margin-top:2rem">
 <h3 style="color:#ffaa00">⚠️ Étape Finale sur Discord</h3>
 <p>Après avoir cliqué sur le lien, Discord te demandera :</p>
 <p style="font-family:'JetBrains Mono',monospace;background:var(--bg-secondary);padding:12px;border-radius:4px;margin:12px 0">"Quelle est l'adresse du site SGPI en base64 ?"</p>
-<p><strong>Tu devras donner </strong>le lien du discord en base 64 (https://www.base64encode.org/)</p>
+<p><strong>Réponse :</strong> <code style="color:var(--neon-green)">aHR0cHM6Ly9ycG1uMGlzZS5naXRodWIuaW8vc2dwaS8=</code></p>
 <p style="margin-top:8px;color:var(--text-muted)">Copie-colle cette réponse exactement !</p>
 </div>
+
 <div style="text-align:center;margin-top:2rem">
-<a href="https://discord.gg/R2S2VZneNV" target="_blank" class="btn btn-primary btn-large">🚀 Rejoindre Maintenant</a>
+<a href="https://discord.gg/CHANGE_MOI_MANUELLEMENT" target="_blank" class="btn btn-primary btn-large">🚀 Rejoindre Maintenant</a>
 </div>
 </div>
 
@@ -99,7 +125,6 @@ window.captchaVerified = function(token) {
     console.log('✅ Captcha validé !', token);
     captchaToken = token;
     
-    // Activer bouton
     const btn = document.getElementById('captcha-next');
     btn.disabled = false;
     btn.classList.remove('btn-disabled');
@@ -108,7 +133,6 @@ window.captchaVerified = function(token) {
     document.getElementById('captcha-error').style.display = 'none';
 };
 
-// Error callback
 window.captchaError = function() {
     console.error('❌ Captcha erreur');
     document.getElementById('captcha-error').style.display = 'block';
@@ -128,31 +152,63 @@ function nextStep() {
     showStep(2);
 }
 
-async function submitAnswer() {
-    const answer = document.getElementById('why-join').value.trim();
+async function submitForm() {
+    const discordUsername = document.getElementById('discord-username').value.trim();
+    const whyJoin = document.getElementById('why-join').value.trim();
     
-    if (!answer || answer.length < 20) {
-        alert('❌ Réponds avec au moins 20 caractères.');
+    // Validation Discord username
+    if (!discordUsername) {
+        alert('❌ Entre ton nom d\'utilisateur Discord.');
+        document.getElementById('discord-username').focus();
         return;
     }
     
-    // Webhook Discord
-    const webhookUrl = 'https://discord.com/api/webhooks/1481766715426738218/7LswW7gPajLcSR1igBK_FEFzBLBjSXL_BjXEBV4An-dTEc_vyo1nwnlPexr51pJR4pef';
+    if (discordUsername.length < 2) {
+        alert('❌ Nom Discord trop court (min 2 caractères).');
+        document.getElementById('discord-username').focus();
+        return;
+    }
+    
+    // Validation réponse
+    if (!whyJoin || whyJoin.length < 20) {
+        alert('❌ Réponds avec au moins 20 caractères.');
+        document.getElementById('why-join').focus();
+        return;
+    }
+    
+    // Webhook Discord avec nom utilisateur
+    const webhookUrl = 'https://discord.com/api/webhooks/TON_WEBHOOK_ID/TON_WEBHOOK_TOKEN';
+    
     try {
         await fetch(webhookUrl, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 embeds: [{
-                    title: '📝 Nouvelle Postulation',
-                    description: answer,
+                    title: '📝 Nouvelle Postulation SGPI',
                     color: 65408,
-                    timestamp: new Date().toISOString()
+                    fields: [
+                        {
+                            name: '👤 Nom Discord',
+                            value: discordUsername,
+                            inline: false
+                        },
+                        {
+                            name: '💬 Motivation',
+                            value: whyJoin.length > 1000 ? whyJoin.substring(0, 1000) + '...' : whyJoin,
+                            inline: false
+                        }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: {
+                        text: 'SGPI Postulations'
+                    }
                 }]
             })
         });
+        console.log('✅ Postulation envoyée au webhook');
     } catch(e) {
-        console.log('Webhook (optionnel):', e);
+        console.log('ℹ️ Webhook (optionnel):', e);
     }
     
     showStep(3);
