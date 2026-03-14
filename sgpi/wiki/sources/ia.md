@@ -2,35 +2,115 @@
 
 ## Chatbots & IA conversationnelle
 
-- **Officiels** - ChatGPT, Claude, Bard → [Lien](#)
-- **Multi-modèles** - plateformes regroupant plusieurs IA → [Lien](#)
-- **Local Frontends** - LLaMA, MPT, installation locale → [Lien](#)
-- **RP & Roleplay** - bots spécialisés pour scénarios → [Lien](#)
+### Officiels
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Multi-modèles
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Local Frontends
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### RP & Roleplay
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Génération de contenu
 
-- **Texte & Code** - assistants, prompts, corrections → [Lien](#)
-- **Image** - Stable Diffusion, MidJourney, restauration d'images → [Lien](#)
-- **Vidéo** - génération, animation IA → [Lien](#)
-- **Audio** - TTS, voix clone, séparation de pistes → [Lien](#)
+### Texte & Code
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Image
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Vidéo
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Audio
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Outils IA
 
-- **Prompts & Index** - banques de prompts, tutoriels → [Lien](#)
-- **Writing Tools** - correcteurs, assistants d'écriture → [Lien](#)
-- **Coding Tools** - complétion code, IDE extensions → [Lien](#)
+### Prompts & Index
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Writing Tools
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Coding Tools
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Index & Benchmarks
 
-- **Benchmarks spécialisés** - NLP, code, multimédia → [Lien](#)
-- **Comparateurs & classement IA** - À compléter → [Lien](#)
+### Benchmarks spécialisés
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Comparateurs & classement IA
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Machine Learning
 
-- **Frameworks** - TensorFlow, PyTorch, datasets, notebooks → [Lien](#)
-- **Tutoriels & ressources formation** - À compléter → [Lien](#)
+### Frameworks
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Tutoriels & ressources formation
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Applications spécialisées
 
-- **IA musicale, design, dev, gaming** - À compléter → [Lien](#)
+### IA musicale, design, dev, gaming
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 

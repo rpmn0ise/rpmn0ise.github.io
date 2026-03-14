@@ -2,21 +2,46 @@
 
 ## Sites Torrent
 
-- **Films, séries, musique, anime, jeux, éducatif** - À compléter → [Lien](#)
+### Films, séries, musique, anime, jeux, éducatif
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Clients Torrent
 
-- **qBittorrent, streaming, remote, Android/iOS** - À compléter → [Lien](#)
+### qBittorrent, streaming, remote, Android/iOS
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Trackers privés & publics
 
-- **Contenu spécifique** - À compléter → [Lien](#)
+### Contenu spécifique
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Index / Bases de données
 
-- **Suivi releases, recommandations** - À compléter → [Lien](#)
+### Suivi releases, recommandations
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Outils & Apps
 
-- **Automation, scripts, extensions** - À compléter → [Lien](#)
+### Automation, scripts, extensions
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 

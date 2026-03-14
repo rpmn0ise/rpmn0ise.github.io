@@ -26,11 +26,19 @@ WIKI_CATEGORIES = {
 def md_to_html_simple(md):
     """Convert MD to HTML (simple version pour wiki)"""
     html = md
-    html = re.sub(r'^## (.+)$', r'<h2>\1</h2>', html, flags=re.M)
+    
+    # Headers (ordre important : H3 avant H2)
     html = re.sub(r'^### (.+)$', r'<h3>\1</h3>', html, flags=re.M)
+    html = re.sub(r'^## (.+)$', r'<h2>\1</h2>', html, flags=re.M)
+    html = re.sub(r'^# (.+)$', r'<h1>\1</h1>', html, flags=re.M)
+    
+    # Bold
     html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
+    
+    # Links
     html = re.sub(r'\[(.+?)\]\((.+?)\)', r'<a href="\2" target="_blank" rel="noopener">\1</a>', html)
     
+    # Process lists
     lines = html.split('\n')
     result = []
     in_ul = False
@@ -67,7 +75,7 @@ def generate_category_page(category_id, md_file):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{category_name} - SGPI Wiki</title>
-<link rel="stylesheet" href="../css/sgpi-style.css">
+<link rel="stylesheet" href="../../css/sgpi-style.css">
 <style>
 .wiki-layout{{display:flex;gap:2rem;margin-top:2rem}}
 .sidebar-left{{width:250px;flex-shrink:0;position:sticky;top:80px;height:fit-content;max-height:calc(100vh - 100px);overflow-y:auto;background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:var(--spacing-lg)}}
@@ -79,10 +87,10 @@ def generate_category_page(category_id, md_file):
 .wiki-main{{flex:1;min-width:0}}
 .wiki-main h1{{color:var(--neon-green);margin-bottom:2rem}}
 .wiki-main h2{{color:var(--neon-cyan);margin-top:2rem;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:2px solid var(--border-color)}}
-.wiki-main h3{{color:var(--text-primary);margin-top:1.5rem;margin-bottom:0.75rem}}
-.resource-list{{list-style:none;padding:0}}
-.resource-list li{{padding:12px;margin:8px 0;background:var(--bg-secondary);border-left:3px solid var(--border-color);border-radius:4px;transition:all .3s}}
-.resource-list li:hover{{border-color:var(--neon-green);transform:translateX(4px)}}
+.wiki-main h3{{color:var(--text-primary);font-size:1.15rem;margin-top:1.5rem;margin-bottom:0.75rem;font-weight:600}}
+.resource-list{{list-style:none;padding:0;margin-left:1rem}}
+.resource-list li{{padding:10px 12px;margin:6px 0;background:var(--bg-secondary);border-left:3px solid var(--border-color);border-radius:4px;transition:all .3s}}
+.resource-list li:hover{{border-color:var(--neon-green);transform:translateX(4px);background:var(--bg-tertiary)}}
 @media(max-width:1024px){{.wiki-layout{{flex-direction:column}}.sidebar-left{{width:100%;position:static;max-height:none}}}}
 </style>
 </head>
@@ -90,14 +98,14 @@ def generate_category_page(category_id, md_file):
 
 <header>
 <div class="header-content">
-<div class="logo"><a href="../index.html"><h1>SGPI</h1></a></div>
+<div class="logo"><a href="../../index.html"><h1>SGPI</h1></a></div>
 <nav><ul>
-<li><a href="../index.html">Accueil</a></li>
-<li><a href="../wiki/index.html" class="active">Wiki</a></li>
-<li><a href="../pages/tutos.html">Tutos</a></li>
-<li><a href="../pages/projets.html">Projets</a></li>
-<li><a href="../pages/about.html">À propos</a></li>
-<li><a href="../acces.html" class="btn btn-primary">Discord</a></li>
+<li><a href="../../index.html">Accueil</a></li>
+<li><a href="../index.html" class="active">Wiki</a></li>
+<li><a href="../../pages/tutos.html">Tutos</a></li>
+<li><a href="../../pages/projets.html">Projets</a></li>
+<li><a href="../../pages/about.html">À propos</a></li>
+<li><a href="../../acces.html" class="btn btn-primary">Discord</a></li>
 <li><button id="theme-toggle" class="theme-toggle">☀️</button></li>
 </ul></nav>
 </div>
@@ -106,7 +114,7 @@ def generate_category_page(category_id, md_file):
 <main class="container">
 
 <div class="breadcrumb" style="margin-bottom:1rem;color:var(--text-muted)">
-<a href="../index.html">Accueil</a> → <a href="../wiki/index.html">Wiki</a> → <strong>{category_name}</strong>
+<a href="../../index.html">Accueil</a> → <a href="../index.html">Wiki</a> → <strong>{category_name}</strong>
 </div>
 
 <div class="wiki-layout">
@@ -139,7 +147,7 @@ def generate_category_page(category_id, md_file):
 <p style="color:var(--text-muted)">📚 150+ ressources • 60+ tutos • 🟢 Discord actif</p>
 </footer>
 
-<script src="../js/sgpi.js"></script>
+<script src="../../js/sgpi.js"></script>
 </body>
 </html>'''
     

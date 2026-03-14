@@ -2,34 +2,109 @@
 
 ## Adblocking
 
-- **Filtres & Extensions** - Adblock, uBlock, filtres personnalisés → [Lien](#)
-- **DNS Adblocking** - NextDNS, Pi-hole, alternatives Linux/Mac/Windows → [Lien](#)
-- **Mobile** - Android/iOS adblockers, apps et guides → [Lien](#)
+### Filtres & Extensions
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### DNS Adblocking
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Mobile
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## VPN & Proxy
 
-- **VPN Servers** - OpenVPN, WireGuard, serveurs privés → [Lien](#)
-- **VPN Clients** - Windows, Linux, Mac, Android, iOS → [Lien](#)
-- **Proxy** - HTTP/SOCKS, sites proxy, anti-censure → [Lien](#)
+### VPN Servers
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### VPN Clients
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Proxy
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Antivirus / Anti-Malware
 
-- **Scanners de fichiers** - Malwarebytes, ClamAV → [Lien](#)
-- **Vérification sites web** - VirusTotal, URL scan → [Lien](#)
+### Scanners de fichiers
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Vérification sites web
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Vie privée
 
-- **Navigateur & extension privacy** - Tor, Brave, Firefox privacy → [Lien](#)
-- **Emails & messageries chiffrées** - ProtonMail, Signal, Tutanota → [Lien](#)
-- **Gestion mots de passe & 2FA** - KeePass, Bitwarden → [Lien](#)
+### Navigateur & extension privacy
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Emails & messageries chiffrées
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Gestion mots de passe & 2FA
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Réseau & Sécurité
 
-- **Firewall / Wi-Fi sécurisé** - À compléter → [Lien](#)
-- **Surveillance réseau, intrusion detection** - À compléter → [Lien](#)
+### Firewall / Wi-Fi sécurisé
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Surveillance réseau, intrusion detection
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 
 ## Surveillance & traçage
 
-- **Tracking & fingerprinting** - solutions anti-tracking → [Lien](#)
-- **Monitoring fuites de données** - À compléter → [Lien](#)
+### Tracking & fingerprinting
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
+### Monitoring fuites de données
+
+- [Ressource 1](#) - Description à compléter
+- [Ressource 2](#) - Description à compléter
+- [Ressource 3](#) - Description à compléter
+
 

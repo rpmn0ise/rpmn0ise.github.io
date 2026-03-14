@@ -359,7 +359,14 @@ def generate_md_file(file_id, data):
     for section, items in data['sections'].items():
         md_content += f"## {section}\n\n"
         for item in items:
-            md_content += f"- **{item.split(':')[0].strip()}** - {item.split(':', 1)[1].strip() if ':' in item else 'À compléter'} → [Lien](#)\n"
+            # Extrait le titre (avant :)
+            title = item.split(':')[0].strip()
+            md_content += f"### {title}\n\n"
+            # Ajoute 3 liens exemple
+            md_content += f"- [Ressource 1](#) - Description à compléter\n"
+            md_content += f"- [Ressource 2](#) - Description à compléter\n"
+            md_content += f"- [Ressource 3](#) - Description à compléter\n"
+            md_content += "\n"
         md_content += "\n"
     
     return md_content
