@@ -66,7 +66,7 @@ class SGPITerminal {
     attachEvents() {
         // Toggle terminal avec ~ ou Ctrl+`
         document.addEventListener('keydown', (e) => {
-            if (e.key === '~' || e.key === '`' && e.ctrlKey) {
+            if (e.key === '_' || e.key === '`' && e.ctrlKey) {
                 e.preventDefault();
                 this.toggle();
             }
