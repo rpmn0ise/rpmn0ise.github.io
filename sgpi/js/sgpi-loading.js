@@ -1,6 +1,6 @@
 /**
- * SGPI Loading Screen - Hacker Style
- * Uses existing SGPI CSS classes
+ * SGPI Loading Screen - Hacker Style (FIXED)
+ * Loading prend TOUT l'écran
  */
 
 class SGPILoader {
@@ -21,20 +21,144 @@ class SGPILoader {
         this.currentLog = 0;
         this.progress = 0;
         
+        this.injectCSS();
         this.create();
         this.start();
+    }
+    
+    injectCSS() {
+        const style = document.createElement('style');
+        style.id = 'sgpi-loader-style';
+        style.textContent = `
+            /* Loading Screen - FULL SCREEN */
+            .sgpi-loading-screen {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                background: #000000 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                z-index: 99999 !important;
+                transition: opacity 0.5s ease;
+            }
+            
+            .sgpi-loading-screen.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+            
+            .loader-content {
+                text-align: center;
+                max-width: 600px;
+                width: 90%;
+            }
+            
+            .loader-logo h1 {
+                font-family: 'Orbitron', monospace;
+                color: #00ff88;
+                font-size: 3rem;
+                margin-bottom: 2rem;
+                text-transform: uppercase;
+                letter-spacing: 4px;
+            }
+            
+            .loader-logs {
+                background: rgba(0, 0, 0, 0.8);
+                border: 1px solid #00ff88;
+                border-radius: 4px;
+                padding: 1rem;
+                height: 200px;
+                overflow-y: auto;
+                margin-bottom: 2rem;
+                text-align: left;
+                font-family: 'JetBrains Mono', 'Courier New', monospace;
+            }
+            
+            #loader-log-output {
+                color: #00ff88;
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
+            .log-line {
+                margin: 0.25rem 0;
+                opacity: 0;
+                animation: fadeIn 0.3s ease forwards;
+            }
+            
+            .log-line::before {
+                content: '> ';
+                color: #00d4ff;
+            }
+            
+            .log-success {
+                color: #00ff88;
+            }
+            
+            .log-success::after {
+                content: ' ✓';
+            }
+            
+            .progress-bar {
+                width: 100%;
+                height: 4px;
+                background: rgba(0, 255, 136, 0.1);
+                border-radius: 2px;
+                overflow: hidden;
+                margin-bottom: 0.5rem;
+            }
+            
+            .progress-fill {
+                height: 100%;
+                background: #00ff88;
+                width: 0%;
+                transition: width 0.3s ease;
+                box-shadow: 0 0 10px #00ff88;
+            }
+            
+            .progress-text {
+                display: flex;
+                justify-content: space-between;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 0.85rem;
+                color: #666;
+            }
+            
+            #loader-percent {
+                color: #00ff88;
+                font-weight: 700;
+            }
+            
+            @keyframes fadeIn {
+                to { opacity: 1; }
+            }
+            
+            /* Mobile */
+            @media (max-width: 768px) {
+                .loader-logo h1 {
+                    font-size: 2rem;
+                }
+                
+                .loader-logs {
+                    height: 150px;
+                    font-size: 0.8rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     }
     
     create() {
         const loader = document.createElement('div');
         loader.id = 'sgpi-loader';
-        loader.className = 'loading-screen'; // Use existing SGPI class
+        loader.className = 'sgpi-loading-screen';
         loader.innerHTML = `
             <div class="loader-content">
                 <div class="loader-logo">
-                    <h1 style="font-family: 'Orbitron', monospace; color: var(--neon-green); font-size: 3rem; margin-bottom: 2rem;">
-                        SGPI
-                    </h1>
+                    <h1>SGPI</h1>
                 </div>
                 
                 <div class="loader-logs">
@@ -59,90 +183,6 @@ class SGPILoader {
         this.progressBar = document.getElementById('loader-progress');
         this.percentText = document.getElementById('loader-percent');
         this.statusText = document.getElementById('loader-status');
-        
-        this.injectCSS();
-    }
-    
-    injectCSS() {
-        const style = document.createElement('style');
-        style.textContent = `
-            .loader-content {
-                text-align: center;
-                max-width: 600px;
-            }
-            
-            .loader-logs {
-                background: rgba(0, 0, 0, 0.8);
-                border: 1px solid var(--neon-green);
-                border-radius: 4px;
-                padding: 1rem;
-                height: 200px;
-                overflow-y: auto;
-                margin-bottom: 2rem;
-                text-align: left;
-                font-family: 'JetBrains Mono', 'Courier New', monospace;
-            }
-            
-            #loader-log-output {
-                color: var(--neon-green);
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-            
-            .log-line {
-                margin: 0.25rem 0;
-                opacity: 0;
-                animation: fadeIn 0.3s ease forwards;
-            }
-            
-            .log-line::before {
-                content: '> ';
-                color: var(--neon-cyan);
-            }
-            
-            .log-success {
-                color: var(--neon-green);
-            }
-            
-            .log-success::after {
-                content: ' ✓';
-            }
-            
-            .progress-bar {
-                width: 100%;
-                height: 4px;
-                background: rgba(0, 255, 136, 0.1);
-                border-radius: 2px;
-                overflow: hidden;
-                margin-bottom: 0.5rem;
-            }
-            
-            .progress-fill {
-                height: 100%;
-                background: var(--neon-green);
-                width: 0%;
-                transition: width 0.3s ease;
-                box-shadow: 0 0 10px var(--neon-green);
-            }
-            
-            .progress-text {
-                display: flex;
-                justify-content: space-between;
-                font-family: 'JetBrains Mono', monospace;
-                font-size: 0.85rem;
-                color: var(--text-muted);
-            }
-            
-            #loader-percent {
-                color: var(--neon-green);
-                font-weight: 700;
-            }
-            
-            @keyframes fadeIn {
-                to { opacity: 1; }
-            }
-        `;
-        document.head.appendChild(style);
     }
     
     start() {
@@ -179,6 +219,9 @@ class SGPILoader {
             this.loader.classList.add('hidden');
             setTimeout(() => {
                 this.loader.remove();
+                // Cleanup CSS
+                const style = document.getElementById('sgpi-loader-style');
+                if (style) style.remove();
             }, 500);
         }, 800);
     }
