@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Offline Package - SGPI</title>
+    <link rel="stylesheet" href="../css/sgpi-style.css">
+    <style>
+        .download-hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,212,255,0.1));
+            border-radius: var(--radius-lg);
+            margin-bottom: 3rem;
+        }
+        
+        .download-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .package-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+        
+        .info-card h3 {
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .file-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .file-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .download-btn {
+            font-size: 1.2rem;
+            padding: 1.5rem 3rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .progress-container {
+            display: none;
+            margin-top: 2rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(0,255,136,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--neon-green);
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo"><a href="../index.html"><h1>SGPI</h1></a></div>
+        <nav><ul>
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="../wiki/index.html">Wiki</a></li>
+            <li><a href="../wiki/tutos.html">Tutos</a></li>
+            <li><a href="../pages/projets.html">Projets</a></li>
+            <li><a href="../pages/about.html">À propos</a></li>
+            <li><a href="../acces.html" class="btn btn-primary">Discord</a></li>
+            <li><button id="theme-toggle" class="theme-toggle">☀️</button></li>
+        </ul></nav>
+    </div>
+</header>
+
+<main class="container">
+
+<div class="download-hero">
+    <div class="download-icon">📦</div>
+    <h1>Offline Package</h1>
+    <p class="tagline">Télécharge le wiki + tutos pour usage hors-ligne</p>
+</div>
+
+<div class="package-info">
+    <div class="info-card">
+        <h3>📚 Contenu</h3>
+        <ul class="file-list">
+            <li>✓ Wiki complet (14 catégories)</li>
+            <li>✓ Sources Markdown</li>
+            <li>✓ Tutoriels</li>
+            <li>✓ Scripts de génération</li>
+            <li>✓ Index HTML offline</li>
+        </ul>
+    </div>
+    
+    <div class="info-card">
+        <h3>⚙️ Utilisation</h3>
+        <p>Le package contient :</p>
+        <ul class="file-list">
+            <li>📄 Fichiers .md lisibles partout</li>
+            <li>🐍 Scripts Python pour HTML</li>
+            <li>🌐 Index navigable</li>
+            <li>📖 README détaillé</li>
+        </ul>
+    </div>
+    
+    <div class="info-card">
+        <h3>💾 Détails</h3>
+        <ul class="file-list">
+            <li>Format : ZIP</li>
+            <li>Taille : ~500 KB</li>
+            <li>Compatibilité : Tous OS</li>
+            <li>Requis : Aucun</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card" style="text-align: center; padding: 3rem;">
+    <h2 style="margin-bottom: 1.5rem;">Prêt à télécharger ?</h2>
+    <p style="margin-bottom: 2rem; color: var(--text-secondary);">
+        Le package sera généré et téléchargé automatiquement.
+    </p>
+    
+    <button class="btn btn-primary btn-large download-btn" onclick="startDownload()">
+        <span>📥</span>
+        <span>Télécharger Offline Package</span>
+    </button>
+    
+    <div class="progress-container" id="progress-container">
+        <p style="margin-bottom: 1rem; color: var(--neon-green);" id="progress-text">
+            Génération du package...
+        </p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-xl" style="background: rgba(255,170,0,0.05); border-color: #ffaa00;">
+    <h3 style="color: #ffaa00;">ℹ️ À propos du package offline</h3>
+    <p style="margin-bottom: 1rem;">
+        Ce package contient tous les fichiers sources en <strong>Markdown</strong> 
+        ainsi que des scripts Python pour générer des pages HTML.
+    </p>
+    <p style="margin-bottom: 1rem;">
+        <strong>Utilisation simple :</strong>
+    </p>
+    <ol style="margin-left: 2rem; line-height: 1.8;">
+        <li>Extrais le ZIP</li>
+        <li>Ouvre <code>index.html</code> dans un navigateur</li>
+        <li>Navigue les fichiers .md directement</li>
+        <li>(Optionnel) Utilise les scripts Python pour générer HTML</li>
+    </ol>
+</div>
+
+<div class="card mt-xl">
+    <h3>🛠️ Génération HTML (optionnel)</h3>
+    <p>Si tu veux générer des pages HTML depuis les fichiers Markdown :</p>
+    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; margin-top: 1rem; overflow-x: auto;"><code>python scripts/generate-wiki.py wiki/sources/confidentialite.md
+python scripts/generate-tutos.py tutos/sources/example-tuto.md</code></pre>
+</div>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 SGPI - Communauté Tech Underground</p>
+    <p style="color: var(--text-muted)">📚 150+ ressources • 60+ tutos • 🟢 Discord actif</p>
+</footer>
+
+<script src="../js/sgpi.js"></script>
+<script src="../js/sgpi-offline.js"></script>
+<script>
+function startDownload() {
+    const btn = document.querySelector('.download-btn');
+    const progressContainer = document.getElementById('progress-container');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    
+    // Disable button
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+    btn.innerHTML = '<span>⏳</span><span>Génération en cours...</span>';
+    
+    // Show progress
+    progressContainer.style.display = 'block';
+    
+    // Simulate progress
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 10;
+        progressFill.style.width = progress + '%';
+        
+        if (progress === 30) progressText.textContent = 'Collecte des fichiers wiki...';
+        if (progress === 60) progressText.textContent = 'Ajout des tutoriels...';
+        if (progress === 90) progressText.textContent = 'Création du ZIP...';
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            progressText.textContent = '✅ Téléchargement démarré !';
+            
+            // Trigger actual download
+            window.downloadOfflinePackage();
+            
+            // Reset after 3s
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.innerHTML = '<span>📥</span><span>Télécharger Offline Package</span>';
+                progressContainer.style.display = 'none';
+                progressFill.style.width = '0%';
+            }, 3000);
+        }
+    }, 200);
+}
+</script>
+
+</body>
+</html>
