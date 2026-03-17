@@ -147,6 +147,10 @@ def generate_category_page(category_id, md_file):
 </footer>
 
 <script src="../../js/sgpi.js"></script>
+<script src="../../js/sgpi-terminal.js"></script>
+<script src="../../js/sgpi-cursor.js"></script>
+<script src="../../js/sgpi-online.js"></script>
+<script src="../../js/sgpi-offline.js"></script>
 </body>
 </html>'''
     
