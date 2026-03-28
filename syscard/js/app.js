@@ -37,15 +37,53 @@ function App() {
     return user.deck.map(id => ALL_CARDS.find(c => c.id === id)).filter(Boolean);
   }, [user?.deck]);
 
-  // ── Auto-login from saved token ───────────
+  // ── Auto-login depuis le token sauvegardé ─
   useEffect(() => {
     const token = localStorage.getItem("syscard_token");
     if (!token) { setLoading(false); return; }
     API.getProfile()
       .then(u => { setUser(u); setLoggedIn(true); })
-      .catch(() => { localStorage.removeItem("syscard_token"); })
+      .catch(() => {
+        // Token expiré ou invalide → déconnexion silencieuse
+        localStorage.removeItem("syscard_token");
+      })
       .finally(() => setLoading(false));
   }, []);
+
+  // ── Refresh du profil toutes les 30s ───────
+  // Permet de voir les tokens/coins accordés par un admin
+  // sans avoir à se déconnecter/reconnecter
+  useEffect(() => {
+    if (!loggedIn || isGuest) return;
+    const interval = setInterval(async () => {
+      try {
+        const fresh = await API.getProfile();
+        setUser(prev => {
+          // Ne mettre à jour que si quelque chose a changé
+          // pour éviter des re-renders inutiles
+          const changed =
+            fresh.packTokens !== prev.packTokens ||
+            fresh.coins      !== prev.coins      ||
+            fresh.xp         !== prev.xp         ||
+            fresh.wins       !== prev.wins        ||
+            fresh.role       !== prev.role;
+          if (!changed) return prev;
+          // Notification si tokens ajoutés par admin
+          if (fresh.packTokens > prev.packTokens) {
+            notify(`🎁 +${fresh.packTokens - prev.packTokens} token(s) reçu(s) !`, "#ffbb00");
+          }
+          if (fresh.coins > prev.coins) {
+            notify(`💰 +${fresh.coins - prev.coins} coins reçus !`, "#ffbb00");
+          }
+          return { ...prev, ...fresh };
+        });
+      } catch {
+        // Silencieux — si l'API est down on ne déconnecte pas
+      }
+    }, 30000); // toutes les 30 secondes
+
+    return () => clearInterval(interval);
+  }, [loggedIn, isGuest]);
 
   // ── Notifications ─────────────────────────
   const notify = (msg, color = "#00ff88") => {
