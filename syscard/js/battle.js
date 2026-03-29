@@ -475,26 +475,53 @@ function ScreenBattle({ playerDeck, onClose, onWin, onLoss, difficulty = "normal
         </div>
       )}
 
-      {/* END screen */}
+      {/* END screen — overlay absolu sur le battle-field */}
       {phase === "end" && (
         <div style={{
-          position: "absolute", inset: 0, background: "rgba(0,0,0,0.88)",
-          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 20,
-          zIndex: 10,
+          position: "absolute", inset: 0, zIndex: 50,
+          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 24,
+          background: "rgba(3,3,10,0.97)",
+          padding: 32,
         }}>
+          {/* Résultat */}
           <div style={{
-            fontFamily: "var(--font-d)", fontSize: 28,
+            fontFamily: "var(--font-d)", fontSize: 32,
             color: winner === "player" ? "#00ff88" : "#ff2255",
             letterSpacing: 6,
+            textShadow: `0 0 30px ${winner === "player" ? "#00ff8866" : "#ff225566"}`,
             animation: "glitch 3s infinite",
           }}>
             {winner === "player" ? "VICTORY!" : "DEFEATED"}
           </div>
-          <div style={{ color: "#445566", fontSize: 11, fontFamily: "var(--font-b)" }}>
-            {winner === "player" ? "Root access granted. +100 XP +1 Pack token" : "Connection lost. +20 XP"}
+
+          {/* Sous-titre */}
+          <div style={{ color: "#445566", fontSize: 12, fontFamily: "var(--font-d)", letterSpacing: 2 }}>
+            {winner === "player"
+              ? "ROOT ACCESS GRANTED — +100 XP +1 TOKEN"
+              : "CONNECTION LOST — +20 XP"}
           </div>
-          <div style={{ display: "flex", gap: 12 }}>
-            <Btn color="#00cfff" onClick={initBattle}>REMATCH</Btn>
+
+          {/* Stats de la bataille */}
+          <div style={{
+            padding: "16px 24px", borderRadius: 8,
+            background: "rgba(0,0,0,0.5)", border: "1px solid #0a1a2a",
+            display: "flex", gap: 32, textAlign: "center",
+          }}>
+            {[
+              ["RÉSULTAT", winner === "player" ? "WIN" : "LOSS", winner === "player" ? "#00ff88" : "#ff2255"],
+              ["XP GAGNÉ", winner === "player" ? "+100" : "+20", "#ffbb00"],
+              ["TOKEN", winner === "player" ? "+1" : "+0", "#bf44ff"],
+            ].map(([label, val, color]) => (
+              <div key={label}>
+                <div style={{ fontFamily: "var(--font-d)", fontSize: 8, color: "#334455", letterSpacing: 2, marginBottom: 6 }}>{label}</div>
+                <div style={{ fontFamily: "var(--font-d)", fontSize: 18, color, fontWeight: 700 }}>{val}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Boutons */}
+          <div style={{ display: "flex", gap: 16 }}>
+            <Btn color="#00cfff" onClick={initBattle}>⚔️ REVANCHE</Btn>
             <Btn color="#ff2255" onClick={onClose}>EXIT</Btn>
           </div>
         </div>
