@@ -223,7 +223,7 @@ function FilterBar({ filter, onFilter, rarFilter, onRar, famFilter, onFam }) {
       </select>
       <select className="input" value={famFilter} onChange={e => onFam(e.target.value)} style={{ width: "auto", flex: "0 0 auto" }}>
         <option value="All">All Families</option>
-        {FAMILIES.map(f => <option key={f.name}>{f.icon} {f.name}</option>)}
+        {FAMILIES.map(f => <option key={f.name} value={f.name}>{f.icon} {f.name}</option>)}
       </select>
     </div>
   );
