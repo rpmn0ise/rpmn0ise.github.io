@@ -7,9 +7,9 @@
 const NAV = [
   { id:"pack",       label:"PACKS",   icon:"📦", color:"#00ff88" },
   { id:"collection", label:"CARDS",   icon:"📚", color:"#00cfff" },
-  { id:"deck",       label:"DECK",    icon:"🃏", color:"#bf44ff" },
   { id:"battle",     label:"BATTLE",  icon:"⚔️", color:"#ff2255" },
-  { id:"trade",      label:"TRADE",   icon:"🔄", color:"#ffbb00" },
+  { id:"shop",       label:"SHOP",    icon:"🏪", color:"#ffbb00" },
+  { id:"more",       label:"MORE",    icon:"⋯",  color:"#778899" },
 ];
 
 // ── App ───────────────────────────────────────
@@ -25,6 +25,11 @@ function App() {
   const [notif, setNotif]       = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
   const [difficulty, setDiff]   = useState("normal");
+  const [showLeaderboard, setShowLb]   = useState(false);
+  const [showProfile, setShowProfile]  = useState(null);  // username string
+  const [showMore, setShowMore]        = useState(false);
+  const [unreadNotifs, setUnreadNotifs] = useState(0);
+  const [questBadge, setQuestBadge]    = useState(0);
 
   // Local card objects (built from user.collection IDs + ALL_CARDS)
   const collection = React.useMemo(() => {
@@ -95,6 +100,11 @@ function App() {
       } catch {
         // Silencieux — si l'API est down on ne déconnecte pas
       }
+      // Vérifier les notifications non lues
+      try {
+        const notifData = await API.getNotifications();
+        setUnreadNotifs(notifData.unread || 0);
+      } catch {}
     }, 30000); // toutes les 30 secondes
 
     return () => clearInterval(interval);
@@ -138,6 +148,7 @@ function App() {
     }
     setUser(prev => ({ ...prev, ...data.user }));
     const hasLeg = (data.drawn || []).some(c => c.rarity === "Legendary");
+    progressQuest("open");
     notify(
       `📦 ${data.newCards} nouvelles cartes ! +${data.xpGained} XP${hasLeg ? " 🌟 LÉGENDAIRE !" : ""}`,
       hasLeg ? "#ffbb00" : "#00ff88"
@@ -163,12 +174,46 @@ function App() {
   };
 
   // ── Trade completed ───────────────────────
+  const handleShopBuy = (data) => {
+    setUser(prev => ({
+      ...prev,
+      coins:       data.coins       ?? prev.coins,
+      packTokens:  data.packTokens  ?? prev.packTokens,
+      avatar:      data.avatar      ?? prev.avatar,
+      borderStyle: data.borderStyle ?? prev.borderStyle,
+    }));
+    if (!isGuest) persist({ coins: data.coins, packTokens: data.packTokens });
+  };
+
+  const handleQuestClaimed = (data) => {
+    setUser(prev => ({
+      ...prev,
+      coins:      data.coins      ?? prev.coins,
+      packTokens: data.packTokens ?? prev.packTokens,
+      xp:         data.xp        ?? prev.xp,
+      level:      data.level     ?? prev.level,
+    }));
+    setQuestBadge(b => Math.max(0, b - 1));
+  };
+
   const handleTrade = (data) => {
     setUser(prev => ({ ...prev, collection: data.myNewCollection }));
     notify(`🔄 Échange terminé !`, "#ffbb00");
   };
 
   // ── Battle win/loss ───────────────────────
+  // ── Quest progress ───────────────────────
+  const progressQuest = async (type, amount = 1) => {
+    if (isGuest) return;
+    try {
+      await API.progressQuest(type, amount);
+      // Recharger badge quêtes
+      const data = await API.getQuests();
+      const completed = (data.quests || []).filter(q => q.completed && !q.claimed).length;
+      setQuestBadge(completed);
+    } catch {}
+  };
+
   const handleWin = () => {
     setUser(prev => ({
       ...prev,
@@ -178,6 +223,7 @@ function App() {
       packTokens: (prev.packTokens || 0) + 1,
     }));
     notify("⚔️ VICTOIRE ! +100 XP +1 Token", "#00ff88");
+    progressQuest("win");
   };
   const handleLoss = () => {
     setUser(prev => ({
@@ -415,7 +461,7 @@ function App() {
         borderTop:"1px solid #0a1a2a", flexShrink:0,
       }}>
         {NAV.map(item => (
-          <button key={item.id} onClick={() => setScreen(item.id)} style={{
+          <button key={item.id} onClick={() => item.id === "more" ? setShowMore(true) : setScreen(item.id)} style={{
             flex:1, background:"transparent", border:"none", cursor:"pointer",
             padding:"9px 4px 7px", display:"flex", flexDirection:"column",
             alignItems:"center", gap:2,
@@ -426,12 +472,18 @@ function App() {
             <span style={{ fontFamily:"var(--font-d)", fontSize:7, color:item.color, letterSpacing:1 }}>
               {item.label}
             </span>
-            {/* Point vert si pack dispo */}
+            {/* Badges */}
             {item.id === "pack" && (dailyAvail || (user?.packTokens || 0) > 0) && (
+              <span style={{ width:4, height:4, borderRadius:"50%", background:"#00ff88", boxShadow:"0 0 5px #00ff88", display:"block" }} />
+            )}
+            {item.id === "more" && (unreadNotifs > 0 || questBadge > 0) && (
               <span style={{
-                width:4, height:4, borderRadius:"50%",
-                background:"#00ff88", boxShadow:"0 0 5px #00ff88", display:"block",
-              }} />
+                background:"#ff2255", color:"#fff", borderRadius:"50%",
+                width:14, height:14, display:"flex", alignItems:"center", justifyContent:"center",
+                fontSize:7, fontFamily:"var(--font-d)", fontWeight:700,
+              }}>
+                {unreadNotifs + questBadge}
+              </span>
             )}
           </button>
         ))}
@@ -482,6 +534,80 @@ function App() {
       {/* Admin panel */}
       {showAdmin && user?.role === "admin" && (
         <ScreenAdmin username={user.username} onClose={() => setShowAdmin(false)} />
+      )}
+
+      {/* Leaderboard */}
+      {showLeaderboard && (
+        <ScreenLeaderboard
+          myUsername={user?.username}
+          onViewProfile={u => { setShowLb(false); setShowProfile(u); }}
+          onClose={() => setShowLb(false)}
+        />
+      )}
+
+      {/* Profil public */}
+      {showProfile && (
+        <ScreenProfile
+          username={showProfile}
+          myUsername={user?.username}
+          onClose={() => setShowProfile(null)}
+        />
+      )}
+
+      {/* Menu More */}
+      {showMore && (
+        <div style={{
+          position:"fixed", inset:0, background:"rgba(0,0,0,0.85)", zIndex:200,
+          display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:12,
+        }} onClick={() => setShowMore(false)}>
+          <div style={{ fontFamily:"var(--font-d)", color:"#778899", fontSize:10, letterSpacing:3, marginBottom:8 }}>
+            PLUS D'OPTIONS
+          </div>
+          {[
+            ["📋", "QUÊTES",      () => { setShowMore(false); setScreen("quests"); }],
+            ["🏆", "CLASSEMENT",  () => { setShowMore(false); setShowLb(true); }],
+            ["👤", "MON PROFIL",  () => { setShowMore(false); setShowProfile(user?.username); }],
+            ["🔔", "NOTIFICATIONS", () => { setShowMore(false); setScreen("notifications"); }],
+            ["🔄", "TRADING",     () => { setShowMore(false); setScreen("trade"); }],
+            ["🃏", "DECK",        () => { setShowMore(false); setScreen("deck"); }],
+            ["⚔️", "PVP ONLINE",  () => { setShowMore(false); setScreen("pvp"); }],
+          ].map(([icon, label, action]) => (
+            <button key={label} onClick={e => { e.stopPropagation(); action(); }} style={{
+              background:"rgba(0,0,0,0.7)", border:"1px solid #1a2a3a",
+              color:"#c8d8e8", padding:"12px 40px", borderRadius:6,
+              cursor:"pointer", fontFamily:"var(--font-d)", fontSize:11,
+              letterSpacing:2, display:"flex", gap:12, alignItems:"center",
+              width:220, transition:"all 0.15s",
+            }}>
+              <span style={{ fontSize:18 }}>{icon}</span> {label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Quêtes */}
+      {screen === "quests" && (
+        <ScreenQuests
+          user={user}
+          onQuestClaimed={handleQuestClaimed}
+          onClose={() => setScreen("home")}
+        />
+      )}
+
+      {/* Boutique */}
+      {screen === "shop" && (
+        <ScreenShop
+          user={user}
+          onBuy={handleShopBuy}
+          onClose={() => setScreen("home")}
+        />
+      )}
+
+      {/* Notifications */}
+      {screen === "notifications" && (
+        <ScreenNotifications
+          onClose={() => { setScreen("home"); setUnreadNotifs(0); }}
+        />
       )}
     </div>
   );

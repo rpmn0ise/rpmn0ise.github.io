@@ -72,3 +72,46 @@ const API = {
   adminAction: (action, targetUser, value) =>
     apiFetch("/admin", { method: "POST", body: { action, targetUser, value } }),
 };
+
+  // ── v0.4 additions ────────────────────────────
+  getLeaderboard: () =>
+    apiFetch("/profile?leaderboard=1"),
+
+  getProfile: (username) =>
+    apiFetch(`/profile?username=${encodeURIComponent(username)}`),
+
+  getQuests: () => apiFetch("/quests"),
+
+  progressQuest: (type, amount = 1) =>
+    apiFetch("/quests", { method:"POST", body:{ action:"progress", type, amount } }),
+
+  claimQuest: (questId) =>
+    apiFetch("/quests", { method:"POST", body:{ action:"claim", questId } }),
+
+  getShop: () => apiFetch("/shop"),
+
+  buyShopItem: (itemId, quantity = 1) =>
+    apiFetch("/shop", { method:"POST", body:{ action:"buy", itemId, quantity } }),
+
+  getTournaments: () =>
+    apiFetch("/tournament", { method:"POST", body:{ action:"list" } }),
+
+  joinTournament: (tournamentId) =>
+    apiFetch("/tournament", { method:"POST", body:{ action:"join", tournamentId } }),
+
+  leaveTournament: (tournamentId) =>
+    apiFetch("/tournament", { method:"POST", body:{ action:"leave", tournamentId } }),
+
+  createTournament: (name, size, prizeCoins, prizeTokens) =>
+    apiFetch("/tournament", { method:"POST", body:{ action:"create", name, size, prizeCoins, prizeTokens } }),
+
+  applyElo: (winnerName, loserName) =>
+    apiFetch("/tournament", { method:"POST", body:{ action:"apply_elo", winnerName, loserName } }),
+
+  getNotifications: () => apiFetch("/notifications"),
+
+  readAllNotifications: () =>
+    apiFetch("/notifications", { method:"POST", body:{ action:"read_all" } }),
+
+  clearNotifications: () =>
+    apiFetch("/notifications", { method:"POST", body:{ action:"clear" } }),
