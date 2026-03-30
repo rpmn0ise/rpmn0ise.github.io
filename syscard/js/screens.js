@@ -214,7 +214,7 @@ function ScreenCollection({ collection, onClose }) {
         </select>
         <select className="input" value={famFil} onChange={e => setFamFil(e.target.value)} style={{ width:"auto" }}>
           <option value="All">Toutes familles</option>
-          {FAMILIES.map(f => <option key={f.name}>{f.icon} {f.name}</option>)}
+          {FAMILIES.map(f => <option key={f.name} value={f.name}>{f.icon} {f.name}</option>)}
         </select>
         <select className="input" value={sort} onChange={e => setSort(e.target.value)} style={{ width:"auto" }}>
           <option value="id">Tri: #ID</option>
