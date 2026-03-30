@@ -37,15 +37,30 @@ function App() {
     return user.deck.map(id => ALL_CARDS.find(c => c.id === id)).filter(Boolean);
   }, [user?.deck]);
 
-  // ── Auto-login depuis le token sauvegardé ─
+  // ── Auto-login depuis le token sauvegardé ─────────────
+  // Appelé UNE SEULE FOIS au montage du composant.
+  // Si le token est valide → connexion automatique sans écran de login.
+  // Si erreur 401/403 (token expiré) → supprime le token → écran de login.
+  // Si erreur réseau temporaire (500, timeout) → garde le token → réessaie.
   useEffect(() => {
     const token = localStorage.getItem("syscard_token");
     if (!token) { setLoading(false); return; }
+
     API.getProfile()
-      .then(u => { setUser(u); setLoggedIn(true); })
-      .catch(() => {
-        // Token expiré ou invalide → déconnexion silencieuse
-        localStorage.removeItem("syscard_token");
+      .then(u => {
+        setUser(u);
+        setLoggedIn(true);
+      })
+      .catch(err => {
+        // On ne supprime le token QUE si c'est une vraie erreur d'auth
+        // pas une erreur réseau temporaire
+        const msg = (err?.message || "").toLowerCase();
+        const isAuthError = msg.includes("token") || msg.includes("unauthorized") || msg.includes("no token") || msg.includes("invalid");
+        if (isAuthError) {
+          localStorage.removeItem("syscard_token");
+        }
+        // Si erreur réseau → on laisse le token, l'utilisateur restera sur login
+        // mais son token sera réutilisé à la prochaine tentative
       })
       .finally(() => setLoading(false));
   }, []);
