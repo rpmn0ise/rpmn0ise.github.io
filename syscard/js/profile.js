@@ -120,7 +120,7 @@ function ScreenProfile({ username, myUsername, onClose }) {
   const loadProfile = async () => {
     setLoading(true); setError(null);
     try {
-      const data = await API.getProfile(username);
+      const data = await API.getPublicProfile(username);
       setProfile(data);
     } catch(e) { setError(e.message); }
     finally { setLoading(false); }
