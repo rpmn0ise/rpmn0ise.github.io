@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Rig - RPMN0ISE</title>
+    <link rel="stylesheet" href="/assets/css/style-unified.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/luminous-basic.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <a href="/setup" style="color:#81a1c1; text-decoration:none; font-weight: bold;">← Back to Setup Hub</a>
+        
+        <h1 class="page-title">🎮 GAMING PC (Windows)</h1>
+        <p style="text-align:center; color:#d8dee9; margin-bottom:40px;">My primary station for high-performance gaming, simulation, and AAA titles.</p>
+
+        <h2 style="color:#88c0d0; border-bottom: 1px solid #4c566a; padding-bottom:10px;">📸 Build Gallery</h2>
+        <div class="photo-grid">
+            <a href="/assets/img/pc-main.jpg" class="lightbox-img"><img src="/assets/img/pc-main.jpg" alt="Full Setup View"></a>
+            <a href="/assets/img/pc-internal.jpg" class="lightbox-img"><img src="/assets/img/pc-internal.jpg" alt="Internal Components"></a>
+            <a href="/assets/img/pc-night.jpg" class="lightbox-img"><img src="/assets/img/pc-night.jpg" alt="RGB Lighting Night View"></a>
+        </div>
+
+        <div class="details-flex" style="display:flex; gap:40px; margin-top:40px; flex-wrap:wrap;">
+            
+            <div style="flex:2; min-width:300px;">
+                <h3 style="color:#88c0d0;">💾 System Specifications</h3>
+                <div class="specs-list" style="background:#2e3440; padding:20px; border-radius:12px; border:1px solid #4c566a;">
+                    <div class="spec-line"><strong>CPU:</strong> AMD Ryzen 5 7600X 3D</div>
+                    <div class="spec-line"><strong>GPU:</strong> NVIDIA RTX 4060</div>
+                    <div class="spec-line"><strong>RAM:</strong> 32GB DDR5 5600MHz</div>
+                    <div class="spec-line"><strong>Storage:</strong> 1TB NVMe M.2 SSD (7600Mb/s)</div>
+                    <div class="spec-line"><strong>Motherboard:</strong> TUF GAMING B650-PLUS WIFI</div>
+                    <div class="spec-line"><strong>PSU:</strong> MSI MAG A650GL</div>
+                    <div class="spec-line"><strong>Case:</strong> MSI MAG FORGE M100R</div>
+                </div>
+            </div>
+
+            <div style="flex:1; min-width:250px;">
+                <h3 style="color:#a3be8c;">🛒 Parts List</h3>
+                <ul class="buy-list">
+                    <li><a href="#" target="_blank">CPU on Amazon</a></li>
+                    <li><a href="#" target="_blank">GPU Listing</a></li>
+                    <li><a href="#" target="_blank">RAM Upgrade Kit</a></li>
+                    <li><a href="#" target="_blank">Case Details</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="details-flex" style="display:flex; gap:40px; margin-top:40px; flex-wrap:wrap;">
+            
+            <div style="flex:1; min-width:300px;">
+                <h3 style="color:#ebcb8b;">⌨️ Peripherals & Gear</h3>
+                <div class="specs-grid-mini">
+                    <div class="spec-item"><span class="spec-label">Keyboard:</span> RK M87 Mechanical</div>
+                    <div class="spec-item"><span class="spec-label">Mouse:</span> Logitech G305</div>
+                    <div class="spec-item"><span class="spec-label">Headset:</span> Soundcore Space Q30</div>
+                    <div class="spec-item"><span class="spec-label">Monitor:</span> Asus 27" 165Hz</div>
+                    <div class="spec-item"><span class="spec-label">Audio:</span> Samsung Home Theater</div>
+                </div>
+            </div>
+
+            <div style="flex:1; min-width:250px;">
+                <h3 style="color:#81a1c1;">📚 Optimization Tools</h3>
+                <div class="resource-box" style="background:#3b4252; padding:15px; border-radius:8px;">
+                    <ul style="margin:0; padding-left:15px; color:#d8dee9;">
+                        <li><a href="https://www.nvidia.com/en-us/geforce/geforce-experience/" target="_blank">NVIDIA Control Panel</a></li>
+                        <li><a href="https://www.asus.com/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b650-plus-wifi/" target="_blank">B650 Drivers</a></li>
+                        <li><a href="https://github.com/ChrisTitusTech/winutil" target="_blank">Windows Debloat Tool</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/Luminous.min.js"></script>
+    <script>
+        new LuminousGallery(document.querySelectorAll(".lightbox-img"));
+    </script>
+
+    <style>
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .photo-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #4c566a; transition: 0.3s; }
+        .photo-grid img:hover { border-color: #88c0d0; transform: scale(1.02); }
+        
+        .spec-line { padding: 8px 0; border-bottom: 1px solid #3b4252; color: #d8dee9; }
+        .spec-line:last-child { border-bottom: none; }
+        .spec-line strong { color: #88c0d0; width: 120px; display: inline-block; }
+
+        .buy-list { list-style: "→ "; color: #d8dee9; line-height: 2; }
+        .buy-list a { color: #a3be8c; text-decoration: none; }
+        .buy-list a:hover { text-decoration: underline; }
+
+        .specs-grid-mini { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    </style>
+
+</body>
+</html>
