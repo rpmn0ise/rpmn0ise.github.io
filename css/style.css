@@ -627,7 +627,41 @@ pre + p, pre + h2, pre + h3, pre + ul {
     margin-top: 25px !important;
 }
 
-
+/* === RESPONSIVE FIXES === */
+@media (max-width: 768px) {
+    #search-toggle {
+        left: 10px; /* au lieu de 175px */
+        top: 10px;
+    }
+    
+    #mini-search {
+        width: calc(100vw - 80px);
+        max-width: 280px;
+    }
+    
+    .audio-player {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Tables scroll horizontal */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+    
+    /* Prevent padding from breaking width */
+    .content {
+        padding: 16px;
+    }
+    
+    .layout {
+        padding: 16px;
+    }
+}
 
 
 
