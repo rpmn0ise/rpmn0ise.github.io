@@ -140,10 +140,16 @@ main.content,
 }
 
 /* === FIX 6: Hamburger Menu - HIDE on Desktop === */
-.nav-toggle {
-    display: none !important;
+/* Fix burger animation X */
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px) !important;
 }
-
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0 !important;
+}
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px) !important;
+}
 /* === FIX 7: Footer Fix === */
 footer {
     background: var(--bg-secondary, #3b4252);
