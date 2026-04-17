@@ -1,94 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Setup - RPMN0ISE</title>
-    <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #2e3440; color: #eceff4; line-height: 1.6; }
-.container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-nav { background: rgba(59, 66, 82, 0.95); padding: 15px 30px; border-bottom: 1px solid rgba(136, 192, 208, 0.3); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
-nav ul { list-style: none; display: flex; gap: 25px; flex-wrap: wrap; align-items: center; }
-nav a { color: #eceff4; text-decoration: none; transition: all 0.3s; padding: 5px 0; position: relative; }
-nav a:hover { color: #88c0d0; }
-nav a.logo { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
-.page-title { font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin-bottom: 20px; background: linear-gradient(135deg, #88c0d0, #5e81ac); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.page-subtitle { font-size: 1.2rem; color: #d8dee9; margin-bottom: 50px; }
-.section { margin: 60px 0; }
-.section-title { font-family: 'Orbitron', sans-serif; font-size: 2rem; text-transform: uppercase; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
-.card { background: rgba(59, 66, 82, 0.7); padding: 30px; border-radius: 15px; border: 1px solid rgba(136, 192, 208, 0.3); margin-bottom: 20px; transition: all 0.3s; }
-.card:hover { border-color: #88c0d0; box-shadow: 0 8px 25px rgba(0,0,0,0.4); transform: translateY(-5px); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-footer { background: #3b4252; padding: 40px 20px; text-align: center; margin-top: 100px; border-top: 1px solid rgba(136, 192, 208, 0.3); }
-footer p { color: #d8dee9; font-size: 0.95rem; }
-@media (max-width: 768px) { nav ul { flex-direction: column; gap: 15px; } }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Setup - RPMN0ISE</title>
+<link rel="stylesheet" href="/assets/css/style-unified.css">
 </head>
 <body>
 
-<nav>
-    <ul>
-        <li><a href="/" class="logo">RPMN0ISE</a></li>
-        <li><a href="/">Hub</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/gaming">Gaming</a></li>
-        <li><a href="/setup">Setup</a></li>
-        <li><a href="/media">Media</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/contact">Contact</a></li>
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" style="font-family:'Orbitron',sans-serif;font-weight:700;color:#88c0d0;text-decoration:none">RPMN0ISE</a>
+    <button class="burger" id="burger-btn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="/">Hub</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/gaming">Gaming</a></li>
+      <li><a href="/setup" class="active">Setup</a></li>
+      <li><a href="/media">Media</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/stats">Stats</a></li>
     </ul>
+  </div>
 </nav>
 
 <div class="container">
 
-        <h1 class="page-title">💻 MY SETUP</h1>
-        <p class="page-subtitle">Hardware, software, and workspace showcase</p>
-        
-        <div class="section">
-            <h2 class="section-title">🖥️ HARDWARE</h2>
-            <div class="card">
-                <h3 style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px;">PC SPECS</h3>
-                <div style="display: grid; gap: 15px;">
-                    <div><strong style="color: #88c0d0;">CPU:</strong> [Your CPU]</div>
-                    <div><strong style="color: #88c0d0;">GPU:</strong> [Your GPU]</div>
-                    <div><strong style="color: #88c0d0;">RAM:</strong> [Your RAM]</div>
-                    <div><strong style="color: #88c0d0;">Storage:</strong> [Your Storage]</div>
-                    <div><strong style="color: #88c0d0;">Motherboard:</strong> [Your MB]</div>
-                </div>
-            </div>
-            
-            <div class="card" style="margin-top: 20px;">
-                <h3 style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px;">PERIPHERALS</h3>
-                <div style="display: grid; gap: 15px;">
-                    <div><strong style="color: #88c0d0;">Keyboard:</strong> [Your Keyboard]</div>
-                    <div><strong style="color: #88c0d0;">Mouse:</strong> [Your Mouse]</div>
-                    <div><strong style="color: #88c0d0;">Headset:</strong> [Your Headset]</div>
-                    <div><strong style="color: #88c0d0;">Monitor:</strong> [Your Monitor]</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">⚙️ SOFTWARE</h2>
-            <div class="card">
-                <h3 style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px;">SYSTEM</h3>
-                <div style="display: grid; gap: 15px;">
-                    <div><strong style="color: #88c0d0;">OS:</strong> Arch Linux (or your OS)</div>
-                    <div><strong style="color: #88c0d0;">DE/WM:</strong> [Your Desktop Environment]</div>
-                    <div><strong style="color: #88c0d0;">Terminal:</strong> [Your Terminal]</div>
-                    <div><strong style="color: #88c0d0;">Editor:</strong> [Your Editor]</div>
-                </div>
-            </div>
-        </div>
-        
+<h1 class="page-title">💻 MY SETUPS</h1>
+
+<!-- SETUP 1: PC GAMING -->
+<div class="setup-section" id="gaming-pc">
+<h2>🎮 PC GAMING (Windows)</h2>
+<p style="margin-bottom:30px;color:#d8dee9">High-performance gaming rig for simulation and AAA titles</p>
+
+<h3 style="margin:20px 0;color:#88c0d0">💾 Specs</h3>
+<div class="specs-grid">
+<div class="spec-item"><span class="spec-label">CPU:</span> Ryzen 5 7600X 3D</div>
+<div class="spec-item"><span class="spec-label">GPU:</span> NVIDIA RTX 4060</div>
+<div class="spec-item"><span class="spec-label">RAM:</span> 32Gb DDR5 5600Mz</div>
+<div class="spec-item"><span class="spec-label">Storage:</span> SSD M2 NVMe 1To 7600Mb/s</div>
+<div class="spec-item"><span class="spec-label">Motherboard:</span> TUF GAMING B650-PLUS WIFI</div>
+<div class="spec-item"><span class="spec-label">PSU:</span> MSI MAG A650GL</div>
+<div class="spec-item"><span class="spec-label">Case:</span> MSI MAG FORGE M100R</div>
+</div>
+
+<h3 style="margin:30px 0 20px;color:#88c0d0">⌨️ Peripherals</h3>
+<div class="specs-grid">
+<div class="spec-item"><span class="spec-label">Keyboard:</span> RK M87 Mechanical</div>
+<div class="spec-item"><span class="spec-label">Mouse:</span> Logitech G305</div>
+<div class="spec-item"><span class="spec-label">Headset:</span> Soundcore Space Q30</div>
+<div class="spec-item"><span class="spec-label">Monitor:</span> Asus 27' 165Hz</div>
+<div class="spec-item"><span class="spec-label">Speakers:</span> Samsung Home Theather System</div>
+</div>
+</div>
+<br>
+  
+<!-- SETUP 2: PC ÉTUDES -->
+<div class="setup-section" id="studies-pc">
+<h2>🐧 STUDY PC (Arch Linux)</h2>
+<p style="margin-bottom:30px;color:#d8dee9">Recovered old PC running Arch Linux for studies and development</p>
+
+<h3 style="margin:20px 0;color:#88c0d0">💾 Specs (Old Hardware)</h3>
+<div class="specs-grid">
+<div class="spec-item"><span class="spec-label">CPU:</span> Intel Core i3-1115G4</div>
+<div class="spec-item"><span class="spec-label">GPU:</span> Intel UHD Graphics</div>
+<div class="spec-item"><span class="spec-label">RAM:</span> 4GB  DDR4-3200</div>
+<div class="spec-item"><span class="spec-label">Storage:</span> 256GB SSD</div>
+</div>
+
+<h3 style="margin:30px 0 20px;color:#88c0d0">⚙️ Software</h3>
+<div class="specs-grid">
+<div class="spec-item"><span class="spec-label">OS:</span> Arch Linux</div>
+<div class="spec-item"><span class="spec-label">DE/WM:</span> Hyprland</div>
+<div class="spec-item"><span class="spec-label">Terminal:</span> Kitty</div>
+<div class="spec-item"><span class="spec-label">Editor:</span> VSCode, Sublime text</div>
+<div class="spec-item"><span class="spec-label">Shell:</span> Zsh</div>
+</div>
+
+<p style="margin-top:20px;color:#81a1c1">
+<strong>Why Arch?</strong> Lightweight, customizable, perfect for learning Linux internals
+</p>
+</div>
+<br>
+
+<div class="setup-section" id="homelab">
+    <h2>🖥️ HOMELAB SERVER</h2>
+    <p style="margin-bottom:30px;color:#d8dee9">Self-hosted services and learning platform</p>
+
+    <div class="specs-grid">
+        <div class="spec-item"><span class="spec-label">Infrastructure:</span> Docker & Docker Compose</div>
+        <div class="spec-item"><span class="spec-label">OS:</span> Linux (Ubuntu/Debian)</div>
+        <div class="spec-item"><span class="spec-label">Main Service:</span> Jellyfin (Media Server)</div>
+        <div class="spec-item"><span class="spec-label">Security:</span> Reverse Proxy, SSL, Firewall configuration</div>
+    </div>
+
+    <p style="margin-top:20px;color:#81a1c1">
+        <strong>Focus:</strong> Maîtrise de la conteneurisation et sécurisation des accès externes pour un usage personnel fiable.
+    </p>
+</div>
+<br>
+
+<div class="setup-section" id="ps2">
+    <h2>🎮 PLAYSTATION 2</h2>
+    <p style="margin-bottom:30px;color:#d8dee9">Classic gaming console - Pure Experience</p>
+
+    <div class="specs-grid">
+        <div class="spec-item"><span class="spec-label">Status:</span> Original console (Vanilla)</div>
+        <div class="spec-item"><span class="spec-label">Storage:</span> Original Memory Cards</div>
+        <div class="spec-item"><span class="spec-label">Hardware:</span> Stock hardware</div>
+        <div class="spec-item"><span class="spec-label">Legendary Game:</span> Gran Turismo 4</div>
+    </div>
+</div>
+<br>
+
+<div class="setup-section" id="ps3">
+    <h2>🎮 PLAYSTATION 3</h2>
+    <p style="margin-bottom:30px;color:#d8dee9">Next-gen PlayStation console - Fully Modded</p>
+
+    <div class="specs-grid">
+        <div class="spec-item"><span class="spec-label">CFW:</span> Evilnat 4.90</div>
+        <div class="spec-item"><span class="spec-label">Management:</span> Webman Mod</div>
+        <div class="spec-item"><span class="spec-label">Storage:</span> Upgraded Internal HDD</div>
+        <div class="spec-item"><span class="spec-label">Features:</span> Backup loading & Thermal control</div>
+    </div>
+</div>
+<br>
+
+<div class="setup-section" id="arcade">
+    <h2>🕹️ CUSTOM ARCADE MACHINE</h2>
+    <p style="margin-bottom:30px;color:#d8dee9">Handmade arcade cabinet with Raspberry Pi</p>
+
+    <h3 style="margin:20px 0;color:#88c0d0">💾 Hardware</h3>
+    <div class="specs-grid">
+        <div class="spec-item"><span class="spec-label">Brain:</span> Raspberry Pi</div>
+        <div class="spec-item"><span class="spec-label">Screen:</span> Recovered Monitor (Recycled)</div>
+        <div class="spec-item"><span class="spec-label">Controls:</span> Arcade Joystick & Sanwa-style buttons</div>
+        <div class="spec-item"><span class="spec-label">Art:</span> 90's Retro Arcade Aesthetic</div>
+    </div>
+
+    <h3 style="margin:30px 0 20px;color:#88c0d0">⚙️ Software</h3>
+    <div class="specs-grid">
+        <div class="spec-item"><span class="spec-label">OS:</span> EmulationStation / RetroPie</div>
+        <div class="spec-item"><span class="spec-label">Emulators:</span> MAME, NeoGeo, SNES</div>
+        <div class="spec-item"><span class="spec-label">Players:</span> Solo & Local Multiplayer</div>
+    </div>
+
+    <p style="margin-top:20px;color:#81a1c1">
+        <strong>Build Story:</strong> Un projet de restauration basé sur la récupération, upgradé pour retrouver les sensations des salles d'arcade des années 90.
+    </p>
+</div>
+
 </div>
 
 <footer>
-    <p>© 2026 RPMN0ISE • Built with passion for gaming, tech & audio</p>
-    <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.7;">Powered by Nord Theme × Gaming UI</p>
+<p>© 2026 RPMN0ISE • Built with passion for gaming, tech & audio</p>
 </footer>
 
 </body>
