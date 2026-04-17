@@ -237,20 +237,20 @@ section.block {
     }
     
     /* Sidebar mobile */
-    .sidebar,
-    .sidebar-gaming,
-    aside {
-        order: 2;
-        margin-top: var(--spacing-xl, 32px);
-        border-top: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
-        padding-top: var(--spacing-xl, 32px);
-        position: static;
-    }
-    
-    .content,
-    main.content {
-        order: 1;
-    }
+   /* Si la sidebar est une Table of Contents → mettre avant le contenu */
+   @media (max-width: 968px) {
+       .sidebar,
+       .sidebar-gaming,
+       aside {
+           order: -1;    /* avant main */
+           position: static;
+           margin-bottom: 16px;
+           margin-top: 0;
+           border-top: none;
+           border-bottom: var(--border-primary, 1px solid rgba(136, 192, 208, 0.3));
+           padding-bottom: 16px;
+       }
+   }
 }
 
 @media (max-width: 640px) {
