@@ -347,23 +347,29 @@ footer p {
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
         align-items: flex-start;
+        padding: 12px 0;
     }
-    
+    nav ul li {
+        width: 100%;
+    }
+    nav ul a {
+        display: block;
+        padding: 8px 0;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
     .container {
         padding: 60px 15px;
     }
-    
     .page-title {
         font-size: 2rem;
     }
-    
     .grid,
     .stats-grid {
         grid-template-columns: 1fr;
     }
-    
     .stat-card {
         padding: 20px 30px;
     }
