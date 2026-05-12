@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Gaming – RPMN0ISE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming – RPMN0ISE</title>
   <link rel="stylesheet" href="../../assets/css/rpmn0ise.css">
 </head>
 <body>
 
-      <nav class="site-nav">
+  <nav class="site-nav">
     <div class="container">
       <a href="/" class="nav-logo">RPMN0ISE</a>
       <div class="nav-links">
@@ -41,56 +41,38 @@
     <a href="/rpmn0ise/contact/index.html">Contact</a>
   </div>
 
-<!-- LAYOUT SANS COLONNE DROITE -->
-<div class="container"><div class="layout-with-sidebar">
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-        <h3>Contents</h3>
-        <ul>
-            <li>BeamNG</li>
-            <li>Retro & Emulation</li>
-            <li>Mods & Custom Setups</li>
-            <li>Tips & Guides</li>
-            <li>Hardware / Gaming Gear</li>
-        </ul>
-    </aside>
+  <div class="page-header">
+    <div class="container">
+      <p class="page-eyebrow mono">// Gaming</p>
+      <h1 class="page-title">🎮 Gaming</h1>
+      <p class="page-desc">Gaming from a technical and analytical angle: performance, engines,
+        hardware impact, mods, and experimentation.</p>
+    </div>
+  </div>
 
-    <!-- MAIN CONTENT -->
-    <main class="prose">
-        <h1>Gaming</h1>
-        <p>
-        Gaming from a technical and analytical angle: performance, engines,
-        hardware impact, mods, and experimentation.
-        </p>
+  <section class="section">
+    <div class="container">
+      <div class="cards">
 
-        <section class="card">
-          <h2>Guides</h2>
-          <p>Optimization, configuration, modding, and technical workflows.</p>
-          <ul>
-            <li><a href="guides/index.html">Browse gaming guides</a></li>
-          </ul>
-        </section>
+        <a href="guides/index.html" class="card card--gaming">
+          <h3 class="card-title">Guides</h3>
+          <p class="card-desc">Optimization, configuration, modding, and technical workflows.</p>
+          <span class="card-arrow mono">explore &rarr;</span>
+        </a>
+        <a href="knowledge-base/index.html" class="card card--gaming">
+          <h3 class="card-title">Knowledge Base</h3>
+          <p class="card-desc">Concepts: engines, rendering, input latency, FPS theory.</p>
+          <span class="card-arrow mono">explore &rarr;</span>
+        </a>
+        <a href="blog/index.html" class="card card--gaming">
+          <h3 class="card-title">Blog</h3>
+          <p class="card-desc">Personal tests, benchmarks, opinions, and long-term observations.</p>
+          <span class="card-arrow mono">explore &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        <section class="card">
-          <h2>Knowledge Base</h2>
-          <p>Concepts: engines, rendering, input latency, FPS theory.</p>
-          <ul>
-            <li><a href="knowledge/index.html">Access gaming knowledge</a></li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <h2>Blog</h2>
-          <p>Personal tests, benchmarks, opinions, and long-term observations.</p>
-          <ul>
-            <li><a href="blog/index.html">Read gaming blog</a></li>
-          </ul>
-        </section>
-
-
-    </main>
-</div>
-</div>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
@@ -105,9 +87,6 @@
   </div>
 </footer>
 
-
-
-<!-- Gaming UI Script -->
   <script>
     (function(){
       var b=document.getElementById('nav-burger'),d=document.getElementById('nav-drawer');
@@ -116,5 +95,6 @@
       d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');d.classList.remove('open');});});
     })();
   </script>
+
 </body>
 </html>

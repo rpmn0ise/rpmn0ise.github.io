@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Linux & Open Source – RPMN0ISE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux – RPMN0ISE</title>
   <link rel="stylesheet" href="../../assets/css/rpmn0ise.css">
 </head>
 <body>
 
-      <nav class="site-nav">
+  <nav class="site-nav">
     <div class="container">
       <a href="/" class="nav-logo">RPMN0ISE</a>
       <div class="nav-links">
@@ -41,68 +41,46 @@
     <a href="/rpmn0ise/contact/index.html">Contact</a>
   </div>
 
-<div class="container">
-  
-    <aside class="sidebar">
-        <h3>Sections</h3>
-        <ul>
-            <li>Distro Hopping</li>
-            <li>Customization & Ricing</li>
-            <li>Open Source Projects</li>
-            <li>Tips & Guides</li>
-        </ul>
-    </aside>
+  <div class="page-header">
+    <div class="container">
+      <p class="page-eyebrow mono">// Linux</p>
+      <h1 class="page-title">🐧 Linux</h1>
+      <p class="page-desc">This section is dedicated to Linux systems, workflows, experiments, and long-term usage.
+          It acts as a structured hub combining guides, factual documentation, and personal notes.</p>
+    </div>
+  </div>
 
-    <main class="prose">
-        <h1>Linux</h1>
-        <p>
-          This section is dedicated to Linux systems, workflows, experiments, and long-term usage.
-          It acts as a structured hub combining guides, factual documentation, and personal notes.
-        </p>
+  <section class="section">
+    <div class="container">
+      <div class="cards">
 
-        <section class="card">
-         <h2>Guides</h2>
-         <p>
-           Progressive and structured guides meant to be read end-to-end.
-           Installation, distribution choices, system setup, and ricing.
-        </p>
-        <ul>
-           <li><a href="guides/index.html">Browse Linux guides</a></li>
-       </ul>
-      </section>
+        <a href="guides/index.html" class="card card--linux">
+          <h3 class="card-title">Guides</h3>
+          <p class="card-desc">Progressive and structured guides meant to be read end-to-end.
+           Installation, distribution choices, system setup, and ricing.</p>
+          <span class="card-arrow mono">explore &rarr;</span>
+        </a>
+        <a href="knowledge-base/index.html" class="card card--linux">
+          <h3 class="card-title">Knowledge Base</h3>
+          <p class="card-desc">A factual, wiki-like collection of Linux concepts.
+        Each page is independent and focused on a single topic.</p>
+          <span class="card-arrow mono">explore &rarr;</span>
+        </a>
+        <a href="blog/index.html" class="card card--linux">
+          <h3 class="card-title">Blog</h3>
+          <p class="card-desc">Dated entries: experiments, failures, opinions, and system breakages.</p>
+          <span class="card-arrow mono">explore &rarr;</span>
+        </a>
+        <a href="philosophy/index.html" class="card card--linux">
+          <h3 class="card-title">Philosophy</h3>
+          <p class="card-desc">Notes about why Linux is used, how it fits into daily workflows,
+        and how this system evolves over time.</p>
+          <span class="card-arrow mono">explore &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-      <section class="card">
-       <h2>Knowledge Base</h2>
-       <p>
-        A factual, wiki-like collection of Linux concepts.
-        Each page is independent and focused on a single topic.
-       </p>
-       <ul>
-         <li><a href="knowledge/index.html">Access the Linux knowledge base</a></li>
-      </ul>
-     </section>
-
-    <section class="card">
-      <h2>Blog</h2>
-     <p>
-        Dated entries: experiments, failures, opinions, and system breakages.
-      </p>
-      <ul>
-        <li><a href="blog/index.html">Read Linux blog entries</a></li>
-     </ul>
-    </section>
-
-    <section class="card">
-     <h2>Philosophy</h2>
-     <p>
-        Notes about why Linux is used, how it fits into daily workflows,
-        and how this system evolves over time.
-     </p>
-    </section>
-
-    </main>
-</div>
-</div>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
@@ -117,9 +95,6 @@
   </div>
 </footer>
 
-
-
-<!-- Gaming UI Script -->
   <script>
     (function(){
       var b=document.getElementById('nav-burger'),d=document.getElementById('nav-drawer');
@@ -128,5 +103,6 @@
       d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');d.classList.remove('open');});});
     })();
   </script>
+
 </body>
 </html>
