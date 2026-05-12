@@ -43,8 +43,7 @@
   </div>
 
     <!-- LAYOUT -->
-    <div class="container">
-
+    <div class="container"><div class="layout-with-sidebar">
         <!-- LEFT SIDEBAR -->
         <aside class="sidebar">
             <h3>Contents</h3>
@@ -86,17 +85,21 @@
     </div>
 
     <!-- FOOTER -->
-    <footer>
-    <p>© 2026 RPMN0ISE • Built with passion for tech and gaming</p>
-    <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-xs);">
-        Powered by <span style="color: var(--accent-primary);">Nord Theme</span>
-    </p>
+    <footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-copy mono">&copy; 2026 RPMN0ISE &mdash; built by hand, no frameworks harmed</span>
+      <div class="footer-links">
+        <a href="https://github.com/rpmn0ise" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://steamcommunity.com/id/TherockyRPM/" target="_blank" rel="noopener">Steam</a>
+        <a href="https://instagram.com/rpmn0ise" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://reddit.com/user/rpmn0ise" target="_blank" rel="noopener">Reddit</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<script src="/js/main.js"></script>
-
 <!-- Gaming UI Script -->
-<script src="/js/gaming-ui.js"></script>
   <script>
     (function(){
       var b=document.getElementById('nav-burger'),d=document.getElementById('nav-drawer');
