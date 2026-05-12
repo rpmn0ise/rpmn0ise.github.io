@@ -4,29 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - RPMN0ISE</title>
-    <link rel="stylesheet" href="/assets/css/style-unified.css">
+  <link rel="stylesheet" href="../assets/css/rpmn0ise.css">
 </head>
 <body>
 
-<nav id="main-nav">
-  <div class="nav-inner">
-    <a href="/" class="nav-brand" style="font-family:'Orbitron',sans-serif;font-weight:700;color:#88c0d0;text-decoration:none">RPMN0ISE</a>
-    <button class="burger" id="burger-btn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul id="nav-menu">
-      <li><a href="/">Hub</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/gaming">Gaming</a></li>
-      <li><a href="/setup">Setup</a></li>
-      <li><a href="/media">Media</a></li>
-      <li><a href="/projects">Projects</a></li>
-      <li><a href="/blog" class="active">Blog</a></li>
-      <li><a href="/contact">Contact</a></li>
-      <li><a href="/stats">Stats</a></li>
-    </ul>
+  <nav class="site-nav">
+    <div class="container">
+      <a href="/" class="nav-logo">RPMN0ISE</a>
+      <div class="nav-links">
+        <a href="/">Hub</a>
+        <a href="/rpmn0ise/linux/index.html">Linux</a>
+        <a href="/rpmn0ise/gaming/index.html">Gaming</a>
+        <a href="/rpmn0ise/audio/index.html">Audio</a>
+        <a href="/rpmn0ise/hacking/index.html">Hacking</a>
+        <a href="/rpmn0ise/hardware/index.html">Hardware</a>
+        <a href="/rpmn0ise/music/index.html">Music</a>
+        <a href="/sgpi/index.html">SGPI</a>
+        <a href="/rpmn0ise/about.html">About</a>
+        <a href="/rpmn0ise/contact/index.html">Contact</a>
+      </div>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="/">Hub</a>
+    <a href="/rpmn0ise/linux/index.html">Linux</a>
+    <a href="/rpmn0ise/gaming/index.html">Gaming</a>
+    <a href="/rpmn0ise/audio/index.html">Audio</a>
+    <a href="/rpmn0ise/hacking/index.html">Hacking</a>
+    <a href="/rpmn0ise/hardware/index.html">Hardware</a>
+    <a href="/rpmn0ise/music/index.html">Music</a>
+    <a href="/sgpi/index.html">SGPI</a>
+    <a href="/rpmn0ise/about.html">About</a>
+    <a href="/rpmn0ise/contact/index.html">Contact</a>
   </div>
-</nav>
 
 <div class="container">
 
@@ -56,5 +69,13 @@
     <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.7;">Powered by Nord Theme × Gaming UI</p>
 </footer>
 
+  <script>
+    (function(){
+      var b=document.getElementById('nav-burger'),d=document.getElementById('nav-drawer');
+      if(!b||!d)return;
+      b.addEventListener('click',function(){b.classList.toggle('open');d.classList.toggle('open');});
+      d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');d.classList.remove('open');});});
+    })();
+  </script>
 </body>
 </html>
