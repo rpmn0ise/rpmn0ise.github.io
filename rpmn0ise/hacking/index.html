@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hacking – RPMN0ISE</title>
   <link rel="stylesheet" href="../../assets/css/rpmn0ise.css">
+  <style>
+    .filter-bar { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .filter-btn {
+      font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase;
+      letter-spacing:.07em; padding:.3em .9em; border-radius:100px;
+      border:1px solid var(--border); background:none; color:var(--muted);
+      cursor:pointer; transition:color .15s, border-color .15s, background .15s;
+    }
+    .filter-btn:hover { color:var(--text); border-color:var(--aurora-green); }
+    .filter-btn.active { color:var(--aurora-green); border-color:var(--aurora-green); background:rgba(0,0,0,.2); }
+    .post-item { display:grid; grid-template-columns:6rem 1fr auto; align-items:start; gap:1rem; padding:1.1rem 0; border-bottom:1px solid var(--border); text-decoration:none; color:inherit; transition:padding-left .2s; }
+    .post-item:first-child { border-top:1px solid var(--border); }
+    .post-item:hover { padding-left:.6rem; }
+    .post-info { display:flex; flex-direction:column; gap:.2rem; }
+    .post-name { font-size:.95rem; color:var(--text2); transition:color .15s; }
+    .post-item:hover .post-name { color:var(--aurora-green); }
+    .post-desc { font-size:.78rem; color:var(--muted); line-height:1.5; }
+    .post-date { font-family:var(--font-mono); font-size:.72rem; color:var(--muted); padding-top:.15rem; }
+    .post-item.hidden { display:none; }
+    @media(max-width:600px){
+      .post-item { grid-template-columns:1fr auto; }
+      .post-date { display:none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -45,29 +69,108 @@
     <div class="container">
       <p class="page-eyebrow mono">// Hacking</p>
       <h1 class="page-title">💀 Hacking</h1>
-      <p class="page-desc">Ethical hacking, security fundamentals, tooling, experimentation,
-        and system analysis.</p>
+      <p class="page-desc">Security research, CTFs, hardening guides and personal reflections.</p>
     </div>
   </div>
 
-  <section class="section">
+  <section class="section" style="padding-top:1.5rem">
     <div class="container">
-      <div class="cards">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Blog">Blog</button>
+        <button class="filter-btn" data-filter="Guide">Guide</button>
+        <button class="filter-btn" data-filter="Know">Know</button>
 
-        <a href="guides/index.html" class="card card--hack">
-          <h3 class="card-title">Guides</h3>
-          <p class="card-desc">Step-by-step guides for learning tools, methodologies, and labs.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+      </div>
+      <div class="post-list" id="post-list">
+        
+        <a href="/rpmn0ise/hacking/blog/index.html#airgap" class="post-item" data-type="Blog">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Migration to Air-Gapped Workflows</span>
+            <span class="post-desc">Subjective feedback on friction and benefits of air-gapped daily use.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="knowledge-base/index.html" class="card card--hack">
-          <h3 class="card-title">Knowledge Base</h3>
-          <p class="card-desc">Concepts: networks, exploits, cryptography, operating systems.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/hacking/blog/index.html#pqc" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-12</span>
+          <span class="post-info">
+            <span class="post-name">The Illusion of Post-Quantum Readiness</span>
+            <span class="post-desc">Personal skepticism about current PQC deployment timelines.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="blog/index.html" class="card card--hack">
-          <h3 class="card-title">Blog</h3>
-          <p class="card-desc">Writeups, failed attempts, reflections, and learning paths.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/hacking/blog/index.html#minimal" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-07</span>
+          <span class="post-info">
+            <span class="post-name">Minimalism in Security Tooling</span>
+            <span class="post-desc">Moving away from heavy frameworks toward targeted, auditable tools.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
+        </a>
+        <a href="/rpmn0ise/hacking/blog/index.html#defcon33" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-05</span>
+          <span class="post-info">
+            <span class="post-name">DEF CON 33 Retrospective</span>
+            <span class="post-desc">Personal notes and highlights from the conference.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
+        </a>
+        <a href="/rpmn0ise/hacking/blog/index.html#ai-ethics" class="post-item" data-type="Blog">
+          <span class="post-date mono">2024-11</span>
+          <span class="post-info">
+            <span class="post-name">Ethical Grey Areas in AI Auditing</span>
+            <span class="post-desc">Subjective take on the moral implications of LLM security testing.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
+        </a>
+        <a href="/rpmn0ise/hacking/guides/index.html#ssh" class="post-item" data-type="Guide">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">SSH Key Management and MFA Integration</span>
+            <span class="post-desc">Securing remote access with hardware keys and multi-factor auth.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/hacking/guides/index.html#pqe" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-11</span>
+          <span class="post-info">
+            <span class="post-name">Post-Quantum Encryption Implementation</span>
+            <span class="post-desc">Step-by-step CRYSTALS-Kyber integration for secure channels.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/hacking/guides/index.html#wifi7" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-08</span>
+          <span class="post-info">
+            <span class="post-name">Wi-Fi 7 Traffic Capture and Decryption</span>
+            <span class="post-desc">Methodology for auditing MLO link encryption in 802.11be networks.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/hacking/guides/index.html#qemu" class="post-item" data-type="Guide">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Sandboxed Analysis Lab with QEMU</span>
+            <span class="post-desc">Setting up isolated environments for malware and exploit analysis.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/hacking/guides/index.html#kernel" class="post-item" data-type="Guide">
+          <span class="post-date mono">2024-05</span>
+          <span class="post-info">
+            <span class="post-name">Kernel Hardening via Sysctl</span>
+            <span class="post-desc">Optimization guide for Linux kernel security parameters.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/hacking/knowledge/index.html" class="post-item" data-type="Know">
+          <span class="post-date mono">2025-01</span>
+          <span class="post-info">
+            <span class="post-name">Hacking Knowledge Base</span>
+            <span class="post-desc">Concepts: networks, exploits, cryptography, operating systems.</span>
+          </span>
+          <span class="tag">Know</span>
         </a>
       </div>
     </div>
@@ -93,6 +196,27 @@
       if(!b||!d)return;
       b.addEventListener('click',function(){b.classList.toggle('open');d.classList.toggle('open');});
       d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');d.classList.remove('open');});});
+    })();
+  </script>
+
+  <script>
+    (function(){
+      var btns = document.querySelectorAll('.filter-btn');
+      var items = document.querySelectorAll('.post-item');
+      btns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          btns.forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          var f = btn.getAttribute('data-filter');
+          items.forEach(function(item){
+            if(f === 'all' || item.getAttribute('data-type') === f){
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
     })();
   </script>
 

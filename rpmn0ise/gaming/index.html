@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gaming – RPMN0ISE</title>
   <link rel="stylesheet" href="../../assets/css/rpmn0ise.css">
+  <style>
+    .filter-bar { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .filter-btn {
+      font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase;
+      letter-spacing:.07em; padding:.3em .9em; border-radius:100px;
+      border:1px solid var(--border); background:none; color:var(--muted);
+      cursor:pointer; transition:color .15s, border-color .15s, background .15s;
+    }
+    .filter-btn:hover { color:var(--text); border-color:var(--aurora-purple); }
+    .filter-btn.active { color:var(--aurora-purple); border-color:var(--aurora-purple); background:rgba(0,0,0,.2); }
+    .post-item { display:grid; grid-template-columns:6rem 1fr auto; align-items:start; gap:1rem; padding:1.1rem 0; border-bottom:1px solid var(--border); text-decoration:none; color:inherit; transition:padding-left .2s; }
+    .post-item:first-child { border-top:1px solid var(--border); }
+    .post-item:hover { padding-left:.6rem; }
+    .post-info { display:flex; flex-direction:column; gap:.2rem; }
+    .post-name { font-size:.95rem; color:var(--text2); transition:color .15s; }
+    .post-item:hover .post-name { color:var(--aurora-purple); }
+    .post-desc { font-size:.78rem; color:var(--muted); line-height:1.5; }
+    .post-date { font-family:var(--font-mono); font-size:.72rem; color:var(--muted); padding-top:.15rem; }
+    .post-item.hidden { display:none; }
+    @media(max-width:600px){
+      .post-item { grid-template-columns:1fr auto; }
+      .post-date { display:none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -45,29 +69,108 @@
     <div class="container">
       <p class="page-eyebrow mono">// Gaming</p>
       <h1 class="page-title">🎮 Gaming</h1>
-      <p class="page-desc">Gaming from a technical and analytical angle: performance, engines,
-        hardware impact, mods, and experimentation.</p>
+      <p class="page-desc">Game library, optimization, emulation, opinions and session logs.</p>
     </div>
   </div>
 
-  <section class="section">
+  <section class="section" style="padding-top:1.5rem">
     <div class="container">
-      <div class="cards">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Blog">Blog</button>
+        <button class="filter-btn" data-filter="Guide">Guide</button>
+        <button class="filter-btn" data-filter="Know">Know</button>
 
-        <a href="guides/index.html" class="card card--gaming">
-          <h3 class="card-title">Guides</h3>
-          <p class="card-desc">Optimization, configuration, modding, and technical workflows.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+      </div>
+      <div class="post-list" id="post-list">
+        
+        <a href="/rpmn0ise/gaming/blog/index.html#vr" class="post-item" data-type="Blog">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Simulation Sickness and VR Adoption</span>
+            <span class="post-desc">Personal observations on prolonged VR sessions and tolerance thresholds.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="knowledge-base/index.html" class="card card--gaming">
-          <h3 class="card-title">Knowledge Base</h3>
-          <p class="card-desc">Concepts: engines, rendering, input latency, FPS theory.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/gaming/blog/index.html#ownership" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-12</span>
+          <span class="post-info">
+            <span class="post-name">The Erosion of Game Ownership</span>
+            <span class="post-desc">Thoughts on the shift toward subscription and cloud-locked titles.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="blog/index.html" class="card card--gaming">
-          <h3 class="card-title">Blog</h3>
-          <p class="card-desc">Personal tests, benchmarks, opinions, and long-term observations.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/gaming/blog/index.html#steamdeck" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-08</span>
+          <span class="post-info">
+            <span class="post-name">Steam Deck as a Primary Workstation</span>
+            <span class="post-desc">Results of a month-long experiment replacing a desktop with a Steam Deck.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
+        </a>
+        <a href="/rpmn0ise/gaming/blog/index.html#quake3" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-02</span>
+          <span class="post-info">
+            <span class="post-name">Quake III Arena 25 Years Later</span>
+            <span class="post-desc">Re-evaluating mechanical purity in the era of battle royale saturation.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
+        </a>
+        <a href="/rpmn0ise/gaming/blog/index.html#procgen" class="post-item" data-type="Blog">
+          <span class="post-date mono">2024-09</span>
+          <span class="post-info">
+            <span class="post-name">Procedural Generation vs. Intent</span>
+            <span class="post-desc">Why handcrafted level design remains superior to algorithmic generation.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
+        </a>
+        <a href="/rpmn0ise/gaming/guides/index.html#optimization" class="post-item" data-type="Guide">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Low-Latency Input Polling Configuration</span>
+            <span class="post-desc">Optimizing HID polling rates and frame timing for competitive play.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/gaming/guides/index.html#shaders" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-11</span>
+          <span class="post-info">
+            <span class="post-name">Vulkan Shader Pre-caching Workflows</span>
+            <span class="post-desc">Methods for mitigating stuttering in modern rendering pipelines.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/gaming/guides/index.html#emulation" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-08</span>
+          <span class="post-info">
+            <span class="post-name">RPCS3 PPU/SPU Thread Scaling</span>
+            <span class="post-desc">Optimal threading for 8-core CPU architectures on PS3 emulation.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/gaming/guides/index.html#retroarch" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-02</span>
+          <span class="post-info">
+            <span class="post-name">RetroArch CRT-Shader Calibration</span>
+            <span class="post-desc">Technical guide for accurate mask and scanline reproduction.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/gaming/guides/index.html#wifi7" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-12</span>
+          <span class="post-info">
+            <span class="post-name">Wi-Fi 7 Latency Profiling for Remote Play</span>
+            <span class="post-desc">Setup and testing of wireless game streaming with Wi-Fi 7.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/gaming/knowledge/index.html" class="post-item" data-type="Know">
+          <span class="post-date mono">2025-01</span>
+          <span class="post-info">
+            <span class="post-name">Gaming Knowledge Base</span>
+            <span class="post-desc">Technical references on hardware compatibility, emulation and performance.</span>
+          </span>
+          <span class="tag">Know</span>
         </a>
       </div>
     </div>
@@ -93,6 +196,27 @@
       if(!b||!d)return;
       b.addEventListener('click',function(){b.classList.toggle('open');d.classList.toggle('open');});
       d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');d.classList.remove('open');});});
+    })();
+  </script>
+
+  <script>
+    (function(){
+      var btns = document.querySelectorAll('.filter-btn');
+      var items = document.querySelectorAll('.post-item');
+      btns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          btns.forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          var f = btn.getAttribute('data-filter');
+          items.forEach(function(item){
+            if(f === 'all' || item.getAttribute('data-type') === f){
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
     })();
   </script>
 

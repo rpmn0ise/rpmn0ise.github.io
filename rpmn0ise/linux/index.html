@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Linux – RPMN0ISE</title>
   <link rel="stylesheet" href="../../assets/css/rpmn0ise.css">
+  <style>
+    .filter-bar { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .filter-btn {
+      font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase;
+      letter-spacing:.07em; padding:.3em .9em; border-radius:100px;
+      border:1px solid var(--border); background:none; color:var(--muted);
+      cursor:pointer; transition:color .15s, border-color .15s, background .15s;
+    }
+    .filter-btn:hover { color:var(--text); border-color:var(--aurora-yellow); }
+    .filter-btn.active { color:var(--aurora-yellow); border-color:var(--aurora-yellow); background:rgba(0,0,0,.2); }
+    .post-item { display:grid; grid-template-columns:6rem 1fr auto; align-items:start; gap:1rem; padding:1.1rem 0; border-bottom:1px solid var(--border); text-decoration:none; color:inherit; transition:padding-left .2s; }
+    .post-item:first-child { border-top:1px solid var(--border); }
+    .post-item:hover { padding-left:.6rem; }
+    .post-info { display:flex; flex-direction:column; gap:.2rem; }
+    .post-name { font-size:.95rem; color:var(--text2); transition:color .15s; }
+    .post-item:hover .post-name { color:var(--aurora-yellow); }
+    .post-desc { font-size:.78rem; color:var(--muted); line-height:1.5; }
+    .post-date { font-family:var(--font-mono); font-size:.72rem; color:var(--muted); padding-top:.15rem; }
+    .post-item.hidden { display:none; }
+    @media(max-width:600px){
+      .post-item { grid-template-columns:1fr auto; }
+      .post-date { display:none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -45,37 +69,109 @@
     <div class="container">
       <p class="page-eyebrow mono">// Linux</p>
       <h1 class="page-title">🐧 Linux</h1>
-      <p class="page-desc">This section is dedicated to Linux systems, workflows, experiments, and long-term usage.
-          It acts as a structured hub combining guides, factual documentation, and personal notes.</p>
+      <p class="page-desc">Arch, NixOS, ricing, ZFS, LUKS, Wayland. Guides, blogs and knowledge base.</p>
     </div>
   </div>
 
-  <section class="section">
+  <section class="section" style="padding-top:1.5rem">
     <div class="container">
-      <div class="cards">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Blog">Blog</button>
+        <button class="filter-btn" data-filter="Guide">Guide</button>
+        <button class="filter-btn" data-filter="Doc">Doc</button>
+        <button class="filter-btn" data-filter="Know">Know</button>
 
-        <a href="guides/index.html" class="card card--linux">
-          <h3 class="card-title">Guides</h3>
-          <p class="card-desc">Progressive and structured guides meant to be read end-to-end.
-           Installation, distribution choices, system setup, and ricing.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+      </div>
+      <div class="post-list" id="post-list">
+        
+        <a href="/rpmn0ise/linux/blog/Migration_to_Omarchy.html" class="post-item" data-type="Blog">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Migration to Omarchy Linux: Initial Friction</span>
+            <span class="post-desc">First impressions on migrating to a niche Linux distro as a long-time mainstream user.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="knowledge-base/index.html" class="card card--linux">
-          <h3 class="card-title">Knowledge Base</h3>
-          <p class="card-desc">A factual, wiki-like collection of Linux concepts.
-        Each page is independent and focused on a single topic.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/linux/blog/Perfect_Terminal_Emulator.html" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-11</span>
+          <span class="post-info">
+            <span class="post-name">The Quest for the Perfect Terminal Emulator</span>
+            <span class="post-desc">Personal testing notes on latency, font rendering and feature sets.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="blog/index.html" class="card card--linux">
-          <h3 class="card-title">Blog</h3>
-          <p class="card-desc">Dated entries: experiments, failures, opinions, and system breakages.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/linux/blog/Wayland_on_NVIDIA.html" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-08</span>
+          <span class="post-info">
+            <span class="post-name">Wayland on NVIDIA: A 12-Month Retrospective</span>
+            <span class="post-desc">Tracking stability improvements after a year of daily Wayland use on NVIDIA.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="philosophy/index.html" class="card card--linux">
-          <h3 class="card-title">Philosophy</h3>
-          <p class="card-desc">Notes about why Linux is used, how it fits into daily workflows,
-        and how this system evolves over time.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/linux/guides/nixos_flakes.html" class="post-item" data-type="Guide">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">NixOS Flakes Deployment Workflow</span>
+            <span class="post-desc">Procedural guide for reproducible system configurations using modern Nix flakes.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/linux/guides/arch_zfs-on-root.html" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-08</span>
+          <span class="post-info">
+            <span class="post-name">Arch Linux ZFS-on-Root: Implementation Guide</span>
+            <span class="post-desc">Full setup of ZFS as root filesystem with bootloader integration on Arch.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/linux/guides/luks2_cryptsetup.html" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-11</span>
+          <span class="post-info">
+            <span class="post-name">LUKS2 Cryptsetup with TPM2</span>
+            <span class="post-desc">Automated disk decryption via hardware-backed TPM2 security.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/linux/guides/apparmor-p-gen.html" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-02</span>
+          <span class="post-info">
+            <span class="post-name">AppArmor Profile Generation</span>
+            <span class="post-desc">Confining user-space applications through mandatory access control.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/linux/guides/mp3-workflow.html" class="post-item" data-type="Guide">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Managing MP3 Files on Linux</span>
+            <span class="post-desc">Pragmatic Arch Linux workflow for large music collections.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/linux/guides/debian11-server.html" class="post-item" data-type="Guide">
+          <span class="post-date mono">2023-04</span>
+          <span class="post-info">
+            <span class="post-name">Debian 11 Minimal Server</span>
+            <span class="post-desc">[OBSOLETE] Legacy installation steps for retired production environments.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/docs/linux/arch-linux-ricing.html" class="post-item" data-type="Doc">
+          <span class="post-date mono">2025-01</span>
+          <span class="post-info">
+            <span class="post-name">Arch Linux Ricing</span>
+            <span class="post-desc">Technical reference for intermediate users customizing Arch Linux aesthetics.</span>
+          </span>
+          <span class="tag accent2">Doc</span>
+        </a>
+        <a href="/rpmn0ise/linux/knowledge/index.html" class="post-item" data-type="Know">
+          <span class="post-date mono">2025-01</span>
+          <span class="post-info">
+            <span class="post-name">Linux Knowledge Base</span>
+            <span class="post-desc">Centralized technical facts, conceptual notes and architecture references.</span>
+          </span>
+          <span class="tag">Know</span>
         </a>
       </div>
     </div>
@@ -101,6 +197,27 @@
       if(!b||!d)return;
       b.addEventListener('click',function(){b.classList.toggle('open');d.classList.toggle('open');});
       d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');d.classList.remove('open');});});
+    })();
+  </script>
+
+  <script>
+    (function(){
+      var btns = document.querySelectorAll('.filter-btn');
+      var items = document.querySelectorAll('.post-item');
+      btns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          btns.forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          var f = btn.getAttribute('data-filter');
+          items.forEach(function(item){
+            if(f === 'all' || item.getAttribute('data-type') === f){
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
     })();
   </script>
 

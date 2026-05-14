@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audio – RPMN0ISE</title>
   <link rel="stylesheet" href="../../assets/css/rpmn0ise.css">
+  <style>
+    .filter-bar { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .filter-btn {
+      font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase;
+      letter-spacing:.07em; padding:.3em .9em; border-radius:100px;
+      border:1px solid var(--border); background:none; color:var(--muted);
+      cursor:pointer; transition:color .15s, border-color .15s, background .15s;
+    }
+    .filter-btn:hover { color:var(--text); border-color:var(--frost1); }
+    .filter-btn.active { color:var(--frost1); border-color:var(--frost1); background:rgba(0,0,0,.2); }
+    .post-item { display:grid; grid-template-columns:6rem 1fr auto; align-items:start; gap:1rem; padding:1.1rem 0; border-bottom:1px solid var(--border); text-decoration:none; color:inherit; transition:padding-left .2s; }
+    .post-item:first-child { border-top:1px solid var(--border); }
+    .post-item:hover { padding-left:.6rem; }
+    .post-info { display:flex; flex-direction:column; gap:.2rem; }
+    .post-name { font-size:.95rem; color:var(--text2); transition:color .15s; }
+    .post-item:hover .post-name { color:var(--frost1); }
+    .post-desc { font-size:.78rem; color:var(--muted); line-height:1.5; }
+    .post-date { font-family:var(--font-mono); font-size:.72rem; color:var(--muted); padding-top:.15rem; }
+    .post-item.hidden { display:none; }
+    @media(max-width:600px){
+      .post-item { grid-template-columns:1fr auto; }
+      .post-date { display:none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -45,29 +69,100 @@
     <div class="container">
       <p class="page-eyebrow mono">// Audio</p>
       <h1 class="page-title">🎧 Audio</h1>
-      <p class="page-desc">This section covers sound systems, acoustics, SPL, measurements, and real-world audio experiments.
-        Both technical and empirical approaches are documented.</p>
+      <p class="page-desc">IEMs, DACs, amps, SPL vs quality debates and setup documentation.</p>
     </div>
   </div>
 
-  <section class="section">
+  <section class="section" style="padding-top:1.5rem">
     <div class="container">
-      <div class="cards">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Blog">Blog</button>
+        <button class="filter-btn" data-filter="Know">Know</button>
+        <button class="filter-btn" data-filter="Guide">Guide</button>
 
-        <a href="guides/index.html" class="card card--audio">
-          <h3 class="card-title">Guides</h3>
-          <p class="card-desc">Structured guides about audio systems, setup, tuning, and analysis.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+      </div>
+      <div class="post-list" id="post-list">
+        
+        <a href="/rpmn0ise/audio/blog/index.html#log" class="post-item" data-type="Blog">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Daily Listening Log</span>
+            <span class="post-desc">Ongoing observations from home setup sessions.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="knowledge-base/index.html" class="card card--audio">
-          <h3 class="card-title">Knowledge Base</h3>
-          <p class="card-desc">Factual documentation about audio theory and components.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/audio/blog/index.html#sub" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-12</span>
+          <span class="post-info">
+            <span class="post-name">Subwoofer Gain Adjustments</span>
+            <span class="post-desc">Personal tweaks and impressions after Karnage 12 recalibration.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
         </a>
-        <a href="blog/index.html" class="card card--audio">
-          <h3 class="card-title">Blog</h3>
-          <p class="card-desc">Logs, tests, SPL runs, failures, and subjective listening notes.</p>
-          <span class="card-arrow mono">explore &rarr;</span>
+        <a href="/rpmn0ise/audio/blog/index.html#pipewire" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-11</span>
+          <span class="post-info">
+            <span class="post-name">PipeWire Routing Tests</span>
+            <span class="post-desc">Multi-device setup trials with PipeWire on Linux.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
+        </a>
+        <a href="/rpmn0ise/audio/blog/index.html#expo" class="post-item" data-type="Blog">
+          <span class="post-date mono">2025-02</span>
+          <span class="post-info">
+            <span class="post-name">Local Audio Expo — Notes and Impressions</span>
+            <span class="post-desc">Personal notes from a local audio event.</span>
+          </span>
+          <span class="tag accent3">Blog</span>
+        </a>
+        <a href="/rpmn0ise/audio/knowledge/spl-vs-quality.html" class="post-item" data-type="Know">
+          <span class="post-date mono">2025-01</span>
+          <span class="post-info">
+            <span class="post-name">SPL vs Sound Quality: Finding the Acoustic Balance</span>
+            <span class="post-desc">The eternal debate between loudness and fidelity.</span>
+          </span>
+          <span class="tag">Know</span>
+        </a>
+        <a href="/rpmn0ise/audio/guides/index.html#setup" class="post-item" data-type="Guide">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Home Audio Rack Configuration</span>
+            <span class="post-desc">Initial wiring, placement notes and signal chain for a home rack setup.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/audio/guides/index.html#sub" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-09</span>
+          <span class="post-info">
+            <span class="post-name">Car Subwoofer Installation</span>
+            <span class="post-desc">Karnage 12 install, gain calibration and enclosure tuning.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/audio/guides/index.html#sync" class="post-item" data-type="Guide">
+          <span class="post-date mono">2025-06</span>
+          <span class="post-info">
+            <span class="post-name">Music Sync with rsync</span>
+            <span class="post-desc">File-based music library synchronization across devices.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/audio/guides/index.html#stream" class="post-item" data-type="Guide">
+          <span class="post-date mono">2026-01</span>
+          <span class="post-info">
+            <span class="post-name">Self-Hosted 24/7 Music Streaming</span>
+            <span class="post-desc">Raspberry Pi 5, external storage, and Navidrome setup guide.</span>
+          </span>
+          <span class="tag accent">Guide</span>
+        </a>
+        <a href="/rpmn0ise/audio/knowledge/index.html" class="post-item" data-type="Know">
+          <span class="post-date mono">2025-01</span>
+          <span class="post-info">
+            <span class="post-name">Audio Knowledge Base</span>
+            <span class="post-desc">Centralized references on audio formats, gear and signal theory.</span>
+          </span>
+          <span class="tag">Know</span>
         </a>
       </div>
     </div>
@@ -93,6 +188,27 @@
       if(!b||!d)return;
       b.addEventListener('click',function(){b.classList.toggle('open');d.classList.toggle('open');});
       d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');d.classList.remove('open');});});
+    })();
+  </script>
+
+  <script>
+    (function(){
+      var btns = document.querySelectorAll('.filter-btn');
+      var items = document.querySelectorAll('.post-item');
+      btns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          btns.forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          var f = btn.getAttribute('data-filter');
+          items.forEach(function(item){
+            if(f === 'all' || item.getAttribute('data-type') === f){
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
     })();
   </script>
 
