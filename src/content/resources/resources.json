@@ -1,0 +1,6 @@
+{
+  "layout": "page.njk",
+  "tags": ["resource"],
+  "permalink": "/resources/{{ page.fileSlug }}/",
+  "draft": false
+}

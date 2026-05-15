@@ -1,0 +1,96 @@
+---
+layout: base.njk
+ogType: article
+---
+
+<article class="post container" itemscope itemtype="https://schema.org/BlogPosting">
+
+  <header class="post__header">
+    {% if tags %}
+      <div class="post__tags">
+        {% for tag in tags %}
+          {% if tag != "post" and tag != "posts" %}
+            <a href="/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <h1 class="post__title" itemprop="headline">{{ title }}</h1>
+
+    {% if description %}
+      <p class="post__description">{{ description }}</p>
+    {% endif %}
+
+    <div class="post__meta">
+      <time datetime="{{ date | htmlDateString }}" itemprop="datePublished">
+        {{ date | readableDate }}
+      </time>
+      {% if updated %}
+        <span class="post__updated">
+          · Mis à jour le <time datetime="{{ updated | htmlDateString }}">{{ updated | readableDate }}</time>
+        </span>
+      {% endif %}
+      <span class="post__sep">·</span>
+      <span class="post__reading-time">{{ content | readingTime }}</span>
+    </div>
+
+    {% if image %}
+      <figure class="post__cover">
+        <img src="{{ image }}" alt="{{ imageAlt or title }}" loading="eager" decoding="async">
+        {% if imageCaption %}
+          <figcaption>{{ imageCaption }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endif %}
+  </header>
+
+  <div class="post__body prose" itemprop="articleBody">
+    {{ content | safe }}
+  </div>
+
+  <footer class="post__footer">
+
+    {# Tags ─── #}
+    {% if tags %}
+      <div class="post__footer-tags">
+        <span>Tags :</span>
+        {% for tag in tags %}
+          {% if tag != "post" and tag != "posts" %}
+            <a href="/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {# Articles liés ─── #}
+    {% set related = page | relatedPosts(collections.posts) %}
+    {% if related.length %}
+      <section class="related-posts">
+        <h2 class="related-posts__title">Articles similaires</h2>
+        <div class="related-posts__grid">
+          {% for post in related %}
+            {% include "components/post-card.njk" %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {# Navigation ─── #}
+    <nav class="post__nav" aria-label="Navigation entre articles">
+      {% if previousPost %}
+        <a href="{{ previousPost.url }}" class="post__nav-link post__nav-link--prev">
+          <span class="post__nav-label">← Précédent</span>
+          <span class="post__nav-title">{{ previousPost.data.title }}</span>
+        </a>
+      {% endif %}
+      {% if nextPost %}
+        <a href="{{ nextPost.url }}" class="post__nav-link post__nav-link--next">
+          <span class="post__nav-label">Suivant →</span>
+          <span class="post__nav-title">{{ nextPost.data.title }}</span>
+        </a>
+      {% endif %}
+    </nav>
+
+  </footer>
+</article>

@@ -1,0 +1,56 @@
+---
+layout: base.njk
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag | slugify }}/
+title: "Tag : {{ tag }}"
+---
+
+<div class="container">
+  <header class="blog-header">
+    <p style="color: var(--text-muted); font-size: var(--text-sm); margin-bottom: var(--space-2);">
+      <a href="/blog/">← Blog</a>
+    </p>
+    <h1 class="blog-title">
+      <span class="tag" style="font-size: var(--text-2xl); padding: var(--space-2) var(--space-5);">{{ tag }}</span>
+    </h1>
+    {% set taggedPosts = collections.posts | where("data.tags", tag) %}
+    <p class="blog-description">{{ taggedPosts.length }} article{% if taggedPosts.length > 1 %}s{% endif %}</p>
+  </header>
+
+  <div class="blog-list">
+    {% for post in collections.posts %}
+      {% if tag in (post.data.tags or []) %}
+        <article class="post-list-item">
+          <time class="post-list-item__date" datetime="{{ post.date | htmlDateString }}">
+            {{ post.date | readableDate("dd MMM yyyy") }}
+          </time>
+          <div class="post-list-item__body">
+            <h2 class="post-list-item__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+            {% if post.data.description %}
+              <p class="post-list-item__description">{{ post.data.description }}</p>
+            {% endif %}
+          </div>
+          <div class="post-list-item__tags">
+            {% for t in post.data.tags %}
+              {% if t != "post" and t != "posts" %}
+                <a href="/tags/{{ t | slugify }}/" class="tag">{{ t }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div style="margin-top: var(--space-12);">
+    <h2 style="font-size: var(--text-lg); margin-bottom: var(--space-4); color: var(--text-secondary);">Tous les tags</h2>
+    <div class="tags-filter">
+      {% for tagName in collections.tagList %}
+        <a href="/tags/{{ tagName | slugify }}/" class="tag {% if tagName == tag %}tag--active{% endif %}">{{ tagName }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>

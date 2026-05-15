@@ -1,0 +1,34 @@
+{% if pagination.pages.length > 1 %}
+<nav class="pagination" aria-label="Pagination">
+  <ul class="pagination__list" role="list">
+
+    {% if pagination.href.previous %}
+      <li class="pagination__item">
+        <a href="{{ pagination.href.previous }}" class="pagination__link pagination__link--prev" rel="prev" aria-label="Page précédente">
+          ← Précédent
+        </a>
+      </li>
+    {% endif %}
+
+    {% for pageEntry in pagination.pages %}
+      <li class="pagination__item {% if page.url == pagination.hrefs[loop.index0] %}pagination__item--current{% endif %}">
+        <a href="{{ pagination.hrefs[loop.index0] }}"
+           class="pagination__link {% if page.url == pagination.hrefs[loop.index0] %}pagination__link--active{% endif %}"
+           {% if page.url == pagination.hrefs[loop.index0] %}aria-current="page"{% endif %}
+           aria-label="Page {{ loop.index }}">
+          {{ loop.index }}
+        </a>
+      </li>
+    {% endfor %}
+
+    {% if pagination.href.next %}
+      <li class="pagination__item">
+        <a href="{{ pagination.href.next }}" class="pagination__link pagination__link--next" rel="next" aria-label="Page suivante">
+          Suivant →
+        </a>
+      </li>
+    {% endif %}
+
+  </ul>
+</nav>
+{% endif %}

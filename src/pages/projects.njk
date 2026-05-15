@@ -1,0 +1,27 @@
+---
+layout: base.njk
+title: Projets
+description: Une sélection de projets personnels et professionnels que j'ai construits ou auxquels j'ai contribué.
+---
+
+<div class="container">
+
+  <header class="projects-header">
+    <h1 class="projects-title">Projets</h1>
+    <p class="projects-description">{{ description }}</p>
+  </header>
+
+  {% if collections.projects.length %}
+    <div class="projects-grid">
+      {% for project in collections.projects %}
+        {% set project = project %}
+        {% include "components/project-card.njk" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="color: var(--text-secondary); text-align: center; padding: var(--space-16);">
+      Projets en cours de rédaction…
+    </p>
+  {% endif %}
+
+</div>
