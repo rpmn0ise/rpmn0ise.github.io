@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="fr">
+  <title>RPMN0ISE</title>
+  <subtitle>Développeur, créateur, explorateur de technologies modernes.</subtitle>
+  <link href="https://votresite.fr/feed.xml" rel="self"/>
+  <link href="https://votresite.fr/"/>
+  <updated>2026-05-15T14:14:46.993Z</updated>
+  <id>https://votresite.fr/</id>
+  <author>
+    <name>RPMN0ISE</name>
+    <email>rpmn0ise@proton.me</email>
+  </author>
+
+  
+  <entry>
+    <title>Construire un site performant avec Eleventy</title>
+    <link href="https://votresite.fr/blog/eleventy-site-performant/"/>
+    <updated>2024-03-15T00:00:00.000Z</updated>
+    <id>https://votresite.fr/blog/eleventy-site-performant/</id>
+    
+    <summary>Retour d&#39;expérience sur la migration d&#39;un site WordPress vers Eleventy : gains de performance, simplicité de déploiement et liberté totale sur l&#39;architecture.</summary>
+    
+    <content type="html">
+      <![CDATA[<p>Après des années sur WordPress, j’ai migré ce site vers <strong>Eleventy</strong>. Voici pourquoi, comment, et ce que j’en pense six mois après.</p>
+<h2 id="le-probleme-avec-wordpress" tabindex="-1">Le problème avec WordPress <a class="header-anchor" href="#le-probleme-avec-wordpress" aria-hidden="true">#</a></h2>
+<p>WordPress est fantastique pour beaucoup de cas d’usage, mais pour un blog personnel il apporte une complexité injustifiée :</p>
+<ul>
+<li>Base de données à maintenir</li>
+<li>Plugins à mettre à jour</li>
+<li>Sécurité à surveiller</li>
+<li>Temps de réponse serveur variable</li>
+<li>Coût d’hébergement</li>
+</ul>
+<p>Un site personnel n’a pas besoin de tout ça.</p>
+<h2 id="pourquoi-eleventy" tabindex="-1">Pourquoi Eleventy ? <a class="header-anchor" href="#pourquoi-eleventy" aria-hidden="true">#</a></h2>
+<p>J’ai évalué plusieurs options : Hugo, Jekyll, Astro, Next.js. Eleventy a gagné pour ces raisons :</p>
+<ol>
+<li><strong>Zéro JavaScript envoyé au client par défaut</strong> — ce que je mets dans le JS c’est moi qui le décide</li>
+<li><strong>Flexibilité des templates</strong> — Nunjucks, Liquid, Markdown, HTML, JavaScript… peu importe</li>
+<li><strong>Collections puissantes</strong> — le système de collections couvre 95% des besoins</li>
+<li><strong>Communauté active</strong> — docs excellentes, plugins bien maintenus</li>
+</ol>
+<div class="callout callout--info"><p>Eleventy v3 est sorti en octobre 2024 avec le support ESM natif. Ce site tourne en v3.</p>
+</div>
+<h2 id="la-structure-choisie" tabindex="-1">La structure choisie <a class="header-anchor" href="#la-structure-choisie" aria-hidden="true">#</a></h2>
+<pre><code>src/
+├── _data/          # Données globales (JSON, JS)
+├── _includes/      # Layouts et composants
+│   ├── layouts/    # Gabarits de page
+│   └── components/ # Morceaux réutilisables
+├── assets/         # CSS, JS, images
+└── content/        # Le contenu Markdown
+    ├── blog/
+    ├── projects/
+    └── notes/
+</code></pre>
+<p>Cette séparation <code>content/</code> vs <code>assets/</code> vs <code>_includes/</code> rend le projet très lisible.</p>
+<h2 id="performances-obtenues" tabindex="-1">Performances obtenues <a class="header-anchor" href="#performances-obtenues" aria-hidden="true">#</a></h2>
+<p>Les résultats Lighthouse après optimisation :</p>
+<table>
+<thead>
+<tr>
+<th>Métrique</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Performance</td>
+<td>99</td>
+</tr>
+<tr>
+<td>Accessibilité</td>
+<td>100</td>
+</tr>
+<tr>
+<td>SEO</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Bonnes pratiques</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>Le site pèse <strong>moins de 20 KB</strong> (CSS + JS minifiés, sans images).</p>
+<h2 id="ce-qui-manque" tabindex="-1">Ce qui manque <a class="header-anchor" href="#ce-qui-manque" aria-hidden="true">#</a></h2>
+<p>Soyons honnêtes, Eleventy n’est pas parfait :</p>
+<ul>
+<li>Pas d’optimisation d’images native (contrairement à Astro)</li>
+<li>Rebuild complet à chaque changement (hot reload partiel)</li>
+<li>Courbe d’apprentissage pour les collections</li>
+</ul>
+<p>Mais ces limitations sont acceptables pour un site personnel.</p>
+<h2 id="conclusion" tabindex="-1">Conclusion <a class="header-anchor" href="#conclusion" aria-hidden="true">#</a></h2>
+<p>Si vous voulez un site rapide, maintenable, hébergeable gratuitement sur Netlify ou GitHub Pages, <strong>Eleventy est un excellent choix</strong>. Le contenu reste en Markdown, le code reste sous contrôle, et vous ne dépendez d’aucune plateforme propriétaire.</p>
+<p>Toutes les sources de ce site sont disponibles sur <a href="https://github.com/votrenom/site">GitHub</a>.</p>
+]]>
+    </content>
+  </entry>
+  
+  <entry>
+    <title>CSS moderne : les fonctionnalités que j&#39;utilise en 2024</title>
+    <link href="https://votresite.fr/blog/css-moderne-2024/"/>
+    <updated>2024-02-08T00:00:00.000Z</updated>
+    <id>https://votresite.fr/blog/css-moderne-2024/</id>
+    
+    <summary>Container queries, cascade layers, :has(), color-mix()... Le CSS natif n&#39;a jamais été aussi puissant. Tour d&#39;horizon des fonctionnalités qui changent ma façon de coder.</summary>
+    
+    <content type="html">
+      <![CDATA[<p>Le CSS natif a fait des bonds de géant ces deux dernières années. Voici les fonctionnalités que j’utilise réellement en production.</p>
+<h2 id="container-queries" tabindex="-1">Container Queries <a class="header-anchor" href="#container-queries" aria-hidden="true">#</a></h2>
+<p>Fini de dépendre de la taille du viewport pour les composants. Avec les container queries, un composant répond à la taille de <strong>son conteneur</strong> :</p>
+<pre class="language-css" tabindex="0"><code class="language-css"><span class="token selector">.card-wrapper</span> <span class="token punctuation">{</span>
+  <span class="token property">container-type</span><span class="token punctuation">:</span> inline-size<span class="token punctuation">;</span>
+  <span class="token property">container-name</span><span class="token punctuation">:</span> card<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@container</span> card <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 400px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">.card</span> <span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+    <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> 200px 1fr<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>C’est révolutionnaire pour les Design Systems.</p>
+<h2 id="la-pseudo-classe-has" tabindex="-1">La pseudo-classe :has() <a class="header-anchor" href="#la-pseudo-classe-has" aria-hidden="true">#</a></h2>
+<p>Le “parent selector” tant attendu est là :</p>
+<pre class="language-css" tabindex="0"><code class="language-css"><span class="token comment">/* Form valide = champ vert */</span>
+<span class="token selector">.form:has(input:valid) .submit-btn</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Card avec image = layout différent */</span>
+<span class="token selector">.card:has(img)</span> <span class="token punctuation">{</span>
+  <span class="token property">grid-template-rows</span><span class="token punctuation">:</span> auto 1fr<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Support : tous les navigateurs modernes depuis 2023.</p>
+<h2 id="cascade-layers" tabindex="-1">Cascade Layers <a class="header-anchor" href="#cascade-layers" aria-hidden="true">#</a></h2>
+<p>Les <code>@layer</code> permettent de contrôler la cascade CSS sans jouer sur la spécificité :</p>
+<pre class="language-css" tabindex="0"><code class="language-css"><span class="token atrule"><span class="token rule">@layer</span> reset<span class="token punctuation">,</span> base<span class="token punctuation">,</span> components<span class="token punctuation">,</span> utilities<span class="token punctuation">;</span></span>
+
+<span class="token atrule"><span class="token rule">@layer</span> reset</span> <span class="token punctuation">{</span>
+  <span class="token selector">*</span> <span class="token punctuation">{</span> <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@layer</span> utilities</span> <span class="token punctuation">{</span>
+  <span class="token selector">.sr-only</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Les styles dans <code>utilities</code> auront toujours la priorité sur <code>components</code>, indépendamment de la spécificité.</p>
+<h2 id="color-mix" tabindex="-1">color-mix() <a class="header-anchor" href="#color-mix" aria-hidden="true">#</a></h2>
+<p>Manipuler les couleurs nativement :</p>
+<pre class="language-css" tabindex="0"><code class="language-css"><span class="token selector">:root</span> <span class="token punctuation">{</span>
+  <span class="token property">--accent</span><span class="token punctuation">:</span> #58a6ff<span class="token punctuation">;</span>
+  <span class="token property">--accent-subtle</span><span class="token punctuation">:</span> <span class="token function">color-mix</span><span class="token punctuation">(</span>in oklch<span class="token punctuation">,</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span> 15%<span class="token punctuation">,</span> transparent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">--accent-hover</span><span class="token punctuation">:</span> <span class="token function">color-mix</span><span class="token punctuation">(</span>in oklch<span class="token punctuation">,</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span> 120%<span class="token punctuation">,</span> black<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="conclusion" tabindex="-1">Conclusion <a class="header-anchor" href="#conclusion" aria-hidden="true">#</a></h2>
+<p>Ces fonctionnalités sont toutes disponibles dans les navigateurs modernes (Chrome, Firefox, Safari). Il n’y a plus vraiment de raison d’éviter le CSS natif pour les nouveaux projets.</p>
+]]>
+    </content>
+  </entry>
+  
+  <entry>
+    <title>5 patterns TypeScript que j&#39;utilise tous les jours</title>
+    <link href="https://votresite.fr/blog/typescript-patterns-quotidiens/"/>
+    <updated>2024-01-20T00:00:00.000Z</updated>
+    <id>https://votresite.fr/blog/typescript-patterns-quotidiens/</id>
+    
+    <summary>Des patterns TypeScript concrets et immédiatement applicables : discriminated unions, satisfies, template literals types, infer et le pattern Builder.</summary>
+    
+    <content type="html">
+      <![CDATA[<p>TypeScript devient vraiment puissant quand on dépasse les types basiques. Voici cinq patterns que j’ai intégrés dans ma pratique quotidienne.</p>
+<h2 id="1-discriminated-unions" tabindex="-1">1. Discriminated Unions <a class="header-anchor" href="#1-discriminated-unions" aria-hidden="true">#</a></h2>
+<p>Modéliser des états exclusifs de manière sûre :</p>
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">RequestState<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token operator">=</span>
+  <span class="token operator">|</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token string">"idle"</span> <span class="token punctuation">}</span>
+  <span class="token operator">|</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token string">"loading"</span> <span class="token punctuation">}</span>
+  <span class="token operator">|</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token string">"success"</span><span class="token punctuation">;</span> data<span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">}</span>
+  <span class="token operator">|</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">;</span> error<span class="token operator">:</span> Error <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token generic-function"><span class="token function">render</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>state<span class="token operator">:</span> RequestState<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>state<span class="token punctuation">.</span>status<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"idle"</span><span class="token operator">:</span>    <span class="token keyword">return</span> <span class="token operator">&lt;</span>Idle <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"loading"</span><span class="token operator">:</span> <span class="token keyword">return</span> <span class="token operator">&lt;</span>Spinner <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"success"</span><span class="token operator">:</span> <span class="token keyword">return</span> <span class="token operator">&lt;</span>Data data<span class="token operator">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>data<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token comment">// data est typé T ici</span>
+    <span class="token keyword">case</span> <span class="token string">"error"</span><span class="token operator">:</span>   <span class="token keyword">return</span> <span class="token operator">&lt;</span>Error msg<span class="token operator">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>error<span class="token punctuation">.</span>message<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Le compilateur garantit l’exhaustivité. Si vous ajoutez un état, TypeScript vous force à le gérer.</p>
+<h2 id="2-le-mot-cle-satisfies" tabindex="-1">2. Le mot-clé <code>satisfies</code> <a class="header-anchor" href="#2-le-mot-cle-satisfies" aria-hidden="true">#</a></h2>
+<p>Validez un type sans perdre l’inférence :</p>
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">Config</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  port<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  host<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  debug<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Sans satisfies : le type est Config, on perd les détails</span>
+<span class="token keyword">const</span> config<span class="token operator">:</span> Config <span class="token operator">=</span> <span class="token punctuation">{</span> port<span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span> host<span class="token operator">:</span> <span class="token string">"localhost"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Avec satisfies : TypeScript valide ET infère le type précis</span>
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
+  port<span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
+  host<span class="token operator">:</span> <span class="token string">"localhost"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span> satisfies Config<span class="token punctuation">;</span>
+
+<span class="token comment">// config.port est number, pas Config["port"]</span>
+<span class="token comment">// config.debug est undefined, TypeScript le sait</span></code></pre>
+<p>Très utile pour les objets de configuration.</p>
+<h2 id="3-template-literal-types" tabindex="-1">3. Template Literal Types <a class="header-anchor" href="#3-template-literal-types" aria-hidden="true">#</a></h2>
+<p>Construire des types à partir de chaînes :</p>
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">HttpMethod</span> <span class="token operator">=</span> <span class="token string">"GET"</span> <span class="token operator">|</span> <span class="token string">"POST"</span> <span class="token operator">|</span> <span class="token string">"PUT"</span> <span class="token operator">|</span> <span class="token string">"DELETE"</span> <span class="token operator">|</span> <span class="token string">"PATCH"</span><span class="token punctuation">;</span>
+<span class="token keyword">type</span> <span class="token class-name">ApiRoute</span> <span class="token operator">=</span> <span class="token string">"/users"</span> <span class="token operator">|</span> <span class="token string">"/posts"</span> <span class="token operator">|</span> <span class="token string">"/comments"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Endpoint</span> <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>HttpMethod<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ApiRoute<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token comment">// "GET /users" | "GET /posts" | "POST /users" | ...</span>
+
+<span class="token comment">// Pratique pour les event emitters typés</span>
+<span class="token keyword">type</span> <span class="token class-name">EventName<span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token builtin">string</span><span class="token operator">></span></span> <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">on</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Capitalize<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token keyword">type</span> <span class="token class-name">ClickEvent</span> <span class="token operator">=</span> EventName<span class="token operator">&lt;</span><span class="token string">"click"</span><span class="token operator">></span><span class="token punctuation">;</span>  <span class="token comment">// "onClick"</span></code></pre>
+<h2 id="4-le-mot-cle-infer" tabindex="-1">4. Le mot-clé <code>infer</code> <a class="header-anchor" href="#4-le-mot-cle-infer" aria-hidden="true">#</a></h2>
+<p>Extraire des types depuis d’autres types :</p>
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// Extraire le type de retour d'une Promise</span>
+<span class="token keyword">type</span> <span class="token class-name">UnwrapPromise<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token operator">=</span> <span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token class-name"><span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">infer</span> <span class="token constant">U</span><span class="token operator">></span></span> <span class="token operator">?</span> <span class="token constant">U</span> <span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Result</span> <span class="token operator">=</span> UnwrapPromise<span class="token operator">&lt;</span><span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">>></span><span class="token punctuation">;</span> <span class="token comment">// string</span>
+<span class="token keyword">type</span> <span class="token class-name">Same</span>   <span class="token operator">=</span> UnwrapPromise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>          <span class="token comment">// number</span>
+
+<span class="token comment">// Extraire les paramètres d'une fonction</span>
+<span class="token keyword">type</span> <span class="token class-name">FirstParam<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token operator">=</span> <span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token punctuation">(</span>first<span class="token operator">:</span> <span class="token keyword">infer</span> <span class="token constant">F</span><span class="token punctuation">,</span> <span class="token operator">...</span>rest<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token builtin">any</span>
+  <span class="token operator">?</span> <span class="token constant">F</span>
+  <span class="token operator">:</span> <span class="token builtin">never</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> <span class="token class-name"><span class="token constant">P</span></span> <span class="token operator">=</span> FirstParam<span class="token operator">&lt;</span><span class="token punctuation">(</span>id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token comment">// number</span></code></pre>
+<h2 id="5-le-pattern-builder-type" tabindex="-1">5. Le pattern Builder typé <a class="header-anchor" href="#5-le-pattern-builder-type" aria-hidden="true">#</a></h2>
+<p>Construire des objets complexes avec une API fluide et type-safe :</p>
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">class</span> <span class="token class-name">QueryBuilder<span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token keyword">extends</span> Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">unknown</span><span class="token operator">>></span></span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> query<span class="token operator">:</span> Partial<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token generic-function"><span class="token function">set</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">K</span> <span class="token keyword">extends</span> <span class="token keyword">keyof</span> <span class="token constant">T</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>key<span class="token operator">:</span> <span class="token constant">K</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">[</span><span class="token constant">K</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">this</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>query<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Partial<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>query<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token operator">=</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> email<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryBuilder<span class="token operator">&lt;</span>User<span class="token operator">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"Alice"</span><span class="token punctuation">)</span>
+  <span class="token comment">// .set("invalid", "x") // ❌ Erreur TypeScript</span>
+  <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="conclusion" tabindex="-1">Conclusion <a class="header-anchor" href="#conclusion" aria-hidden="true">#</a></h2>
+<p>Ces patterns ne sont pas des curiosités académiques — ils résolvent des problèmes concrets : modéliser des états, valider des configs, typer des événements, extraire des types et construire des APIs fluides. Intégrez-les progressivement, votre code de demain vous remerciera.</p>
+]]>
+    </content>
+  </entry>
+  
+</feed>
