@@ -5,6 +5,10 @@ description: Qui je suis, ce que je fais, et pourquoi j'écris.
 permalink: /about/
 ---
 
+<img src="{{ site.author.avatar }}" alt="{{ site.author.name }}"
+     width="80" height="80"
+     style="border-radius: 50%; border: 2px solid var(--border-default);">
+
 Je suis **{{ site.author.name }}**.
 
 Je suis un profil technique axé sur la compréhension des systèmes plutôt que sur leur simple utilisation. Je travaille à l'intersection de **Linux**, de l'**audio**, de la **simulation**, du **hardware** et de la **culture numérique**, actuellement basé en **{{ site.author.location }}**. 
