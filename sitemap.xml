@@ -32,39 +32,51 @@
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/eleventy-site-performant/</loc>
-    <lastmod>2024-03-15</lastmod>
+    <loc>https://votresite.fr/blog/pourquoi-arch-apres-tout-essaye/</loc>
+    <lastmod>2025-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/css-moderne-2024/</loc>
-    <lastmod>2024-02-08</lastmod>
+    <loc>https://votresite.fr/blog/infrabass-ce-que-les-specs-ne-disent-pas/</loc>
+    <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/typescript-patterns-quotidiens/</loc>
-    <lastmod>2024-01-20</lastmod>
+    <loc>https://votresite.fr/blog/beamng-laboratoire-physique/</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   
   <url>
-    <loc>https://votresite.fr/projects/devnotes/</loc>
+    <loc>https://votresite.fr/projects/car-audio-infrabass/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
+  
   <url>
-    <loc>https://votresite.fr/projects/cli-scaffolder/</loc>
+    <loc>https://votresite.fr/notes/beamng-recharger-mod-sans-relancer/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   
+  <url>
+    <loc>https://votresite.fr/notes/winisd-simuler-enceinte/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://votresite.fr/notes/pacman-nettoyer-cache/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
   
   <url>
     <loc>https://votresite.fr/notes/css-variables-composants/</loc>

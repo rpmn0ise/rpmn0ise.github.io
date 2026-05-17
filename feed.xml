@@ -4,7 +4,7 @@
   <subtitle>Développeur, créateur, explorateur de technologies modernes.</subtitle>
   <link href="https://votresite.fr/feed.xml" rel="self"/>
   <link href="https://votresite.fr/"/>
-  <updated>2026-05-16T20:51:27.902Z</updated>
+  <updated>2026-05-17T20:00:38.270Z</updated>
   <id>https://votresite.fr/</id>
   <author>
     <name>RPMN0ISE</name>
@@ -13,249 +13,109 @@
 
   
   <entry>
-    <title>Construire un site performant avec Eleventy</title>
-    <link href="https://votresite.fr/blog/eleventy-site-performant/"/>
-    <updated>2024-03-15T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/eleventy-site-performant/</id>
+    <title>Pourquoi je suis resté sur Arch après avoir tout essayé</title>
+    <link href="https://votresite.fr/blog/pourquoi-arch-apres-tout-essaye/"/>
+    <updated>2025-02-08T00:00:00.000Z</updated>
+    <id>https://votresite.fr/blog/pourquoi-arch-apres-tout-essaye/</id>
     
-    <summary>Retour d&#39;expérience sur la migration d&#39;un site WordPress vers Eleventy : gains de performance, simplicité de déploiement et liberté totale sur l&#39;architecture.</summary>
+    <summary>J&#39;ai utilisé Ubuntu, Fedora, NixOS, Gentoo et une dizaine d&#39;autres distributions. Voici pourquoi Arch (et CachyOS) est ce sur quoi j&#39;ai fini par stabiliser, et ce que chaque distribution m&#39;a appris.</summary>
     
     <content type="html">
-      <![CDATA[<p>Après des années sur WordPress, j’ai migré ce site vers <strong>Eleventy</strong>. Voici pourquoi, comment, et ce que j’en pense six mois après.</p>
-<h2 id="le-probleme-avec-wordpress" tabindex="-1">Le problème avec WordPress <a class="header-anchor" href="#le-probleme-avec-wordpress" aria-hidden="true">#</a></h2>
-<p>WordPress est fantastique pour beaucoup de cas d’usage, mais pour un blog personnel il apporte une complexité injustifiée :</p>
-<ul>
-<li>Base de données à maintenir</li>
-<li>Plugins à mettre à jour</li>
-<li>Sécurité à surveiller</li>
-<li>Temps de réponse serveur variable</li>
-<li>Coût d’hébergement</li>
-</ul>
-<p>Un site personnel n’a pas besoin de tout ça.</p>
-<h2 id="pourquoi-eleventy" tabindex="-1">Pourquoi Eleventy ? <a class="header-anchor" href="#pourquoi-eleventy" aria-hidden="true">#</a></h2>
-<p>J’ai évalué plusieurs options : Hugo, Jekyll, Astro, Next.js. Eleventy a gagné pour ces raisons :</p>
-<ol>
-<li><strong>Zéro JavaScript envoyé au client par défaut</strong> — ce que je mets dans le JS c’est moi qui le décide</li>
-<li><strong>Flexibilité des templates</strong> — Nunjucks, Liquid, Markdown, HTML, JavaScript… peu importe</li>
-<li><strong>Collections puissantes</strong> — le système de collections couvre 95% des besoins</li>
-<li><strong>Communauté active</strong> — docs excellentes, plugins bien maintenus</li>
-</ol>
-<div class="callout callout--info"><p>Eleventy v3 est sorti en octobre 2024 avec le support ESM natif. Ce site tourne en v3.</p>
-</div>
-<h2 id="la-structure-choisie" tabindex="-1">La structure choisie <a class="header-anchor" href="#la-structure-choisie" aria-hidden="true">#</a></h2>
-<pre><code>src/
-├── _data/          # Données globales (JSON, JS)
-├── _includes/      # Layouts et composants
-│   ├── layouts/    # Gabarits de page
-│   └── components/ # Morceaux réutilisables
-├── assets/         # CSS, JS, images
-└── content/        # Le contenu Markdown
-    ├── blog/
-    ├── projects/
-    └── notes/
-</code></pre>
-<p>Cette séparation <code>content/</code> vs <code>assets/</code> vs <code>_includes/</code> rend le projet très lisible.</p>
-<h2 id="performances-obtenues" tabindex="-1">Performances obtenues <a class="header-anchor" href="#performances-obtenues" aria-hidden="true">#</a></h2>
-<p>Les résultats Lighthouse après optimisation :</p>
-<table>
-<thead>
-<tr>
-<th>Métrique</th>
-<th>Score</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Performance</td>
-<td>99</td>
-</tr>
-<tr>
-<td>Accessibilité</td>
-<td>100</td>
-</tr>
-<tr>
-<td>SEO</td>
-<td>100</td>
-</tr>
-<tr>
-<td>Bonnes pratiques</td>
-<td>100</td>
-</tr>
-</tbody>
-</table>
-<p>Le site pèse <strong>moins de 20 KB</strong> (CSS + JS minifiés, sans images).</p>
-<h2 id="ce-qui-manque" tabindex="-1">Ce qui manque <a class="header-anchor" href="#ce-qui-manque" aria-hidden="true">#</a></h2>
-<p>Soyons honnêtes, Eleventy n’est pas parfait :</p>
-<ul>
-<li>Pas d’optimisation d’images native (contrairement à Astro)</li>
-<li>Rebuild complet à chaque changement (hot reload partiel)</li>
-<li>Courbe d’apprentissage pour les collections</li>
-</ul>
-<p>Mais ces limitations sont acceptables pour un site personnel.</p>
-<h2 id="conclusion" tabindex="-1">Conclusion <a class="header-anchor" href="#conclusion" aria-hidden="true">#</a></h2>
-<p>Si vous voulez un site rapide, maintenable, hébergeable gratuitement sur Netlify ou GitHub Pages, <strong>Eleventy est un excellent choix</strong>. Le contenu reste en Markdown, le code reste sous contrôle, et vous ne dépendez d’aucune plateforme propriétaire.</p>
-<p>Toutes les sources de ce site sont disponibles sur <a href="https://github.com/votrenom/site">GitHub</a>.</p>
+      <![CDATA[<p>Le distro hopping a mauvaise réputation. On le présente comme une procrastination déguisée en exploration. C’est parfois vrai. Dans mon cas, chaque changement de distribution a appris quelque chose de spécifique que je n’aurais pas appris autrement.</p>
+<h2 id="ce-que-chaque-distribution-enseigne" tabindex="-1">Ce que chaque distribution enseigne <a class="header-anchor" href="#ce-que-chaque-distribution-enseigne" aria-hidden="true">#</a></h2>
+<p><strong>Ubuntu / Debian</strong> — la base. Les dépôts stables, le gestionnaire de paquets APT, l’écosystème qui fonctionne sans friction. Ce que ça enseigne : que “ça marche” n’est pas un critère suffisant si tu veux comprendre ce qui se passe en dessous.</p>
+<p><strong>Fedora</strong> — le packaging RPM, SELinux, et une philosophie de mise à jour différente. Fedora m’a appris à apprécier un système opinionné qui fait des choix cohérents. Je ne suis pas toujours d’accord avec ses choix, mais ils sont documentés et défendables.</p>
+<p><strong>NixOS</strong> — le concept de configuration déclarative et reproductible. Théoriquement génial. Pratiquement, la courbe d’apprentissage est brutale et le langage Nix est… particulier. Je comprends l’attrait, je ne suis pas prêt à habiter dedans.</p>
+<p><strong>Gentoo</strong> — compiler depuis les sources, comprendre les USE flags, attendre 6 heures qu’un navigateur compile. Ce que ça enseigne : comment le système est réellement assemblé, et pourquoi les distributions binaires sont un cadeau que tu n’apprécies qu’après les avoir perdues.</p>
+<h2 id="pourquoi-arch-a-gagne" tabindex="-1">Pourquoi Arch a gagné <a class="header-anchor" href="#pourquoi-arch-a-gagne" aria-hidden="true">#</a></h2>
+<p>Arch n’est pas la distribution la plus facile. Ce n’est pas non plus la plus performante par défaut, ni la plus stable au sens Debian du terme. Ce qui la distingue :</p>
+<p><strong>L’AUR (Arch User Repository)</strong> — l’accès à presque n’importe quel logiciel, maintenu par la communauté, dans un format cohérent. La longue traîne des logiciels que les dépôts officiels ne packagient pas devient accessible en quelques secondes.</p>
+<p><strong>Le rolling release</strong> — pas de migrations de version, pas de “Ubuntu 24.04 → 26.04”. Les paquets sont mis à jour en continu. Ça demande de lire les news avant de faire <code>pacman -Syu</code> parfois, mais c’est un compromis acceptable.</p>
+<p><strong>Le wiki</strong> — l’Arch Wiki est la meilleure documentation Linux qui existe. Elle est utile même quand tu n’utilises pas Arch. C’est la référence que je consulte sur n’importe quelle distribution.</p>
+<p><strong>La minimalisme de base</strong> — Arch ne décide rien à ta place sur l’environnement de bureau, le display manager, le gestionnaire de son. Tu construis ce que tu veux. Ça prend plus de temps la première fois, mais tu sais exactement ce qui tourne sur ta machine.</p>
+<h2 id="cachyos-arch-avec-des-patches-de-performance" tabindex="-1">CachyOS : Arch avec des patches de performance <a class="header-anchor" href="#cachyos-arch-avec-des-patches-de-performance" aria-hidden="true">#</a></h2>
+<p>CachyOS est une distribution basée sur Arch qui shippe avec des patches kernel orientés performance (notamment le scheduler BORE et les patches EEVDF), des paquets recompilés avec des flags d’optimisation CPU, et une interface d’installation plus accessible.</p>
+<p>Pour du gaming sous Linux ou n’importe quel workload latency-sensitive, la différence est mesurable. Je l’utilise sur ma machine principale, avec Arch vanilla dans des VMs pour les tests.</p>
+<h2 id="ce-que-le-distro-hopping-m-a-reellement-appris" tabindex="-1">Ce que le distro hopping m’a réellement appris <a class="header-anchor" href="#ce-que-le-distro-hopping-m-a-reellement-appris" aria-hidden="true">#</a></h2>
+<p>Pas vraiment quelle distribution est “la meilleure”. Plutôt : comment les distributions font leurs choix, pourquoi le même logiciel se comporte différemment selon l’environnement, et que la majorité des problèmes Linux viennent de 3 sources : le kernel, les drivers (principalement GPU), et systemd dans ses interactions avec le reste.</p>
+<p>Le distro hopping n’est pas une perte de temps si tu l’abordes avec une question précise à chaque fois. “Je veux comprendre comment NixOS gère les dépendances” est une bonne raison. “Je suis ennuyé” en est une moins bonne — même si elle est honnête.</p>
 ]]>
     </content>
   </entry>
   
   <entry>
-    <title>CSS moderne : les fonctionnalités que j&#39;utilise en 2024</title>
-    <link href="https://votresite.fr/blog/css-moderne-2024/"/>
-    <updated>2024-02-08T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/css-moderne-2024/</id>
+    <title>Infrabass : ce que les specs ne te disent pas</title>
+    <link href="https://votresite.fr/blog/infrabass-ce-que-les-specs-ne-disent-pas/"/>
+    <updated>2025-01-25T00:00:00.000Z</updated>
+    <id>https://votresite.fr/blog/infrabass-ce-que-les-specs-ne-disent-pas/</id>
     
-    <summary>Container queries, cascade layers, :has(), color-mix()... Le CSS natif n&#39;a jamais été aussi puissant. Tour d&#39;horizon des fonctionnalités qui changent ma façon de coder.</summary>
+    <summary>Fréquence de résonance, déplacement membranaire, puissance thermique — ce que j&#39;ai appris en construisant mes premiers systèmes de grave et pourquoi le chiffre de puissance sur la boîte ne veut rien dire.</summary>
     
     <content type="html">
-      <![CDATA[<p>Le CSS natif a fait des bonds de géant ces deux dernières années. Voici les fonctionnalités que j’utilise réellement en production.</p>
-<h2 id="container-queries" tabindex="-1">Container Queries <a class="header-anchor" href="#container-queries" aria-hidden="true">#</a></h2>
-<p>Fini de dépendre de la taille du viewport pour les composants. Avec les container queries, un composant répond à la taille de <strong>son conteneur</strong> :</p>
-<pre class="language-css" tabindex="0"><code class="language-css"><span class="token selector">.card-wrapper</span> <span class="token punctuation">{</span>
-  <span class="token property">container-type</span><span class="token punctuation">:</span> inline-size<span class="token punctuation">;</span>
-  <span class="token property">container-name</span><span class="token punctuation">:</span> card<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token atrule"><span class="token rule">@container</span> card <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 400px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
-  <span class="token selector">.card</span> <span class="token punctuation">{</span>
-    <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
-    <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> 200px 1fr<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>C’est révolutionnaire pour les Design Systems.</p>
-<h2 id="la-pseudo-classe-has" tabindex="-1">La pseudo-classe :has() <a class="header-anchor" href="#la-pseudo-classe-has" aria-hidden="true">#</a></h2>
-<p>Le “parent selector” tant attendu est là :</p>
-<pre class="language-css" tabindex="0"><code class="language-css"><span class="token comment">/* Form valide = champ vert */</span>
-<span class="token selector">.form:has(input:valid) .submit-btn</span> <span class="token punctuation">{</span>
-  <span class="token property">background</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment">/* Card avec image = layout différent */</span>
-<span class="token selector">.card:has(img)</span> <span class="token punctuation">{</span>
-  <span class="token property">grid-template-rows</span><span class="token punctuation">:</span> auto 1fr<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>Support : tous les navigateurs modernes depuis 2023.</p>
-<h2 id="cascade-layers" tabindex="-1">Cascade Layers <a class="header-anchor" href="#cascade-layers" aria-hidden="true">#</a></h2>
-<p>Les <code>@layer</code> permettent de contrôler la cascade CSS sans jouer sur la spécificité :</p>
-<pre class="language-css" tabindex="0"><code class="language-css"><span class="token atrule"><span class="token rule">@layer</span> reset<span class="token punctuation">,</span> base<span class="token punctuation">,</span> components<span class="token punctuation">,</span> utilities<span class="token punctuation">;</span></span>
-
-<span class="token atrule"><span class="token rule">@layer</span> reset</span> <span class="token punctuation">{</span>
-  <span class="token selector">*</span> <span class="token punctuation">{</span> <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token atrule"><span class="token rule">@layer</span> utilities</span> <span class="token punctuation">{</span>
-  <span class="token selector">.sr-only</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>Les styles dans <code>utilities</code> auront toujours la priorité sur <code>components</code>, indépendamment de la spécificité.</p>
-<h2 id="color-mix" tabindex="-1">color-mix() <a class="header-anchor" href="#color-mix" aria-hidden="true">#</a></h2>
-<p>Manipuler les couleurs nativement :</p>
-<pre class="language-css" tabindex="0"><code class="language-css"><span class="token selector">:root</span> <span class="token punctuation">{</span>
-  <span class="token property">--accent</span><span class="token punctuation">:</span> #58a6ff<span class="token punctuation">;</span>
-  <span class="token property">--accent-subtle</span><span class="token punctuation">:</span> <span class="token function">color-mix</span><span class="token punctuation">(</span>in oklch<span class="token punctuation">,</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span> 15%<span class="token punctuation">,</span> transparent<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token property">--accent-hover</span><span class="token punctuation">:</span> <span class="token function">color-mix</span><span class="token punctuation">(</span>in oklch<span class="token punctuation">,</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span> 120%<span class="token punctuation">,</span> black<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="conclusion" tabindex="-1">Conclusion <a class="header-anchor" href="#conclusion" aria-hidden="true">#</a></h2>
-<p>Ces fonctionnalités sont toutes disponibles dans les navigateurs modernes (Chrome, Firefox, Safari). Il n’y a plus vraiment de raison d’éviter le CSS natif pour les nouveaux projets.</p>
+      <![CDATA[<p>Quand on commence dans le car audio ou le subwoofer DIY, on regarde les watts. C’est l’erreur que tout le monde fait, moi inclus.</p>
+<h2 id="le-probleme-avec-les-watts" tabindex="-1">Le problème avec les watts <a class="header-anchor" href="#le-probleme-avec-les-watts" aria-hidden="true">#</a></h2>
+<p>Un subwoofer à 1000W RMS ne produit pas deux fois plus de pression acoustique qu’un à 500W. La relation entre puissance électrique et SPL (Sound Pressure Level) est <strong>logarithmique</strong> : pour gagner 3 dB de pression, il faut doubler la puissance. Pour gagner 10 dB — ce qui est perçu comme “deux fois plus fort” — il faut multiplier la puissance par 10.</p>
+<p>Concrètement : passer de 500W à 1000W te donne +3 dB. Passer de 500W à 5000W te donne +10 dB. La puissance a des rendements décroissants très rapides.</p>
+<p>Ce qui compte réellement :</p>
+<p><strong>L’efficacité (sensibilité)</strong> — exprimée en dB/W/m. Un woofer à 90 dB/W/m alimenté avec 100W produit 110 dB à 1m. Un woofer à 85 dB/W/m a besoin de 316W pour le même résultat.</p>
+<p><strong>Le déplacement (Xmax et Sd)</strong> — la quantité d’air déplacée. Pour les basses fréquences, c’est ça qui fait la pression, pas la puissance. <code>Volume d'air = Sd × Xmax</code>. Un woofer avec un grand diamètre et un long débattement peut reproduire des infrasons avec moins de puissance qu’un petit woofer poussé à fond.</p>
+<h2 id="frequence-de-resonance-pourquoi-ca-change-tout" tabindex="-1">Fréquence de résonance : pourquoi ça change tout <a class="header-anchor" href="#frequence-de-resonance-pourquoi-ca-change-tout" aria-hidden="true">#</a></h2>
+<p>Chaque haut-parleur a une fréquence de résonance libre (Fs). En dessous de Fs, le haut-parleur ne joue plus — il consomme de l’énergie sans produire de pression utile, et chauffe.</p>
+<p>Dans une enceinte close, Fs monte. Dans un bass-reflex accordé correctement, l’évent prend le relais autour de l’accord. Le choix du type d’enceinte dépend directement de ce que tu veux descendre en fréquence et de ce que le woofer peut physiquement faire.</p>
+<p>J’ai appris ça en simulant des enceintes avec <strong>WinISD</strong> avant de couper du MDF. Simuler d’abord, construire ensuite — j’aurais économisé du bois et du temps si j’avais commencé par là.</p>
+<h2 id="ce-que-le-rebassage-revele" tabindex="-1">Ce que le rebassage révèle <a class="header-anchor" href="#ce-que-le-rebassage-revele" aria-hidden="true">#</a></h2>
+<p>Le rebassed (l’ajout de fréquences graves synthétiques sur des tracks US rap) est souvent méprisé dans les cercles audiophiles sérieux. Je comprends pourquoi, et je m’en fous.</p>
+<p>Ce qui m’intéresse dans le rebassage c’est ce qu’il révèle sur le système : un sub qui joue proprement du 20 Hz rebassé sans distorsion visible, sans claquement mécanique, c’est un système qui a de la marge. C’est un test de stress.</p>
+<p>Et honnêtement, 20 Hz à 110 dB dans un habitacle, c’est une expérience physique difficile à reproduire autrement.</p>
+<h2 id="ce-que-je-ferais-differemment" tabindex="-1">Ce que je ferais différemment <a class="header-anchor" href="#ce-que-je-ferais-differemment" aria-hidden="true">#</a></h2>
+<p>Si je recommençais : moins regarder les watts, plus regarder le <code>Vas</code>, le <code>Qts</code> et le <code>Fs</code>. Simuler avant de commander. Et accepter que le gain le plus important ne vient pas du subwoofer lui-même, mais de <strong>la conception de l’enceinte et du placement dans l’espace</strong>.</p>
+<p>L’acoustique de salle (ou d’habitacle) annule ou amplifie les fréquences de façon qui dépasse souvent l’apport de n’importe quel upgrade hardware. C’est frustrant, mais c’est la réalité.</p>
 ]]>
     </content>
   </entry>
   
   <entry>
-    <title>5 patterns TypeScript que j&#39;utilise tous les jours</title>
-    <link href="https://votresite.fr/blog/typescript-patterns-quotidiens/"/>
-    <updated>2024-01-20T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/typescript-patterns-quotidiens/</id>
+    <title>BeamNG.drive n&#39;est pas un jeu, c&#39;est un laboratoire</title>
+    <link href="https://votresite.fr/blog/beamng-laboratoire-physique/"/>
+    <updated>2025-01-10T00:00:00.000Z</updated>
+    <id>https://votresite.fr/blog/beamng-laboratoire-physique/</id>
     
-    <summary>Des patterns TypeScript concrets et immédiatement applicables : discriminated unions, satisfies, template literals types, infer et le pattern Builder.</summary>
+    <summary>Pourquoi je considère BeamNG comme une plateforme d&#39;expérimentation physique sérieuse, et ce que j&#39;y ai appris sur les systèmes mécaniques que je n&#39;aurais pas appris autrement.</summary>
     
     <content type="html">
-      <![CDATA[<p>TypeScript devient vraiment puissant quand on dépasse les types basiques. Voici cinq patterns que j’ai intégrés dans ma pratique quotidienne.</p>
-<h2 id="1-discriminated-unions" tabindex="-1">1. Discriminated Unions <a class="header-anchor" href="#1-discriminated-unions" aria-hidden="true">#</a></h2>
-<p>Modéliser des états exclusifs de manière sûre :</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">RequestState<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token operator">=</span>
-  <span class="token operator">|</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token string">"idle"</span> <span class="token punctuation">}</span>
-  <span class="token operator">|</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token string">"loading"</span> <span class="token punctuation">}</span>
-  <span class="token operator">|</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token string">"success"</span><span class="token punctuation">;</span> data<span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">}</span>
-  <span class="token operator">|</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">;</span> error<span class="token operator">:</span> Error <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">function</span> <span class="token generic-function"><span class="token function">render</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>state<span class="token operator">:</span> RequestState<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">switch</span> <span class="token punctuation">(</span>state<span class="token punctuation">.</span>status<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">case</span> <span class="token string">"idle"</span><span class="token operator">:</span>    <span class="token keyword">return</span> <span class="token operator">&lt;</span>Idle <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
-    <span class="token keyword">case</span> <span class="token string">"loading"</span><span class="token operator">:</span> <span class="token keyword">return</span> <span class="token operator">&lt;</span>Spinner <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
-    <span class="token keyword">case</span> <span class="token string">"success"</span><span class="token operator">:</span> <span class="token keyword">return</span> <span class="token operator">&lt;</span>Data data<span class="token operator">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>data<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token comment">// data est typé T ici</span>
-    <span class="token keyword">case</span> <span class="token string">"error"</span><span class="token operator">:</span>   <span class="token keyword">return</span> <span class="token operator">&lt;</span>Error msg<span class="token operator">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>error<span class="token punctuation">.</span>message<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
+      <![CDATA[<p>La plupart des gens voient BeamNG.drive comme le jeu où les voitures se crashent de façon réaliste. C’est techniquement vrai et complètement à côté de l’essentiel.</p>
+<h2 id="ce-que-le-moteur-fait-reellement" tabindex="-1">Ce que le moteur fait réellement <a class="header-anchor" href="#ce-que-le-moteur-fait-reellement" aria-hidden="true">#</a></h2>
+<p>BeamNG utilise un moteur de physique <strong>soft-body</strong> en temps réel. Chaque véhicule est modélisé comme un réseau de nœuds (masses ponctuelles) reliés par des poutres (ressorts/amortisseurs). Il n’y a pas de hitbox rigide, pas de mesh de collision simplifié — chaque déformation est le résultat direct de la simulation des forces appliquées à chaque nœud individuellement.</p>
+<p>Ce qui veut dire que quand une voiture s’écrase contre un mur à 80 km/h, le simulateur ne joue pas une animation de crash pré-calculée. Il résout des milliers d’équations différentielles en temps réel pour déterminer comment chaque partie de la carrosserie se déforme sous la contrainte.</p>
+<p>C’est fondamentalement différent de tout ce qu’Assetto Corsa, iRacing ou Forza proposent.</p>
+<h2 id="ce-que-j-ai-appris-sur-la-suspension" tabindex="-1">Ce que j’ai appris sur la suspension <a class="header-anchor" href="#ce-que-j-ai-appris-sur-la-suspension" aria-hidden="true">#</a></h2>
+<p>En moddant des véhicules, j’ai dû comprendre les paramètres réels de suspension pour que les comportements soient cohérents :</p>
+<ul>
+<li><strong>Spring rate</strong> (raideur du ressort) : trop rigide = rebonds non amorties, trop souple = roulis excessif</li>
+<li><strong>Damper</strong> (amortisseur) : le ratio bump/rebound change complètement le comportement en virage</li>
+<li><strong>Anti-roll bar</strong> : son interaction avec le différentiel sur les transferts de charge latéraux</li>
+</ul>
+<p>J’aurais pu lire ça dans un manuel de mécanique auto. Mais le voir en temps réel, modifier un paramètre et observer immédiatement la conséquence sur le comportement du véhicule — c’est une autre forme de compréhension.</p>
+<h2 id="le-modding-comme-reverse-engineering" tabindex="-1">Le modding comme reverse engineering <a class="header-anchor" href="#le-modding-comme-reverse-engineering" aria-hidden="true">#</a></h2>
+<p>Créer un mod dans BeamNG, c’est écrire des fichiers JSON qui décrivent la topologie physique du véhicule. Chaque poutre a une résistance à la tension, une résistance à la compression, un seuil de rupture. Chaque nœud a une masse, une position.</p>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"nodes"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token string">"posX"</span><span class="token punctuation">,</span> <span class="token string">"posY"</span><span class="token punctuation">,</span> <span class="token string">"posZ"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token string">"chassis_fr"</span><span class="token punctuation">,</span> <span class="token number">-0.72</span><span class="token punctuation">,</span> <span class="token number">1.45</span><span class="token punctuation">,</span> <span class="token number">0.32</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token string">"chassis_fl"</span><span class="token punctuation">,</span>  <span class="token number">0.72</span><span class="token punctuation">,</span> <span class="token number">1.45</span><span class="token punctuation">,</span> <span class="token number">0.32</span><span class="token punctuation">]</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"beams"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token string">"id1"</span><span class="token punctuation">,</span> <span class="token string">"id2"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token property">"spring"</span><span class="token operator">:</span> <span class="token number">4500000</span><span class="token punctuation">,</span> <span class="token property">"damp"</span><span class="token operator">:</span> <span class="token number">15000</span><span class="token punctuation">,</span> <span class="token property">"deform"</span><span class="token operator">:</span> <span class="token number">85000</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token string">"chassis_fr"</span><span class="token punctuation">,</span> <span class="token string">"chassis_fl"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
 <span class="token punctuation">}</span></code></pre>
-<p>Le compilateur garantit l’exhaustivité. Si vous ajoutez un état, TypeScript vous force à le gérer.</p>
-<h2 id="2-le-mot-cle-satisfies" tabindex="-1">2. Le mot-clé <code>satisfies</code> <a class="header-anchor" href="#2-le-mot-cle-satisfies" aria-hidden="true">#</a></h2>
-<p>Validez un type sans perdre l’inférence :</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">Config</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
-  port<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
-  host<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
-  debug<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment">// Sans satisfies : le type est Config, on perd les détails</span>
-<span class="token keyword">const</span> config<span class="token operator">:</span> Config <span class="token operator">=</span> <span class="token punctuation">{</span> port<span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span> host<span class="token operator">:</span> <span class="token string">"localhost"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment">// Avec satisfies : TypeScript valide ET infère le type précis</span>
-<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-  port<span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
-  host<span class="token operator">:</span> <span class="token string">"localhost"</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span> satisfies Config<span class="token punctuation">;</span>
-
-<span class="token comment">// config.port est number, pas Config["port"]</span>
-<span class="token comment">// config.debug est undefined, TypeScript le sait</span></code></pre>
-<p>Très utile pour les objets de configuration.</p>
-<h2 id="3-template-literal-types" tabindex="-1">3. Template Literal Types <a class="header-anchor" href="#3-template-literal-types" aria-hidden="true">#</a></h2>
-<p>Construire des types à partir de chaînes :</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">HttpMethod</span> <span class="token operator">=</span> <span class="token string">"GET"</span> <span class="token operator">|</span> <span class="token string">"POST"</span> <span class="token operator">|</span> <span class="token string">"PUT"</span> <span class="token operator">|</span> <span class="token string">"DELETE"</span> <span class="token operator">|</span> <span class="token string">"PATCH"</span><span class="token punctuation">;</span>
-<span class="token keyword">type</span> <span class="token class-name">ApiRoute</span> <span class="token operator">=</span> <span class="token string">"/users"</span> <span class="token operator">|</span> <span class="token string">"/posts"</span> <span class="token operator">|</span> <span class="token string">"/comments"</span><span class="token punctuation">;</span>
-
-<span class="token keyword">type</span> <span class="token class-name">Endpoint</span> <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>HttpMethod<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ApiRoute<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
-<span class="token comment">// "GET /users" | "GET /posts" | "POST /users" | ...</span>
-
-<span class="token comment">// Pratique pour les event emitters typés</span>
-<span class="token keyword">type</span> <span class="token class-name">EventName<span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token builtin">string</span><span class="token operator">></span></span> <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">on</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Capitalize<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
-<span class="token keyword">type</span> <span class="token class-name">ClickEvent</span> <span class="token operator">=</span> EventName<span class="token operator">&lt;</span><span class="token string">"click"</span><span class="token operator">></span><span class="token punctuation">;</span>  <span class="token comment">// "onClick"</span></code></pre>
-<h2 id="4-le-mot-cle-infer" tabindex="-1">4. Le mot-clé <code>infer</code> <a class="header-anchor" href="#4-le-mot-cle-infer" aria-hidden="true">#</a></h2>
-<p>Extraire des types depuis d’autres types :</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// Extraire le type de retour d'une Promise</span>
-<span class="token keyword">type</span> <span class="token class-name">UnwrapPromise<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token operator">=</span> <span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token class-name"><span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">infer</span> <span class="token constant">U</span><span class="token operator">></span></span> <span class="token operator">?</span> <span class="token constant">U</span> <span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">;</span>
-
-<span class="token keyword">type</span> <span class="token class-name">Result</span> <span class="token operator">=</span> UnwrapPromise<span class="token operator">&lt;</span><span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">>></span><span class="token punctuation">;</span> <span class="token comment">// string</span>
-<span class="token keyword">type</span> <span class="token class-name">Same</span>   <span class="token operator">=</span> UnwrapPromise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>          <span class="token comment">// number</span>
-
-<span class="token comment">// Extraire les paramètres d'une fonction</span>
-<span class="token keyword">type</span> <span class="token class-name">FirstParam<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token operator">=</span> <span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token punctuation">(</span>first<span class="token operator">:</span> <span class="token keyword">infer</span> <span class="token constant">F</span><span class="token punctuation">,</span> <span class="token operator">...</span>rest<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token builtin">any</span>
-  <span class="token operator">?</span> <span class="token constant">F</span>
-  <span class="token operator">:</span> <span class="token builtin">never</span><span class="token punctuation">;</span>
-
-<span class="token keyword">type</span> <span class="token class-name"><span class="token constant">P</span></span> <span class="token operator">=</span> FirstParam<span class="token operator">&lt;</span><span class="token punctuation">(</span>id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token comment">// number</span></code></pre>
-<h2 id="5-le-pattern-builder-type" tabindex="-1">5. Le pattern Builder typé <a class="header-anchor" href="#5-le-pattern-builder-type" aria-hidden="true">#</a></h2>
-<p>Construire des objets complexes avec une API fluide et type-safe :</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">class</span> <span class="token class-name">QueryBuilder<span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token keyword">extends</span> Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">unknown</span><span class="token operator">>></span></span> <span class="token punctuation">{</span>
-  <span class="token keyword">private</span> query<span class="token operator">:</span> Partial<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-  <span class="token generic-function"><span class="token function">set</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">K</span> <span class="token keyword">extends</span> <span class="token keyword">keyof</span> <span class="token constant">T</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>key<span class="token operator">:</span> <span class="token constant">K</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">[</span><span class="token constant">K</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">this</span> <span class="token punctuation">{</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>query<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Partial<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>query<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token operator">=</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> email<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryBuilder<span class="token operator">&lt;</span>User<span class="token operator">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"Alice"</span><span class="token punctuation">)</span>
-  <span class="token comment">// .set("invalid", "x") // ❌ Erreur TypeScript</span>
-  <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="conclusion" tabindex="-1">Conclusion <a class="header-anchor" href="#conclusion" aria-hidden="true">#</a></h2>
-<p>Ces patterns ne sont pas des curiosités académiques — ils résolvent des problèmes concrets : modéliser des états, valider des configs, typer des événements, extraire des types et construire des APIs fluides. Intégrez-les progressivement, votre code de demain vous remerciera.</p>
+<p>C’est du génie civil appliqué à une Japonaise des années 90.</p>
+<h2 id="la-limite-de-la-simulation" tabindex="-1">La limite de la simulation <a class="header-anchor" href="#la-limite-de-la-simulation" aria-hidden="true">#</a></h2>
+<p>Ce serait malhonnête de ne pas mentionner ce que BeamNG ne fait pas bien : la dynamique des pneus à haute vitesse reste approximative comparée à des simulateurs dédiés comme Assetto Corsa Competizione. Le modèle thermique des freins est simplifié. Et le comportement aérodynamique est quasi absent sur les véhicules de série.</p>
+<p>C’est un outil d’apprentissage sur la structure et la mécanique, pas un outil de préparation à la compétition.</p>
+<h2 id="pourquoi-je-continue-d-y-passer-du-temps" tabindex="-1">Pourquoi je continue d’y passer du temps <a class="header-anchor" href="#pourquoi-je-continue-d-y-passer-du-temps" aria-hidden="true">#</a></h2>
+<p>Parce que c’est l’un des rares softwares qui me permet de <strong>formuler une hypothèse, la tester immédiatement, et observer le résultat</strong> dans un système physique complexe — sans avoir de voiture, d’atelier, ou de budget pour casser du métal réel.</p>
+<p>C’est ça, un laboratoire.</p>
 ]]>
     </content>
   </entry>
