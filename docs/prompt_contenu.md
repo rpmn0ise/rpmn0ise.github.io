@@ -193,4 +193,6 @@ TAGS : audio, outils, diy
 
 ## Output attendu
 
-Un unique fichier Markdown complet, prêt à etre téléchargé puis transféré dans le bon dossier du repo. Rien d'autre.
+Un fichier Markdown en pièce jointe, nommé correctement en kebab-case
+(ex : pacman-nettoyer-cache.md), prêt à copier dans le bon dossier du repo.
+Pas de bloc de code, pas d'explication autour — uniquement le fichier.
