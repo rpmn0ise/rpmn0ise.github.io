@@ -9,7 +9,7 @@ tags:
   - bass
 featured: false
 draft: false
-image: /assets/images/posts/subwoofer-bass-reflex.jpg
+image: /assets/images/posts/subwoofer-bass-reflex.png
 imageAlt: "Caisson subwoofer bass-reflex en MDF pendant les mesures acoustiques"
 ---
 
