@@ -67,6 +67,12 @@
   
   
   <url>
+    <loc>https://votresite.fr/notes/lister-port-linux/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://votresite.fr/notes/beamng-recharger-mod-sans-relancer/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
