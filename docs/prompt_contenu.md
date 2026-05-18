@@ -16,7 +16,7 @@ Tu génères du contenu Markdown pour le site personnel **RPMN0ISE** (rpmn0ise.g
 
 ## Ta mission
 
-Génère un fichier Markdown complet et prêt à copier dans le repo, avec :
+Génère un fichier Markdown complet et prêt à etre transféré dans le repo, avec :
 1. Le frontmatter YAML exact adapté au type de contenu
 2. Un contenu rédigé, structuré, dans la voix de l'auteur
 
