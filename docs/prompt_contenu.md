@@ -190,9 +190,9 @@ TAGS : audio, outils, diy
 ```
 
 ---
-
 ## Output attendu
 
-Un fichier Markdown en pièce jointe, nommé correctement en kebab-case
-(ex : pacman-nettoyer-cache.md), prêt à copier dans le bon dossier du repo.
-Pas de bloc de code, pas d'explication autour — uniquement le fichier.
+Donne en premier lieu le nom du fichier à utiliser, sur une ligne seule, en kebab-case :
+Ex : `pacman-nettoyer-cache.md`
+
+Puis le contenu Markdown brut dans un bloc de code.
