@@ -1,7 +1,7 @@
 ---
 title: "BeamNG Forums"
 description: "La communauté officielle BeamNG.drive. Documentation du modding JBeam, partage de mods, support technique et discussions sur la physique du simulateur."
-url: "https://www.beamng.com/threads/"
+url: "https://www.beamng.com/forums/"
 icon: "🚗"
 tags:
   - beamng
