@@ -1,6 +1,6 @@
 ---
-title: "Retour de Force — Plateforme de mods BeamNG"
-description: "Plateforme privée de curation et référencement de mods pour BeamNG.drive. 80+ mods indexés, accès restreint via Discord, zéro hébergement de fichiers, entièrement en Eleventy statique."
+title: "Retour de Force — Plateforme privée de mods BeamNG"
+description: "Plateforme privée et curatée de mods pour BeamNG.drive. Accès restreint par code Discord, mode invité avec liens chiffrés côté client, 80+ mods indexés — entièrement statique sous Eleventy."
 date: 2026-03-20
 order: 1
 status: actif
@@ -9,8 +9,8 @@ tech:
   - Eleventy (11ty)
   - GitHub Pages
   - GitHub Actions
-  - Markdown / YAML
   - JavaScript vanilla
+  - Markdown / YAML
 demo: "https://rpmn0ise.github.io/retour-de-force/"
 github: "https://github.com/rpmn0ise/retour-de-force"
 draft: false
@@ -18,19 +18,49 @@ draft: false
 
 ## Origine
 
-Le nom vient du volant à retour de force (Force Feedback) utilisé pendant la conception. L'idée de base : il n'existait pas d'endroit propre et fiable pour centraliser les mods BeamNG testés au sein de la communauté FR. Les sources sont éparpillées — forums, Discord, liens Mega qui meurent, packs non vérifiés.
+Le nom vient du volant à retour de force (Force Feedback) utilisé au moment de la conception. L'idée est née d'un constat simple : il n'existait aucun endroit propre et fiable pour centraliser les mods BeamNG testés au sein de la communauté FR. Les sources sont éparpillées sur des forums, des fils Discord, des liens Mega qui meurent après 48h, des packs non vérifiés. Trop de bruit, pas assez de signal.
 
-Retour de Force est né pour régler ça.
+Retour de Force est né pour régler ça — une plateforme fermée et curatée, pensée pour une communauté restreinte qui sait ce qu'elle cherche.
 
-## Ce que c'est concrètement
+---
 
-Une plateforme de **curation sélective** : chaque mod est testé et validé manuellement avant d'être indexé. Le site ne stocke aucun fichier — il référence et redirige vers les sources existantes. Les liens de téléchargement sont chiffrés côté client.
+## Un site délibérément privé
 
-L'accès est restreint à une communauté privée via un code partagé sur Discord. Pas d'inscription, pas de compte — juste un code.
+> **Retour de Force n'est pas public — et c'est un choix.**
 
-## Stack et architecture
+L'accès complet est réservé aux membres du cercle privé. Le code d'accès est distribué manuellement sur le serveur Discord : pas d'inscription, pas de formulaire, pas de compte à créer. Soit tu as le code, soit tu n'entres pas.
 
-Tout repose sur Eleventy avec GitHub Pages. Chaque mod est un fichier Markdown avec un frontmatter YAML standardisé :
+Cette décision n'est pas une contrainte technique — c'est un parti pris de design. Un catalogue de mods curatés perd tout son sens s'il est accessible sans filtrage. La sélectivité de l'accès est le miroir de la sélectivité du contenu : chaque mod présent a été testé, vérifié, jugé digne d'y figurer.
+
+---
+
+## Mode invité — voir sans pouvoir télécharger
+
+Pour les visiteurs arrivant sans code, un **mode invité** est disponible. Il permet d'explorer le catalogue dans sa quasi-totalité, mais avec une restriction centrale et intentionnelle : **les liens de téléchargement sont chiffrés et inaccessibles**.
+
+En mode invité, voici ce qui est disponible :
+
+- **Navigation complète** du catalogue — fiches, photos, métadonnées
+- **Recherche et filtres** pleinement fonctionnels
+- **Lecture intégrale** de chaque fiche mod
+
+En revanche, ce qui reste verrouillé :
+
+- **Les liens de téléchargement** — encodés côté client, illisibles sans authentification valide
+
+Les liens pointent vers les sources externes (Mega, etc.) mais sont obfusqués au moment du rendu JavaScript, en fonction de l'état d'authentification détecté localement. Un visiteur non authentifié voit qu'un mod existe, peut lire sa fiche complète et ses captures — mais le lien reste une chaîne opaque, inutilisable.
+
+C'est une frontière volontaire : **montrer ce qu'il y a derrière la porte, sans l'ouvrir**.
+
+> Note : cette protection côté client n'est pas infaillible face à un adversaire déterminé et technique. Elle est conçue pour décourager l'accès non invité et protéger les sources, pas pour garantir une sécurité absolue.
+
+---
+
+## Architecture technique
+
+Tout repose sur Eleventy avec GitHub Pages. Pas de base de données, pas de serveur, pas de backend — une contrainte forte qui a dicté toutes les décisions techniques du projet.
+
+Chaque mod est un fichier Markdown avec un frontmatter YAML standardisé :
 
 ```yaml
 layout: layouts/mod.njk
@@ -46,31 +76,54 @@ source: "Mega"
 description: "..."
 ```
 
-GitHub Actions détecte chaque push sur `main`, lance le build Eleventy et déploie automatiquement. Le cycle complet dure moins de 2 minutes.
+Eleventy compile l'ensemble en HTML statique. GitHub Actions détecte chaque push sur `main`, lance le build et déploie automatiquement. Cycle complet en moins de 2 minutes.
+
+---
+
+## Ce qui est non-trivial dans un contexte 100% statique
+
+L'absence totale de backend oblige à résoudre côté client des problèmes qu'on délègue habituellement au serveur.
+
+**Recherche et filtres** — recherche instantanée par titre, auteur et catégorie, tri par date, filtres multi-critères — tournent entièrement en JavaScript vanilla sur un index JSON généré à la compilation par Eleventy. Aucune requête serveur, zéro latence.
+
+**Page Nouveautés** — mods ajoutés dans les 7 derniers jours, avec mise en avant du dernier ajout — calculée statiquement à chaque build. Elle se met à jour dès qu'un nouveau fichier `.md` est committé.
+
+**Chiffrement des liens** — obfuscation côté client au moment du rendu, conditionnée à l'état d'authentification local. Protection délibérément simple mais efficace pour l'usage cible.
+
+---
+
+## Outil de soumission interne
+
+La page `/soumettre` est l'un des morceaux les plus utiles du projet. C'est un formulaire qui génère le fichier `.md` complet prêt à commit, avec :
+
+- Prévisualisation Markdown en temps réel du rendu final
+- Import en masse d'URLs Imgur pour la galerie photos
+- Validation des champs obligatoires
+- Bouton "Copier" pour sortir le fichier prêt à coller dans le repo
+
+Résultat : ajouter un mod ne demande pas de toucher au code. N'importe quel membre de confiance peut préparer une fiche, la copier et ouvrir une PR.
+
+---
 
 ## Fonctionnalités
 
-**Catalogue** — 80+ mods indexés, filtrables par catégorie (Véhicule, Map, Config, Utilitaire), triables par date. Recherche instantanée côté client.
+| Domaine | Détail |
+|---|---|
+| Catalogue | 80+ mods — Véhicule, Map, Config, Utilitaire |
+| Recherche | Instantanée + filtres multi-critères + tri par date |
+| Fiches | Détaillées, galerie multi-photos |
+| Nouveautés | Page dédiée, 7 derniers jours |
+| Stats | Compteurs du catalogue en temps réel |
+| Soumission | Outil interne avec prévisualisation live |
+| Langue | Support FR / EN |
+| Accès | Code Discord requis — mode invité avec liens chiffrés |
+| CI/CD | GitHub Actions — déploiement auto à chaque push |
 
-**Nouveautés** — page dédiée aux mods ajoutés dans les 7 derniers jours, avec mise en avant du dernier ajout.
+---
 
-**Fiches détaillées** — galerie photos par mod (support multi-images depuis Imgur), métadonnées complètes (auteur, version, source, date de mise à jour).
+## Prochaines étapes
 
-**Outil de soumission interne** (`/soumettre`) — formulaire qui génère le fichier Markdown avec prévisualisation live du rendu. Permet d'ajouter un mod sans toucher au code.
-
-**Stats** — tableau de bord du catalogue (répartition par catégorie, volume, activité récente).
-
-**Multilingue** — support FR/EN.
-
-## Ce qui rend le projet non-trivial
-
-La contrainte principale : tout doit être statique. Pas de base de données, pas de serveur, pas de backend. La recherche, les filtres, le tri, la galerie, la page nouveautés — tout tourne en JavaScript vanilla côté client sur des données générées à la compilation par Eleventy.
-
-L'outil de soumission est particulièrement intéressant : il génère un fichier `.md` complet prêt à commit, avec prévisualisation Markdown en temps réel, import en masse d'URLs Imgur et validation des champs. Tout ça sans framework, sans backend.
-
-## Ce qui vient ensuite
-
-- Système de tags par mod (style de conduite, compatibilité version BeamNG)
-- Historique des versions par mod
+- Tags par mod (style de conduite, compatibilité version BeamNG)
+- Historique des versions par fiche
+- Notifications Discord automatiques via webhook GitHub Actions à chaque nouveau mod
 - Page contributeurs
-- Notifications Discord automatiques à chaque nouveau mod via webhook GitHub Actions
