@@ -2,7 +2,7 @@
 title: "Car audio build — Focus sur l'infrabass"
 description: "Conception et installation d'un système car audio orienté grave profond : choix du subwoofer, design de l'enceinte, amplification et tuning à l'oreille + mesures REW."
 date: 2024-11-20
-order: 2
+order: 3
 status: actif
 year: 2024
 tech:
