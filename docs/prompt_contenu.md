@@ -193,4 +193,4 @@ TAGS : audio, outils, diy
 
 ## Output attendu
 
-Un unique bloc de code Markdown complet, prêt à copier-coller dans le bon dossier du repo. Rien d'autre.
+Un unique fichier Markdown complet, prêt à etre téléchargé puis transféré dans le bon dossier du repo. Rien d'autre.
