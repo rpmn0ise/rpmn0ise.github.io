@@ -4,13 +4,125 @@
   <subtitle>Développeur, créateur, explorateur de technologies modernes.</subtitle>
   <link href="https://votresite.fr/feed.xml" rel="self"/>
   <link href="https://votresite.fr/"/>
-  <updated>2026-05-19T09:33:33.284Z</updated>
+  <updated>2026-05-20T16:40:29.535Z</updated>
   <id>https://votresite.fr/</id>
   <author>
     <name>RPMN0ISE</name>
     <email>rpmn0ise@proton.me</email>
   </author>
 
+  
+  <entry>
+    <title>Installer un subwoofer de voiture à la maison</title>
+    <link href="https://votresite.fr/blog/sub-voiture-maison/"/>
+    <updated>2026-05-20T00:00:00.000Z</updated>
+    <id>https://votresite.fr/blog/sub-voiture-maison/</id>
+    
+    <summary>Alimentation, ampli, caisson, réglages — tout ce qu&#39;il faut pour faire tourner un sub auto chez soi.</summary>
+    
+    <content type="html">
+      <![CDATA[<p>Utiliser un sub de voiture à la maison, c’est une excellente idée si tu veux de l’infrabass propre pour pas cher. Les subs auto sont conçus pour tenir la pression, souvent bien plus capables que leurs équivalents hi-fi au même prix. Le truc c’est que tout tourne en 12V — donc il faut adapter l’alimentation et la chaîne de signal.</p>
+<h2 id="l-alimentation-12v" tabindex="-1">L’alimentation 12V <a class="header-anchor" href="#l-alimentation-12v" aria-hidden="true">#</a></h2>
+<p>C’est le point central. Un sub voiture ne se branche pas directement sur le secteur.</p>
+<h3 id="option-1-alimentation-atx-recuperee-recommande" tabindex="-1">Option 1 : alimentation ATX récupérée (recommandé) <a class="header-anchor" href="#option-1-alimentation-atx-recuperee-recommande" aria-hidden="true">#</a></h3>
+<p>Une vieille alim de PC fait très bien le job. 500W minimum, 700W+ si ton ampli est gourmand.</p>
+<p>Pour forcer le démarrage sans PC :</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment"># Court-circuiter le fil vert (PS_ON, pin 16) avec n'importe quel fil noir (GND)</span>
+<span class="token comment"># Un trombone ou un bout de fil suffit</span></code></pre>
+<p>Les rails 12V jaunes = ta puissance. Les noirs = masse. C’est tout.</p>
+<p>Avantage : cheap, souvent dispo en récup, protection intégrée contre les surcharges.</p>
+<p>Inconvénient : peut introduire un léger bruit de fond (ripple) — soignable avec un condensateur sur la ligne 12V.</p>
+<h3 id="option-2-alimentation-de-labo-12v" tabindex="-1">Option 2 : alimentation de labo 12V <a class="header-anchor" href="#option-2-alimentation-de-labo-12v" aria-hidden="true">#</a></h3>
+<p>Plus propre électriquement, réglable, avec affichage courant/tension. Utile pour le debug. Mais ça coûte plus cher pour le même résultat final.</p>
+<hr>
+<h2 id="l-ampli" tabindex="-1">L’ampli <a class="header-anchor" href="#l-ampli" aria-hidden="true">#</a></h2>
+<p>Un ampli voiture mono classe D, c’est l’outil le plus adapté. Il accepte du 12V directement et pilote un sub sans transformer.</p>
+<h3 id="ce-qu-il-faut-regarder" tabindex="-1">Ce qu’il faut regarder <a class="header-anchor" href="#ce-qu-il-faut-regarder" aria-hidden="true">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th>Pourquoi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classe D mono</td>
+<td>Efficace, peu de chaleur, pensé pour les basses</td>
+</tr>
+<tr>
+<td>Subsonic filter réglable</td>
+<td>Indispensable pour descendre bas sans cramer le sub</td>
+</tr>
+<tr>
+<td>Low pass filter (LPF)</td>
+<td>Pour ne laisser passer que les basses</td>
+</tr>
+<tr>
+<td>Impédance supportée</td>
+<td>2Ω ou 1Ω si tu veux câbler plusieurs subs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modeles-serieux-a-des-prix-corrects" tabindex="-1">Modèles sérieux à des prix corrects <a class="header-anchor" href="#modeles-serieux-a-des-prix-corrects" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Skar Audio RP-1500.1D</strong> — bon rapport puissance/prix, subsonic à 15 Hz</li>
+<li><strong>Sundown SFB-2000</strong> — pour ceux qui veulent aller loin en infrabass</li>
+<li><strong>Rockford Fosgate T1500-1bdCP</strong> — qualité build premium, filtre très propre</li>
+<li>Budget serré : <strong>Crunch PX-1000.1</strong> — ça fait le job pour commencer</li>
+</ul>
+<h3 id="connexion-signal" tabindex="-1">Connexion signal <a class="header-anchor" href="#connexion-signal" aria-hidden="true">#</a></h3>
+<p>Depuis un PC ou un téléphone :</p>
+<pre><code>Jack 3.5mm stéréo → adaptateur RCA → entrée RCA de l'ampli
+</code></pre>
+<p>Certains amplis ont une entrée haut-parleur (speaker level input) — pratique si ta source n’a pas de sortie RCA.</p>
+<hr>
+<h2 id="le-caisson" tabindex="-1">Le caisson <a class="header-anchor" href="#le-caisson" aria-hidden="true">#</a></h2>
+<p>C’est souvent là que tout se joue. Un bon sub dans un mauvais caisson, ça donne un résultat médiocre.</p>
+<h3 id="bass-reflex-ou-clos" tabindex="-1">Bass-reflex ou clos ? <a class="header-anchor" href="#bass-reflex-ou-clos" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Clos</strong> : son précis, contrôlé, descend moins bas mais plus proprement. Facile à construire.</li>
+<li><strong>Bass-reflex</strong> : descend plus bas, plus efficace, mais l’accord doit être calculé pour le sub utilisé. C’est ce qu’utilise Sinewave.</li>
+</ul>
+<p>Pour du 20-30 Hz comme dans la vidéo → <strong>bass-reflex accordé bas</strong>, volume généreux (60-100L selon le sub).</p>
+<h3 id="simuler-avant-de-construire" tabindex="-1">Simuler avant de construire <a class="header-anchor" href="#simuler-avant-de-construire" aria-hidden="true">#</a></h3>
+<p>WinISD (Windows/Wine) permet de simuler le comportement du sub dans différents volumes et accords avant de couper le MDF. À utiliser systématiquement.</p>
+<h3 id="materiaux" tabindex="-1">Matériaux <a class="header-anchor" href="#materiaux" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>MDF 19mm</strong> pour les parois — dense, pas de résonance parasite</li>
+<li>Colle à bois + vis — double assemblage</li>
+<li>Joint mousse ou silicone sur toutes les jointures — l’étanchéité est critique</li>
+</ul>
+<hr>
+<h2 id="reglages-de-l-ampli" tabindex="-1">Réglages de l’ampli <a class="header-anchor" href="#reglages-de-l-ampli" aria-hidden="true">#</a></h2>
+<p>Une fois tout branché :</p>
+<ol>
+<li><strong>Gain</strong> : commence à zéro, monte doucement jusqu’à ce que la source soit à 80% du volume max sans distorsion</li>
+<li><strong>LPF</strong> : 80 Hz pour un sub dédié infrabass, 100 Hz si tu n’as pas d’autres enceintes</li>
+<li><strong>Subsonic filter</strong> : règle 5 Hz en dessous de la fréquence d’accord du caisson (ex : accord à 25 Hz → subsonic à 20 Hz)</li>
+<li><strong>Bass boost</strong> : laisser à 0 dB — ça sature facilement et ça sert à rien si le caisson est bien conçu</li>
+</ol>
+<hr>
+<h2 id="ce-que-j-aurais-fait-differemment" tabindex="-1">Ce que j’aurais fait différemment <a class="header-anchor" href="#ce-que-j-aurais-fait-differemment" aria-hidden="true">#</a></h2>
+<ul>
+<li>Pas sauter l’étape WinISD. Construire un caisson à l’œil sans simuler c’est du gâchis de MDF.</li>
+<li>Soigner la masse dès le départ. Un mauvais ground = buzz constant et prise de tête.</li>
+<li>Prévoir un fusible sur le +12V proche de l’alim. Pas négociable.</li>
+</ul>
+<hr>
+<h2 id="schema-recapitulatif" tabindex="-1">Schéma récapitulatif <a class="header-anchor" href="#schema-recapitulatif" aria-hidden="true">#</a></h2>
+<pre><code>[Source audio — PC/téléphone]
+         ↓ Jack 3.5 → RCA
+     [Ampli mono 12V]
+         ↓ câble HP
+     [Subwoofer dans caisson]
+         ↑
+[Alim ATX 12V — fil vert ponté sur masse]
+</code></pre>
+<p>Pas besoin d’être électronicien. Avec une alim ATX récupérée et un ampli d’entrée de gamme sérieux, tu peux avoir quelque chose qui joue proprement en dessous de 30 Hz pour moins de 150€.</p>
+]]>
+    </content>
+  </entry>
   
   <entry>
     <title>Le Labo du Jeu Vidéo — ce que j&#39;en retiens</title>
