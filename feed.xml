@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="fr">
   <title>RPMN0ISE</title>
   <subtitle>Développeur, créateur, explorateur de technologies modernes.</subtitle>
-  <link href="https://votresite.fr/feed.xml" rel="self"/>
-  <link href="https://votresite.fr/"/>
-  <updated>2026-05-21T12:41:19.004Z</updated>
-  <id>https://votresite.fr/</id>
+  <link href="https://rpmn0ise.github.io/feed.xml" rel="self"/>
+  <link href="https://rpmn0ise.github.io/"/>
+  <updated>2026-05-21T12:45:32.139Z</updated>
+  <id>https://rpmn0ise.github.io/</id>
   <author>
     <name>RPMN0ISE</name>
     <email>rpmn0ise@proton.me</email>
@@ -14,9 +14,9 @@
   
   <entry>
     <title>Installer un subwoofer de voiture à la maison</title>
-    <link href="https://votresite.fr/blog/sub-voiture-maison/"/>
+    <link href="https://rpmn0ise.github.io/blog/sub-voiture-maison/"/>
     <updated>2026-05-20T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/sub-voiture-maison/</id>
+    <id>https://rpmn0ise.github.io/blog/sub-voiture-maison/</id>
     
     <summary>Alimentation, ampli, caisson, réglages — tout ce qu&#39;il faut pour faire tourner un sub auto chez soi.</summary>
     
@@ -126,9 +126,9 @@
   
   <entry>
     <title>Le Labo du Jeu Vidéo — ce que j&#39;en retiens</title>
-    <link href="https://votresite.fr/blog/labo-jeu-video-science-etonnante-retour-lecture/"/>
+    <link href="https://rpmn0ise.github.io/blog/labo-jeu-video-science-etonnante-retour-lecture/"/>
     <updated>2026-05-18T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/labo-jeu-video-science-etonnante-retour-lecture/</id>
+    <id>https://rpmn0ise.github.io/blog/labo-jeu-video-science-etonnante-retour-lecture/</id>
     
     <summary>Retour de lecture sur le livre de Science Étonnante sur la physique et les mathématiques derrière les jeux vidéo. Ce qui m&#39;a surpris, ce qui rejoint mes pratiques, ce qui m&#39;a donné envie de creuser.</summary>
     
@@ -160,9 +160,9 @@
   
   <entry>
     <title>Mon expérience avec le tuning d’un subwoofer en bass-reflex</title>
-    <link href="https://votresite.fr/blog/subwoofer-bass-reflex-tuning-retour-experience/"/>
+    <link href="https://rpmn0ise.github.io/blog/subwoofer-bass-reflex-tuning-retour-experience/"/>
     <updated>2025-02-15T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/subwoofer-bass-reflex-tuning-retour-experience/</id>
+    <id>https://rpmn0ise.github.io/blog/subwoofer-bass-reflex-tuning-retour-experience/</id>
     
     <summary>Retour d’expérience sur la conception et le tuning d’un caisson bass-reflex : MDF, WinISD, REW, erreurs de calcul et résultats réels.</summary>
     
@@ -451,9 +451,9 @@
   
   <entry>
     <title>Pourquoi je suis resté sur Arch après avoir tout essayé</title>
-    <link href="https://votresite.fr/blog/pourquoi-arch-apres-tout-essaye/"/>
+    <link href="https://rpmn0ise.github.io/blog/pourquoi-arch-apres-tout-essaye/"/>
     <updated>2025-02-08T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/pourquoi-arch-apres-tout-essaye/</id>
+    <id>https://rpmn0ise.github.io/blog/pourquoi-arch-apres-tout-essaye/</id>
     
     <summary>J&#39;ai utilisé Ubuntu, Fedora, NixOS, Gentoo et une dizaine d&#39;autres distributions. Voici pourquoi Arch (et CachyOS) est ce sur quoi j&#39;ai fini par stabiliser, et ce que chaque distribution m&#39;a appris.</summary>
     
@@ -482,9 +482,9 @@
   
   <entry>
     <title>Infrabass : ce que les specs ne te disent pas</title>
-    <link href="https://votresite.fr/blog/infrabass-ce-que-les-specs-ne-disent-pas/"/>
+    <link href="https://rpmn0ise.github.io/blog/infrabass-ce-que-les-specs-ne-disent-pas/"/>
     <updated>2025-01-25T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/infrabass-ce-que-les-specs-ne-disent-pas/</id>
+    <id>https://rpmn0ise.github.io/blog/infrabass-ce-que-les-specs-ne-disent-pas/</id>
     
     <summary>Fréquence de résonance, déplacement membranaire, puissance thermique — ce que j&#39;ai appris en construisant mes premiers systèmes de grave et pourquoi le chiffre de puissance sur la boîte ne veut rien dire.</summary>
     
@@ -513,9 +513,9 @@
   
   <entry>
     <title>BeamNG.drive n&#39;est pas un jeu, c&#39;est un laboratoire</title>
-    <link href="https://votresite.fr/blog/beamng-laboratoire-physique/"/>
+    <link href="https://rpmn0ise.github.io/blog/beamng-laboratoire-physique/"/>
     <updated>2025-01-10T00:00:00.000Z</updated>
-    <id>https://votresite.fr/blog/beamng-laboratoire-physique/</id>
+    <id>https://rpmn0ise.github.io/blog/beamng-laboratoire-physique/</id>
     
     <summary>Pourquoi je considère BeamNG comme une plateforme d&#39;expérimentation physique sérieuse, et ce que j&#39;y ai appris sur les systèmes mécaniques que je n&#39;aurais pas appris autrement.</summary>
     
