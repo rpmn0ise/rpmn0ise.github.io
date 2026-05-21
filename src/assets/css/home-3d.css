@@ -558,3 +558,89 @@ body.page-home .animate-fade-up--delay-4 { animation-delay: 0.85s; }
   #page-loader { display: none; }
   body.page-home #canvas-3d { display: none; }
 }
+
+/* ============================================================
+   AMBIANCE 3D — Toutes les autres pages (hors home)
+   Canvas discret, particules légères, pas de loader
+   ============================================================ */
+
+/* Canvas présent sur toutes les pages */
+body:not(.page-home) #canvas-3d {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0.45;           /* très discret sur les autres pages */
+}
+
+/* Header glassmorphism léger sur toutes les pages */
+body:not(.page-home) .site-header {
+  background: rgba(13, 17, 23, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 245, 255, 0.07);
+}
+
+/* Logo accent discret sur les autres pages */
+body:not(.page-home) .site-logo__mark {
+  color: var(--neon-cyan);
+  -webkit-text-fill-color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.3);
+}
+
+/* Contenu au-dessus du canvas */
+body:not(.page-home) .main-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cards hover subtil sur les autres pages */
+body:not(.page-home) .post-card:hover,
+body:not(.page-home) .project-card:hover {
+  border-color: rgba(0, 245, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.06), 0 10px 30px rgba(0,0,0,0.3);
+  transform: translateY(-3px);
+}
+
+/* Skill items discrets */
+body:not(.page-home) .skill-item:hover {
+  border-color: rgba(0, 245, 255, 0.25);
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Reveal sections (toutes pages) */
+body:not(.page-home) .reveal-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body:not(.page-home) .reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer léger */
+body:not(.page-home) .site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Responsive autres pages ── */
+@media (max-width: 768px) {
+  body:not(.page-home) #canvas-3d {
+    opacity: 0.25;   /* encore plus discret sur mobile */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not(.page-home) #canvas-3d { display: none; }
+  body:not(.page-home) .reveal-section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
