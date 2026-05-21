@@ -69,12 +69,14 @@
   {# ─── Styles ─── #}
   <link rel="preload" href="/assets/css/main.css" as="style">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preload" href="/assets/css/home-3d.css" as="style">
+  <link rel="stylesheet" href="/assets/css/home-3d.css">
 
   {# ─── Preconnect ─── #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-<body>
+<body{% if page.url == "/" %} class="page-home"{% endif %}>
 
   {% include "components/header.njk" %}
 
@@ -86,6 +88,7 @@
 
   {# ─── Scripts ─── #}
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/home-3d.js" defer></script>
 
   {# ─── Draft badge ─── #}
   {% if draft and env.isDev %}
