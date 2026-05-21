@@ -644,3 +644,411 @@ body:not(.page-home) .site-footer {
     transform: none !important;
   }
 }
+
+/* ============================================================
+   CORRECTIFS UX — v3
+   1. Mobile mieux espacé + pas de retard d'affichage
+   2. Fond visible à travers les blocs (home)
+   3. Fond plus présent sur les autres pages
+   4. Effet visuel sur pages article/projet/note
+   ============================================================ */
+
+/* ──────────────────────────────────────────────
+   1. MOBILE — espacement & affichage immédiat
+────────────────────────────────────────────── */
+
+/* Supprime les délais d'animation sur mobile */
+@media (max-width: 768px) {
+  body.page-home .animate-fade-up {
+    animation-duration: 0.5s !important;
+  }
+  body.page-home .animate-fade-up--delay-1 { animation-delay: 0.05s !important; }
+  body.page-home .animate-fade-up--delay-2 { animation-delay: 0.12s !important; }
+  body.page-home .animate-fade-up--delay-3 { animation-delay: 0.18s !important; }
+  body.page-home .animate-fade-up--delay-4 { animation-delay: 0.24s !important; }
+
+  /* Reveal sections quasi-instantané sur mobile */
+  .reveal-section {
+    transition-delay: 0s !important;
+    transition-duration: 0.4s !important;
+  }
+
+  /* Hero mobile : meilleur espacement vertical */
+  body.page-home .hero {
+    padding-top: calc(var(--header-height) + 1.5rem);
+    padding-bottom: 3rem;
+    min-height: 100svh;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  body.page-home .hero .container {
+    padding-top: 0.5rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Eyebrow plus lisible */
+  body.page-home .hero__eyebrow {
+    font-size: 0.68rem;
+    padding: 0.45rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Titre : réduit le risque de coupure */
+  body.page-home .hero__title {
+    font-size: clamp(2.6rem, 11vw, 3.8rem);
+    margin-bottom: 1.25rem;
+    word-break: break-word;
+  }
+
+  /* Description mieux lisible */
+  body.page-home .hero__description {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  /* Boutons : espacement généreux */
+  body.page-home .hero__actions {
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  body.page-home .hero__actions .btn {
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
+
+  /* Meta : ligne séparée propre */
+  body.page-home .hero__meta {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Sections : espacement mobile confortable */
+  body.page-home .section {
+    padding-block: 3rem;
+  }
+
+  body.page-home .section__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Skills grid mobile 2 colonnes */
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .skill-item {
+    padding: 0.85rem 0.75rem;
+    font-size: 0.8rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.page-home .hero__title {
+    font-size: 2.4rem;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   2. FOND VISIBLE SOUS LES BLOCS (home)
+   → Sections, cards et skills semi-transparents
+────────────────────────────────────────────── */
+
+/* Section wrapper : fond semi-transparent */
+body.page-home .section--glass {
+  background: rgba(13, 17, 23, 0.55) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+/* Post cards : fond translucide */
+body.page-home .post-card {
+  background: rgba(22, 27, 34, 0.55) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Project cards */
+body.page-home .project-card {
+  background: rgba(22, 27, 34, 0.55) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Skill items */
+body.page-home .skill-item {
+  background: rgba(22, 27, 34, 0.45) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Site footer home */
+body.page-home .site-footer {
+  background: rgba(13, 17, 23, 0.65) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Suppression des fonds pleins sur la home */
+body.page-home .section:not(.section--glass):not(.hero) {
+  background: transparent;
+}
+
+/* ──────────────────────────────────────────────
+   3. FOND PLUS PRÉSENT SUR LES AUTRES PAGES
+────────────────────────────────────────────── */
+
+/* Canvas opacity relevée */
+body:not(.page-home) #canvas-3d {
+  opacity: 0.65 !important;
+}
+
+/* Header glassmorphism plus marqué */
+body:not(.page-home) .site-header {
+  background: rgba(13, 17, 23, 0.60) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border-bottom: 1px solid rgba(0, 245, 255, 0.12) !important;
+}
+
+/* Cards des autres pages : légèrement transparentes */
+body:not(.page-home) .post-card,
+body:not(.page-home) .project-card {
+  background: rgba(22, 27, 34, 0.70);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-color: rgba(0, 245, 255, 0.08);
+}
+
+/* Skill items autres pages */
+body:not(.page-home) .skill-item {
+  background: rgba(22, 27, 34, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Footer autres pages */
+body:not(.page-home) .site-footer {
+  background: rgba(13, 17, 23, 0.80);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  body:not(.page-home) #canvas-3d {
+    opacity: 0.40 !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   4. EFFET VISUEL — Pages article / projet / note
+   Header de page avec glow, bordure neon discrète
+────────────────────────────────────────────── */
+
+/* Post header (article) */
+.post__header {
+  position: relative;
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.post__header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0, 245, 255, 0.5) 30%,
+    rgba(180, 79, 255, 0.5) 70%,
+    transparent 100%
+  );
+}
+
+/* Titre de post : léger gradient */
+.post__title {
+  background: linear-gradient(135deg, #fff 60%, rgba(0, 245, 255, 0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.08));
+}
+
+/* Description du post */
+.post__description {
+  color: rgba(139, 148, 158, 0.9);
+  border-left: 2px solid rgba(0, 245, 255, 0.3);
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+/* Tags : style neon discret */
+.post__tags .tag,
+.project__tags .tag,
+body:not(.page-home) .tag {
+  background: rgba(0, 245, 255, 0.06) !important;
+  border: 1px solid rgba(0, 245, 255, 0.15) !important;
+  color: rgba(0, 245, 255, 0.8) !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  transition: all 0.2s ease;
+}
+
+body:not(.page-home) .tag:hover {
+  background: rgba(0, 245, 255, 0.12) !important;
+  border-color: rgba(0, 245, 255, 0.35) !important;
+  box-shadow: 0 0 8px rgba(0, 245, 255, 0.15);
+}
+
+/* Contenu de l'article : glassmorphism léger */
+.post__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Callout boxes */
+.post__content blockquote {
+  background: rgba(0, 245, 255, 0.04);
+  border-left: 3px solid rgba(0, 245, 255, 0.4);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.5rem;
+  color: rgba(230, 237, 243, 0.8);
+}
+
+/* Code blocks : style terminal */
+.post__content pre {
+  background: rgba(13, 17, 23, 0.9) !important;
+  border: 1px solid rgba(0, 245, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+}
+
+/* Headings article avec accent */
+.post__content h2 {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+  color: #fff;
+}
+
+.post__content h2::before {
+  content: '// ';
+  color: rgba(0, 245, 255, 0.4);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+}
+
+/* Project header */
+.project__header {
+  position: relative;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.project__header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(180, 79, 255, 0.5) 40%,
+    rgba(0, 245, 255, 0.5) 70%,
+    transparent
+  );
+}
+
+/* Page title (blog index, projets, notes, ressources) */
+.page-header__title,
+.post-list__title,
+h1.page-title {
+  background: linear-gradient(135deg, #fff 50%, rgba(0, 245, 255, 0.5));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Page index : ligne décorative sous le titre */
+.page-header {
+  position: relative;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 80px; height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(0, 245, 255, 0.4);
+}
+
+/* Post list items (page /blog/) */
+.post-list-item {
+  border-bottom: 1px solid rgba(0, 245, 255, 0.06) !important;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+}
+
+.post-list-item:hover {
+  background: rgba(0, 245, 255, 0.03);
+  padding-left: 0.5rem;
+}
+
+/* Mobile post article */
+@media (max-width: 768px) {
+  .post__title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    -webkit-text-fill-color: #fff;
+    filter: none;
+    background: none;
+  }
+
+  .post__header::after {
+    width: 60%;
+  }
+
+  .post__content h2::before {
+    display: none;
+  }
+
+  body:not(.page-home) .post-card,
+  body:not(.page-home) .project-card {
+    background: rgba(22, 27, 34, 0.82);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .post__title {
+    background: none;
+    -webkit-text-fill-color: var(--text-primary);
+    filter: none;
+  }
+}
