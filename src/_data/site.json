@@ -10,7 +10,8 @@
     "location": "France, Dunkerque"
   },
   "social": {
-    "github": "https://github.com/rpmn0ise"
+    "github": "https://github.com/rpmn0ise",
+    "reddit": "https://www.reddit.com/user/rpmn0ise/"
   },
   "nav": [
     { "label": "Accueil", "url": "/" },
