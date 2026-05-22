@@ -82,6 +82,12 @@
   
   
   <url>
+    <loc>https://rpmn0ise.github.io/projects/reddit-base64-decoder/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://rpmn0ise.github.io/projects/retour-de-force/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -89,12 +95,6 @@
   
   <url>
     <loc>https://rpmn0ise.github.io/projects/syscard/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://rpmn0ise.github.io/projects/reddit-base64-decoder/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
