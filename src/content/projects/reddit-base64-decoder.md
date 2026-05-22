@@ -11,8 +11,13 @@ tech:
   - MutationObserver API
   - DOM TreeWalker
 github: "https://github.com/rpmn0ise/reddit-base64-decoder"
+install: "https://github.com/rpmn0ise/reddit-base64-decoder/raw/refs/heads/main/reddit-base64-decoder.user.js"
 draft: false
 ---
+
+[⬇ Installer le script](https://github.com/rpmn0ise/reddit-base64-decoder/raw/refs/heads/main/reddit-base64-decoder.user.js){.btn}
+
+> Nécessite [Tampermonkey](https://www.tampermonkey.net/) ou [Violentmonkey](https://violentmonkey.github.io/).
 
 ## Pourquoi ce projet existe
 
