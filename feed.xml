@@ -4,7 +4,7 @@
   <subtitle>Développeur, créateur, explorateur de technologies modernes.</subtitle>
   <link href="https://rpmn0ise.github.io/feed.xml" rel="self"/>
   <link href="https://rpmn0ise.github.io/"/>
-  <updated>2026-05-22T16:28:41.102Z</updated>
+  <updated>2026-05-22T16:34:04.220Z</updated>
   <id>https://rpmn0ise.github.io/</id>
   <author>
     <name>RPMN0ISE</name>
@@ -13,155 +13,9 @@
 
   
   <entry>
-    <title>Installer un subwoofer de voiture à la maison</title>
-    <link href="https://rpmn0ise.github.io/blog/sub-voiture-maison/"/>
-    <updated>2026-05-20T00:00:00.000Z</updated>
-    <id>https://rpmn0ise.github.io/blog/sub-voiture-maison/</id>
-    
-    <summary>Alimentation, ampli, caisson, réglages — tout ce qu&#39;il faut pour faire tourner un sub auto chez soi.</summary>
-    
-    <content type="html">
-      <![CDATA[<p>Utiliser un sub de voiture à la maison, c’est une excellente idée si tu veux de l’infrabass propre pour pas cher. Les subs auto sont conçus pour tenir la pression, souvent bien plus capables que leurs équivalents hi-fi au même prix. Le truc c’est que tout tourne en 12V — donc il faut adapter l’alimentation et la chaîne de signal.</p>
-<h2 id="l-alimentation-12v" tabindex="-1">L’alimentation 12V <a class="header-anchor" href="#l-alimentation-12v" aria-hidden="true">#</a></h2>
-<p>C’est le point central. Un sub voiture ne se branche pas directement sur le secteur.</p>
-<h3 id="option-1-alimentation-atx-recuperee-recommande" tabindex="-1">Option 1 : alimentation ATX récupérée (recommandé) <a class="header-anchor" href="#option-1-alimentation-atx-recuperee-recommande" aria-hidden="true">#</a></h3>
-<p>Une vieille alim de PC fait très bien le job. 500W minimum, 700W+ si ton ampli est gourmand.</p>
-<p>Pour forcer le démarrage sans PC :</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment"># Court-circuiter le fil vert (PS_ON, pin 16) avec n'importe quel fil noir (GND)</span>
-<span class="token comment"># Un trombone ou un bout de fil suffit</span></code></pre>
-<p>Les rails 12V jaunes = ta puissance. Les noirs = masse. C’est tout.</p>
-<p>Avantage : cheap, souvent dispo en récup, protection intégrée contre les surcharges.</p>
-<p>Inconvénient : peut introduire un léger bruit de fond (ripple) — soignable avec un condensateur sur la ligne 12V.</p>
-<h3 id="option-2-alimentation-de-labo-12v" tabindex="-1">Option 2 : alimentation de labo 12V <a class="header-anchor" href="#option-2-alimentation-de-labo-12v" aria-hidden="true">#</a></h3>
-<p>Plus propre électriquement, réglable, avec affichage courant/tension. Utile pour le debug. Mais ça coûte plus cher pour le même résultat final.</p>
-<hr>
-<h2 id="l-ampli" tabindex="-1">L’ampli <a class="header-anchor" href="#l-ampli" aria-hidden="true">#</a></h2>
-<p>Un ampli voiture mono classe D, c’est l’outil le plus adapté. Il accepte du 12V directement et pilote un sub sans transformer.</p>
-<h3 id="ce-qu-il-faut-regarder" tabindex="-1">Ce qu’il faut regarder <a class="header-anchor" href="#ce-qu-il-faut-regarder" aria-hidden="true">#</a></h3>
-<table>
-<thead>
-<tr>
-<th>Critère</th>
-<th>Pourquoi</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Classe D mono</td>
-<td>Efficace, peu de chaleur, pensé pour les basses</td>
-</tr>
-<tr>
-<td>Subsonic filter réglable</td>
-<td>Indispensable pour descendre bas sans cramer le sub</td>
-</tr>
-<tr>
-<td>Low pass filter (LPF)</td>
-<td>Pour ne laisser passer que les basses</td>
-</tr>
-<tr>
-<td>Impédance supportée</td>
-<td>2Ω ou 1Ω si tu veux câbler plusieurs subs</td>
-</tr>
-</tbody>
-</table>
-<h3 id="modeles-serieux-a-des-prix-corrects" tabindex="-1">Modèles sérieux à des prix corrects <a class="header-anchor" href="#modeles-serieux-a-des-prix-corrects" aria-hidden="true">#</a></h3>
-<ul>
-<li><strong>Skar Audio RP-1500.1D</strong> — bon rapport puissance/prix, subsonic à 15 Hz</li>
-<li><strong>Sundown SFB-2000</strong> — pour ceux qui veulent aller loin en infrabass</li>
-<li><strong>Rockford Fosgate T1500-1bdCP</strong> — qualité build premium, filtre très propre</li>
-<li>Budget serré : <strong>Crunch PX-1000.1</strong> — ça fait le job pour commencer</li>
-</ul>
-<h3 id="connexion-signal" tabindex="-1">Connexion signal <a class="header-anchor" href="#connexion-signal" aria-hidden="true">#</a></h3>
-<p>Depuis un PC ou un téléphone :</p>
-<pre><code>Jack 3.5mm stéréo → adaptateur RCA → entrée RCA de l'ampli
-</code></pre>
-<p>Certains amplis ont une entrée haut-parleur (speaker level input) — pratique si ta source n’a pas de sortie RCA.</p>
-<hr>
-<h2 id="le-caisson" tabindex="-1">Le caisson <a class="header-anchor" href="#le-caisson" aria-hidden="true">#</a></h2>
-<p>C’est souvent là que tout se joue. Un bon sub dans un mauvais caisson, ça donne un résultat médiocre.</p>
-<h3 id="bass-reflex-ou-clos" tabindex="-1">Bass-reflex ou clos ? <a class="header-anchor" href="#bass-reflex-ou-clos" aria-hidden="true">#</a></h3>
-<ul>
-<li><strong>Clos</strong> : son précis, contrôlé, descend moins bas mais plus proprement. Facile à construire.</li>
-<li><strong>Bass-reflex</strong> : descend plus bas, plus efficace, mais l’accord doit être calculé pour le sub utilisé. C’est ce qu’utilise Sinewave.</li>
-</ul>
-<p>Pour du 20-30 Hz comme dans la vidéo → <strong>bass-reflex accordé bas</strong>, volume généreux (60-100L selon le sub).</p>
-<h3 id="simuler-avant-de-construire" tabindex="-1">Simuler avant de construire <a class="header-anchor" href="#simuler-avant-de-construire" aria-hidden="true">#</a></h3>
-<p>WinISD (Windows/Wine) permet de simuler le comportement du sub dans différents volumes et accords avant de couper le MDF. À utiliser systématiquement.</p>
-<h3 id="materiaux" tabindex="-1">Matériaux <a class="header-anchor" href="#materiaux" aria-hidden="true">#</a></h3>
-<ul>
-<li><strong>MDF 19mm</strong> pour les parois — dense, pas de résonance parasite</li>
-<li>Colle à bois + vis — double assemblage</li>
-<li>Joint mousse ou silicone sur toutes les jointures — l’étanchéité est critique</li>
-</ul>
-<hr>
-<h2 id="reglages-de-l-ampli" tabindex="-1">Réglages de l’ampli <a class="header-anchor" href="#reglages-de-l-ampli" aria-hidden="true">#</a></h2>
-<p>Une fois tout branché :</p>
-<ol>
-<li><strong>Gain</strong> : commence à zéro, monte doucement jusqu’à ce que la source soit à 80% du volume max sans distorsion</li>
-<li><strong>LPF</strong> : 80 Hz pour un sub dédié infrabass, 100 Hz si tu n’as pas d’autres enceintes</li>
-<li><strong>Subsonic filter</strong> : règle 5 Hz en dessous de la fréquence d’accord du caisson (ex : accord à 25 Hz → subsonic à 20 Hz)</li>
-<li><strong>Bass boost</strong> : laisser à 0 dB — ça sature facilement et ça sert à rien si le caisson est bien conçu</li>
-</ol>
-<hr>
-<h2 id="ce-que-j-aurais-fait-differemment" tabindex="-1">Ce que j’aurais fait différemment <a class="header-anchor" href="#ce-que-j-aurais-fait-differemment" aria-hidden="true">#</a></h2>
-<ul>
-<li>Pas sauter l’étape WinISD. Construire un caisson à l’œil sans simuler c’est du gâchis de MDF.</li>
-<li>Soigner la masse dès le départ. Un mauvais ground = buzz constant et prise de tête.</li>
-<li>Prévoir un fusible sur le +12V proche de l’alim. Pas négociable.</li>
-</ul>
-<hr>
-<h2 id="schema-recapitulatif" tabindex="-1">Schéma récapitulatif <a class="header-anchor" href="#schema-recapitulatif" aria-hidden="true">#</a></h2>
-<pre><code>[Source audio — PC/téléphone]
-         ↓ Jack 3.5 → RCA
-     [Ampli mono 12V]
-         ↓ câble HP
-     [Subwoofer dans caisson]
-         ↑
-[Alim ATX 12V — fil vert ponté sur masse]
-</code></pre>
-<p>Pas besoin d’être électronicien. Avec une alim ATX récupérée et un ampli d’entrée de gamme sérieux, tu peux avoir quelque chose qui joue proprement en dessous de 30 Hz pour moins de 150€.</p>
-]]>
-    </content>
-  </entry>
-  
-  <entry>
-    <title>Le Labo du Jeu Vidéo — ce que j&#39;en retiens</title>
-    <link href="https://rpmn0ise.github.io/blog/labo-jeu-video-science-etonnante-retour-lecture/"/>
-    <updated>2026-05-18T00:00:00.000Z</updated>
-    <id>https://rpmn0ise.github.io/blog/labo-jeu-video-science-etonnante-retour-lecture/</id>
-    
-    <summary>Retour de lecture sur le livre de Science Étonnante sur la physique et les mathématiques derrière les jeux vidéo. Ce qui m&#39;a surpris, ce qui rejoint mes pratiques, ce qui m&#39;a donné envie de creuser.</summary>
-    
-    <content type="html">
-      <![CDATA[<p>Je suis tombé sur ce livre sans trop savoir ce que j’allais y trouver. Je connaissais la chaîne YouTube de Science Étonnante — vulgarisation scientifique sérieuse, bien documentée — mais un livre entier sur la physique des jeux vidéo, j’avais des doutes sur la profondeur.</p>
-<p>J’avais tort.</p>
-<h2 id="ce-que-le-livre-couvre" tabindex="-1">Ce que le livre couvre <a class="header-anchor" href="#ce-que-le-livre-couvre" aria-hidden="true">#</a></h2>
-<p>Le Labo du Jeu Vidéo explore comment les jeux simulent (ou feignent de simuler) des phénomènes physiques réels — lumière, son, mouvement, collision, fluides. Pas d’un point de vue technique pur, mais en montrant l’écart entre ce qui se passe réellement dans le moteur et ce que le joueur perçoit.</p>
-<p>C’est cet écart qui est fascinant. La plupart des “simulations” dans les jeux sont des approximations calculées pour <em>paraître</em> justes plutôt que pour <em>être</em> justes. Ça marche parce que notre cerveau comble les lacunes.</p>
-<h2 id="ce-qui-m-a-directement-parle-beamng-comme-contre-exemple" tabindex="-1">Ce qui m’a directement parlé — BeamNG comme contre-exemple <a class="header-anchor" href="#ce-qui-m-a-directement-parle-beamng-comme-contre-exemple" aria-hidden="true">#</a></h2>
-<p>Le chapitre sur la physique des véhicules est celui qui m’a le plus retenu, pour une raison évidente : je passe du temps dans BeamNG.</p>
-<p>La majorité des jeux de voiture utilisent des modèles de physique de carrosserie <strong>rigide</strong> — le véhicule est un bloc indéformable avec des points de contact aux roues. C’est suffisant pour simuler la conduite, mais ça ne dit rien sur ce qui se passe quand la structure est soumise à des forces importantes.</p>
-<p>BeamNG fait autre chose. Le modèle soft-body que j’utilise au quotidien — les nœuds, les poutres, les seuils de déformation — c’est exactement la distinction que le livre met en avant entre simulation et approximation. BeamNG est l’un des rares jeux grand public à résoudre les équations plutôt qu’à les contourner.</p>
-<p>Lire l’explication théorique de ce que je manipule concrètement dans les fichiers JBeam a changé ma façon de voir les paramètres. Quand je règle un <code>deform</code> ou un <code>damp</code>, je ne tweak plus un chiffre — je fixe une propriété matérielle dans un système d’équations différentielles.</p>
-<h2 id="ce-qui-m-a-surpris-le-son" tabindex="-1">Ce qui m’a surpris — le son <a class="header-anchor" href="#ce-qui-m-a-surpris-le-son" aria-hidden="true">#</a></h2>
-<p>Je m’attendais à ce que le chapitre audio soit basique. Il ne l’est pas.</p>
-<p>La partie sur la propagation sonore dans les jeux — comment les moteurs audio calculent (ou simulent) la réverbération, l’occlusion, l’effet Doppler — m’a rappelé des trucs que je connais du côté car audio mais que je n’avais jamais connectés à l’univers du jeu vidéo.</p>
-<p>Un truc concret : la plupart des moteurs de jeu n’implémentent pas de vraie propagation d’onde sonore. Ils utilisent des systèmes de zones et de courbes d’atténuation précalculées. C’est pour ça que le son dans un couloir d’un FPS ne sonne jamais vraiment comme un couloir — les réflexions sont soit absentes soit stéréotypées.</p>
-<p>FMOD et Wwise font mieux, mais même là c’est de l’approximation. La vraie acoustique géométrique en temps réel reste trop coûteuse.</p>
-<h2 id="ce-que-le-livre-ne-couvre-pas" tabindex="-1">Ce que le livre ne couvre pas <a class="header-anchor" href="#ce-que-le-livre-ne-couvre-pas" aria-hidden="true">#</a></h2>
-<p>La physique des fluides en temps réel — les simulations de eau, fumée, feu. C’est brièvement mentionné mais pas développé. C’est un sujet à part entière et je comprends le choix éditorial, mais c’est ce qui me manque le plus dans le livre.</p>
-<p>Aussi : aucune mention de BeamNG, ce qui est dommage. C’est l’exemple parfait de ce que le livre décrit comme la direction vers laquelle la simulation physique peut aller.</p>
-<h2 id="pourquoi-je-le-recommande" tabindex="-1">Pourquoi je le recommande <a class="header-anchor" href="#pourquoi-je-le-recommande" aria-hidden="true">#</a></h2>
-<p>Pas parce que c’est un livre technique — il ne l’est pas vraiment, c’est de la vulgarisation accessible. Mais parce qu’il donne un cadre pour comprendre <em>pourquoi</em> les jeux fonctionnent comme ils fonctionnent, et <em>où</em> se situent les compromis entre fidélité physique et jouabilité.</p>
-<p>Si tu utilises BeamNG pour autre chose que crasher des voitures, si tu t’intéresses à comment les sons se comportent dans l’espace, ou si tu te demandes pourquoi la lumière dans les jeux a toujours quelque chose d’un peu faux — ce livre répond à ces questions mieux que n’importe quel article que j’ai trouvé en ligne.</p>
-]]>
-    </content>
-  </entry>
-  
-  <entry>
     <title>Apnée statique et dynamique — guide scientifique pour progresser</title>
     <link href="https://rpmn0ise.github.io/blog/apnee-statique-dynamique-guide/"/>
-    <updated>2025-02-15T00:00:00.000Z</updated>
+    <updated>2026-05-22T00:00:00.000Z</updated>
     <id>https://rpmn0ise.github.io/blog/apnee-statique-dynamique-guide/</id>
     
     <summary>CO₂, O₂, réflexe plongeur, tables d&#39;entraînement, gestion mentale — tout ce qu&#39;il faut comprendre pour passer de 2 minutes à 4 minutes, et de 25m à 50m.</summary>
@@ -587,6 +441,152 @@ Ne jamais penser à la durée totale.</li>
 <h2 id="ce-que-j-aurais-fait-differemment" tabindex="-1">Ce que j’aurais fait différemment <a class="header-anchor" href="#ce-que-j-aurais-fait-differemment" aria-hidden="true">#</a></h2>
 <p>Arrêter de faire mes apnées seul entre deux longueurs sans surveillance réelle. Le risque est faible à 25m — mais il augmente vite dès qu’on commence à vraiment se pousser. Trouver un buddy d’entraînement change tout, même si c’est juste quelqu’un qui accepte de regarder 30 secondes.</p>
 <p>Et commencer les tables CO₂ à sec bien plus tôt. C’est là que les gains mentaux se font, pas dans l’eau.</p>
+]]>
+    </content>
+  </entry>
+  
+  <entry>
+    <title>Installer un subwoofer de voiture à la maison</title>
+    <link href="https://rpmn0ise.github.io/blog/sub-voiture-maison/"/>
+    <updated>2026-05-20T00:00:00.000Z</updated>
+    <id>https://rpmn0ise.github.io/blog/sub-voiture-maison/</id>
+    
+    <summary>Alimentation, ampli, caisson, réglages — tout ce qu&#39;il faut pour faire tourner un sub auto chez soi.</summary>
+    
+    <content type="html">
+      <![CDATA[<p>Utiliser un sub de voiture à la maison, c’est une excellente idée si tu veux de l’infrabass propre pour pas cher. Les subs auto sont conçus pour tenir la pression, souvent bien plus capables que leurs équivalents hi-fi au même prix. Le truc c’est que tout tourne en 12V — donc il faut adapter l’alimentation et la chaîne de signal.</p>
+<h2 id="l-alimentation-12v" tabindex="-1">L’alimentation 12V <a class="header-anchor" href="#l-alimentation-12v" aria-hidden="true">#</a></h2>
+<p>C’est le point central. Un sub voiture ne se branche pas directement sur le secteur.</p>
+<h3 id="option-1-alimentation-atx-recuperee-recommande" tabindex="-1">Option 1 : alimentation ATX récupérée (recommandé) <a class="header-anchor" href="#option-1-alimentation-atx-recuperee-recommande" aria-hidden="true">#</a></h3>
+<p>Une vieille alim de PC fait très bien le job. 500W minimum, 700W+ si ton ampli est gourmand.</p>
+<p>Pour forcer le démarrage sans PC :</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment"># Court-circuiter le fil vert (PS_ON, pin 16) avec n'importe quel fil noir (GND)</span>
+<span class="token comment"># Un trombone ou un bout de fil suffit</span></code></pre>
+<p>Les rails 12V jaunes = ta puissance. Les noirs = masse. C’est tout.</p>
+<p>Avantage : cheap, souvent dispo en récup, protection intégrée contre les surcharges.</p>
+<p>Inconvénient : peut introduire un léger bruit de fond (ripple) — soignable avec un condensateur sur la ligne 12V.</p>
+<h3 id="option-2-alimentation-de-labo-12v" tabindex="-1">Option 2 : alimentation de labo 12V <a class="header-anchor" href="#option-2-alimentation-de-labo-12v" aria-hidden="true">#</a></h3>
+<p>Plus propre électriquement, réglable, avec affichage courant/tension. Utile pour le debug. Mais ça coûte plus cher pour le même résultat final.</p>
+<hr>
+<h2 id="l-ampli" tabindex="-1">L’ampli <a class="header-anchor" href="#l-ampli" aria-hidden="true">#</a></h2>
+<p>Un ampli voiture mono classe D, c’est l’outil le plus adapté. Il accepte du 12V directement et pilote un sub sans transformer.</p>
+<h3 id="ce-qu-il-faut-regarder" tabindex="-1">Ce qu’il faut regarder <a class="header-anchor" href="#ce-qu-il-faut-regarder" aria-hidden="true">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th>Pourquoi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classe D mono</td>
+<td>Efficace, peu de chaleur, pensé pour les basses</td>
+</tr>
+<tr>
+<td>Subsonic filter réglable</td>
+<td>Indispensable pour descendre bas sans cramer le sub</td>
+</tr>
+<tr>
+<td>Low pass filter (LPF)</td>
+<td>Pour ne laisser passer que les basses</td>
+</tr>
+<tr>
+<td>Impédance supportée</td>
+<td>2Ω ou 1Ω si tu veux câbler plusieurs subs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modeles-serieux-a-des-prix-corrects" tabindex="-1">Modèles sérieux à des prix corrects <a class="header-anchor" href="#modeles-serieux-a-des-prix-corrects" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Skar Audio RP-1500.1D</strong> — bon rapport puissance/prix, subsonic à 15 Hz</li>
+<li><strong>Sundown SFB-2000</strong> — pour ceux qui veulent aller loin en infrabass</li>
+<li><strong>Rockford Fosgate T1500-1bdCP</strong> — qualité build premium, filtre très propre</li>
+<li>Budget serré : <strong>Crunch PX-1000.1</strong> — ça fait le job pour commencer</li>
+</ul>
+<h3 id="connexion-signal" tabindex="-1">Connexion signal <a class="header-anchor" href="#connexion-signal" aria-hidden="true">#</a></h3>
+<p>Depuis un PC ou un téléphone :</p>
+<pre><code>Jack 3.5mm stéréo → adaptateur RCA → entrée RCA de l'ampli
+</code></pre>
+<p>Certains amplis ont une entrée haut-parleur (speaker level input) — pratique si ta source n’a pas de sortie RCA.</p>
+<hr>
+<h2 id="le-caisson" tabindex="-1">Le caisson <a class="header-anchor" href="#le-caisson" aria-hidden="true">#</a></h2>
+<p>C’est souvent là que tout se joue. Un bon sub dans un mauvais caisson, ça donne un résultat médiocre.</p>
+<h3 id="bass-reflex-ou-clos" tabindex="-1">Bass-reflex ou clos ? <a class="header-anchor" href="#bass-reflex-ou-clos" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Clos</strong> : son précis, contrôlé, descend moins bas mais plus proprement. Facile à construire.</li>
+<li><strong>Bass-reflex</strong> : descend plus bas, plus efficace, mais l’accord doit être calculé pour le sub utilisé. C’est ce qu’utilise Sinewave.</li>
+</ul>
+<p>Pour du 20-30 Hz comme dans la vidéo → <strong>bass-reflex accordé bas</strong>, volume généreux (60-100L selon le sub).</p>
+<h3 id="simuler-avant-de-construire" tabindex="-1">Simuler avant de construire <a class="header-anchor" href="#simuler-avant-de-construire" aria-hidden="true">#</a></h3>
+<p>WinISD (Windows/Wine) permet de simuler le comportement du sub dans différents volumes et accords avant de couper le MDF. À utiliser systématiquement.</p>
+<h3 id="materiaux" tabindex="-1">Matériaux <a class="header-anchor" href="#materiaux" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>MDF 19mm</strong> pour les parois — dense, pas de résonance parasite</li>
+<li>Colle à bois + vis — double assemblage</li>
+<li>Joint mousse ou silicone sur toutes les jointures — l’étanchéité est critique</li>
+</ul>
+<hr>
+<h2 id="reglages-de-l-ampli" tabindex="-1">Réglages de l’ampli <a class="header-anchor" href="#reglages-de-l-ampli" aria-hidden="true">#</a></h2>
+<p>Une fois tout branché :</p>
+<ol>
+<li><strong>Gain</strong> : commence à zéro, monte doucement jusqu’à ce que la source soit à 80% du volume max sans distorsion</li>
+<li><strong>LPF</strong> : 80 Hz pour un sub dédié infrabass, 100 Hz si tu n’as pas d’autres enceintes</li>
+<li><strong>Subsonic filter</strong> : règle 5 Hz en dessous de la fréquence d’accord du caisson (ex : accord à 25 Hz → subsonic à 20 Hz)</li>
+<li><strong>Bass boost</strong> : laisser à 0 dB — ça sature facilement et ça sert à rien si le caisson est bien conçu</li>
+</ol>
+<hr>
+<h2 id="ce-que-j-aurais-fait-differemment" tabindex="-1">Ce que j’aurais fait différemment <a class="header-anchor" href="#ce-que-j-aurais-fait-differemment" aria-hidden="true">#</a></h2>
+<ul>
+<li>Pas sauter l’étape WinISD. Construire un caisson à l’œil sans simuler c’est du gâchis de MDF.</li>
+<li>Soigner la masse dès le départ. Un mauvais ground = buzz constant et prise de tête.</li>
+<li>Prévoir un fusible sur le +12V proche de l’alim. Pas négociable.</li>
+</ul>
+<hr>
+<h2 id="schema-recapitulatif" tabindex="-1">Schéma récapitulatif <a class="header-anchor" href="#schema-recapitulatif" aria-hidden="true">#</a></h2>
+<pre><code>[Source audio — PC/téléphone]
+         ↓ Jack 3.5 → RCA
+     [Ampli mono 12V]
+         ↓ câble HP
+     [Subwoofer dans caisson]
+         ↑
+[Alim ATX 12V — fil vert ponté sur masse]
+</code></pre>
+<p>Pas besoin d’être électronicien. Avec une alim ATX récupérée et un ampli d’entrée de gamme sérieux, tu peux avoir quelque chose qui joue proprement en dessous de 30 Hz pour moins de 150€.</p>
+]]>
+    </content>
+  </entry>
+  
+  <entry>
+    <title>Le Labo du Jeu Vidéo — ce que j&#39;en retiens</title>
+    <link href="https://rpmn0ise.github.io/blog/labo-jeu-video-science-etonnante-retour-lecture/"/>
+    <updated>2026-05-18T00:00:00.000Z</updated>
+    <id>https://rpmn0ise.github.io/blog/labo-jeu-video-science-etonnante-retour-lecture/</id>
+    
+    <summary>Retour de lecture sur le livre de Science Étonnante sur la physique et les mathématiques derrière les jeux vidéo. Ce qui m&#39;a surpris, ce qui rejoint mes pratiques, ce qui m&#39;a donné envie de creuser.</summary>
+    
+    <content type="html">
+      <![CDATA[<p>Je suis tombé sur ce livre sans trop savoir ce que j’allais y trouver. Je connaissais la chaîne YouTube de Science Étonnante — vulgarisation scientifique sérieuse, bien documentée — mais un livre entier sur la physique des jeux vidéo, j’avais des doutes sur la profondeur.</p>
+<p>J’avais tort.</p>
+<h2 id="ce-que-le-livre-couvre" tabindex="-1">Ce que le livre couvre <a class="header-anchor" href="#ce-que-le-livre-couvre" aria-hidden="true">#</a></h2>
+<p>Le Labo du Jeu Vidéo explore comment les jeux simulent (ou feignent de simuler) des phénomènes physiques réels — lumière, son, mouvement, collision, fluides. Pas d’un point de vue technique pur, mais en montrant l’écart entre ce qui se passe réellement dans le moteur et ce que le joueur perçoit.</p>
+<p>C’est cet écart qui est fascinant. La plupart des “simulations” dans les jeux sont des approximations calculées pour <em>paraître</em> justes plutôt que pour <em>être</em> justes. Ça marche parce que notre cerveau comble les lacunes.</p>
+<h2 id="ce-qui-m-a-directement-parle-beamng-comme-contre-exemple" tabindex="-1">Ce qui m’a directement parlé — BeamNG comme contre-exemple <a class="header-anchor" href="#ce-qui-m-a-directement-parle-beamng-comme-contre-exemple" aria-hidden="true">#</a></h2>
+<p>Le chapitre sur la physique des véhicules est celui qui m’a le plus retenu, pour une raison évidente : je passe du temps dans BeamNG.</p>
+<p>La majorité des jeux de voiture utilisent des modèles de physique de carrosserie <strong>rigide</strong> — le véhicule est un bloc indéformable avec des points de contact aux roues. C’est suffisant pour simuler la conduite, mais ça ne dit rien sur ce qui se passe quand la structure est soumise à des forces importantes.</p>
+<p>BeamNG fait autre chose. Le modèle soft-body que j’utilise au quotidien — les nœuds, les poutres, les seuils de déformation — c’est exactement la distinction que le livre met en avant entre simulation et approximation. BeamNG est l’un des rares jeux grand public à résoudre les équations plutôt qu’à les contourner.</p>
+<p>Lire l’explication théorique de ce que je manipule concrètement dans les fichiers JBeam a changé ma façon de voir les paramètres. Quand je règle un <code>deform</code> ou un <code>damp</code>, je ne tweak plus un chiffre — je fixe une propriété matérielle dans un système d’équations différentielles.</p>
+<h2 id="ce-qui-m-a-surpris-le-son" tabindex="-1">Ce qui m’a surpris — le son <a class="header-anchor" href="#ce-qui-m-a-surpris-le-son" aria-hidden="true">#</a></h2>
+<p>Je m’attendais à ce que le chapitre audio soit basique. Il ne l’est pas.</p>
+<p>La partie sur la propagation sonore dans les jeux — comment les moteurs audio calculent (ou simulent) la réverbération, l’occlusion, l’effet Doppler — m’a rappelé des trucs que je connais du côté car audio mais que je n’avais jamais connectés à l’univers du jeu vidéo.</p>
+<p>Un truc concret : la plupart des moteurs de jeu n’implémentent pas de vraie propagation d’onde sonore. Ils utilisent des systèmes de zones et de courbes d’atténuation précalculées. C’est pour ça que le son dans un couloir d’un FPS ne sonne jamais vraiment comme un couloir — les réflexions sont soit absentes soit stéréotypées.</p>
+<p>FMOD et Wwise font mieux, mais même là c’est de l’approximation. La vraie acoustique géométrique en temps réel reste trop coûteuse.</p>
+<h2 id="ce-que-le-livre-ne-couvre-pas" tabindex="-1">Ce que le livre ne couvre pas <a class="header-anchor" href="#ce-que-le-livre-ne-couvre-pas" aria-hidden="true">#</a></h2>
+<p>La physique des fluides en temps réel — les simulations de eau, fumée, feu. C’est brièvement mentionné mais pas développé. C’est un sujet à part entière et je comprends le choix éditorial, mais c’est ce qui me manque le plus dans le livre.</p>
+<p>Aussi : aucune mention de BeamNG, ce qui est dommage. C’est l’exemple parfait de ce que le livre décrit comme la direction vers laquelle la simulation physique peut aller.</p>
+<h2 id="pourquoi-je-le-recommande" tabindex="-1">Pourquoi je le recommande <a class="header-anchor" href="#pourquoi-je-le-recommande" aria-hidden="true">#</a></h2>
+<p>Pas parce que c’est un livre technique — il ne l’est pas vraiment, c’est de la vulgarisation accessible. Mais parce qu’il donne un cadre pour comprendre <em>pourquoi</em> les jeux fonctionnent comme ils fonctionnent, et <em>où</em> se situent les compromis entre fidélité physique et jouabilité.</p>
+<p>Si tu utilises BeamNG pour autre chose que crasher des voitures, si tu t’intéresses à comment les sons se comportent dans l’espace, ou si tu te demandes pourquoi la lumière dans les jeux a toujours quelque chose d’un peu faux — ce livre répond à ces questions mieux que n’importe quel article que j’ai trouvé en ligne.</p>
 ]]>
     </content>
   </entry>
