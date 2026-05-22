@@ -1,7 +1,7 @@
 ---
 title: "Apnée statique et dynamique — guide scientifique pour progresser"
 description: "CO₂, O₂, réflexe plongeur, tables d'entraînement, gestion mentale — tout ce qu'il faut comprendre pour passer de 2 minutes à 4 minutes, et de 25m à 50m."
-date: 2025-02-15
+date: 2026-05-22
 tags:
   - post
   - natation
