@@ -35,6 +35,13 @@ Ce script règle les deux en une passe.
 - Transforme les URLs brutes en `<a>` cliquables, y compris dans le contenu décodé
 - Fonctionne sur le nouveau Reddit (Shreddit), l'ancien (`old.reddit.com`) et les variantes mobile
 
+## Aperçu (Before / After)
+
+| Avant | Après |
+| :---: | :---: |
+| <img width="450" alt="Avant" src="https://github.com/user-attachments/assets/20507b43-4fe1-4137-b217-3c404f5ed035" /> | <img width="450" alt="Après 1" src="https://github.com/user-attachments/assets/b125ae51-0957-4f2d-b6ad-b656f2cbdf92" /><br><br><img width="450" alt="Après 2" src="https://github.com/user-attachments/assets/28cb0cb5-1867-45dd-9caa-9356fede65f0" /> |
+
+
 ## Choix techniques
 
 **TreeWalker plutôt qu'un `querySelectorAll` sur le texte**  
