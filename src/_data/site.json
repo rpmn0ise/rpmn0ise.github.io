@@ -1,17 +1,16 @@
 {
   "title": "RPMN0ISE",
   "description": "Développeur, créateur, explorateur de technologies modernes.",
-  "url": "https://rpmn0ise.github.io",
+  "url": "https://votresite.fr",
   "author": {
     "name": "RPMN0ISE",
     "email": "rpmn0ise@proton.me",
     "bio": "Passionné de tech, j'explore l'intersection entre Linux, l'audio et la simulation. Adepte du learn by breaking, je privilégie l'autonomie et l'open-source. 🐧🔊💻",
     "avatar": "/assets/images/avatar.png",
-    "location": "France, Dunkerque"
+    "location": "France"
   },
   "social": {
-    "github": "https://github.com/rpmn0ise",
-    "reddit": "https://www.reddit.com/user/rpmn0ise/"
+    "github": "https://github.com/rpmn0ise"
   },
   "nav": [
     { "label": "Accueil", "url": "/" },
@@ -19,6 +18,7 @@
     { "label": "Projets", "url": "/projects/" },
     { "label": "Ressources", "url": "/resources/" },
     { "label": "Notes", "url": "/notes/" },
+    { "label": "Setup", "url": "/setup/" },
     { "label": "À propos", "url": "/about/" }
   ],
   "lang": "fr",
