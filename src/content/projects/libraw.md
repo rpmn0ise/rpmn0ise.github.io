@@ -1,7 +1,7 @@
 ---
 title: "LIBRAW"
-description: "Annuaire FR ultra-sélectif d'outils et guides pour utilisateurs tech — streaming, download, privacy, émulation, vérifiés manuellement."
-date: 2026-05-21
+description: "Annuaire FR ultra-sélectif d'outils et guides pour utilisateurs tech — streaming, download, privacy, gaming, vérifiés manuellement."
+date: 2026-05-24
 order: 3
 status: actif
 year: 2026
@@ -14,6 +14,7 @@ tech:
   - Cloudflare Pages
 github: "https://github.com/rpmn0ise/LIBRAW"
 demo: "https://libraw.pages.dev"
+discord: "https://discord.gg/6GQdsNj9KN"
 draft: false
 ---
 
@@ -27,10 +28,12 @@ L'idée de départ : un endroit où envoyer quelqu'un qui me demande "comment t�
 
 Le site regroupe deux types de contenu :
 
-- **Ressources** — fiches d'outils et de sites classés par catégorie (streaming, download, outils, privacy, émulation), avec niveau de difficulté, date de vérification et lien vers un guide si il existe
-- **Guides** — tutoriels pratiques associés aux ressources : config uBlock, torrent débutant, stack *arr complète, émulation Switch...
+- **Ressources** — fiches d'outils et de sites classés par catégorie (streaming, download, outils, privacy, gaming), avec niveau de difficulté, date de vérification et lien vers un guide si il existe
+- **Guides** — tutoriels pratiques associés aux ressources : config uBlock, torrent débutant, stack *arr complète, gaming PC...
 
 Chaque ressource a un badge de vérification avec date. Si c'est vieux ou mort, ça sort.
+
+Une communauté Discord accompagne le site pour les questions, le partage de ressources et le suivi des mises à jour — [discord.gg/6GQdsNj9KN](https://discord.gg/6GQdsNj9KN).
 
 ## Choix techniques
 
@@ -50,6 +53,7 @@ Le tout tourne sur Cloudflare Pages : build automatique sur push, CDN mondial, c
 - [x] Guides avec TOC dynamique
 - [x] Recherche et filtres côté client
 - [x] Déploiement Cloudflare Pages
+- [x] Communauté Discord — [rejoindre](https://discord.gg/6GQdsNj9KN)
 - [ ] Recherche full-text sur le contenu des guides
 - [ ] Flux RSS pour les nouveaux guides
 - [ ] Page "dernières vérifications" — timeline des màj
