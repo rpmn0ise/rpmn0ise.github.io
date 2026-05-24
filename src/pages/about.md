@@ -11,57 +11,45 @@ permalink: /about/
 
 Je suis **{{ site.author.name }}**.
 
-Je suis un profil technique axé sur la compréhension des systèmes plutôt que sur leur simple utilisation. Je travaille à l'intersection de **Linux**, de l'**audio**, de la **simulation**, du **hardware** et de la **culture numérique**, actuellement basé en **{{ site.author.location }}**. 
-
-Mon approche est pragmatique : apprendre en faisant, casser volontairement pour mieux reconstruire, et ne garder que ce qui fonctionne réellement. Je ne rentre pas vraiment dans une seule case. "Développeur", "hacker", "audiophile", "gamer" ou "étudiant" sont des étiquettes partiellement vraies, mais aucune n'est suffisante. Ce qui me définit le mieux est la curiosité, l'autonomie et un besoin presque compulsif de comprendre comment les choses se comportent sous le capot.
+Je construis des choses, je les casse, je comprends pourquoi, et je recommence. Basé en **{{ site.author.location }}**, je travaille principalement sur des systèmes Linux, de l'audio et de la simulation. Pas de case précise : un peu hacker, un peu audiophile, un peu pilote de sim — mais surtout quelqu'un qui préfère comprendre ce qu'il utilise plutôt que de le subir.
 
 ---
 
 ## Ce sur quoi je travaille
 
-La plupart de mes travaux tournent autour des systèmes — logiciels, audio, de simulation et parfois sociaux.
+### Linux & systèmes
 
-### Linux, systèmes & sécurité
-Linux est le cœur de mon workflow quotidien. J'utilise principalement **Arch Linux** et **cachyos**, j'expérimente d'autres distributions quand c'est pertinent, et je maintiens des environnements séparés pour les tests et le gaming. Le "distro hopping" n'est pas une phase ici — c'est une méthodologie.
+Mon environnement principal : **CachyOS** avec **Hyprland** et **Waybar**, configurés à la main. J'utilise aussi **Arch Linux** selon les contextes, et Windows uniquement pour les jeux qui l'imposent. Dual boot, environnements séparés, configs versionnées — rien de magique, juste de la rigueur.
 
-Ce que j'apprécie, c'est l'équilibre entre la philosophie open-source, le contrôle total et l'optimisation des performances. Je m'intéresse également à la cybersécurité et à la culture hacking. J'étudie comment les systèmes sont protégés, comment ils échouent, et comment la liberté numérique influence nos écosystèmes modernes.
+J'ai cassé Waybar et systemd en passant. J'avais des backups, c'était reparti en deux heures. C'est comme ça que ça marche.
 
-### Audio, bass & sound systems
-L'audio n'est pas un intérêt secondaire — c'est un processus de fond constant. Je suis impliqué dans l'audio domestique, le car audio et les casques, avec un focus sur :
-* Les subwoofers et l'infrabass.
-* L'équilibre SPL vs qualité sonore.
-* Le tuning, le filtrage et la conception d'enceintes.
+Du côté sécurité, je m'entraîne sur **Kali**, et j'ai un **Flipper Zero** pour explorer ce qui traîne dans l'air ambiant — RF, NFC, infrarouge. Pas encore en mode CTF sérieux, mais j'apprends à lire les systèmes avant de les toucher.
 
-La puissance brute sans précision n'est que du bruit. Musicalement, mes goûts vont de l'électronique au US rap (rebassed), tant que la production est solide.
+### Audio
 
-### Gaming & simulation
-Le jeu m'intéresse quand il devient une simulation. Mon focus principal est **BeamNG.drive**, que je considère comme une plateforme d'expérimentation physique. Avec un setup sim-racing et du modding intensif, c'est un outil d'apprentissage pratique pour comprendre les limites des systèmes physiques.
+L'audio c'est sérieux ici. À la maison : un ampli cinéma, un ampli sub dédié, et un sub de 14 pouces avec enceintes satellites pour gérer le médium et l'aigu. Dans la voiture de mon père : un système qu'on a monté ensemble, câble par câble, ampli 1000W compris.
 
----
+Ce qui m'intéresse : l'infrabass, l'équilibre SPL vs qualité sonore, le tuning actif, la conception et la modification d'enceintes selon les besoins. Pas juste écouter — comprendre pourquoi ça sonne comme ça, et comment le faire sonner mieux.
 
-## Philosophie & Apprentissage
+Musicalement : électronique, US rap, rebassed. Le test ultime du système voiture : *Demon Lover* de Devilish Trio.
 
-Mes valeurs fondamentales sont la liberté, le contrôle et l'autonomie. Je crois fermement aux écosystèmes open-source et à l'expérimentation plutôt qu'à la confiance aveugle. La technologie doit être un terrain de jeu ou un outil, jamais une cage.
+### Simulation & gaming
 
-**Ma méthode d'apprentissage :**
-* Casser des choses volontairement.
-* Lire la documentation et les sources.
-* Expérimenter et comparer les résultats.
-* Documenter ce qui fonctionne réellement.
+**BeamNG.drive** est ma plateforme principale — pas pour faire des tricks, mais pour comprendre comment un véhicule se comporte aux limites de la physique. Setup : Logitech G29, posé sur bureau. Pas le cockpit de rêve, mais suffisant pour sentir ce qui se passe.
+
+Je joue aussi à **Assetto Corsa** et **Minecraft**, et à quelques autres jeux de simulation. Les FPS, c'est pas mon truc.
 
 ---
 
 ## Ce site
 
-Ce site est mon hub personnel. C'est une documentation vivante, parfois itérative ou expérimentale. Vous y trouverez :
-* Des guides techniques et bases de connaissances.
-* Des articles de blog et logs personnels.
-* Mes projets open-source et expérimentations.
+Ce site est mon espace personnel — documentation, articles, notes, projets. Tout ce que j'apprends et ce que je construis finit ici d'une façon ou d'une autre : guides techniques, logs, ressources, expérimentations. Pas pour des recruteurs. Pour moi, et pour ceux qui cherchent quelque chose de concret.
+
+---
 
 ## Contact & Présence
 
-La meilleure façon de me joindre est par email : [{{ site.author.email }}](mailto:{{ site.author.email }})
+Email : [{{ site.author.email }}](mailto:{{ site.author.email }})
 
-Vous pouvez aussi me retrouver sur :
-* **Discord** : rpmn0ise
-* **GitHub** : [{{ site.social.github }}]({{ site.social.github }})
+- **Discord** : rpmn0ise
+- **GitHub** : [{{ site.social.github }}]({{ site.social.github }})
