@@ -222,9 +222,6 @@ button {
   transition: background var(--transition);
 }
 
-  background: rgba(255, 255, 255, 0.85);
-}
-
 .site-header__inner {
   display: flex;
   align-items: center;
