@@ -1,40 +1,4 @@
 /* ============================================================
-   THEME TOGGLE
-   ============================================================ */
-
-(function () {
-  const STORAGE_KEY = "theme";
-  const DARK = "dark";
-  const LIGHT = "light";
-
-  function getPreferred() {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) return stored;
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? LIGHT : DARK;
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem(STORAGE_KEY, theme);
-    const btn = document.getElementById("theme-toggle");
-    if (btn) btn.setAttribute("aria-label", theme === DARK ? "Passer en mode clair" : "Passer en mode sombre");
-  }
-
-  // Apply immediately on load
-  applyTheme(getPreferred());
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.getElementById("theme-toggle");
-    if (!btn) return;
-
-    btn.addEventListener("click", function () {
-      const current = document.documentElement.getAttribute("data-theme");
-      applyTheme(current === DARK ? LIGHT : DARK);
-    });
-  });
-})();
-
-/* ============================================================
    MOBILE NAV
    ============================================================ */
 
