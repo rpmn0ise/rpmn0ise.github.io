@@ -18,6 +18,7 @@
     { "label": "Projets", "url": "/projects/" },
     { "label": "Ressources", "url": "/resources/" },
     { "label": "Notes", "url": "/notes/" },
+    { "label": "Rebass", "url": "/rebass/" },
     { "label": "Setup", "url": "/setup/" },
     { "label": "À propos", "url": "/about/" }
   ],
