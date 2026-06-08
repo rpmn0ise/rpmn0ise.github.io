@@ -5,6 +5,20 @@ description: Mes productions de rebass — morceaux retravaillés pour amplifier
 permalink: /rebass/
 
 tracks:
+  - titre: "Shatta Confessions"
+    artiste: "Meryl, N'Ken"
+    plage: "29 - 38 Hz"
+    logiciel: "Audacity"
+    lien: "https://pillows.su/f/de64931d01741580858bac3faed7bdf0"
+    plateforme: PillowCase
+
+  - titre: "Shatta Confessions"
+    artiste: "Meryl, N'Ken"
+    plage: "34 - 45 Hz"
+    logiciel: "Audacity"
+    lien: "https://pillows.su/f/a59c93f9e1bc33c27ce0d71ea888f1df"
+    plateforme: PillowCase
+
   - titre: "Work REMIX"
     artiste: "FERG - ft. A$AP Rocky, French Montana, Trinidad James, ScHoolboy Q"
     plage: "35 Hz"
