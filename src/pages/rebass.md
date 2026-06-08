@@ -5,6 +5,14 @@ description: Mes productions de rebass — morceaux retravaillés pour amplifier
 permalink: /rebass/
 
 tracks:
+  - titre: "Exemple Track 0"
+    artiste: "Artiste Exemple"
+    plage: "20-60 Hz"
+    logiciel: "Audacity"
+    lien: "https://youtube.com/..."
+    plateforme: youtube
+    note: "Boost sub-bass prononcé, axé 30Hz"
+
   - titre: "Exemple Track 1"
     artiste: "Artiste Exemple"
     plage: "20-60 Hz"
