@@ -1,94 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://votresite.fr/</loc>
+    <loc>https://rpmn0ise.github.io/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://votresite.fr/about/</loc>
+    <loc>https://rpmn0ise.github.io/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://votresite.fr/blog/</loc>
+    <loc>https://rpmn0ise.github.io/blog/</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://votresite.fr/projects/</loc>
+    <loc>https://rpmn0ise.github.io/projects/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://votresite.fr/resources/</loc>
+    <loc>https://rpmn0ise.github.io/resources/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://votresite.fr/notes/</loc>
+    <loc>https://rpmn0ise.github.io/notes/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/pourquoi-le-futur-a-deja-choisi-votre-passe/</loc>
+    <loc>https://rpmn0ise.github.io/blog/pourquoi-le-futur-a-deja-choisi-votre-passe/</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/apnee-statique-dynamique-guide/</loc>
+    <loc>https://rpmn0ise.github.io/blog/apnee-statique-dynamique-guide/</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/sub-voiture-maison/</loc>
+    <loc>https://rpmn0ise.github.io/blog/sub-voiture-maison/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/labo-jeu-video-science-etonnante-retour-lecture/</loc>
+    <loc>https://rpmn0ise.github.io/blog/labo-jeu-video-science-etonnante-retour-lecture/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/subwoofer-bass-reflex-tuning-retour-experience/</loc>
+    <loc>https://rpmn0ise.github.io/blog/subwoofer-bass-reflex-tuning-retour-experience/</loc>
     <lastmod>2025-02-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/pourquoi-arch-apres-tout-essaye/</loc>
+    <loc>https://rpmn0ise.github.io/blog/pourquoi-arch-apres-tout-essaye/</loc>
     <lastmod>2025-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/ia-incontrolable/</loc>
+    <loc>https://rpmn0ise.github.io/blog/ia-incontrolable/</loc>
     <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/infrabass-ce-que-les-specs-ne-disent-pas/</loc>
+    <loc>https://rpmn0ise.github.io/blog/infrabass-ce-que-les-specs-ne-disent-pas/</loc>
     <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/blog/beamng-laboratoire-physique/</loc>
+    <loc>https://rpmn0ise.github.io/blog/beamng-laboratoire-physique/</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -96,104 +96,104 @@
   
   
   <url>
-    <loc>https://votresite.fr/projects/reddit-base64-decoder/</loc>
+    <loc>https://rpmn0ise.github.io/projects/reddit-base64-decoder/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/projects/retour-de-force/</loc>
+    <loc>https://rpmn0ise.github.io/projects/retour-de-force/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/projects/syscard/</loc>
+    <loc>https://rpmn0ise.github.io/projects/syscard/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/projects/audio-visualizer/</loc>
+    <loc>https://rpmn0ise.github.io/projects/audio-visualizer/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/projects/car-audio-infrabass/</loc>
+    <loc>https://rpmn0ise.github.io/projects/car-audio-infrabass/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/projects/libraw/</loc>
+    <loc>https://rpmn0ise.github.io/projects/libraw/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   
   <url>
-    <loc>https://votresite.fr/notes/organiser-disque-dur/</loc>
+    <loc>https://rpmn0ise.github.io/notes/organiser-disque-dur/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/beamng-r32-gtr-royal-renderings/</loc>
+    <loc>https://rpmn0ise.github.io/notes/beamng-r32-gtr-royal-renderings/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/emuler-switch-ryujinx-fork/</loc>
+    <loc>https://rpmn0ise.github.io/notes/emuler-switch-ryujinx-fork/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/forza-horizon-6-crack-online-fix/</loc>
+    <loc>https://rpmn0ise.github.io/notes/forza-horizon-6-crack-online-fix/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/lister-port-linux/</loc>
+    <loc>https://rpmn0ise.github.io/notes/lister-port-linux/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/beamng-recharger-mod-sans-relancer/</loc>
+    <loc>https://rpmn0ise.github.io/notes/beamng-recharger-mod-sans-relancer/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/winisd-simuler-enceinte/</loc>
+    <loc>https://rpmn0ise.github.io/notes/winisd-simuler-enceinte/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/pacman-nettoyer-cache/</loc>
+    <loc>https://rpmn0ise.github.io/notes/pacman-nettoyer-cache/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/css-variables-composants/</loc>
+    <loc>https://rpmn0ise.github.io/notes/css-variables-composants/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/git-recuperer-fichier-supprime/</loc>
+    <loc>https://rpmn0ise.github.io/notes/git-recuperer-fichier-supprime/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://votresite.fr/notes/npm-voir-versions/</loc>
+    <loc>https://rpmn0ise.github.io/notes/npm-voir-versions/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
