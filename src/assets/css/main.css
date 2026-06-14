@@ -1526,3 +1526,117 @@ pre[class*="language-"] {
 @media (max-width: 480px) {
   .rebass-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   HERO — Layout deux colonnes (avatar + texte)
+   ============================================================ */
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+/* ── Colonne avatar ── */
+.hero__avatar-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__avatar-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.hero__avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border: 3px solid var(--border-default);
+}
+
+/* Anneau animé autour de l'avatar */
+.hero__avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent-primary);
+  border-right-color: var(--accent-primary);
+  animation: avatar-spin 6s linear infinite;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+@keyframes avatar-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Glow derrière l'avatar */
+.hero__avatar-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(88,166,255,.12) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Colonne texte ── */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Tagline — la phrase d'accroche forte */
+.hero__tagline {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: var(--space-8);
+  }
+
+  .hero__avatar-wrap {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero__avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero__eyebrow,
+  .hero__title,
+  .hero__tagline,
+  .hero__description {
+    text-align: center;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__meta {
+    justify-content: center;
+  }
+}
