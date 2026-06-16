@@ -4,13 +4,76 @@
   <subtitle>Développeur, créateur, explorateur de technologies modernes.</subtitle>
   <link href="https://rpmn0ise.github.io/feed.xml" rel="self"/>
   <link href="https://rpmn0ise.github.io/"/>
-  <updated>2026-06-14T19:31:40.127Z</updated>
+  <updated>2026-06-16T19:38:41.134Z</updated>
   <id>https://rpmn0ise.github.io/</id>
   <author>
     <name>RPMN0ISE</name>
     <email>rpmn0ise@proton.me</email>
   </author>
 
+  
+  <entry>
+    <title>Arnaque aux lobbys triches sur Discord — comment ça vole vraiment vos comptes</title>
+    <link href="https://rpmn0ise.github.io/blog/arnaque-lobbys-discord/"/>
+    <updated>2026-06-16T00:00:00.000Z</updated>
+    <id>https://rpmn0ise.github.io/blog/arnaque-lobbys-discord/</id>
+    
+    <summary>Email + code de vérification transmis à un &#39;prestataire&#39; de lobbys triches : voici pourquoi ce mécanisme très répandu sur les serveurs gaming Discord est en réalité une prise de contrôle de compte, et comment s&#39;en protéger.</summary>
+    
+    <content type="html">
+      <![CDATA[<p>J’ai récemment vu passer un cas concret de ce pattern d’arnaque sur un serveur Discord gaming, et je pense que ça vaut la peine d’en parler — parce que la mécanique est suffisamment subtile pour piéger des gens qui ne sont pourtant pas naïfs.</p>
+<p>Voilà ce qu’il faut comprendre.</p>
+<hr>
+<h2 id="le-contexte" tabindex="-1">Le contexte <a class="header-anchor" href="#le-contexte" aria-hidden="true">#</a></h2>
+<p>Sur un serveur Discord gaming de plusieurs milliers de membres, une annonce “officielle” — postée par le staff du serveur lui-même, pas par un simple membre — proposait un service de “lobbys triches” pour un jeu en ligne : crédits, ressources, objets, contre paiement. Présenté comme rapide, fiable, et “sans risque de ban”.</p>
+<p>Rien d’inhabituel en apparence. Ce genre de service circule depuis des années sur la plupart des jeux en ligne.</p>
+<hr>
+<h2 id="comment-ca-fonctionne-reellement" tabindex="-1">Comment ça fonctionne réellement <a class="header-anchor" href="#comment-ca-fonctionne-reellement" aria-hidden="true">#</a></h2>
+<p>En contactant la personne derrière ce service par simple curiosité, voici la procédure qu’elle décrit, étape par étape :</p>
+<ol>
+<li>Vous donnez l’<strong>adresse email de votre compte</strong> (Xbox, PlayStation, Steam — le principe est transposable à n’importe quelle plateforme)</li>
+<li>Un <strong>code de vérification</strong> est envoyé sur cette adresse par le service officiel (Microsoft, Sony, etc.)</li>
+<li>Vous transmettez ce code au “prestataire”</li>
+<li>Il prétend se “connecter sur le jeu” pour appliquer les ressources achetées</li>
+<li>Vous payez après, une fois la prestation “terminée”</li>
+</ol>
+<p>Sur le papier, ça semble même plutôt rassurant : pas de paiement à l’avance, pas de demande de mot de passe.</p>
+<hr>
+<h2 id="pourquoi-c-est-un-vol-de-compte-pas-un-service" tabindex="-1">Pourquoi c’est un vol de compte, pas un service <a class="header-anchor" href="#pourquoi-c-est-un-vol-de-compte-pas-un-service" aria-hidden="true">#</a></h2>
+<p>Ce mécanisme est exactement la procédure standard de connexion ou de récupération d’un compte. Le code envoyé par email n’est pas un “ticket de service” : c’est une clé d’authentification. Le transmettre à quelqu’un revient à lui donner un accès complet à votre compte, pas seulement à une session de jeu.</p>
+<p>Une fois connecté, rien n’empêche techniquement la personne de :</p>
+<ul>
+<li>Modifier les informations de récupération du compte (email de secours, numéro de téléphone, mot de passe)</li>
+<li>Accéder aux moyens de paiement enregistrés</li>
+<li>Consulter l’historique d’achats et les données liées</li>
+<li>Vous exclure complètement de votre propre compte</li>
+</ul>
+<p>Le point le plus dangereux : même si on vous dit <em>“pas de souci, changez votre mot de passe juste après”</em>, ça ne protège de rien si les informations de récupération ont déjà été modifiées pendant la connexion. <strong>Le problème n’est pas le mot de passe, c’est le code qui donne l’accès initial.</strong> Un mot de passe changé après coup n’annule aucune des actions effectuées pendant que l’accès était actif.</p>
+<hr>
+<h2 id="les-signaux-qui-auraient-du-alerter" tabindex="-1">Les signaux qui auraient dû alerter <a class="header-anchor" href="#les-signaux-qui-auraient-du-alerter" aria-hidden="true">#</a></h2>
+<p>Plusieurs éléments, pris isolément, semblent anodins. Mis ensemble, ils dessinent un pattern assez net :</p>
+<ul>
+<li>Un “partenariat officiel” mis en avant très rapidement après l’arrivée de la personne sur le serveur, sans historique de confiance établi</li>
+<li>Un mécanisme de paiement après la prestation, qui rassure sur le papier mais ne protège pas la victime pendant la phase critique — celle où l’accès au compte est actif</li>
+<li>Des arguments du type <em>“j’ai plein de clients satisfaits”</em> ou <em>“je partage mon écran en direct”</em> — ça rassure sur la forme, mais ne change rien au risque structurel d’un accès complet au compte</li>
+<li>Le staff du serveur qui défend le partenariat plutôt que de le retirer, même après qu’on lui a expliqué le mécanisme en détail</li>
+</ul>
+<p>Ce dernier point est particulièrement révélateur : quand on explique calmement à un responsable de communauté que le service qu’il promeut équivaut à un vol de compte, la réaction attendue est le retrait immédiat de l’annonce, pas sa défense.</p>
+<hr>
+<h2 id="ce-qu-il-faut-faire-si-on-vous-propose-ca" tabindex="-1">Ce qu’il faut faire si on vous propose ça <a class="header-anchor" href="#ce-qu-il-faut-faire-si-on-vous-propose-ca" aria-hidden="true">#</a></h2>
+<ul>
+<li>Ne transmettez <strong>jamais</strong> un code reçu par email ou SMS à un tiers, même si la personne semble sérieuse, professionnelle, ou propose des garanties</li>
+<li>Aucun service légitime n’a besoin d’un code de connexion à votre compte personnel pour appliquer un service externe — c’est une contradiction technique en soi</li>
+<li>Signalez directement à la plateforme concernée (sur Discord : bouton “Signaler”, catégorie hameçonnage/fraude) plutôt que de payer ou de continuer à discuter avec la personne</li>
+<li>Si vous avez déjà transmis un code, changez immédiatement votre mot de passe <strong>et</strong> vérifiez/modifiez vos informations de récupération (email de secours, numéro de téléphone) avant toute autre démarche — l’ordre compte, parce que c’est précisément ces informations qui déterminent qui contrôle réellement le compte ensuite</li>
+</ul>
+<hr>
+<h2 id="pour-resumer" tabindex="-1">Pour résumer <a class="header-anchor" href="#pour-resumer" aria-hidden="true">#</a></h2>
+<p>Ce type d’arnaque fonctionne parce qu’elle imite presque parfaitement le vocabulaire et les codes d’un service client classique : étapes claires, garanties, paiement après prestation. Mais le détail technique qui change tout — un code de vérification transmis à un tiers — reste un transfert pur et simple de l’accès au compte, peu importe l’emballage commercial autour.</p>
+<p>Si vous croisez ce pattern ailleurs, le réflexe reste le même : aucune ressource in-game ne vaut le risque de perdre le contrôle de son compte.</p>
+]]>
+    </content>
+  </entry>
   
   <entry>
     <title>Pourquoi le futur a déjà choisi votre passé</title>
