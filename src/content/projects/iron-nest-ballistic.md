@@ -51,11 +51,11 @@ Exemple concret pour une cible à 5.33 km : borne de base à 5.1 km (30.60°) + 
 
 **Internationalisation** — bascule instantanée FR/EN sans rechargement, pour les équipages mixtes.
 
-**Architecture légère** — un seul fichier `index.html` autonome, zéro dépendance externe, zéro framework. Tu l'ouvres dans le navigateur, tu le glisses sur ton deuxième écran, c'est opérationnel.
+**Architecture légère** — un seul fichier `index.html` autonome, zéro dépendance externe, zéro framework. Tu l'ouvres dans le navigateur depuis [iron-nest-calculator.pages.dev](https://iron-nest-calculator.pages.dev/), tu glisses la fenêtre sur ton deuxième écran, c'est opérationnel.
 
 ## Usage en conditions réelles
 
-1. Lancer `index.html` dans le navigateur, glisser la fenêtre sur le deuxième écran
+1. Ouvrir [iron-nest-calculator.pages.dev](https://iron-nest-calculator.pages.dev/) dans le navigateur, glisser la fenêtre sur le deuxième écran
 2. Recevoir les coordonnées cible depuis le Haut Commandement (carte tactique en jeu ou spotteurs)
 3. Saisir la **distance** (km) et l'**azimut** (degrés) au pavé numérique dans le panneau gauche
 4. Lire immédiatement dans le panneau droit : charges propulsives requises, élévation exacte du canon, azimut tourelle
@@ -63,6 +63,6 @@ Exemple concret pour une cible à 5.33 km : borne de base à 5.1 km (30.60°) + 
 
 ## Choix techniques
 
-Le fichier HTML unique sans dépendance est une contrainte volontaire. Un outil de combat doit être disponible instantanément — pas de `npm install`, pas de build, pas de serveur local. Double-clic, c'est prêt, même sur une machine sans environnement de développement.
+Le site est hébergé sur Cloudflare Pages — disponible instantanément depuis n'importe quel navigateur sans installation, sans `npm install`, sans build local. Un outil de combat doit être accessible en deux secondes, pas en dix minutes de setup.
 
 L'interpolation est implémentée à la main depuis les données réelles de la table de tir du jeu, vérifiée cas par cas contre l'affichage en jeu. Le fichier pèse moins de 50 Ko et reste lisible par n'importe quel contributeur sans outillage particulier.
