@@ -138,6 +138,12 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://rpmn0ise.github.io/projects/iron-nest-ballistic/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
   
   <url>
     <loc>https://rpmn0ise.github.io/notes/organiser-disque-dur/</loc>
