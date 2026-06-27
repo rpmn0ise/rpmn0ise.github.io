@@ -4,7 +4,7 @@
   <subtitle>Développeur, créateur, explorateur de technologies modernes.</subtitle>
   <link href="https://rpmn0ise.github.io/feed.xml" rel="self"/>
   <link href="https://rpmn0ise.github.io/"/>
-  <updated>2026-06-27T16:07:05.249Z</updated>
+  <updated>2026-06-27T16:16:26.210Z</updated>
   <id>https://rpmn0ise.github.io/</id>
   <author>
     <name>RPMN0ISE</name>
@@ -24,7 +24,7 @@
       <![CDATA[<p>C’est le genre de truc qui énerve sur le coup, et qui fait un peu sourire après — parce que c’est tellement prévisible.</p>
 <hr>
 <h2 id="le-contexte" tabindex="-1">Le contexte <a class="header-anchor" href="#le-contexte" aria-hidden="true">#</a></h2>
-<p>On est sur le serveur Discord BeamNG FR, en vocal avec quelques personnes. Un utilisateur — appelons-le bapcap — a des droits sur les salons vocaux : il peut les renommer, les verrouiller, et expulser des gens.</p>
+<p>On est sur le serveur Discord BeamNG FR, en vocal avec quelques personnes. Le serveur utilise un bot qui gère l’ouverture et la fermeture des salons vocaux — et transmet les permissions au créateur du salon. En l’occurrence, quelqu’un avait créé le salon puis quitté en passant ses droits à bapcap avant de partir. Résultat : bapcap se retrouve avec les permissions du salon — renommer, verrouiller, expulser — sans être modérateur officiel du serveur.</p>
 <p>On se met d’accord pour faire une session drift ensemble. Jusque-là, tout va bien.</p>
 <hr>
 <h2 id="le-pretexte" tabindex="-1">Le prétexte <a class="header-anchor" href="#le-pretexte" aria-hidden="true">#</a></h2>
@@ -42,7 +42,8 @@
 <p>Parce que des droits de modération, c’est fait pour gérer un espace, pas pour exclure des gens qui ne jouent pas à ta façon.</p>
 <hr>
 <h2 id="ce-que-ca-dit" tabindex="-1">Ce que ça dit <a class="header-anchor" href="#ce-que-ca-dit" aria-hidden="true">#</a></h2>
-<p>Ce profil existe partout sur Discord : quelqu’un qui obtient un petit pouvoir sur un serveur et qui s’en sert dès qu’il se sent contrarié. Le prétexte change — ici les assists, ailleurs le niveau, le style de jeu, n’importe quoi — mais la mécanique est toujours la même.</p>
+<p>Ce profil existe partout sur Discord : quelqu’un qui se retrouve avec un petit pouvoir — ici par héritage de permissions via un bot — et qui s’en sert dès qu’il se sent contrarié. Le prétexte change — ici les assists, ailleurs le niveau, le style de jeu, n’importe quoi — mais la mécanique est toujours la même.</p>
+<p>Ce qui est un peu ironique, c’est qu’il n’était même pas modérateur officiel. Juste quelqu’un à qui des perms sont tombées dessus par hasard, et qui a décidé de s’en servir pour exclure des gens qui ne jouaient pas à sa façon.</p>
 <p>La bonne réponse reste de documenter, signaler, et continuer à jouer comme on veut.</p>
 ]]>
     </content>
