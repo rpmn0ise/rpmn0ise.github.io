@@ -18,7 +18,7 @@ C'est le genre de truc qui énerve sur le coup, et qui fait un peu sourire aprè
 
 ## Le contexte
 
-On est sur le serveur Discord BeamNG FR, en vocal avec quelques personnes. Un utilisateur — appelons-le bapcap — a des droits sur les salons vocaux : il peut les renommer, les verrouiller, et expulser des gens.
+On est sur le serveur Discord BeamNG FR, en vocal avec quelques personnes. Le serveur utilise un bot qui gère l'ouverture et la fermeture des salons vocaux — et transmet les permissions au créateur du salon. En l'occurrence, quelqu'un avait créé le salon puis quitté en passant ses droits à bapcap avant de partir. Résultat : bapcap se retrouve avec les permissions du salon — renommer, verrouiller, expulser — sans être modérateur officiel du serveur.
 
 On se met d'accord pour faire une session drift ensemble. Jusque-là, tout va bien.
 
@@ -54,6 +54,8 @@ Parce que des droits de modération, c'est fait pour gérer un espace, pas pour 
 
 ## Ce que ça dit
 
-Ce profil existe partout sur Discord : quelqu'un qui obtient un petit pouvoir sur un serveur et qui s'en sert dès qu'il se sent contrarié. Le prétexte change — ici les assists, ailleurs le niveau, le style de jeu, n'importe quoi — mais la mécanique est toujours la même.
+Ce profil existe partout sur Discord : quelqu'un qui se retrouve avec un petit pouvoir — ici par héritage de permissions via un bot — et qui s'en sert dès qu'il se sent contrarié. Le prétexte change — ici les assists, ailleurs le niveau, le style de jeu, n'importe quoi — mais la mécanique est toujours la même.
+
+Ce qui est un peu ironique, c'est qu'il n'était même pas modérateur officiel. Juste quelqu'un à qui des perms sont tombées dessus par hasard, et qui a décidé de s'en servir pour exclure des gens qui ne jouaient pas à sa façon.
 
 La bonne réponse reste de documenter, signaler, et continuer à jouer comme on veut.
