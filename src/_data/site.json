@@ -10,7 +10,8 @@
     "location": "France"
   },
   "social": {
-    "github": "https://github.com/rpmn0ise"
+    "github": "https://github.com/rpmn0ise",
+    "youtube": "https://www.youtube.com/@rpmn0ise_official"
   },
   "nav": [
     { "label": "Accueil", "url": "/" },
