@@ -1,43 +1,9 @@
 /* ============================================================
-   MOBILE NAV
+   MAIN — comportements fonctionnels uniquement.
+   (la navigation est gérée par nav-panel.js)
    ============================================================ */
 
-document.addEventListener("DOMContentLoaded", function () {
-  const toggle = document.getElementById("nav-toggle");
-  const nav = document.getElementById("site-nav");
-
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener("click", function () {
-    const expanded = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!expanded));
-    nav.classList.toggle("is-open", !expanded);
-    document.body.style.overflow = !expanded ? "hidden" : "";
-  });
-
-  // Close on ESC
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && nav.classList.contains("is-open")) {
-      toggle.setAttribute("aria-expanded", "false");
-      nav.classList.remove("is-open");
-      document.body.style.overflow = "";
-      toggle.focus();
-    }
-  });
-
-  // Close on outside click
-  document.addEventListener("click", function (e) {
-    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-      toggle.setAttribute("aria-expanded", "false");
-      nav.classList.remove("is-open");
-      document.body.style.overflow = "";
-    }
-  });
-});
-
-/* ============================================================
-   LOCAL SEARCH
-   ============================================================ */
+/* ─── Recherche locale (page labo) ─── */
 
 document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.getElementById("search-input");
@@ -61,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
       item.style.display = match ? "" : "none";
     });
 
-    // Show/hide no results
     const noResults = document.getElementById("no-results");
     if (noResults) {
       const visible = [...items].some((i) => i.style.display !== "none");
@@ -70,43 +35,64 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/* ============================================================
-   ACTIVE NAV LINK
-   ============================================================ */
+/* ─── Filtres domaine + type (page labo) ─── */
 
 document.addEventListener("DOMContentLoaded", function () {
-  const currentPath = window.location.pathname;
-  document.querySelectorAll(".site-nav__link").forEach(function (link) {
-    const href = link.getAttribute("href");
-    if (href === "/" && currentPath === "/") {
-      link.classList.add("site-nav__link--active");
-      link.setAttribute("aria-current", "page");
-    } else if (href !== "/" && currentPath.startsWith(href)) {
-      link.classList.add("site-nav__link--active");
-    }
+  const domainLinks = document.querySelectorAll("[data-domain-filter]");
+  const typeLinks = document.querySelectorAll("[data-type-filter]");
+  const items = document.querySelectorAll("[data-entry-domain]");
+  if (!items.length) return;
+
+  let activeDomain = "tous";
+  let activeType = "tous";
+
+  function apply() {
+    items.forEach(function (item) {
+      const domainMatch = activeDomain === "tous" || item.getAttribute("data-entry-domain") === activeDomain;
+      const typeMatch = activeType === "tous" || item.getAttribute("data-entry-type") === activeType;
+      item.style.display = domainMatch && typeMatch ? "" : "none";
+    });
+  }
+
+  domainLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      activeDomain = link.getAttribute("data-domain-filter");
+      domainLinks.forEach((l) => l.classList.remove("tag--active"));
+      link.classList.add("tag--active");
+      apply();
+    });
+  });
+
+  typeLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      activeType = link.getAttribute("data-type-filter");
+      typeLinks.forEach((l) => l.classList.remove("tag--active"));
+      link.classList.add("tag--active");
+      apply();
+    });
   });
 });
 
-/* ============================================================
-   READING PROGRESS
-   ============================================================ */
+/* ─── Barre de progression de lecture ─── */
 
 document.addEventListener("DOMContentLoaded", function () {
-  const article = document.querySelector(".post__body");
+  const article = document.querySelector(".post__body, .project-detail__body");
   if (!article) return;
 
   const bar = document.createElement("div");
   bar.setAttribute("role", "progressbar");
   bar.setAttribute("aria-label", "Progression de lecture");
   bar.style.cssText =
-    "position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent-primary);z-index:200;transition:width 0.1s linear;";
+    "position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent-primary);z-index:150;transition:width 0.1s linear;";
   document.body.appendChild(bar);
 
   function update() {
     const rect = article.getBoundingClientRect();
     const total = article.offsetHeight - window.innerHeight;
     const scrolled = -rect.top;
-    const pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
+    const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
     bar.style.width = pct + "%";
     bar.setAttribute("aria-valuenow", Math.round(pct));
   }
@@ -115,9 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
   update();
 });
 
-/* ============================================================
-   COPY CODE BUTTON
-   ============================================================ */
+/* ─── Bouton copier le code ─── */
 
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("pre[class*='language-']").forEach(function (pre) {
@@ -125,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.textContent = "Copier";
     btn.setAttribute("aria-label", "Copier le code");
     btn.style.cssText =
-      "position:absolute;top:8px;right:8px;padding:4px 10px;font-size:12px;font-family:var(--font-sans);background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-default);border-radius:4px;cursor:pointer;opacity:0;transition:opacity 0.2s;";
+      "position:absolute;top:8px;right:8px;padding:4px 10px;font-size:12px;font-family:var(--font-sans);background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-default);border-radius:var(--radius-sm);cursor:pointer;opacity:0;transition:opacity var(--transition-fast);";
 
     pre.style.position = "relative";
     pre.appendChild(btn);
@@ -146,30 +130,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 2000);
       });
     });
-  });
-});
-
-/* ============================================================
-   INTERSECTION OBSERVER (animations)
-   ============================================================ */
-
-document.addEventListener("DOMContentLoaded", function () {
-  if (!("IntersectionObserver" in window)) return;
-
-  const observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = "running";
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-  );
-
-  document.querySelectorAll(".animate-fade-up").forEach(function (el) {
-    el.style.animationPlayState = "paused";
-    observer.observe(el);
   });
 });

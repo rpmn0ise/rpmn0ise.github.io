@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="fr">
   <title>RPMN0ISE</title>
-  <subtitle>Développeur, créateur, explorateur de technologies modernes.</subtitle>
+  <subtitle>Digital Laboratory — laboratoire numérique personnel : systèmes, audio, simulation, développement.</subtitle>
   <link href="https://rpmn0ise.github.io/feed.xml" rel="self"/>
   <link href="https://rpmn0ise.github.io/"/>
-  <updated>2026-07-04T21:55:38.582Z</updated>
+  <updated>2026-07-17T09:41:32.017Z</updated>
   <id>https://rpmn0ise.github.io/</id>
   <author>
     <name>RPMN0ISE</name>
