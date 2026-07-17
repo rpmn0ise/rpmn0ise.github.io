@@ -2,6 +2,7 @@
 title: "CSS : variables locales dans les composants"
 description: "Utiliser les custom properties CSS comme interface de configuration d'un composant, sans modifier son CSS interne."
 date: 2024-03-10
+domain: creation-numerique
 tags:
   - css
   - tips

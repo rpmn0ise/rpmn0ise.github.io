@@ -2,6 +2,7 @@
 title: "Installer un subwoofer de voiture à la maison"
 description: "Alimentation, ampli, caisson, réglages — tout ce qu'il faut pour faire tourner un sub auto chez soi."
 date: 2026-05-20
+domain: ingenierie
 tags:
   - post
   - audio

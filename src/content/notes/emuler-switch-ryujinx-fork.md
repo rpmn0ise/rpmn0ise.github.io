@@ -2,6 +2,7 @@
 title: "Émuler la Nintendo Switch en 2026 — Ryujinx fork"
 description: "Installation et configuration d'un émulateur Switch (fork communautaire de Ryujinx) pour faire tourner les jeux Switch sur PC."
 date: 2026-05-18
+domain: simulation
 tags:
   - gaming
   - émulation

@@ -1,85 +1,64 @@
 ---
 layout: base.njk
-title: Blog
-description: Articles sur le développement web, les outils, les expériences et les réflexions techniques.
+title: Le Labo
+description: Tout ce qui a été exploré, construit, cassé, compris.
 pagination:
-  data: collections.posts
-  size: 10
-  alias: posts
+  data: collections.entries
+  size: 15
+  alias: entries
 permalink: "{% if pagination.pageNumber == 0 %}/blog/{% else %}/blog/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 ---
 
 <div class="container">
 
-  <header class="blog-header">
-    <h1 class="blog-title">Blog</h1>
-    <p class="blog-description">{{ description }}</p>
+  <header class="page-header">
+    <p class="page-header__eyebrow">Journal complet du labo</p>
+    <h1 class="page-header__title">Le Labo</h1>
+    <p class="page-header__description">{{ description }}</p>
   </header>
 
-  {# Search #}
-  <div class="search-box" role="search">
+  <div class="search-box" role="search" style="margin-bottom: var(--space-6);">
     <svg class="search-box__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
     </svg>
     <input
       type="search"
       id="search-input"
-      placeholder="Rechercher un article…"
-      aria-label="Rechercher dans les articles"
+      placeholder="Rechercher dans le labo…"
+      aria-label="Rechercher dans le labo"
       autocomplete="off"
     >
   </div>
 
-  {# Tags #}
-  {% if collections.tagList.length %}
-    <div class="tags-filter" role="navigation" aria-label="Filtrer par tag">
-      <a href="/blog/" class="tag {% if not tag %}tag--active{% endif %}">Tous</a>
-      {% for tagName in collections.tagList %}
-        <a href="/tags/{{ tagName | slugify }}/" class="tag">{{ tagName }}</a>
+  <div class="filters">
+    <div class="filters__row">
+      <span class="filters__label">Domaine</span>
+      <a href="#" class="tag tag--active" data-domain-filter="tous">Tous</a>
+      {% for domain in collections.domainStats %}
+        <a href="#" class="tag" data-domain-filter="{{ domain.id }}">{{ domain.label }}</a>
       {% endfor %}
     </div>
-  {% endif %}
+    <div class="filters__row">
+      <span class="filters__label">Type</span>
+      <a href="#" class="tag tag--active" data-type-filter="tous">Tout</a>
+      <a href="#" class="tag" data-type-filter="article">Articles</a>
+      <a href="#" class="tag" data-type-filter="note">Notes</a>
+      <a href="#" class="tag" data-type-filter="projet">Projets</a>
+    </div>
+  </div>
 
-  {# Posts list #}
-  <div class="blog-list" id="posts-list">
-    {% for post in posts %}
-      <article
-        class="post-list-item"
-        data-search-item="{{ post.data.title }} {{ post.data.description }} {{ post.data.tags | join(' ') }}"
-      >
-        <time class="post-list-item__date" datetime="{{ post.date | htmlDateString }}">
-          {{ post.date | readableDate("dd MMM yyyy") }}
-        </time>
-
-        <div class="post-list-item__body">
-          <h2 class="post-list-item__title">
-            <a href="{{ post.url }}">{{ post.data.title }}</a>
-          </h2>
-          {% if post.data.description %}
-            <p class="post-list-item__description">{{ post.data.description }}</p>
-          {% endif %}
-        </div>
-
-        {% if post.data.tags %}
-          <div class="post-list-item__tags">
-            {% for t in post.data.tags %}
-              {% if t != "post" and t != "posts" %}
-                <a href="/tags/{{ t | slugify }}/" class="tag">{{ t }}</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
-      </article>
+  <div class="entry-list" id="entries-list">
+    {% for entry in entries %}
+      {% include "components/entry-card.njk" %}
     {% else %}
-      <p>Aucun article publié pour l'instant.</p>
+      <p style="color: var(--text-secondary); padding: var(--space-8) 0;">Aucune entrée pour l'instant.</p>
     {% endfor %}
 
-    <p id="no-results" hidden style="color: var(--text-secondary); padding: var(--space-8); text-align:center;">
+    <p id="no-results" hidden style="color: var(--text-secondary); padding: var(--space-8) 0; text-align:center;">
       Aucun résultat pour cette recherche.
     </p>
   </div>
 
-  {# Pagination #}
   {% include "components/pagination.njk" %}
 
 </div>

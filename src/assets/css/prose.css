@@ -1,0 +1,166 @@
+/* ============================================================
+   PROSE — typographie de lecture longue (articles, projets, pages)
+   ============================================================ */
+
+.prose {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+  max-width: 68ch;
+}
+
+.prose > * + * {
+  margin-top: var(--space-5);
+}
+
+.prose h2 {
+  font-size: var(--text-2xl);
+  margin-top: var(--space-10);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.prose h3 {
+  font-size: var(--text-xl);
+  margin-top: var(--space-8);
+}
+
+.prose h4 {
+  font-size: var(--text-lg);
+  margin-top: var(--space-6);
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  color: var(--text-secondary);
+}
+
+.prose strong {
+  color: var(--text-primary);
+  font-weight: var(--font-semibold);
+}
+
+.prose a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--accent-primary);
+}
+
+.prose ul, .prose ol {
+  padding-left: var(--space-6);
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: var(--space-2);
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--border-strong);
+  padding-left: var(--space-4);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.prose code {
+  font-size: 0.875em;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.15em 0.4em;
+}
+
+.prose pre {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  overflow-x: auto;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.prose th, .prose td {
+  border: 1px solid var(--border-default);
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+}
+
+.prose th {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin-block: var(--space-8);
+}
+
+.prose img {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-default);
+}
+
+.prose figure figcaption {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.header-anchor {
+  margin-left: var(--space-2);
+  color: var(--text-muted);
+  font-weight: var(--font-normal);
+  text-decoration: none;
+}
+
+.callout {
+  border-left: 2px solid var(--info);
+  background: var(--bg-surface);
+  padding: var(--space-4) var(--space-5);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: var(--text-sm);
+}
+
+.callout--warning {
+  border-left-color: var(--warning);
+}
+
+.callout--error {
+  border-left-color: var(--error);
+}
+
+.callout > *:first-child {
+  margin-top: 0;
+}

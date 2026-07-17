@@ -9,6 +9,9 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 
+// Source unique de vérité des domaines — voir src/_data/domains.json
+const domainsData = require("./src/_data/domains.json");
+
 module.exports = function (eleventyConfig) {
 
   // ─────────────────────────────────────────────
@@ -81,13 +84,6 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
   );
 
-  eleventyConfig.addCollection("resources", (collectionApi) =>
-    collectionApi
-      .getFilteredByGlob("src/content/resources/**/*.md")
-      .filter((item) => !isProd || !item.data.draft)
-      .sort((a, b) => b.date - a.date)
-  );
-
   eleventyConfig.addCollection("notes", (collectionApi) =>
     collectionApi
       .getFilteredByGlob("src/content/notes/**/*.md")
@@ -98,8 +94,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("tagList", (collectionApi) => {
     const tagSet = new Set();
 
-    collectionApi
-      .getFilteredByGlob("src/content/blog/**/*.md")
+    [
+      ...collectionApi.getFilteredByGlob("src/content/blog/**/*.md"),
+      ...collectionApi.getFilteredByGlob("src/content/notes/**/*.md"),
+    ]
       .filter((item) => !isProd || !item.data.draft)
       .forEach((item) => {
         (item.data.tags || []).forEach((tag) => {
@@ -112,13 +110,72 @@ module.exports = function (eleventyConfig) {
     return [...tagSet].sort();
   });
 
-  eleventyConfig.addCollection("featured", (collectionApi) =>
-    collectionApi
-      .getFilteredByGlob("src/content/blog/**/*.md")
-      .filter((item) => item.data.featured && !item.data.draft)
-      .sort((a, b) => b.date - a.date)
-      .slice(0, 3)
-  );
+  // "entries" — le flux unique du labo : articles + notes + projets
+  // mélangés chronologiquement. C'est la collection qui matérialise
+  // concrètement le concept de journal (homepage, page labo, pages domaine).
+  eleventyConfig.addCollection("entries", (collectionApi) => {
+    const tag = (items, entryType) =>
+      items
+        .filter((item) => !isProd || !item.data.draft)
+        .map((item) => {
+          item.data.entryType = entryType;
+          return item;
+        });
+
+    const posts = tag(
+      collectionApi.getFilteredByGlob("src/content/blog/**/*.md"),
+      "article"
+    );
+    const notes = tag(
+      collectionApi.getFilteredByGlob("src/content/notes/**/*.md"),
+      "note"
+    );
+    const projects = tag(
+      collectionApi.getFilteredByGlob("src/content/projects/**/*.md"),
+      "projet"
+    );
+
+    return [...posts, ...notes, ...projects].sort((a, b) => b.date - a.date);
+  });
+
+  // "domainStats" — comptage réel par domaine (articles/notes/projets),
+  // utilisé par le panneau de navigation et la répartition de la homepage.
+  // Une seule fonction de calcul, une seule source de vérité (domains.json).
+  eleventyConfig.addCollection("domainStats", (collectionApi) => {
+    const filterLive = (items) =>
+      items.filter((item) => !isProd || !item.data.draft);
+
+    const posts = filterLive(
+      collectionApi.getFilteredByGlob("src/content/blog/**/*.md")
+    );
+    const notes = filterLive(
+      collectionApi.getFilteredByGlob("src/content/notes/**/*.md")
+    );
+    const projects = filterLive(
+      collectionApi.getFilteredByGlob("src/content/projects/**/*.md")
+    );
+
+    const stats = domainsData.map((domain) => {
+      const articles = posts.filter((p) => p.data.domain === domain.id).length;
+      const noteCount = notes.filter((p) => p.data.domain === domain.id).length;
+      const projectCount = projects.filter((p) => p.data.domain === domain.id).length;
+
+      return {
+        ...domain,
+        articles,
+        notes: noteCount,
+        projects: projectCount,
+        total: articles + noteCount + projectCount,
+      };
+    });
+
+    const maxTotal = Math.max(1, ...stats.map((s) => s.total));
+
+    return stats.map((s) => ({
+      ...s,
+      pct: s.total > 0 ? Math.max(6, Math.round((s.total / maxTotal) * 100)) : 0,
+    }));
+  });
 
   // ─────────────────────────────────────────────
   // Filters
@@ -152,7 +209,18 @@ module.exports = function (eleventyConfig) {
   );
 
   eleventyConfig.addFilter("where", (arr, key, value) =>
-    (arr || []).filter((item) => item[key] === value)
+    (arr || []).filter((item) => {
+      const actual = key.split(".").reduce((obj, k) => (obj == null ? obj : obj[k]), item);
+      return actual === value;
+    })
+  );
+
+  // Pour les champs tableau (ex: tags) — retient les items dont le tableau contient la valeur
+  eleventyConfig.addFilter("whereContains", (arr, key, value) =>
+    (arr || []).filter((item) => {
+      const actual = key.split(".").reduce((obj, k) => (obj == null ? obj : obj[k]), item);
+      return Array.isArray(actual) && actual.includes(value);
+    })
   );
 
   eleventyConfig.addFilter("slugify", (str = "") =>
@@ -172,23 +240,109 @@ module.exports = function (eleventyConfig) {
     }
   });
 
-  eleventyConfig.addFilter("relatedPosts", function (post, posts, limit = 3) {
-    if (!post || !posts) return [];
+  // Remplace l'ancien "relatedPosts" (limité à la collection posts) :
+  // travaille sur "entries" (articles + notes + projets) et pondère
+  // le domaine partagé en plus des tags partagés.
+  eleventyConfig.addFilter("relatedEntries", function (item, entries, limit = 3) {
+    if (!item || !entries) return [];
 
-    const tags = post.data?.tags || [];
+    const tags = item.data?.tags || [];
+    const domain = item.data?.domain;
 
-    return posts
-      .filter((p) => p && p.url && p.url !== post.url && !p.data?.draft)
-      .map((p) => {
-        const pTags = p.data?.tags || [];
-        const sharedTags = pTags.filter((t) => tags.includes(t)).length;
+    return entries
+      .filter((e) => e && e.url && e.url !== item.url && !e.data?.draft)
+      .map((e) => {
+        const eTags = e.data?.tags || [];
+        const sharedTags = eTags.filter((t) => tags.includes(t)).length;
+        const domainMatch = domain && e.data?.domain === domain ? 1 : 0;
 
-        return { post: p, score: sharedTags };
+        return { entry: e, score: sharedTags * 2 + domainMatch };
       })
       .filter((x) => x.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, limit)
-      .map((x) => x.post);
+      .map((x) => x.entry);
+  });
+
+  // Navigation précédent/suivant au sein du flux "entries" — remplace
+  // previousPost/nextPost qui n'étaient en réalité jamais renseignés
+  // nulle part dans le code existant (variables toujours vides).
+  eleventyConfig.addFilter("previousEntry", (item, entries) => {
+    if (!item || !entries) return null;
+    const idx = entries.findIndex((e) => e.url === item.url);
+    if (idx === -1 || idx === entries.length - 1) return null;
+    return entries[idx + 1];
+  });
+
+  eleventyConfig.addFilter("nextEntry", (item, entries) => {
+    if (!item || !entries) return null;
+    const idx = entries.findIndex((e) => e.url === item.url);
+    if (idx <= 0) return null;
+    return entries[idx - 1];
+  });
+
+  // Numéro de spécimen — stable dans le temps (basé sur l'ordre chronologique
+  // réel, pas sur la position dans une sous-liste filtrée). La plus ancienne
+  // entrée du labo porte le №1.
+  eleventyConfig.addFilter("entryId", (item, entries) => {
+    if (!item || !entries) return null;
+    const idx = entries.findIndex((e) => e.url === item.url);
+    if (idx === -1) return null;
+    return entries.length - idx;
+  });
+
+  eleventyConfig.addFilter("entryTypeGlyph", (entryType) => {
+    const glyphs = { article: "▮", note: "▪", projet: "▲" };
+    return glyphs[entryType] || "•";
+  });
+
+  // "labStats" — les chiffres du labo lui-même : combien d'entrées, depuis
+  // quand, combien de domaines actifs. Sert la homepage et le header —
+  // le site se documente lui-même, cohérent avec le concept de labo.
+  eleventyConfig.addCollection("labStats", (collectionApi) => {
+    const filterLive = (items) => items.filter((i) => !isProd || !i.data.draft);
+    const posts = filterLive(collectionApi.getFilteredByGlob("src/content/blog/**/*.md"));
+    const notes = filterLive(collectionApi.getFilteredByGlob("src/content/notes/**/*.md"));
+    const projects = filterLive(collectionApi.getFilteredByGlob("src/content/projects/**/*.md"));
+    const all = [...posts, ...notes, ...projects];
+
+    const years = all.map((i) => i.date.getFullYear()).filter(Boolean);
+    const domainsActive = new Set(all.map((i) => i.data.domain).filter(Boolean));
+    const activeProjects = projects.filter((p) => p.data.status === "en-cours");
+
+    return {
+      totalEntries: all.length,
+      totalArticles: posts.length,
+      totalNotes: notes.length,
+      totalProjects: projects.length,
+      activeProjectsCount: activeProjects.length,
+      domainsActiveCount: domainsActive.size,
+      sinceYear: years.length ? Math.min(...years) : new Date().getFullYear(),
+    };
+  });
+
+  // Lookup domaine — source unique domains.json (règle de cohérence n°4)
+  eleventyConfig.addFilter("domainInfo", (id) =>
+    domainsData.find((d) => d.id === id) || null
+  );
+
+  // Ligne d'état du header — fonctionnelle, calculée depuis la vraie
+  // date de la dernière entrée. Remplace l'ancien compteur "142 entrées".
+  eleventyConfig.addFilter("timeAgo", (date) => {
+    if (!date) return "";
+
+    const dt = DateTime.fromJSDate(date, { zone: "utc" });
+    const days = Math.floor(DateTime.utc().diff(dt, "days").days);
+
+    if (days <= 0) return "aujourd'hui";
+    if (days === 1) return "hier";
+    if (days < 30) return `il y a ${days} jours`;
+
+    const months = Math.floor(days / 30);
+    if (months < 12) return `il y a ${months} mois`;
+
+    const years = Math.floor(months / 12);
+    return `il y a ${years} an${years > 1 ? "s" : ""}`;
   });
 
   // ─────────────────────────────────────────────

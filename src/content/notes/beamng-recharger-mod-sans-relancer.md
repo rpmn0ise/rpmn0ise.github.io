@@ -2,6 +2,7 @@
 title: "BeamNG : recharger un mod sans relancer le jeu"
 description: "Raccourci pour itérer rapidement sur un mod sans passer par le menu principal à chaque fois."
 date: 2025-02-01
+domain: simulation
 tags:
   - beamng
   - modding

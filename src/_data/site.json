@@ -1,6 +1,6 @@
 {
   "title": "RPMN0ISE",
-  "description": "Développeur, créateur, explorateur de technologies modernes.",
+  "description": "Digital Laboratory — laboratoire numérique personnel : systèmes, audio, simulation, développement.",
   "url": "https://rpmn0ise.github.io",
   "author": {
     "name": "RPMN0ISE",
@@ -13,9 +13,12 @@
     "github": "https://github.com/rpmn0ise",
     "youtube": "https://www.youtube.com/@rpmn0ise_official"
   },
+  "now": {
+    "current": "tuning DSP infrabass, config Hyprland, campagne physique BeamNG"
+  },
   "nav": [
     { "label": "Accueil", "url": "/" },
-    { "label": "Blog", "url": "/blog/" },
+    { "label": "Le Labo", "url": "/blog/" },
     { "label": "Projets", "url": "/projects/" },
     { "label": "Notes", "url": "/notes/" },
     { "label": "Rebass", "url": "/rebass/" },

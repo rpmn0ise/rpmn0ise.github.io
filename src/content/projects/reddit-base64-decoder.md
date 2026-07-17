@@ -2,8 +2,9 @@
 title: "Reddit Base64 Decoder"
 description: "Userscript qui détecte et décode automatiquement le Base64 dans les posts et commentaires Reddit, avec rendu des URLs cliquables."
 date: 2025-05-22
+domain: creation-numerique
 order: 1
-status: actif
+status: en-cours
 year: 2025
 tech:
   - JavaScript

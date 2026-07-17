@@ -2,6 +2,7 @@
 title: "Lister les ports ouverts sous Linux"
 description: "Commandes ss et nmap pour auditer les ports en écoute sur une machine Linux."
 date: 2026-05-18
+domain: systemes
 tags:
   - linux
   - cli

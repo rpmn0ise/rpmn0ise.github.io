@@ -1,0 +1,38 @@
+---
+layout: base.njk
+pagination:
+  data: collections.domainStats
+  size: 1
+  alias: domainItem
+permalink: /domaines/{{ domainItem.id }}/
+eleventyComputed:
+  title: "{{ domainItem.label }}"
+  description: "{{ domainItem.description }}"
+  domain: "{{ domainItem.id }}"
+---
+
+<div class="container">
+  <header class="page-header">
+    <p class="page-header__eyebrow">
+      <a href="/blog/">← Le Labo</a> · Index — domaine D{{ pagination.pageNumber + 1 }}
+    </p>
+    <div style="display:flex; align-items:center; gap: var(--space-3); margin-bottom: var(--space-2);">
+      {% set domainId = domainItem.id %}{% include "components/domain-pill.njk" %}
+    </div>
+    <h1 class="page-header__title">{{ domainItem.label }}</h1>
+    <p class="page-header__description">{{ domainItem.description }} — {{ domainItem.total }} entrée{% if domainItem.total > 1 %}s{% endif %}</p>
+  </header>
+
+  {% set domainEntries = collections.entries | where("data.domain", domainItem.id) %}
+  {% if domainEntries.length %}
+    <div class="entry-list">
+      {% for entry in domainEntries %}
+        {% include "components/entry-card.njk" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="color: var(--text-secondary); padding: var(--space-16) 0; text-align: center;">
+      Rien de publié dans ce domaine pour l'instant.
+    </p>
+  {% endif %}
+</div>

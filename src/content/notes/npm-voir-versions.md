@@ -2,6 +2,7 @@
 title: "npm : voir toutes les versions d'un paquet"
 description: "Commandes utiles pour explorer les versions disponibles d'un paquet npm avant de l'installer."
 date: 2024-02-14
+domain: creation-numerique
 tags:
   - npm
   - cli

@@ -2,6 +2,7 @@
 title: "Forza Horizon 6 — Lancer la version crack avec online fix"
 description: "Procédure complète pour faire tourner Forza Horizon 6 cracké avec le online fix activé."
 date: 2026-05-18
+domain: simulation
 tags:
   - gaming
   - crack

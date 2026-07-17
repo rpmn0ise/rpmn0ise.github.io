@@ -2,8 +2,9 @@
 title: "LIBRAW"
 description: "Annuaire FR ultra-sélectif d'outils et guides pour utilisateurs tech — streaming, download, privacy, gaming, vérifiés manuellement."
 date: 2026-05-24
+domain: creation-numerique
 order: 3
-status: actif
+status: en-cours
 year: 2026
 tech:
   - Eleventy 3

@@ -1,0 +1,5 @@
+{# Composant status-tag — attend `statusValue` (en-cours | stable | archive) #}
+{% set statusLabels = {"en-cours": "EN COURS", "stable": "STABLE", "archive": "ARCHIVÉ"} %}
+{% if statusValue %}
+  <span class="status-tag status-tag--{{ statusValue }}">{{ statusLabels[statusValue] or statusValue }}</span>
+{% endif %}

@@ -2,6 +2,7 @@
 title: "WinISD : simuler une enceinte en 5 minutes"
 description: "Workflow minimal pour simuler le comportement d'un subwoofer dans une enceinte close ou bass-reflex avant de couper du MDF."
 date: 2025-01-18
+domain: ingenierie
 tags:
   - audio
   - diy

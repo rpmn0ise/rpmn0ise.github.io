@@ -2,11 +2,14 @@
 title: "Infrabass : ce que les specs ne te disent pas"
 description: "Fréquence de résonance, déplacement membranaire, puissance thermique — ce que j'ai appris en construisant mes premiers systèmes de grave et pourquoi le chiffre de puissance sur la boîte ne veut rien dire."
 date: 2025-01-25
+domain: ingenierie
 tags:
   - post
   - audio
   - bass
   - diy
+annotations:
+  - "Sd × Xmax = volume d'air déplacé — la vraie formule qui compte en dessous de 80 Hz"
 ---
 
 Quand on commence dans le car audio ou le subwoofer DIY, on regarde les watts. C'est l'erreur que tout le monde fait, moi inclus.

@@ -1,0 +1,15 @@
+{# Composant timeline — attend `log` (liste de { date?, note, done? }) #}
+{% if log and log.length %}
+  <div class="timeline">
+    {% for entry in log %}
+      <div class="timeline__entry
+        {%- if entry.done == true %} timeline__entry--done
+        {%- elif entry.done == false %} timeline__entry--todo
+        {%- endif %}">
+        <span class="timeline__marker" aria-hidden="true"></span>
+        {% if entry.date %}<div class="timeline__date">{{ entry.date }}</div>{% endif %}
+        <div class="timeline__note">{{ entry.note }}</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

@@ -17,6 +17,10 @@ Je construis des choses, je les casse, je comprends pourquoi, et je recommence. 
 
 ## Ce sur quoi je travaille
 
+{% set systemes = "systemes" | domainInfo %}
+<div class="about-section" style="--section-color: {{ systemes.color }};">
+<p class="about-section__label">{{ systemes.label }}</p>
+
 ### Linux & systèmes
 
 Mon environnement principal : **CachyOS** avec **Hyprland** et **Waybar**, configurés à la main. J'utilise aussi **Arch Linux** selon les contextes, et Windows uniquement pour les jeux qui l'imposent. Dual boot, environnements séparés, configs versionnées — rien de magique, juste de la rigueur.
@@ -24,6 +28,11 @@ Mon environnement principal : **CachyOS** avec **Hyprland** et **Waybar**, confi
 J'ai cassé Waybar et systemd en passant. J'avais des backups, c'était reparti en deux heures. C'est comme ça que ça marche.
 
 Du côté sécurité, je m'entraîne sur **Kali**, et j'ai un **Flipper Zero** pour explorer ce qui traîne dans l'air ambiant — RF, NFC, infrarouge. Pas encore en mode CTF sérieux, mais j'apprends à lire les systèmes avant de les toucher.
+</div>
+
+{% set ingenierie = "ingenierie" | domainInfo %}
+<div class="about-section" style="--section-color: {{ ingenierie.color }};">
+<p class="about-section__label">{{ ingenierie.label }}</p>
 
 ### Audio
 
@@ -32,12 +41,18 @@ L'audio c'est sérieux ici. À la maison : un ampli cinéma, un ampli sub dédi�
 Ce qui m'intéresse : l'infrabass, l'équilibre SPL vs qualité sonore, le tuning actif, la conception et la modification d'enceintes selon les besoins. Pas juste écouter — comprendre pourquoi ça sonne comme ça, et comment le faire sonner mieux.
 
 Musicalement : électronique, US rap, rebassed. Le test ultime du système voiture : *Demon Lover* de Devilish Trio.
+</div>
+
+{% set simulation = "simulation" | domainInfo %}
+<div class="about-section" style="--section-color: {{ simulation.color }};">
+<p class="about-section__label">{{ simulation.label }}</p>
 
 ### Simulation & gaming
 
 **BeamNG.drive** est ma plateforme principale — pas pour faire des tricks, mais pour comprendre comment un véhicule se comporte aux limites de la physique. Setup : Logitech G29, posé sur bureau. Pas le cockpit de rêve, mais suffisant pour sentir ce qui se passe.
 
 Je joue aussi à **Assetto Corsa** et **Minecraft**, et à quelques autres jeux de simulation. Les FPS, c'est pas mon truc.
+</div>
 
 ---
 

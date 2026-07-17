@@ -2,6 +2,7 @@
 title: "BeamNG.drive n'est pas un jeu, c'est un laboratoire"
 description: "Pourquoi je considère BeamNG comme une plateforme d'expérimentation physique sérieuse, et ce que j'y ai appris sur les systèmes mécaniques que je n'aurais pas appris autrement."
 date: 2025-01-10
+domain: simulation
 tags:
   - post
   - simulation

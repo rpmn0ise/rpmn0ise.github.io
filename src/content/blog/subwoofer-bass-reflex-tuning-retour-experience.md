@@ -2,6 +2,7 @@
 title: "Mon expérience avec le tuning d’un subwoofer en bass-reflex"
 description: "Retour d’expérience sur la conception et le tuning d’un caisson bass-reflex : MDF, WinISD, REW, erreurs de calcul et résultats réels."
 date: 2025-02-15
+domain: ingenierie
 tags:
   - post
   - audio

@@ -2,12 +2,12 @@
 layout: base.njk
 ---
 
-<div class="page container">
+<div class="container">
 
-  <header class="page__header">
-    <h1 class="page__title">{{ title }}</h1>
+  <header class="page-header">
+    <h1 class="page-header__title">{{ title }}</h1>
     {% if description %}
-      <p class="page__description">{{ description }}</p>
+      <p class="page-header__description">{{ description }}</p>
     {% endif %}
     {% if content %}
       <div class="prose" style="margin-top: var(--space-4);">{{ content | safe }}</div>

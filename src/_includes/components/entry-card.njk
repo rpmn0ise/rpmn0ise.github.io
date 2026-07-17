@@ -1,0 +1,45 @@
+{# Composant entry-card — attend `entry` (item de collection Eleventy : post, note ou projet) #}
+{% set d = entry.data.domain | domainInfo %}
+<article
+  class="entry-card"
+  {% if d %}style="--card-color: {{ d.color }};"{% endif %}
+  data-search-item="{{ entry.data.title }} {{ entry.data.description }} {{ entry.data.tags | join(' ') }}"
+  {% if entry.data.domain %}data-entry-domain="{{ entry.data.domain }}"{% endif %}
+  {% if entry.data.entryType %}data-entry-type="{{ entry.data.entryType }}"{% endif %}
+>
+  <div class="entry-card__stamp">
+    <span class="entry-card__id">№{{ entry | entryId(collections.entries) }}</span>
+    <time datetime="{{ entry.date | htmlDateString }}">{{ entry.date | readableDate("dd MMM yyyy") }}</time>
+  </div>
+
+  <div class="entry-card__body">
+    <div class="entry-card__tagline">
+      {% if d %}<span class="domain-pill" style="--pill-color: {{ d.color }};">{{ d.label }}</span>{% endif %}
+      <span class="entry-card__type">
+        <span class="entry-card__type-glyph" aria-hidden="true">{{ entry.data.entryType | entryTypeGlyph }}</span>
+        {{ entry.data.entryType or "entrée" }}
+      </span>
+      {% if entry.data.status %}
+        {% set statusValue = entry.data.status %}{% include "components/status-tag.njk" %}
+      {% endif %}
+    </div>
+
+    <h3 class="entry-card__title">
+      <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+    </h3>
+
+    {% if entry.data.description %}
+      <p class="entry-card__excerpt">{{ entry.data.description }}</p>
+    {% endif %}
+
+    {% if entry.data.tags %}
+      <div class="entry-card__tags">
+        {% for t in entry.data.tags %}
+          {% if t != "post" and t != "posts" %}
+            <a href="/tags/{{ t | slugify }}/">#{{ t }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</article>

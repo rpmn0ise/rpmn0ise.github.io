@@ -2,6 +2,7 @@
 title: "Comment organiser son disque dur"
 description: "Structure simple pour garder un disque propre et éviter le bordel dans les téléchargements et fichiers."
 date: 2026-05-19
+domain: systemes
 tags:
   - windows
   - organisation

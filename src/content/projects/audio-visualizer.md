@@ -2,8 +2,9 @@
 title: "Audio Visualizer"
 description: "Visualiseur audio temps réel en Next.js, Web Audio API et Canvas 2D. Fichier local ou micro, plusieurs modes de rendu, déployé en statique sur Cloudflare Pages."
 date: 2026-05-24
+domain: creation-numerique
 order: 2
-status: actif
+status: en-cours
 year: 2026
 tech:
   - Next.js 14 (App Router)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang }}" data-theme="dark">
+<html lang="{{ site.lang }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,19 +66,16 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
 
-  {# ─── Styles ─── #}
+  {# ─── Styles — un seul bundle, une seule source de vérité ─── #}
   <link rel="preload" href="/assets/css/main.css" as="style">
   <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="preload" href="/assets/css/home-3d.css" as="style">
-  <link rel="stylesheet" href="/assets/css/home-3d.css">
-
-  {# ─── Preconnect ─── #}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-<body{% if page.url == "/" %} class="page-home"{% endif %}>
+<body{% if domain %} data-domain="{{ domain }}"{% endif %}>
+
+  <a href="#main" class="skip-link">Aller au contenu</a>
 
   {% include "components/header.njk" %}
+  {% include "components/nav-panel.njk" %}
 
   <main id="main" class="main-content" tabindex="-1">
     {{ content | safe }}
@@ -87,8 +84,8 @@
   {% include "components/footer.njk" %}
 
   {# ─── Scripts ─── #}
+  <script src="/assets/js/nav-panel.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
-  <script src="/assets/js/home-3d.js" defer></script>
 
   {# ─── Draft badge ─── #}
   {% if draft and env.isDev %}

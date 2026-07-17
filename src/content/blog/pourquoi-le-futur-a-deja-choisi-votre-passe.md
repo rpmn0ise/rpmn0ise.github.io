@@ -2,6 +2,7 @@
 title: "Pourquoi le futur a déjà choisi votre passé"
 description: "Dans exactement trois minutes, vous allez faire un choix. Mais la boîte noire en face de vous sait déjà ce que vous allez décider. Et si vous essayez de la piéger… vous avez déjà perdu."
 date: 2026-06-09
+domain: culture
 tags:
   - post
   - choix

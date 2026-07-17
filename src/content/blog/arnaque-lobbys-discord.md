@@ -2,6 +2,7 @@
 title: "Arnaque aux lobbys triches sur Discord — comment ça vole vraiment vos comptes"
 description: "Email + code de vérification transmis à un 'prestataire' de lobbys triches : voici pourquoi ce mécanisme très répandu sur les serveurs gaming Discord est en réalité une prise de contrôle de compte, et comment s'en protéger."
 date: 2026-06-16
+domain: systemes
 tags:
   - post
   - sécurité

@@ -2,6 +2,7 @@
 title: "Quand un modo abuse de ses droits parce qu'on drift à la manette"
 description: "Sur un serveur BeamNG FR, un utilisateur avec des droits sur les salons vocaux nous a expulsés après avoir refusé nos paramètres de jeu. Retour sur un classique abus de pouvoir Discord."
 date: 2026-06-27
+domain: simulation
 tags:
   - post
   - gaming

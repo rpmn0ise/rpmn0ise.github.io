@@ -2,8 +2,9 @@
 title: "Iron Nest — Calculateur Balistique"
 description: "Calculateur balistique externe pour IRON NEST: Heavy Turret Simulator. Saisie au pavé numérique, calcul instantané de l'élévation requise, zéro clic — conçu pour le deuxième écran pendant les opérations de combat."
 date: 2026-06-01
+domain: simulation
 order: 3
-status: actif
+status: en-cours
 year: 2026
 tech:
   - HTML vanilla

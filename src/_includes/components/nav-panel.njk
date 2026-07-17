@@ -1,0 +1,36 @@
+<div class="nav-panel" id="nav-panel" data-open="false" role="dialog" aria-modal="true" aria-label="Navigation du labo">
+  <div class="nav-panel__inner">
+
+    <div class="nav-panel__top">
+      <button class="nav-panel__close" id="nav-panel-close" aria-label="Fermer la navigation">✕</button>
+    </div>
+
+    <p class="lab-cover__eyebrow" style="padding-inline: 0;">{{ site.title }} / Digital Laboratory</p>
+
+    <nav class="nav-panel__domains" aria-label="Domaines du labo">
+      {% for domain in collections.domainStats %}
+        <a href="/domaines/{{ domain.id }}/" class="nav-panel__domain" style="--pill-color: {{ domain.color }};">
+          <span class="nav-panel__domain-main">
+            <span class="entry-card__id" style="min-width: 2ch;">D{{ loop.index }}</span>
+            <span class="domain-pill">{{ domain.label }}</span>
+            <span class="nav-panel__domain-desc">{{ domain.description }}</span>
+          </span>
+          <span class="nav-panel__domain-count">
+            {% if domain.articles %}{{ domain.articles }} article{% if domain.articles > 1 %}s{% endif %}{% endif %}
+            {% if domain.notes %}{% if domain.articles %} · {% endif %}{{ domain.notes }} note{% if domain.notes > 1 %}s{% endif %}{% endif %}
+            {% if domain.projects %}{% if domain.articles or domain.notes %} · {% endif %}{{ domain.projects }} projet{% if domain.projects > 1 %}s{% endif %}{% endif %}
+          </span>
+        </a>
+      {% endfor %}
+    </nav>
+
+    <div class="nav-panel__secondary">
+      <a href="/blog/">Le labo (tout)</a>
+      <a href="/projects/">Projets</a>
+      <a href="/rebass/">Rebass</a>
+      <a href="/setup/">Setup</a>
+      <a href="/about/">À propos</a>
+    </div>
+
+  </div>
+</div>

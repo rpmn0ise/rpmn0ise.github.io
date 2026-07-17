@@ -2,6 +2,7 @@
 title: "BeamNG — Pourquoi la R32 GTR de Royal Renderings est un mod de référence"
 description: "Ce qui distingue techniquement et visuellement la Nissan Skyline R32 GTR de Royal Renderings des autres mods véhicule BeamNG."
 date: 2026-05-18
+domain: simulation
 tags:
   - beamng
   - mods

@@ -3,58 +3,56 @@ layout: base.njk
 ogType: article
 ---
 
-<article class="post container" itemscope itemtype="https://schema.org/BlogPosting">
+<article class="container" itemscope itemtype="https://schema.org/BlogPosting">
 
-  <header class="post__header">
-    {% if tags %}
-      <div class="post__tags">
-        {% for tag in tags %}
-          {% if tag != "post" and tag != "posts" %}
-            <a href="/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
-          {% endif %}
-        {% endfor %}
-      </div>
-    {% endif %}
+  <header class="post__header page-header">
+    <p class="page-header__eyebrow">Spécimen №{{ page | entryId(collections.entries) }}</p>
+    <div class="post__header-meta" style="display:flex; align-items:center; gap: var(--space-3); margin-bottom: var(--space-3);">
+      {% set domainId = domain %}{% include "components/domain-pill.njk" %}
+      {% if status %}{% set statusValue = status %}{% include "components/status-tag.njk" %}{% endif %}
+    </div>
 
-    <h1 class="post__title" itemprop="headline">{{ title }}</h1>
+    <h1 class="page-header__title" itemprop="headline">{{ title }}</h1>
 
     {% if description %}
-      <p class="post__description">{{ description }}</p>
+      <p class="page-header__description">{{ description }}</p>
     {% endif %}
 
-    <div class="post__meta">
-      <time datetime="{{ date | htmlDateString }}" itemprop="datePublished">
-        {{ date | readableDate }}
-      </time>
+    <div class="post__meta" style="margin-top: var(--space-4); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); display:flex; gap: var(--space-2); align-items:center;">
+      <time datetime="{{ date | htmlDateString }}" itemprop="datePublished">{{ date | readableDate }}</time>
       {% if updated %}
-        <span class="post__updated">
-          · Mis à jour le <time datetime="{{ updated | htmlDateString }}">{{ updated | readableDate }}</time>
-        </span>
+        <span>· mis à jour le <time datetime="{{ updated | htmlDateString }}">{{ updated | readableDate }}</time></span>
       {% endif %}
-      <span class="post__sep">·</span>
-      <span class="post__reading-time">{{ content | readingTime }}</span>
+      <span>·</span>
+      <span>{{ content | readingTime }} min de lecture</span>
     </div>
 
     {% if image %}
-      <figure class="post__cover">
+      <figure class="post__cover" style="margin-top: var(--space-6);">
         <img src="{{ image }}" alt="{{ imageAlt or title }}" loading="eager" decoding="async">
-        {% if imageCaption %}
-          <figcaption>{{ imageCaption }}</figcaption>
-        {% endif %}
+        {% if imageCaption %}<figcaption>{{ imageCaption }}</figcaption>{% endif %}
       </figure>
     {% endif %}
   </header>
 
-  <div class="post__body prose" itemprop="articleBody">
-    {{ content | safe }}
+  <div class="post__body-wrap">
+    <div class="post__body prose" itemprop="articleBody">
+      {{ content | safe }}
+    </div>
+
+    {% if annotations and annotations.length %}
+      <aside class="post__margin" aria-label="Notes de marge">
+        {% for note in annotations %}
+          {% include "components/margin-note.njk" %}
+        {% endfor %}
+      </aside>
+    {% endif %}
   </div>
 
-  <footer class="post__footer">
+  <footer class="post__footer" style="margin-top: var(--space-12);">
 
-    {# Tags ─── #}
     {% if tags %}
-      <div class="post__footer-tags">
-        <span>Tags :</span>
+      <div class="tags-filter" style="margin-bottom: var(--space-8);">
         {% for tag in tags %}
           {% if tag != "post" and tag != "posts" %}
             <a href="/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
@@ -63,34 +61,30 @@ ogType: article
       </div>
     {% endif %}
 
-    {# Articles liés ─── #}
-    {% set related = page | relatedPosts(collections.posts) %}
+    {% set related = page | relatedEntries(collections.entries) %}
     {% if related.length %}
-      <section class="related-posts">
-        <h2 class="related-posts__title">Articles similaires</h2>
-        <div class="related-posts__grid">
-          {% for post in related %}
-            {% include "components/post-card.njk" %}
+      <section class="section">
+        <h2 class="section__title">Entrées liées</h2>
+        <div class="entry-list">
+          {% for entry in related %}
+            {% include "components/entry-card.njk" %}
           {% endfor %}
         </div>
       </section>
     {% endif %}
 
-    {# Navigation ─── #}
-    <nav class="post__nav" aria-label="Navigation entre articles">
-      {% if previousPost %}
-        <a href="{{ previousPost.url }}" class="post__nav-link post__nav-link--prev">
-          <span class="post__nav-label">← Précédent</span>
-          <span class="post__nav-title">{{ previousPost.data.title }}</span>
-        </a>
-      {% endif %}
-      {% if nextPost %}
-        <a href="{{ nextPost.url }}" class="post__nav-link post__nav-link--next">
-          <span class="post__nav-label">Suivant →</span>
-          <span class="post__nav-title">{{ nextPost.data.title }}</span>
-        </a>
-      {% endif %}
-    </nav>
+    {% set prevEntry = page | previousEntry(collections.entries) %}
+    {% set nextEntry = page | nextEntry(collections.entries) %}
+    {% if prevEntry or nextEntry %}
+      <nav class="post__nav" aria-label="Navigation entre entrées" style="display:flex; justify-content:space-between; gap: var(--space-4); margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--border-subtle); font-size: var(--text-sm);">
+        {% if prevEntry %}
+          <a href="{{ prevEntry.url }}">← {{ prevEntry.data.title }}</a>
+        {% else %}<span></span>{% endif %}
+        {% if nextEntry %}
+          <a href="{{ nextEntry.url }}">{{ nextEntry.data.title }} →</a>
+        {% endif %}
+      </nav>
+    {% endif %}
 
   </footer>
 </article>

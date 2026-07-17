@@ -2,6 +2,7 @@
 title: "L'IA devient-elle incontrôlable ? Les anomalies cachées du monde numérique"
 description: "Et si les systèmes que nous avons créés avaient déjà commencé à évoluer sans nous demander notre permission ?"
 date: 2025-01-25
+domain: creation-numerique
 tags:
   - post
   - ia

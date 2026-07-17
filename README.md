@@ -1,25 +1,25 @@
-# Site personnel Eleventy
+# RPMN0ISE — Digital Laboratory
 
-Site personnel complet, rapide, maintenable — construit avec [Eleventy v3](https://www.11ty.dev/).
+Site personnel construit avec [Eleventy v3](https://www.11ty.dev/) — pensé comme un laboratoire numérique personnel : articles, notes, projets et expérimentations, organisés en 5 domaines et mélangés chronologiquement dans un flux unique (« Le Labo »).
+
+Ce n'est ni un portfolio classique, ni un blog, ni un dashboard.
 
 ## ✨ Fonctionnalités
 
-- **Blog** avec pagination, tags, recherche locale et articles liés
-- **Projets / Portfolio** avec fiches détaillées
-- **Ressources** — liens et outils favoris
+- **Le Labo** (`/blog/`) — flux unifié articles + notes + projets, filtrable par domaine et par type, recherche locale
+- **5 domaines** (`/domaines/<id>/`) — Systèmes, Création numérique, Ingénierie, Simulation, Culture — seule source chromatique du site
+- **Projets** avec fiches détaillées : nomenclature, journal d'expérimentation (timeline), prochaines étapes
 - **Notes** — fragments techniques rapides
+- **Panneau de navigation** plein écran (overlay), accessible au clavier, avec comptage par domaine en temps réel
 - **Page À propos**
-- Dark mode (système + toggle manuel)
-- RSS Feed + Sitemap XML
+- RSS/Atom (`/feed.xml`) + Sitemap XML (`/sitemap.xml`)
 - SEO complet (meta, Open Graph, JSON-LD)
-- Syntax highlighting pour le code
+- Syntax highlighting + bouton copier le code
 - Temps de lecture automatique
 - Système de brouillons (drafts)
-- Responsive mobile / desktop
-- Animations discrètes
-- Page 404 personnalisée
+- Ligne d'état fonctionnelle dans le header (« dernière trace : il y a N jours »), calculée dynamiquement
+- Aucune animation décorative, aucun glow — esprit carnet de laboratoire
 - Compatible GitHub Pages / Netlify / Cloudflare Pages
-- Score Lighthouse > 95 en production
 
 ---
 
@@ -33,14 +33,9 @@ Site personnel complet, rapide, maintenable — construit avec [Eleventy v3](htt
 ### Démarrer
 
 ```bash
-# Cloner
-git clone https://github.com/votrenom/site.git
-cd site
-
-# Installer les dépendances
+git clone https://github.com/rpmn0ise/rpmn0ise.github.io.git
+cd rpmn0ise.github.io
 npm install
-
-# Lancer le serveur de développement
 npm run dev
 ```
 
@@ -58,148 +53,142 @@ npm run build
 ## 📁 Structure du projet
 
 ```
-site/
+rpmn0ise.github.io/
 │
 ├── eleventy.config.js        # Configuration Eleventy (plugins, collections, filtres)
 ├── package.json
-├── netlify.toml              # Config Netlify (headers, redirects)
+├── netlify.toml
 ├── .github/workflows/        # CI/CD GitHub Actions
+├── docs/prompt_contenu.md    # Prompt de génération de contenu (frontmatter, domaines, ton)
 │
 └── src/
     │
-    ├── _data/                # Données globales
-    │   ├── site.json         # ⭐ Config principale (nom, URL, réseaux sociaux...)
-    │   └── env.js            # Variables d'environnement
+    ├── _data/
+    │   ├── site.json         # ⭐ Config principale (nom, URL, auteur, réseaux, "now")
+    │   ├── domains.json       # ⭐ Source unique des 5 domaines (id, label, couleur, description)
+    │   └── env.js
     │
     ├── _includes/
-    │   ├── layouts/          # Gabarits de page
-    │   │   ├── base.njk      # Layout racine (head, header, footer, scripts)
-    │   │   ├── home.njk      # Page d'accueil
-    │   │   ├── post.njk      # Article de blog (avec articles liés, nav prev/next)
-    │   │   ├── page.njk      # Pages statiques (about, etc.)
-    │   │   └── project.njk   # Fiche projet
+    │   ├── layouts/
+    │   │   ├── base.njk      # Shell HTML unique (head, header, nav-panel, footer, scripts)
+    │   │   ├── page.njk      # Pages statiques (about, setup...)
+    │   │   ├── post.njk      # Article OU note (layout fusionné)
+    │   │   ├── project.njk   # Fiche projet (nomenclature, timeline, prochaines étapes)
+    │   │   └── rebass.njk    # Page Rebass (grille de morceaux)
     │   │
-    │   └── components/       # Composants réutilisables
-    │       ├── header.njk    # Navigation + theme toggle + menu mobile
-    │       ├── footer.njk    # Footer + liens sociaux
-    │       ├── post-card.njk # Card article (grille)
-    │       ├── project-card.njk # Card projet
-    │       └── pagination.njk   # Pagination
+    │   └── components/
+    │       ├── header.njk       # Nom du site + ligne d'état + déclencheur du panneau
+    │       ├── nav-panel.njk    # Panneau de navigation plein écran (domaines + liens)
+    │       ├── footer.njk
+    │       ├── entry-card.njk   # Fiche d'entrée unique — article, note OU projet
+    │       ├── domain-pill.njk  # Pastille de domaine (lit domains.json)
+    │       ├── status-tag.njk   # Étiquette EN COURS / STABLE / ARCHIVÉ
+    │       ├── margin-note.njk  # Note de marge (post__margin)
+    │       ├── timeline.njk     # Journal d'expérimentation vertical
+    │       └── pagination.njk
     │
     ├── assets/
     │   ├── css/
-    │   │   └── main.css      # Tout le CSS (design system, dark mode, composants)
+    │   │   ├── main.css      # Point d'entrée — importe les 5 fichiers ci-dessous, dans l'ordre
+    │   │   ├── tokens.css    # Source unique de vérité : couleurs, typo, espacements
+    │   │   ├── base.css      # Reset + éléments HTML natifs
+    │   │   ├── layout.css    # Header, footer, nav-panel, sections, boutons
+    │   │   ├── components.css # entry-card, domain-pill, status-tag, timeline, filtres...
+    │   │   └── prose.css     # Typographie de lecture longue
     │   ├── js/
-    │   │   └── main.js       # JS vanilla (theme, nav mobile, search, code copy)
-    │   └── images/           # Images statiques
+    │   │   ├── nav-panel.js  # Ouverture/fermeture du panneau, focus trap, Échap
+    │   │   └── main.js       # Recherche, filtres, barre de lecture, copier le code
+    │   └── images/
     │
-    ├── content/              # ⭐ Tout le contenu Markdown
-    │   ├── blog/             # Articles de blog
-    │   │   ├── blog.json     # Defaults (layout, tags, permalink)
-    │   │   └── *.md          # Vos articles
-    │   ├── projects/         # Projets
-    │   │   ├── projects.json
-    │   │   └── *.md
-    │   ├── resources/        # Ressources / liens
-    │   │   ├── resources.json
-    │   │   └── *.md
-    │   └── notes/            # Notes rapides
-    │       ├── notes.json
-    │       └── *.md
+    ├── content/               # ⭐ Tout le contenu Markdown
+    │   ├── blog/               # Articles de fond — blog.json fixe layout/permalink/tags
+    │   ├── notes/               # Fragments techniques courts
+    │   └── projects/            # Projets, avec nomenclature/log/nextSteps
     │
-    └── pages/                # Pages fonctionnelles
-        ├── blog.njk          # Index blog (pagination + search)
-        ├── tags.njk          # Pages de tags (auto-générées)
-        ├── projects.njk      # Index projets
-        ├── resources.njk     # Index ressources
-        ├── notes.njk         # Index notes
-        ├── about.md          # À propos
-        ├── 404.njk           # Page 404
-        ├── sitemap.njk       # sitemap.xml
-        └── feed.njk          # feed.xml (RSS/Atom)
+    └── pages/
+        ├── blog.njk           # /blog/ — "Le Labo", flux unifié paginé + filtres + recherche
+        ├── domains.njk         # /domaines/<id>/ — une fiche par domaine (pagination sur domains.json)
+        ├── tags.njk            # /tags/<tag>/ — pages de tags (articles + notes)
+        ├── projects.njk        # /projects/ — index projets
+        ├── notes.njk           # /notes/ — index notes
+        ├── about.md            # À propos (sections marquées par domaine)
+        ├── setup.md
+        ├── rebass.md
+        ├── 404.njk
+        ├── sitemap.njk         # sitemap.xml
+        └── feed.njk            # feed.xml (RSS/Atom)
 ```
 
 ---
 
 ## ✍️ Publier du contenu
 
+Voir `docs/prompt_contenu.md` pour le prompt complet de génération (frontmatter exact, ton, structure). Résumé :
+
 ### Nouvel article de blog
 
-Créez `src/content/blog/mon-article.md` :
+`src/content/blog/mon-article.md` :
 
 ```markdown
 ---
 title: "Mon article"
 description: "Un résumé en une ou deux phrases."
-date: 2024-04-01
+date: 2026-04-01
+domain: systemes          # obligatoire — voir src/_data/domains.json
 tags:
   - post
   - javascript
-  - web
-featured: false          # true = affiché en home
-draft: false             # true = invisible en production
-image: /assets/images/posts/cover.jpg  # optionnel
-imageAlt: "Description de l'image"
+featured: false
+draft: false
+annotations:                # optionnel — notes de marge
+  - "Une remarque courte et dense"
 ---
 
 Votre contenu en Markdown...
 ```
 
-**L'URL générée** : `/blog/mon-article/`
-
-> Le `slug` est dérivé automatiquement du nom de fichier.
+**URL générée** : `/blog/mon-article/` (slug dérivé du nom de fichier).
 
 ### Nouveau projet
 
-Créez `src/content/projects/mon-projet.md` :
+`src/content/projects/mon-projet.md` :
 
 ```markdown
 ---
 title: "Nom du projet"
 description: "Ce que fait le projet en une phrase."
-date: 2024-04-01
-order: 1               # Ordre d'affichage (1 = premier)
-status: actif          # actif | terminé | pause | wip
-year: 2024
+date: 2026-04-01
+domain: ingenierie
+order: 1
+status: en-cours           # en-cours | stable | archive
+year: 2026
 tech:
   - TypeScript
   - React
-  - PostgreSQL
 github: "https://github.com/..."
 demo: "https://..."
-image: /assets/images/projects/cover.jpg
+log:                         # optionnel — journal d'expérimentation
+  - date: "avril 2026"
+    note: "Ce qui a été fait"
+    done: true
+nextSteps:                   # optionnel
+  - "Prochaine étape"
 draft: false
 ---
 
 Description longue en Markdown...
 ```
 
-### Nouvelle ressource
-
-Créez `src/content/resources/ma-ressource.md` :
-
-```markdown
----
-title: "Nom de la ressource"
-description: "Ce que c'est en une phrase."
-url: "https://..."         # Lien externe
-icon: "🔧"                 # Emoji d'icône
-tags:
-  - outils
-  - web
-date: 2024-04-01
----
-```
-
 ### Nouvelle note
 
-Créez `src/content/notes/ma-note.md` :
+`src/content/notes/ma-note.md` :
 
 ```markdown
 ---
 title: "Titre court"
 description: "En une phrase."
-date: 2024-04-01
+date: 2026-04-01
+domain: systemes
 tags:
   - git
   - tips
@@ -212,55 +201,24 @@ Contenu court et direct.
 
 ## ⚙️ Configuration principale
 
-Tout se configure dans `src/_data/site.json` :
+`src/_data/site.json` — nom, URL, auteur, réseaux sociaux, navigation, et le champ `now.current` (ligne d'état de la homepage, à mettre à jour manuellement).
 
-```json
-{
-  "title": "Votre Nom",
-  "description": "Votre tagline",
-  "url": "https://votresite.fr",
-  "author": {
-    "name": "Votre Nom",
-    "email": "contact@votresite.fr",
-    "bio": "Votre bio courte",
-    "avatar": "/assets/images/avatar.jpg",
-    "location": "France"
-  },
-  "social": {
-    "github": "https://github.com/...",
-    "twitter": "https://twitter.com/...",
-    "linkedin": "https://linkedin.com/in/...",
-    "rss": "/feed.xml"
-  },
-  "postsPerPage": 10
-}
-```
+`src/_data/domains.json` — les 5 domaines. Toute modification (ajout, renommage, couleur) se répercute automatiquement sur le panneau de navigation, la homepage et les pages `/domaines/<id>/`.
 
 ---
 
 ## 🎨 Personnalisation du design
 
-Le design system est entièrement en CSS Custom Properties dans `src/assets/css/main.css`.
-
-### Changer la couleur d'accent
+Le design system est entièrement en CSS Custom Properties, une seule source de vérité : `src/assets/css/tokens.css`.
 
 ```css
 :root {
-  --accent-primary: #YOUR_COLOR;   /* Couleur principale */
-  --accent-hover:   #YOUR_HOVER;   /* Hover state */
-  --accent-subtle:  rgba(..., 0.1); /* Fond léger */
+  --accent-primary: #YOUR_COLOR;
+  --accent-hover:   #YOUR_HOVER;
 }
 ```
 
-### Changer la police
-
-```css
-:root {
-  --font-sans: "Inter", system-ui, sans-serif;
-}
-```
-
-Puis ajoutez le `<link>` Google Fonts dans `src/_includes/layouts/base.njk`.
+Les couleurs de domaine se changent uniquement dans `src/_data/domains.json` (champ `color`).
 
 ---
 
@@ -268,76 +226,55 @@ Puis ajoutez le `<link>` Google Fonts dans `src/_includes/layouts/base.njk`.
 
 ### Shortcodes disponibles dans le Markdown
 
-**Callout (bloc d'information)** :
 ```markdown
-{% callout "info" %}
-Un message informatif.
-{% endcallout %}
+{% callout "info" %}Un message informatif.{% endcallout %}
+{% callout "warning" %}Attention à ceci.{% endcallout %}
+{% callout "error" %}Erreur critique.{% endcallout %}
 
-{% callout "warning" %}
-Attention à ceci.
-{% endcallout %}
-
-{% callout "danger" %}
-Erreur critique.
-{% endcallout %}
-
-{% callout "success" %}
-Tout va bien !
-{% endcallout %}
-```
-
-**Image avec légende** :
-```markdown
 {% image "/assets/images/mon-image.jpg", "Texte alternatif", "Légende optionnelle" %}
-```
 
-**Année courante** :
-```markdown
 © {% year %}
 ```
 
 ### Filtres Nunjucks disponibles
 
-| Filtre | Usage | Exemple |
-|---|---|---|
-| `readableDate` | Formate une date | `date \| readableDate` → "15 avril 2024" |
-| `htmlDateString` | Format ISO pour `<time>` | `date \| htmlDateString` → "2024-04-15" |
-| `isoDate` | ISO 8601 complet | Pour le RSS/JSON-LD |
-| `limit` | Tronque un tableau | `posts \| limit(3)` |
-| `slugify` | Crée un slug | `"Mon Titre" \| slugify` → "mon-titre" |
-| `relatedPosts` | Articles liés | `page \| relatedPosts(collections.posts)` |
-| `readingTime` | Temps de lecture | `content \| readingTime` |
+| Filtre | Usage |
+|---|---|
+| `readableDate` | Formate une date (`date \| readableDate`) |
+| `htmlDateString` | Format ISO pour `<time>` |
+| `isoDate` | ISO 8601 complet (RSS/JSON-LD) |
+| `limit` | Tronque un tableau |
+| `slugify` | Crée un slug |
+| `readingTime` | Temps de lecture (`content \| readingTime`) |
+| `timeAgo` | « il y a N jours » (`date \| timeAgo`) |
+| `domainInfo` | Lookup domaine (`domainId \| domainInfo`) |
+| `relatedEntries` | Entrées liées, domaine + tags (`page \| relatedEntries(collections.entries)`) |
+| `previousEntry` / `nextEntry` | Navigation chronologique (`page \| nextEntry(collections.entries)`) |
 
 ### Collections disponibles
 
 | Collection | Contenu |
 |---|---|
-| `collections.posts` | Articles de blog (hors drafts en prod) |
-| `collections.projects` | Projets (triés par `order`) |
-| `collections.resources` | Ressources |
+| `collections.posts` | Articles de blog |
 | `collections.notes` | Notes rapides |
-| `collections.tagList` | Liste de tous les tags uniques |
-| `collections.featured` | 3 articles `featured: true` max |
+| `collections.projects` | Projets (triés par `order`) |
+| `collections.entries` | ⭐ Fusion articles + notes + projets, triée par date — le flux du labo |
+| `collections.domainStats` | Les 5 domaines enrichis des comptages réels (`articles`, `notes`, `projects`, `total`, `pct`) |
+| `collections.tagList` | Liste de tous les tags uniques (articles + notes) |
 
 ---
 
 ## 🚢 Déploiement
 
-### Netlify (recommandé)
+### GitHub Pages (actuel)
+
+Le workflow `.github/workflows/deploy.yml` est déjà configuré. Push sur `main` → déploiement automatique.
+
+### Netlify
 
 1. Pushez sur GitHub
-2. Connectez le repo sur [netlify.com](https://netlify.com)
-3. Netlify détecte automatiquement `netlify.toml`
-4. ✅ Déploiement automatique à chaque push sur `main`
-
-### GitHub Pages
-
-Le workflow `.github/workflows/deploy.yml` est inclus.
-
-1. Activez GitHub Pages dans les Settings du repo (source : branche `gh-pages`)
-2. Modifiez `cname:` dans le workflow avec votre domaine
-3. Pushez sur `main` → déploiement automatique
+2. Connectez le repo sur [netlify.com](https://netlify.com) — `netlify.toml` est déjà présent
+3. Déploiement automatique à chaque push sur `main`
 
 ### Cloudflare Pages
 
@@ -357,12 +294,11 @@ Node.js version : 20
 | `@11ty/eleventy-plugin-rss` | Génération du flux RSS/Atom |
 | `@11ty/eleventy-plugin-syntaxhighlight` | Coloration syntaxique (Prism.js) |
 | `@11ty/eleventy-navigation` | Navigation breadcrumb |
-| `eleventy-plugin-reading-time` | Calcul du temps de lecture |
-| `markdown-it` | Parser Markdown (remplace le défaut) |
-| `markdown-it-anchor` | Ancres sur les titres (`#`) |
-| `markdown-it-attrs` | Attributs CSS dans le Markdown (`{.class}`) |
+| `markdown-it` / `markdown-it-anchor` / `markdown-it-attrs` | Parser Markdown + ancres + attributs |
 | `luxon` | Manipulation et formatage de dates |
 | `html-minifier-terser` | Minification HTML en production |
+
+> Le temps de lecture (`readingTime`) est un filtre maison, pas un plugin — voir `eleventy.config.js`.
 
 ---
 

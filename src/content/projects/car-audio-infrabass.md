@@ -2,14 +2,26 @@
 title: "Car audio build — Focus sur l'infrabass"
 description: "Conception et installation d'un système car audio orienté grave profond : choix du subwoofer, design de l'enceinte, amplification et tuning à l'oreille + mesures REW."
 date: 2024-11-20
+domain: ingenierie
 order: 3
-status: actif
+status: en-cours
 year: 2024
 tech:
   - WinISD (simulation)
   - REW (Room EQ Wizard)
   - DSP Alpine
   - Menuiserie MDF
+log:
+  - note: "Simulation et choix du matériel"
+    done: true
+  - note: "Construction de l'enceinte"
+    done: true
+  - note: "Installation et câblage"
+    done: true
+  - note: "Mesures REW et calibration DSP"
+    done: false
+  - note: "Documentation finale avec courbes de réponse"
+    done: false
 ---
 
 ## Objectif

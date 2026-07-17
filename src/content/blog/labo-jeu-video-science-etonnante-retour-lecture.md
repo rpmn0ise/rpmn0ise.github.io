@@ -2,6 +2,7 @@
 title: "Le Labo du Jeu Vidéo — ce que j'en retiens"
 description: "Retour de lecture sur le livre de Science Étonnante sur la physique et les mathématiques derrière les jeux vidéo. Ce qui m'a surpris, ce qui rejoint mes pratiques, ce qui m'a donné envie de creuser."
 date: 2026-05-18
+domain: simulation
 tags:
   - post
   - lecture

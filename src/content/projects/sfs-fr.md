@@ -2,8 +2,9 @@
 title: "SFS FR — Communauté francophone Spaceflight Simulator"
 description: "Communauté Discord francophone dédiée à Spaceflight Simulator, adossée à un site vitrine statique (tutos, FAQ, présentation) — entièrement statique sous Eleventy, hébergé sur Cloudflare Pages."
 date: 2026-07-04
+domain: simulation
 order: 2
-status: actif
+status: en-cours
 year: 2026
 tech:
   - Eleventy (11ty)

@@ -2,6 +2,7 @@
 title: "Pourquoi je suis resté sur Arch après avoir tout essayé"
 description: "J'ai utilisé Ubuntu, Fedora, NixOS, Gentoo et une dizaine d'autres distributions. Voici pourquoi Arch (et CachyOS) est ce sur quoi j'ai fini par stabiliser, et ce que chaque distribution m'a appris."
 date: 2025-02-08
+domain: systemes
 tags:
   - post
   - linux

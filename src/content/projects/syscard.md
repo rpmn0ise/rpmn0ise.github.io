@@ -2,8 +2,9 @@
 title: "SYS://CARD"
 description: "Jeu de cartes navigateur sur l'informatique — collection, batailles PvP, boutique, tournois, backend serverless."
 date: 2026-05-18
+domain: creation-numerique
 order: 1
-status: actif
+status: en-cours
 year: 2026
 tech:
   - JavaScript Vanilla

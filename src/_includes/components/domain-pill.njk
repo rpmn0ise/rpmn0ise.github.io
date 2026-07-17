@@ -1,0 +1,5 @@
+{# Composant domain-pill — attend `domainId` (string, id du domaine) #}
+{% set d = domainId | domainInfo %}
+{% if d %}
+  <span class="domain-pill" style="--pill-color: {{ d.color }};">{{ d.label }}</span>
+{% endif %}

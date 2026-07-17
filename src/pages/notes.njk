@@ -7,38 +7,21 @@ permalink: /notes/
 
 <div class="container">
 
-  <header class="blog-header">
-    <h1 class="blog-title">Notes</h1>
-    <p class="blog-description">{{ description }}</p>
+  <header class="page-header">
+    <p class="page-header__eyebrow">Fragments &amp; découvertes rapides</p>
+    <h1 class="page-header__title">Notes</h1>
+    <p class="page-header__description">{{ description }}</p>
   </header>
 
-  {% if collections.notes.length %}
-    <div class="blog-list">
-      {% for note in collections.notes %}
-        <article class="post-list-item">
-          <time class="post-list-item__date" datetime="{{ note.date | htmlDateString }}">
-            {{ note.date | readableDate("dd MMM yyyy") }}
-          </time>
-          <div class="post-list-item__body">
-            <h2 class="post-list-item__title">
-              <a href="{{ note.url }}">{{ note.data.title }}</a>
-            </h2>
-            {% if note.data.description %}
-              <p class="post-list-item__description">{{ note.data.description }}</p>
-            {% endif %}
-          </div>
-          {% if note.data.tags %}
-            <div class="post-list-item__tags">
-              {% for tag in note.data.tags %}
-                <span class="tag">{{ tag }}</span>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </article>
+  {% set noteEntries = collections.entries | where("data.entryType", "note") %}
+  {% if noteEntries.length %}
+    <div class="entry-list">
+      {% for entry in noteEntries %}
+        {% include "components/entry-card.njk" %}
       {% endfor %}
     </div>
   {% else %}
-    <p style="color: var(--text-secondary); text-align: center; padding: var(--space-12);">Aucune note pour l'instant.</p>
+    <p style="color: var(--text-secondary); padding: var(--space-12) 0; text-align: center;">Aucune note pour l'instant.</p>
   {% endif %}
 
 </div>

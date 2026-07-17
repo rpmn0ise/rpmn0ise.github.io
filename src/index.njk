@@ -1,119 +1,139 @@
 ---
 layout: base.njk
 title: Accueil
-description: Linux, basses et simulation — j'explore à fond.
+description: "Digital Laboratory — laboratoire numérique personnel : systèmes, audio, simulation, développement."
 eleventyNavigation:
   key: Accueil
   order: 1
 ---
 
-{# ─── Hero ─── #}
-<section class="hero">
+{# ─── Page de couverture du labo ─── #}
+<section class="lab-cover">
   <div class="container">
-    <div class="hero__inner">
+    <p class="lab-cover__eyebrow">Laboratoire actif — journal en continu</p>
 
-      {# ── Avatar ── #}
-      <div class="hero__avatar-col animate-fade-up">
-        <div class="hero__avatar-wrap">
-          <img
-            src="{{ site.author.avatar }}"
-            alt="{{ site.author.name }}"
-            class="hero__avatar"
-            width="200"
-            height="200"
-            loading="eager"
-            decoding="async"
-          >
-          <div class="hero__avatar-ring" aria-hidden="true"></div>
-          <div class="hero__avatar-glow" aria-hidden="true"></div>
-        </div>
+    <div class="lab-cover__brand">
+      <h1 class="lab-cover__name">{{ site.title }}</h1>
+      <p class="lab-cover__tagline">Digital Laboratory</p>
+    </div>
+
+    <p class="lab-cover__mission">
+      Un carnet de laboratoire, pas un portfolio. Ce qui est construit, testé, cassé et mesuré
+      ici est documenté au fil de l'eau — systèmes, audio, simulation, développement.
+    </p>
+
+    {% if site.now.current %}
+      <p class="lab-cover__status">
+        <span class="status-line__dot" aria-hidden="true">◍</span>
+        <span>en ce moment : <strong>{{ site.now.current }}</strong></span>
+      </p>
+    {% endif %}
+
+    <div class="lab-stats">
+      <div class="lab-stats__item">
+        <div class="lab-stats__value">{{ collections.labStats.totalEntries }}</div>
+        <div class="lab-stats__label">Entrées loggées</div>
       </div>
-
-      {# ── Texte ── #}
-      <div class="hero__content">
-
-        <div class="hero__eyebrow animate-fade-up">
-          <span aria-hidden="true">◈</span>&nbsp; Dev · Audio · Linux · Simulation
-        </div>
-
-        <h1 class="hero__title animate-fade-up animate-fade-up--delay-1">
-          Bonjour, je suis<br>
-          <span class="accent">{{ site.author.name }}</span>
-        </h1>
-
-        <p class="hero__tagline animate-fade-up animate-fade-up--delay-2">
-          Linux, basses et simulation — j'explore à fond.
-        </p>
-
-        <p class="hero__description animate-fade-up animate-fade-up--delay-2">
-          {{ site.author.bio }}
-        </p>
-
-        <div class="hero__actions animate-fade-up animate-fade-up--delay-3">
-          <a href="/about/" class="btn btn--primary">À propos de moi</a>
-          <a href="/blog/" class="btn btn--outline">Lire le blog</a>
-          <a href="{{ site.social.github }}" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-        </div>
-
-        <div class="hero__meta animate-fade-up animate-fade-up--delay-3">
-          <span class="hero__meta-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <strong>{{ site.author.location }}</strong>
-          </span>
-          <span class="hero__meta-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <strong>{{ collections.posts | length }} articles</strong> publiés
-          </span>
-          <span class="hero__meta-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <strong>{{ collections.projects | length }} projets</strong>
-          </span>
-        </div>
-
+      <div class="lab-stats__item">
+        <div class="lab-stats__value">{{ collections.labStats.domainsActiveCount }}</div>
+        <div class="lab-stats__label">Domaines actifs</div>
+      </div>
+      <div class="lab-stats__item">
+        <div class="lab-stats__value">{{ collections.labStats.activeProjectsCount }}</div>
+        <div class="lab-stats__label">Projets en cours</div>
+      </div>
+      <div class="lab-stats__item">
+        <div class="lab-stats__value">{{ collections.labStats.sinceYear }}</div>
+        <div class="lab-stats__label">Depuis</div>
       </div>
     </div>
   </div>
 </section>
 
-{# ─── Latest Posts ─── #}
-{% if collections.posts.length %}
+{# ─── Journal récent ─── #}
+{% set recentEntries = collections.entries | limit(6) %}
+{% if recentEntries.length %}
 <section class="section">
   <div class="container">
     <div class="section__header">
       <div>
-        <h2 class="section__title">Derniers articles</h2>
-        <p class="section__subtitle">Réflexions, tutoriels et retours d'expérience</p>
+        <p class="section__eyebrow">Journal</p>
+        <h2 class="section__title">Dernières entrées du labo</h2>
       </div>
-      <a href="/blog/" class="section__link btn btn--ghost">Tous les articles →</a>
+      <a href="/blog/" class="section__link">tout le journal →</a>
     </div>
-    <div class="posts-grid">
-      {% for post in collections.posts | limit(6) %}
-        {% set post = post %}
-        {% include "components/post-card.njk" %}
+    <div class="entry-list">
+      {% for entry in recentEntries %}
+        {% include "components/entry-card.njk" %}
       {% endfor %}
     </div>
   </div>
 </section>
 {% endif %}
 
-{# ─── Skills ─── #}
+{# ─── Établi — projets actifs ─── #}
+{% set activeProjects = collections.projects | where("data.status", "en-cours") | limit(4) %}
+{% if activeProjects.length %}
+<section class="section section--tinted">
+  <div class="container">
+    <div class="section__header">
+      <div>
+        <p class="section__eyebrow">Établi</p>
+        <h2 class="section__title">Ce qui est sur la table en ce moment</h2>
+      </div>
+      <a href="/projects/" class="section__link">tous les projets →</a>
+    </div>
+    <div class="active-projects">
+      {% for project in activeProjects %}
+        {% set d = project.data.domain | domainInfo %}
+        {% set lastLog = (project.data.log | last) if project.data.log else null %}
+        <article class="active-project-card" {% if d %}style="--card-color: {{ d.color }};"{% endif %}>
+          <div class="active-project-card__meta">
+            {% set statusValue = project.data.status %}{% include "components/status-tag.njk" %}
+            {% if d %}<span class="domain-pill" style="--pill-color: {{ d.color }};">{{ d.label }}</span>{% endif %}
+          </div>
+          <h3 class="active-project-card__title">
+            <a href="{{ project.url }}">{{ project.data.title }}</a>
+          </h3>
+          {% if project.data.description %}
+            <p class="active-project-card__desc">{{ project.data.description }}</p>
+          {% endif %}
+          {% if lastLog %}
+            <p class="active-project-card__log">↳ {{ lastLog.note }}</p>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ─── Index des domaines ─── #}
 <section class="section">
   <div class="container">
     <div class="section__header">
-      <h2 class="section__title">Technologies & Centres d'intérêt</h2>
+      <div>
+        <p class="section__eyebrow">Index</p>
+        <h2 class="section__title">Domaines explorés</h2>
+      </div>
     </div>
-    <div class="skills-grid">
-      <div class="skill-item"><span class="skill-item__icon">🐧</span> Arch Linux / Systèmes</div>
-      <div class="skill-item"><span class="skill-item__icon">🔊</span> Audio & Sound Systems</div>
-      <div class="skill-item"><span class="skill-item__icon">🏎️</span> Simulation (BeamNG.drive)</div>
-      <div class="skill-item"><span class="skill-item__icon">🛡️</span> Cybersécurité / Hardening</div>
-      <div class="skill-item"><span class="skill-item__icon">🛠️</span> PC Hardware / Performance</div>
-      <div class="skill-item"><span class="skill-item__icon">⚡</span> JavaScript / TypeScript</div>
-      <div class="skill-item"><span class="skill-item__icon">🔧</span> Eleventy / Markdown</div>
-      <div class="skill-item"><span class="skill-item__icon">🏴‍☠️</span> Culture Numérique Libre</div>
+    <div class="domain-grid">
+      {% for domain in collections.domainStats %}
+        <a href="/domaines/{{ domain.id }}/" class="domain-card" style="--card-color: {{ domain.color }};">
+          <span class="domain-card__index">D{{ loop.index }}</span>
+          <div class="domain-card__label">{{ domain.label }}</div>
+          <p class="domain-card__desc">{{ domain.description }}</p>
+          {% if domain.total %}
+            <div class="domain-card__breakdown">
+              {% if domain.articles %}<span><strong>{{ domain.articles }}</strong> article{% if domain.articles > 1 %}s{% endif %}</span>{% endif %}
+              {% if domain.notes %}<span><strong>{{ domain.notes }}</strong> note{% if domain.notes > 1 %}s{% endif %}</span>{% endif %}
+              {% if domain.projects %}<span><strong>{{ domain.projects }}</strong> projet{% if domain.projects > 1 %}s{% endif %}</span>{% endif %}
+            </div>
+          {% else %}
+            <p class="domain-card__empty">Rien loggé pour l'instant</p>
+          {% endif %}
+        </a>
+      {% endfor %}
     </div>
   </div>
 </section>

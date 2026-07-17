@@ -1,0 +1,32 @@
+[
+  {
+    "id": "systemes",
+    "label": "Systèmes",
+    "color": "#7a9471",
+    "description": "Linux, réseaux, cybersécurité"
+  },
+  {
+    "id": "creation-numerique",
+    "label": "Création numérique",
+    "color": "#6b8ca3",
+    "description": "Développement, IA, web"
+  },
+  {
+    "id": "ingenierie",
+    "label": "Ingénierie",
+    "color": "#b8874f",
+    "description": "Audio, électronique, hardware"
+  },
+  {
+    "id": "simulation",
+    "label": "Simulation",
+    "color": "#5f7280",
+    "description": "BeamNG, physique, jeux"
+  },
+  {
+    "id": "culture",
+    "label": "Culture",
+    "color": "#b0725f",
+    "description": "Musique, découvertes"
+  }
+]

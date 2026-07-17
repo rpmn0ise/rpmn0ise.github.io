@@ -2,6 +2,7 @@
 title: "Git : récupérer un fichier supprimé dans une branche"
 description: "Commande rapide pour retrouver et restaurer un fichier supprimé dans l'historique Git."
 date: 2024-03-01
+domain: creation-numerique
 tags:
   - git
   - cli

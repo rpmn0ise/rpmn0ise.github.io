@@ -2,6 +2,7 @@
 title: "pacman : nettoyer le cache sans tout casser"
 description: "Garder les 2 dernières versions des paquets pour pouvoir rollback, supprimer le reste."
 date: 2025-01-05
+domain: systemes
 tags:
   - arch
   - pacman

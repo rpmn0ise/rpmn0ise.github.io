@@ -2,8 +2,9 @@
 title: "Retour de Force — Plateforme privée de mods BeamNG"
 description: "Plateforme privée et curatée de mods pour BeamNG.drive. Accès restreint par code Discord, mode invité avec liens chiffrés côté client, 80+ mods indexés — entièrement statique sous Eleventy."
 date: 2026-03-20
+domain: simulation
 order: 1
-status: actif
+status: en-cours
 year: 2026
 tech:
   - Eleventy (11ty)
@@ -13,6 +14,21 @@ tech:
   - Markdown / YAML
 demo: "https://rpmn0ise.github.io/retour-de-force/"
 github: "https://github.com/rpmn0ise/retour-de-force"
+access: "privé — code Discord requis"
+log:
+  - date: "20 mars 2026"
+    note: "Lancement — architecture Eleventy + GitHub Actions, premier catalogue de mods"
+    done: true
+  - date: "avril 2026"
+    note: "Ajout recherche/filtres JS vanilla sur index JSON, zéro latence côté client"
+    done: true
+  - date: "mai 2026"
+    note: "Chiffrement des liens en mode invité — montrer sans ouvrir"
+    done: true
+nextSteps:
+  - "Tags par mod (style de conduite, compatibilité version)"
+  - "Historique des versions par fiche"
+  - "Notifications Discord via webhook"
 draft: false
 ---
 
