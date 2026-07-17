@@ -321,6 +321,47 @@ module.exports = function (eleventyConfig) {
     };
   });
 
+  // Sommaire — lit les ancres déjà posées par markdown-it-anchor (id sur
+  // H2/H3/H4) plutôt que de reparser le Markdown. Une seule source pour
+  // les ancres : le rendu HTML final.
+  eleventyConfig.addFilter("extractHeadings", (html) => {
+    if (!html) return [];
+    const regex = /<h([23])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g;
+    const headings = [];
+    let match;
+
+    while ((match = regex.exec(html)) !== null) {
+      const text = match[3]
+        .replace(/<a[^>]*class="header-anchor"[\s\S]*?<\/a>/g, "")
+        .replace(/<[^>]+>/g, "")
+        .trim();
+
+      if (text) {
+        headings.push({ level: parseInt(match[1], 10), id: match[2], text });
+      }
+    }
+
+    return headings;
+  });
+
+  // Articles liés de la marge — strictement même domaine, contrairement à
+  // relatedEntries (footer) qui pondère par tags partagés. Deux besoins
+  // différents : rester dans le domaine vs découverte thématique large.
+  eleventyConfig.addFilter("sameDomainEntries", (item, entries, limit = 4) => {
+    if (!item || !entries || !item.data?.domain) return [];
+
+    return entries
+      .filter(
+        (e) =>
+          e &&
+          e.url &&
+          e.url !== item.url &&
+          !e.data?.draft &&
+          e.data?.domain === item.data.domain
+      )
+      .slice(0, limit);
+  });
+
   // Lookup domaine — source unique domains.json (règle de cohérence n°4)
   eleventyConfig.addFilter("domainInfo", (id) =>
     domainsData.find((d) => d.id === id) || null

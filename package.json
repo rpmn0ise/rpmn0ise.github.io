@@ -4,7 +4,7 @@
   "description": "RPMN0ISE — Digital Laboratory. Laboratoire numérique personnel construit avec Eleventy.",
   "scripts": {
     "dev": "eleventy --serve --watch",
-    "build": "cross-env NODE_ENV=production eleventy",
+    "build": "NODE_ENV=production eleventy",
     "clean": "rm -rf _site",
     "debug": "DEBUG=Eleventy* eleventy"
   },
@@ -20,7 +20,6 @@
   },
   "devDependencies": {
     "clean-css": "^5.3.3",
-    "cross-env": "^10.1.0",
     "html-minifier-terser": "^7.2.0"
   }
 }
