@@ -1000,3 +1000,110 @@
 .page-header__eyebrow a:hover {
   color: var(--text-primary);
 }
+
+/* ─── Miniatures (collection Hot Wheels / Majorette / Matchbox) ─── */
+
+.miniatures-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-block: var(--space-6);
+}
+
+.miniatures-stats__item strong {
+  color: var(--text-primary);
+  font-weight: var(--font-medium);
+}
+
+.miniatures-stats__sep {
+  color: var(--text-muted);
+}
+
+.miniatures-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 560px) {
+  .miniatures-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 860px) {
+  .miniatures-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1180px) {
+  .miniatures-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.miniature-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.miniature-card:hover {
+  border-color: var(--border-strong);
+}
+
+.miniature-card__image {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.miniature-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.miniature-card__placeholder {
+  width: 40%;
+  height: 40%;
+  color: var(--border-strong);
+}
+
+.miniature-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+}
+
+.miniature-card__marque {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.miniature-card__title {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-snug);
+}
+
+.miniature-card__meta {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
