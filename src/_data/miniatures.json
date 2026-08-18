@@ -1,0 +1,72 @@
+[
+  {
+    "id": "hw-tooned-volkswagen-mk1",
+    "marque": "Hot Wheels",
+    "modele": "Tooned Volkswagen Golf MK1",
+    "couleur": "Blanc",
+    "image": "/assets/images/miniatures/hw-tooned-volkswagen-mk1.jpg"
+  },
+  {
+    "id": "mb-1968-mustang",
+    "marque": "Matchbox",
+    "modele": "Ford Mustang FastBack",
+    "couleur": "Dorée",
+    "image": "/assets/images/miniatures/mb-ford-mustang-1968.jpg"
+  },
+  {
+    "id": "mb-mclaren-f1-gt",
+    "marque": "Matchbox",
+    "modele": "McLaren F1 GT",
+    "couleur": "Vert",
+    "image": "/assets/images/miniatures/mb-mclaren-f1-gt.jpg"
+  },
+  {
+    "id": "mb-chevrolet-zl1-convertible",
+    "marque": "Matchbox",
+    "modele": "Chevrolet Camaro ZL1 Convertible",
+    "couleur": "Noir",
+    "image": "/assets/images/miniatures/mb-chevrolet-zl1-convertible.jpg"
+  },
+  {
+    "id": "hw-ferrari-sf90",
+    "marque": "Hot Wheels",
+    "modele": "Ferrari SF90 Stradale",
+    "couleur": "Noir",
+    "image": "/assets/images/miniatures/hw-ferrari-sf90.jpg"
+  },
+  {
+    "id": "hw-srt-viper-fh",
+    "marque": "Hot Wheels",
+    "modele": "SRT Viper GTS-R",
+    "couleur": "Forza Horizon",
+    "image": "/assets/images/miniatures/hw-srt-viper-fh.jpg"
+  },
+  {
+    "id": "hw-porsche-911-fh",
+    "marque": "Hot Wheels",
+    "modele": "Porsche 911 GT3 RS",
+    "couleur": "Forza Horizon",
+    "image": "/assets/images/miniatures/hw-porsche-911-fh.jpg"
+  },
+  {
+    "id": "hw-mercedes-benz-a-class-fh",
+    "marque": "Hot Wheels",
+    "modele": "Mercedes-Benz A-Class",
+    "couleur": "Forza Horizon",
+    "image": "/assets/images/miniatures/hw-mercedes-benz-a-class-fh.jpg"
+  },
+  {
+    "id": "hw-renault-sport-rs-fh",
+    "marque": "Hot Wheels",
+    "modele": "Renault Sport R.S. 01",
+    "couleur": "Forza Horizon",
+    "image": "/assets/images/miniatures/hw-renault-sport-rs-fh.jpg"
+  },
+  {
+    "id": "hw-corvette-c7r-fh",
+    "marque": "Hot Wheels",
+    "modele": "Corcette C7R",
+    "couleur": "Forza Horizon",
+    "image": "/assets/images/miniatures/hw-corvette-c7r-fh.jpg"
+  }
+]

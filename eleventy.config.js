@@ -223,6 +223,20 @@ module.exports = function (eleventyConfig) {
     })
   );
 
+  // Valeurs distinctes d'un champ, dans l'ordre d'apparition — ex: {{ miniatures | unique("marque") }}
+  eleventyConfig.addFilter("unique", (arr, key) => {
+    const seen = new Set();
+    const out = [];
+    (arr || []).forEach((item) => {
+      const value = key ? item[key] : item;
+      if (value && !seen.has(value)) {
+        seen.add(value);
+        out.push(value);
+      }
+    });
+    return out;
+  });
+
   eleventyConfig.addFilter("slugify", (str = "") =>
     str
       .toLowerCase()

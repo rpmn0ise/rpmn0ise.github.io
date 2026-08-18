@@ -1,0 +1,93 @@
+---
+layout: base.njk
+title: Miniatures
+description: Ma collection de voitures miniatures — Hot Wheels, Majorette, Matchbox.
+permalink: /miniatures/
+---
+
+<div class="container">
+
+  <header class="page-header">
+    <p class="page-header__eyebrow">Établi — la collection</p>
+    <h1 class="page-header__title">Miniatures</h1>
+    <p class="page-header__description">{{ description }}</p>
+  </header>
+
+  {% if miniatures.length %}
+
+    <div class="miniatures-stats">
+      <span class="miniatures-stats__item">
+        <strong>{{ miniatures.length }}</strong> voiture{% if miniatures.length > 1 %}s{% endif %}
+      </span>
+      {% for marque in miniatures | unique("marque") %}
+        <span class="miniatures-stats__sep">·</span>
+        <span class="miniatures-stats__item">
+          {{ marque }} <strong>{{ (miniatures | where("marque", marque)).length }}</strong>
+        </span>
+      {% endfor %}
+    </div>
+
+    <div class="search-box" role="search" style="margin-bottom: var(--space-6);">
+      <svg class="search-box__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input
+        type="search"
+        id="search-input"
+        placeholder="Rechercher un modèle, une couleur…"
+        aria-label="Rechercher une miniature"
+        autocomplete="off"
+      >
+    </div>
+
+    <div class="filters">
+      <div class="filters__row">
+        <span class="filters__label">Marque</span>
+        <a href="#" class="tag tag--active" data-marque-filter="tous">Toutes</a>
+        {% for marque in miniatures | unique("marque") %}
+          <a href="#" class="tag" data-marque-filter="{{ marque }}">{{ marque }}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="miniatures-grid" id="miniatures-grid">
+      {% for m in miniatures %}
+        <article
+          class="miniature-card"
+          data-search-item="{{ m.marque }} {{ m.modele }} {{ m.couleur }}"
+          data-marque="{{ m.marque }}"
+        >
+          <div class="miniature-card__image">
+            {% if m.image %}
+              <img src="{{ m.image }}" alt="{{ m.modele }}" loading="lazy">
+            {% else %}
+              <svg class="miniature-card__placeholder" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 32h48" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M10 32l4-11a4 4 0 0 1 3.7-2.5h28.6A4 4 0 0 1 50 21l4 11" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <rect x="6" y="32" width="52" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="19" cy="43" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="45" cy="43" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            {% endif %}
+          </div>
+
+          <div class="miniature-card__body">
+            <span class="miniature-card__marque">{{ m.marque }}</span>
+            <h3 class="miniature-card__title">{{ m.modele }}</h3>
+            {% if m.couleur %}<p class="miniature-card__meta">{{ m.couleur }}</p>{% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <p id="no-results" hidden style="color: var(--text-secondary); padding: var(--space-8) 0; text-align:center;">
+      Aucun résultat pour cette recherche.
+    </p>
+
+  {% else %}
+    <p style="color: var(--text-secondary); padding: var(--space-16) 0; text-align: center;">
+      Collection en cours d'ajout…
+    </p>
+  {% endif %}
+
+</div>

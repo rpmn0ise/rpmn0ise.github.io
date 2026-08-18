@@ -75,6 +75,38 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+/* ─── Filtres marque + catégorie + échelle (page miniatures) ─── */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const marqueLinks = document.querySelectorAll("[data-marque-filter]");
+  const items = document.querySelectorAll("[data-marque]");
+  if (!items.length) return;
+
+  let activeMarque = "tous";
+
+  function apply() {
+    let visibleCount = 0;
+    items.forEach(function (item) {
+      const match = activeMarque === "tous" || item.getAttribute("data-marque") === activeMarque;
+      item.style.display = match ? "" : "none";
+      if (match) visibleCount++;
+    });
+
+    const noResults = document.getElementById("no-results");
+    if (noResults) noResults.hidden = visibleCount > 0;
+  }
+
+  marqueLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      activeMarque = link.getAttribute("data-marque-filter");
+      marqueLinks.forEach((l) => l.classList.remove("tag--active"));
+      link.classList.add("tag--active");
+      apply();
+    });
+  });
+});
+
 /* ─── Barre de progression de lecture ─── */
 
 document.addEventListener("DOMContentLoaded", function () {
