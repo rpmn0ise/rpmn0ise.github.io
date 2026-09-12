@@ -8,8 +8,8 @@ status: en-cours
 year: 2026
 tech:
   - Discord
-  - Linktree
-demo: "https://linktr.ee/hardmusicfr"
+  - HTML
+demo: "https://hardmusicfr.pages.dev/"
 discord: "https://discord.gg/AQBuVjqNxs"
 draft: false
 ---
