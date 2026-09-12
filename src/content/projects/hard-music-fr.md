@@ -48,7 +48,7 @@ La marque est volontairement faceless : pas de visage, pas de figure identifiabl
 
 **Le compte Instagram** — en cours de lancement, contenu éditorial (artist spotlights, présentation du projet), avec un rythme visé d'une publication par jour et un plan de repli à 3-4 publications par semaine.
 
-**La page Linktree** — point d'entrée centralisant le lien Discord et le compte Instagram.
+**La page web** — point d'entrée centralisant le lien Discord et le compte Instagram.
 
 **Le salon #ressources** — un forum de ressources de production (chaînes YouTube, plugins, tutoriels), classées par tags et alimentées par la communauté elle-même.
 
@@ -71,7 +71,7 @@ Une trentaine de noms d'artistes francophones de la scène ont été identifiés
 | Serveur Discord | Discussion générale, découvertes musicales, vocaux d'écoute, structuré en 5 catégories |
 | Rôles | Reaction roles par style musical, rôle "alerte vocal" auto-pingable, rôle "Artiste" |
 | Instagram | Contenu éditorial (spotlights, présentation), rythme visé 1 post/jour |
-| Linktree | Point d'entrée unique vers Discord et Instagram |
+| Page web | Point d'entrée unique vers Discord et Instagram |
 | Ressources | Forum #ressources, tags par thème, alimenté par la communauté |
 | FAQ | Version courte sur Discord, version complète prévue sur un futur site |
 | Modération | Assurée seul, accueil personnalisé de chaque nouveau membre |
