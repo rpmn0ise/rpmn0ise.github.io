@@ -1,0 +1,21 @@
+{#- Variable attendue : projets (liste de projets) #}
+<ul class="liste liste--projets">
+  {%- for p in projets %}
+  <li class="ligne">
+    <span class="ligne__num" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+    <div class="ligne__corps">
+      <a class="ligne__titre" href="{{ p.url }}">{{ p.data.title }}</a>
+      <p class="ligne__desc">{{ p.data.description }}</p>
+      {%- if p.data.tech and p.data.tech.length %}
+      <p class="meta">{{ p.data.tech | join(" · ") }}</p>
+      {%- endif %}
+    </div>
+    {%- if p.data.status or p.data.year %}
+    <p class="ligne__etat meta">
+      {%- if p.data.status %}<span class="statut statut--{{ p.data.status }}">{{ p.data.status | statut }}</span>{% endif %}
+      {%- if p.data.year %}<span>{{ p.data.year }}</span>{% endif %}
+    </p>
+    {%- endif %}
+  </li>
+  {%- endfor %}
+</ul>

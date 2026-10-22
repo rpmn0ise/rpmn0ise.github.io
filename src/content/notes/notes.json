@@ -1,6 +1,0 @@
-{
-  "layout": "post.njk",
-  "tags": ["note"],
-  "permalink": "/notes/{{ page.fileSlug }}/",
-  "draft": false
-}

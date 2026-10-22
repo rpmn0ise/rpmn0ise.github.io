@@ -1,0 +1,28 @@
+{
+  "titre": "rpmn0ise",
+  "description": "Projets, notes et articles de rpmn0ise.",
+  "accroche": "Je construis des projets autour de sujets qui m'intéressent, sans me limiter à un seul domaine.",
+  "url": "https://example.com",
+  "auteur": {
+    "nom": "rpmn0ise",
+    "email": "rpmn0ise@proton.me"
+  },
+  "nav": [
+    {
+      "libelle": "Projets",
+      "url": "/projets/"
+    },
+    {
+      "libelle": "Journal",
+      "url": "/journal/"
+    },
+    {
+      "libelle": "À propos",
+      "url": "/a-propos/"
+    },
+    {
+      "libelle": "Contact",
+      "url": "/contact/"
+    }
+  ]
+}

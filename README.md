@@ -1,318 +1,123 @@
-# RPMN0ISE — Digital Laboratory
+# Site personnel
 
-Site personnel construit avec [Eleventy v3](https://www.11ty.dev/) — pensé comme un laboratoire numérique personnel : articles, notes, projets et expérimentations, organisés en 5 domaines et mélangés chronologiquement dans un flux unique (« Le Labo »).
+Site statique fait avec [Eleventy](https://www.11ty.dev/) 3, en français. Pas de backend, pas de base de données, pas de service externe. Hébergement prévu : Cloudflare Pages.
 
-Ce n'est ni un portfolio classique, ni un blog, ni un dashboard.
+> **À faire avant la mise en ligne** (voir la fin de ce fichier) : premier `npm run build` réel, `url` du site, nom définitif, phrase d'accueil.
 
-## ✨ Fonctionnalités
-
-- **Le Labo** (`/blog/`) — flux unifié articles + notes + projets, filtrable par domaine et par type, recherche locale
-- **5 domaines** (`/domaines/<id>/`) — Systèmes, Création numérique, Ingénierie, Simulation, Culture — seule source chromatique du site
-- **Projets** avec fiches détaillées : nomenclature, journal d'expérimentation (timeline), prochaines étapes
-- **Notes** — fragments techniques rapides
-- **Panneau de navigation** plein écran (overlay), accessible au clavier, avec comptage par domaine en temps réel
-- **Page À propos**
-- RSS/Atom (`/feed.xml`) + Sitemap XML (`/sitemap.xml`)
-- SEO complet (meta, Open Graph, JSON-LD)
-- Syntax highlighting + bouton copier le code
-- Temps de lecture automatique
-- Système de brouillons (drafts)
-- Ligne d'état fonctionnelle dans le header (« dernière trace : il y a N jours »), calculée dynamiquement
-- Aucune animation décorative, aucun glow — esprit carnet de laboratoire
-- Compatible GitHub Pages / Netlify / Cloudflare Pages
-
----
-
-## 🚀 Installation
-
-### Prérequis
-
-- Node.js ≥ 18
-- npm ≥ 9
-
-### Démarrer
+## Commandes
 
 ```bash
-git clone https://github.com/rpmn0ise/rpmn0ise.github.io.git
-cd rpmn0ise.github.io
-npm install
-npm run dev
+npm install        # une seule fois (Node 20 ou plus, 22 recommandé : voir .node-version)
+npm run dev        # serveur local avec rechargement ; les brouillons (draft: true) sont visibles
+npm run build      # génère le site dans _site/ ; les brouillons sont exclus
 ```
 
-Le site est disponible sur `http://localhost:8080` avec rechargement automatique.
-
-### Build production
-
-```bash
-npm run build
-# Le site généré est dans ./_site/
-```
-
----
-
-## 📁 Structure du projet
+## Où se trouve quoi
 
 ```
-rpmn0ise.github.io/
-│
-├── eleventy.config.js        # Configuration Eleventy (plugins, collections, filtres)
-├── package.json
-├── netlify.toml
-├── .github/workflows/        # CI/CD GitHub Actions
-├── docs/prompt_contenu.md    # Prompt de génération de contenu (frontmatter, domaines, ton)
-│
-└── src/
-    │
-    ├── _data/
-    │   ├── site.json         # ⭐ Config principale (nom, URL, auteur, réseaux, "now")
-    │   ├── domains.json       # ⭐ Source unique des 5 domaines (id, label, couleur, description)
-    │   └── env.js
-    │
-    ├── _includes/
-    │   ├── layouts/
-    │   │   ├── base.njk      # Shell HTML unique (head, header, nav-panel, footer, scripts)
-    │   │   ├── page.njk      # Pages statiques (about, setup...)
-    │   │   ├── post.njk      # Article OU note (layout fusionné)
-    │   │   ├── project.njk   # Fiche projet (nomenclature, timeline, prochaines étapes)
-    │   │   └── rebass.njk    # Page Rebass (grille de morceaux)
-    │   │
-    │   └── components/
-    │       ├── header.njk       # Nom du site + ligne d'état + déclencheur du panneau
-    │       ├── nav-panel.njk    # Panneau de navigation plein écran (domaines + liens)
-    │       ├── footer.njk
-    │       ├── entry-card.njk   # Fiche d'entrée unique — article, note OU projet
-    │       ├── domain-pill.njk  # Pastille de domaine (lit domains.json)
-    │       ├── status-tag.njk   # Étiquette EN COURS / STABLE / ARCHIVÉ
-    │       ├── margin-note.njk  # Note de marge (post__margin)
-    │       ├── timeline.njk     # Journal d'expérimentation vertical
-    │       └── pagination.njk
-    │
-    ├── assets/
-    │   ├── css/
-    │   │   ├── main.css      # Point d'entrée — importe les 5 fichiers ci-dessous, dans l'ordre
-    │   │   ├── tokens.css    # Source unique de vérité : couleurs, typo, espacements
-    │   │   ├── base.css      # Reset + éléments HTML natifs
-    │   │   ├── layout.css    # Header, footer, nav-panel, sections, boutons
-    │   │   ├── components.css # entry-card, domain-pill, status-tag, timeline, filtres...
-    │   │   └── prose.css     # Typographie de lecture longue
-    │   ├── js/
-    │   │   ├── nav-panel.js  # Ouverture/fermeture du panneau, focus trap, Échap
-    │   │   └── main.js       # Recherche, filtres, barre de lecture, copier le code
-    │   └── images/
-    │
-    ├── content/               # ⭐ Tout le contenu Markdown
-    │   ├── blog/               # Articles de fond — blog.json fixe layout/permalink/tags
-    │   ├── notes/               # Fragments techniques courts
-    │   └── projects/            # Projets, avec nomenclature/log/nextSteps
-    │
-    └── pages/
-        ├── blog.njk           # /blog/ — "Le Labo", flux unifié paginé + filtres + recherche
-        ├── domains.njk         # /domaines/<id>/ — une fiche par domaine (pagination sur domains.json)
-        ├── tags.njk            # /tags/<tag>/ — pages de tags (articles + notes)
-        ├── projects.njk        # /projects/ — index projets
-        ├── notes.njk           # /notes/ — index notes
-        ├── about.md            # À propos (sections marquées par domaine)
-        ├── setup.md
-        ├── rebass.md
-        ├── 404.njk
-        ├── sitemap.njk         # sitemap.xml
-        └── feed.njk            # feed.xml (RSS/Atom)
+eleventy.config.js        configuration : collections, filtres, validation des champs, listes de tâches
+src/
+  contenu/
+    journal/              1 fichier .md par article ou note   → /journal/<nom-du-fichier>/
+    projets/              1 fichier .md par projet            → /projets/<nom-du-fichier>/
+    pages/                pages libres : a-propos, contact → /<nom-du-fichier>/
+  donnees/
+    site.json             titre, description, url, e-mail, menu, phrase d'accueil (`accroche`)
+  gabarits/               modèles HTML : base, article, projet, page, deux listes
+  public/                 copié tel quel à la racine du site :
+    css/style.css         toute la mise en forme (variables de couleur en tête de fichier)
+    js/theme.js           bascule clair/sombre (26 lignes)
+    images/               images du site
+    _headers              en-têtes de sécurité
+  index.njk journal.njk projets.njk tags.njk             pages générées
+  404.njk feed.njk sitemap.njk robots.txt.njk            pages techniques
+docs/modeles/             modèles à copier : article.md, projet.md
+docs/prompts/             prompts ChatGPT qui génèrent un article ou un projet avec le bon frontmatter
 ```
 
----
+Conventions : le **nom du fichier devient l'URL** (minuscules, sans accent, tirets). Les noms de champs sont ceux de la section suivante. Rien n'est dupliqué : titre et menu dans `site.json`, couleurs dans les variables du CSS.
 
-## ✍️ Publier du contenu
+## Procédures
 
-Voir `docs/prompt_contenu.md` pour le prompt complet de génération (frontmatter exact, ton, structure). Résumé :
+### Ajouter un article ou une note
 
-### Nouvel article de blog
+0. Variante : coller `docs/prompts/prompt-article.md` dans ChatGPT avec tes notes, il renvoie le fichier complet.
+1. Copier `docs/modeles/article.md` dans `src/contenu/journal/` et le renommer (ex. `mon-sujet.md` → `/journal/mon-sujet/`).
+2. Remplir `title` et `date` (les seuls champs obligatoires) ; `description` et `tags` sont facultatifs.
+3. Écrire en Markdown. Une **note** est un article avec le tag `note`.
+4. `npm run dev` pour vérifier. `draft: true` le garde invisible en production.
 
-`src/content/blog/mon-article.md` :
+Les tags utilisés au moins 2 fois sont listés sur la page Journal ; chaque tag a sa page `/tags/<tag>/`.
 
-```markdown
----
-title: "Mon article"
-description: "Un résumé en une ou deux phrases."
-date: 2026-04-01
-domain: systemes          # obligatoire — voir src/_data/domains.json
-tags:
-  - post
-  - javascript
-featured: false
-draft: false
-annotations:                # optionnel — notes de marge
-  - "Une remarque courte et dense"
----
+### Ajouter un projet
 
-Votre contenu en Markdown...
-```
+0. Variante : coller `docs/prompts/prompt-projet.md` dans ChatGPT avec ce que tu sais du projet.
+1. Copier `docs/modeles/projet.md` dans `src/contenu/projets/`.
+2. `title` et `description` sont obligatoires. Facultatifs : `status` (`en-cours`, `termine`, `en-pause`, `abandonne`), `year`, `tech`, `github`, `demo`.
+3. `featured: true` l'affiche sur l'accueil (3 projets maximum, les plus récents).
 
-**URL générée** : `/blog/mon-article/` (slug dérivé du nom de fichier).
+### Modifier les informations personnelles et les liens
 
-### Nouveau projet
+- Titre du site, description, adresse du site, e-mail, menu, phrase d'accueil (`accroche`) : `src/donnees/site.json`.
+- Liens externes (GitHub, YouTube…) : directement dans `src/contenu/pages/contact.md`.
+- Pages À propos et Contact : fichiers Markdown de `src/contenu/pages/`.
 
-`src/content/projects/mon-projet.md` :
+### Images
 
-```markdown
----
-title: "Nom du projet"
-description: "Ce que fait le projet en une phrase."
-date: 2026-04-01
-domain: ingenierie
-order: 1
-status: en-cours           # en-cours | stable | archive
-year: 2026
-tech:
-  - TypeScript
-  - React
-github: "https://github.com/..."
-demo: "https://..."
-log:                         # optionnel — journal d'expérimentation
-  - date: "avril 2026"
-    note: "Ce qui a été fait"
-    done: true
-nextSteps:                   # optionnel
-  - "Prochaine étape"
-draft: false
----
+Placer le fichier dans `src/public/images/` (compressé avant, cible environ 100 Ko, de préférence en WebP) et l'appeler avec `/images/nom.webp`. Pour éviter les décalages de mise en page, écrire `<img src="/images/nom.webp" alt="description" width="800" height="450">` plutôt que la syntaxe Markdown, qui ne permet pas d'indiquer les dimensions.
 
-Description longue en Markdown...
-```
+### Listes de tâches
 
-### Nouvelle note
+`- [x] fait` et `- [ ] à faire` sont affichées avec ✓ et ☐ dans tous les fichiers Markdown.
 
-`src/content/notes/ma-note.md` :
+## Design
 
-```markdown
----
-title: "Titre court"
-description: "En une phrase."
-date: 2026-04-01
-domain: systemes
-tags:
-  - git
-  - tips
----
+Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-hébergées (licence OFL, voir `src/public/fonts/LICENCES.txt`) : Instrument Serif pour le nom et les titres de page, Bricolage Grotesque pour les titres de section et de projet, Instrument Sans pour le texte, Geist Mono pour les petites mentions. Tout se règle dans les variables en tête de `style.css`. Menu : Projets, Journal, À propos, Contact. L'accueil montre le nom en grand, la phrase d'accueil, les projets `featured` et les 3 derniers articles.
 
-Contenu court et direct.
-```
+## Thème clair et sombre
 
----
+Les couleurs sont des variables CSS au début de `style.css` (une palette claire, deux fois la palette sombre : préférence système et choix manuel). Sans JavaScript, le site suit le thème du système. Avec JavaScript, le bouton du menu bascule et mémorise le choix dans `localStorage` (aucun cookie).
 
-## ⚙️ Configuration principale
+## Déploiement sur Cloudflare Pages
 
-`src/_data/site.json` — nom, URL, auteur, réseaux sociaux, navigation, et le champ `now.current` (ligne d'état de la homepage, à mettre à jour manuellement).
+1. Pousser le dépôt sur GitHub ou GitLab.
+2. Cloudflare → Workers & Pages → créer un projet Pages → connecter le dépôt.
+3. Commande de build : `npm run build`. Dossier de sortie : `_site`.
+4. Variable d'environnement : `NODE_VERSION` = `22`.
+5. Après chaque `git push`, le site se reconstruit tout seul.
 
-`src/_data/domains.json` — les 5 domaines. Toute modification (ajout, renommage, couleur) se répercute automatiquement sur le panneau de navigation, la homepage et les pages `/domaines/<id>/`.
 
----
+## Avant la mise en ligne
 
-## 🎨 Personnalisation du design
+- [ ] Lancer un premier `npm install && npm run build` et corriger les éventuelles erreurs (voir « Tests »).
+- [ ] Remplacer `url` dans `src/donnees/site.json` (le build prévient tant que c'est `example.com`) : il sert au sitemap, au flux RSS et aux liens canoniques.
+- [ ] Décider du nom définitif du site (`titre` dans `site.json`, provisoirement `rpmn0ise`).
+- [ ] Renseigner `accroche` dans `site.json` : phrase d'accueil, non affichée tant qu'elle est vide.
+- [ ] Vérifier l'e-mail (`site.json`) et les liens GitHub / YouTube (`contact.md`), repris de l'ancien site.
+- [ ] Relire la page À propos (texte fourni par ChatGPT, liens internes ajoutés) et les **exemples** : `projets/retour-de-force.md`, `hard-music-fr.md`, `interligne.md` (champs à compléter, marqués en italique), `journal/pourquoi-ce-site.md`, `journal/aide-memoire-mise-en-forme.md`. Les compléter, les remplacer ou les supprimer.
+- [ ] Vérifier la phrase d'accueil (`accroche` dans `src/donnees/site.json`).
 
-Le design system est entièrement en CSS Custom Properties, une seule source de vérité : `src/assets/css/tokens.css`.
+## Tests effectués
 
-```css
-:root {
-  --accent-primary: #YOUR_COLOR;
-  --accent-hover:   #YOUR_HOVER;
-}
-```
+Eleventy n'a pas pu être installé dans l'environnement de développement (accès au registre npm refusé) : **`npm run build` n'a jamais été exécuté**. Le reste a été vérifié avec un banc d'essai jetable (gabarits rendus avec Jinja2, très proche de Nunjucks, puis Chromium via Playwright), qui n'est pas dans le dépôt.
 
-Les couleurs de domaine se changent uniquement dans `src/_data/domains.json` (champ `color`).
-
----
-
-## 🔧 Fonctionnalités avancées
-
-### Shortcodes disponibles dans le Markdown
-
-```markdown
-{% callout "info" %}Un message informatif.{% endcallout %}
-{% callout "warning" %}Attention à ceci.{% endcallout %}
-{% callout "error" %}Erreur critique.{% endcallout %}
-
-{% image "/assets/images/mon-image.jpg", "Texte alternatif", "Légende optionnelle" %}
-
-© {% year %}
-```
-
-### Filtres Nunjucks disponibles
-
-| Filtre | Usage |
+| Contrôle | Résultat |
 |---|---|
-| `readableDate` | Formate une date (`date \| readableDate`) |
-| `htmlDateString` | Format ISO pour `<time>` |
-| `isoDate` | ISO 8601 complet (RSS/JSON-LD) |
-| `limit` | Tronque un tableau |
-| `slugify` | Crée un slug |
-| `readingTime` | Temps de lecture (`content \| readingTime`) |
-| `timeAgo` | « il y a N jours » (`date \| timeAgo`) |
-| `domainInfo` | Lookup domaine (`domainId \| domainInfo`) |
-| `relatedEntries` | Entrées liées, domaine + tags (`page \| relatedEntries(collections.entries)`) |
-| `previousEntry` / `nextEntry` | Navigation chronologique (`page \| nextEntry(collections.entries)`) |
+| Rendu complet avec du contenu de test (hors dépôt) : liens internes, un `h1` par page, métadonnées | conformes |
+| Un seul `h1` par page, titres et descriptions uniques, `alt` et dimensions des images | conformes |
+| Débordement horizontal, 99 pages à 360 px et 1 280 px | aucun |
+| Ressources locales (CSS, JS, images) | toutes chargées |
+| Thème : bascule, mémorisation après rechargement, rendu sans JavaScript | conformes |
+| Clavier : ordre de tabulation, lien « Aller au contenu » | conformes |
+| Contraste texte/fond, deux thèmes | au moins 5,5:1 (seuil WCAG AA : 4,5:1) |
+| Règle markdown-it des listes de tâches | testée avec le vrai markdown-it |
+| Syntaxe de la config, du script et des JSON | valide |
 
-### Collections disponibles
+Non vérifié : le build Eleventy lui-même (collections, flux RSS, sitemap, pages de tags, validation), la coloration du code produite par le plugin, le déploiement Cloudflare Pages, les performances mesurées (Lighthouse). Poids : CSS 10 Ko (2,8 Ko compressé), JS 1 Ko, images 108 Ko au total.
 
-| Collection | Contenu |
-|---|---|
-| `collections.posts` | Articles de blog |
-| `collections.notes` | Notes rapides |
-| `collections.projects` | Projets (triés par `order`) |
-| `collections.entries` | ⭐ Fusion articles + notes + projets, triée par date — le flux du labo |
-| `collections.domainStats` | Les 5 domaines enrichis des comptages réels (`articles`, `notes`, `projects`, `total`, `pct`) |
-| `collections.tagList` | Liste de tous les tags uniques (articles + notes) |
+## Limites connues
 
----
-
-## 🚢 Déploiement
-
-### GitHub Pages (actuel)
-
-Le workflow `.github/workflows/deploy.yml` est déjà configuré. Push sur `main` → déploiement automatique.
-
-### Netlify
-
-1. Pushez sur GitHub
-2. Connectez le repo sur [netlify.com](https://netlify.com) — `netlify.toml` est déjà présent
-3. Déploiement automatique à chaque push sur `main`
-
-### Cloudflare Pages
-
-```
-Build command : npm run build
-Output directory : _site
-Node.js version : 20
-```
-
----
-
-## 📦 Dépendances
-
-| Package | Rôle |
-|---|---|
-| `@11ty/eleventy` | Générateur de site statique |
-| `@11ty/eleventy-plugin-rss` | Génération du flux RSS/Atom |
-| `@11ty/eleventy-plugin-syntaxhighlight` | Coloration syntaxique (Prism.js) |
-| `@11ty/eleventy-navigation` | Navigation breadcrumb |
-| `markdown-it` / `markdown-it-anchor` / `markdown-it-attrs` | Parser Markdown + ancres + attributs |
-| `luxon` | Manipulation et formatage de dates |
-| `html-minifier-terser` | Minification HTML en production |
-
-> Le temps de lecture (`readingTime`) est un filtre maison, pas un plugin — voir `eleventy.config.js`.
-
----
-
-## 🛠️ Scripts
-
-```bash
-npm run dev      # Serveur local avec hot reload (port 8080)
-npm run build    # Build production dans ./_site
-npm run clean    # Supprime _site/ et .cache/
-npm run debug    # Build avec logs Eleventy détaillés
-```
-
----
-
-## 📄 Licence
-
-MIT — Utilisez, modifiez et distribuez librement.
+- Pas de recherche ni de pagination (25 entrées : inutile pour l'instant).
+- Les images ne sont pas optimisées automatiquement.
+- Le contact se fait par `mailto:` (l'adresse est visible dans la page).
+- Le site contient peu de contenu : 3 projets et 2 articles d'exemple, à relire ou remplacer. Ils ne reprennent que ce que tu as dit de toi ; année et statut ne sont renseignés que pour Retour de Force et Hard Music FR.

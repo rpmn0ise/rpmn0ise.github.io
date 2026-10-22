@@ -1,139 +1,42 @@
 ---
 layout: base.njk
-title: Accueil
-description: "Digital Laboratory — laboratoire numérique personnel : systèmes, audio, simulation, développement."
-eleventyNavigation:
-  key: Accueil
-  order: 1
 ---
-
-{# ─── Page de couverture du labo ─── #}
-<section class="lab-cover">
-  <div class="container">
-    <p class="lab-cover__eyebrow">Laboratoire actif — journal en continu</p>
-
-    <div class="lab-cover__brand">
-      <h1 class="lab-cover__name">{{ site.title }}</h1>
-      <p class="lab-cover__tagline">Digital Laboratory</p>
-    </div>
-
-    <p class="lab-cover__mission">
-      Un carnet de laboratoire, pas un portfolio. Ce qui est construit, testé, cassé et mesuré
-      ici est documenté au fil de l'eau — systèmes, audio, simulation, développement.
-    </p>
-
-    {% if site.now.current %}
-      <p class="lab-cover__status">
-        <span class="status-line__dot" aria-hidden="true">◍</span>
-        <span>en ce moment : <strong>{{ site.now.current }}</strong></span>
-      </p>
-    {% endif %}
-
-    <div class="lab-stats">
-      <div class="lab-stats__item">
-        <div class="lab-stats__value">{{ collections.labStats.totalEntries }}</div>
-        <div class="lab-stats__label">Entrées loggées</div>
-      </div>
-      <div class="lab-stats__item">
-        <div class="lab-stats__value">{{ collections.labStats.domainsActiveCount }}</div>
-        <div class="lab-stats__label">Domaines actifs</div>
-      </div>
-      <div class="lab-stats__item">
-        <div class="lab-stats__value">{{ collections.labStats.activeProjectsCount }}</div>
-        <div class="lab-stats__label">Projets en cours</div>
-      </div>
-      <div class="lab-stats__item">
-        <div class="lab-stats__value">{{ collections.labStats.sinceYear }}</div>
-        <div class="lab-stats__label">Depuis</div>
-      </div>
-    </div>
-  </div>
+<section class="hero">
+  <h1 class="hero__nom">{{ site.titre }}</h1>
+  {%- if site.accroche %}
+  <p class="hero__texte">{{ site.accroche }}</p>
+  {%- endif %}
+  {%- set aLaUne = collections.projets | misEnAvant %}
+  {%- if collections.projets.length or collections.journal.length %}
+  <p class="hero__index meta">
+    {%- if collections.projets.length %}{{ collections.projets.length }} projet{% if collections.projets.length > 1 %}s{% endif %}{% endif %}
+    {%- if collections.projets.length and collections.journal.length %} · {% endif %}
+    {%- if collections.journal.length %}{{ collections.journal.length }} entrée{% if collections.journal.length > 1 %}s{% endif %} au journal{% endif %}
+  </p>
+  {%- endif %}
+  {%- if aLaUne.length %}
+  <a class="hero__defiler" href="#projets">↓ Projets</a>
+  {%- endif %}
 </section>
 
-{# ─── Journal récent ─── #}
-{% set recentEntries = collections.entries | limit(6) %}
-{% if recentEntries.length %}
-<section class="section">
-  <div class="container">
-    <div class="section__header">
-      <div>
-        <p class="section__eyebrow">Journal</p>
-        <h2 class="section__title">Dernières entrées du labo</h2>
-      </div>
-      <a href="/blog/" class="section__link">tout le journal →</a>
-    </div>
-    <div class="entry-list">
-      {% for entry in recentEntries %}
-        {% include "components/entry-card.njk" %}
-      {% endfor %}
-    </div>
+{%- if aLaUne.length %}
+<section class="bloc" id="projets">
+  <div class="bloc__tete">
+    <h2 class="section-titre">Projets</h2>
+    <a class="suite" href="/projets/">Tous les projets →</a>
   </div>
+  {%- set projets = aLaUne | limite(3) %}
+  {% include "liste-projets.njk" %}
 </section>
-{% endif %}
+{%- endif %}
 
-{# ─── Établi — projets actifs ─── #}
-{% set activeProjects = collections.projects | where("data.status", "en-cours") | limit(4) %}
-{% if activeProjects.length %}
-<section class="section section--tinted">
-  <div class="container">
-    <div class="section__header">
-      <div>
-        <p class="section__eyebrow">Établi</p>
-        <h2 class="section__title">Ce qui est sur la table en ce moment</h2>
-      </div>
-      <a href="/projects/" class="section__link">tous les projets →</a>
-    </div>
-    <div class="active-projects">
-      {% for project in activeProjects %}
-        {% set d = project.data.domain | domainInfo %}
-        {% set lastLog = (project.data.log | last) if project.data.log else null %}
-        <article class="active-project-card" {% if d %}style="--card-color: {{ d.color }};"{% endif %}>
-          <div class="active-project-card__meta">
-            {% set statusValue = project.data.status %}{% include "components/status-tag.njk" %}
-            {% if d %}<span class="domain-pill" style="--pill-color: {{ d.color }};">{{ d.label }}</span>{% endif %}
-          </div>
-          <h3 class="active-project-card__title">
-            <a href="{{ project.url }}">{{ project.data.title }}</a>
-          </h3>
-          {% if project.data.description %}
-            <p class="active-project-card__desc">{{ project.data.description }}</p>
-          {% endif %}
-          {% if lastLog %}
-            <p class="active-project-card__log">↳ {{ lastLog.note }}</p>
-          {% endif %}
-        </article>
-      {% endfor %}
-    </div>
+{%- if collections.journal.length %}
+<section class="bloc">
+  <div class="bloc__tete">
+    <h2 class="section-titre">Journal</h2>
+    <a class="suite" href="/journal/">Tout le journal →</a>
   </div>
+  {%- set entrees = collections.journal | limite(3) %}
+  {% include "liste-journal.njk" %}
 </section>
-{% endif %}
-
-{# ─── Index des domaines ─── #}
-<section class="section">
-  <div class="container">
-    <div class="section__header">
-      <div>
-        <p class="section__eyebrow">Index</p>
-        <h2 class="section__title">Domaines explorés</h2>
-      </div>
-    </div>
-    <div class="domain-grid">
-      {% for domain in collections.domainStats %}
-        <a href="/domaines/{{ domain.id }}/" class="domain-card" style="--card-color: {{ domain.color }};">
-          <span class="domain-card__index">D{{ loop.index }}</span>
-          <div class="domain-card__label">{{ domain.label }}</div>
-          <p class="domain-card__desc">{{ domain.description }}</p>
-          {% if domain.total %}
-            <div class="domain-card__breakdown">
-              {% if domain.articles %}<span><strong>{{ domain.articles }}</strong> article{% if domain.articles > 1 %}s{% endif %}</span>{% endif %}
-              {% if domain.notes %}<span><strong>{{ domain.notes }}</strong> note{% if domain.notes > 1 %}s{% endif %}</span>{% endif %}
-              {% if domain.projects %}<span><strong>{{ domain.projects }}</strong> projet{% if domain.projects > 1 %}s{% endif %}</span>{% endif %}
-            </div>
-          {% else %}
-            <p class="domain-card__empty">Rien loggé pour l'instant</p>
-          {% endif %}
-        </a>
-      {% endfor %}
-    </div>
-  </div>
-</section>
+{%- endif %}

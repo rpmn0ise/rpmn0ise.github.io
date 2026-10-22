@@ -1,0 +1,25 @@
+---
+layout: base.njk
+typeOg: article
+---
+<article class="article">
+  <header class="entete-contenu">
+    <p class="meta"><time datetime="{{ date | dateIso }}">{{ date | dateLongue }}</time></p>
+    <h1>{{ title }}</h1>
+    {%- if description %}
+    <p class="chapo">{{ description }}</p>
+    {%- endif %}
+  </header>
+
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+
+  {%- if tags and tags.length %}
+  <ul class="tags" aria-label="Tags">
+    {%- for tag in tags %}
+    <li><a href="/tags/{{ tag | slugify }}/">#{{ tag }}</a></li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+</article>

@@ -1,0 +1,18 @@
+---
+layout: base.njk
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag.slug }}/"
+eleventyComputed:
+  title: "#{{ tag.nom }}"
+  description: "Entrées du journal avec le tag {{ tag.nom }}."
+---
+<header class="entete-contenu">
+  <p class="meta"><a class="retour" href="/journal/">← Journal</a></p>
+  <h1>#{{ tag.nom }}</h1>
+</header>
+
+{%- set entrees = tag.entrees %}
+{% include "liste-journal.njk" %}

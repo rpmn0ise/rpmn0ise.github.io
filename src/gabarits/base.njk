@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- set titrePage = (title + " — " + site.titre) if title else site.titre %}
+  {%- set descriptionPage = description or site.description %}
+  {%- set urlCanonique = page.url | absoluteUrl(site.url) %}
+  <title>{{ titrePage }}</title>
+  <meta name="description" content="{{ descriptionPage }}">
+  {%- if noindex %}
+  <meta name="robots" content="noindex">
+  {%- else %}
+  <link rel="canonical" href="{{ urlCanonique }}">
+  {%- endif %}
+  <meta property="og:title" content="{{ titrePage }}">
+  <meta property="og:description" content="{{ descriptionPage }}">
+  <meta property="og:type" content="{{ typeOg or 'website' }}">
+  <meta property="og:url" content="{{ urlCanonique }}">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="{{ site.titre }}">
+  {%- if image %}
+  <meta property="og:image" content="{{ image | absoluteUrl(site.url) }}">
+  <meta name="twitter:card" content="summary_large_image">
+  {%- else %}
+  <meta name="twitter:card" content="summary">
+  {%- endif %}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.titre }}" href="/feed.xml">
+  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preload" href="/fonts/instrument-serif.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="/fonts/instrument-sans-400.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/theme.js" defer></script>
+</head>
+<body>
+  <a class="evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete">
+    <div class="conteneur entete__int">
+      <a class="marque" href="/">{{ site.titre }}</a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          {%- for lien in site.nav %}
+          {%- set actif = (page.url == lien.url) or (lien.url != "/" and page.url.startsWith(lien.url)) %}
+          <li><a href="{{ lien.url }}"{% if actif %} aria-current="page"{% endif %}>{{ lien.libelle }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+      <button class="theme" type="button" data-theme-toggle hidden></button>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur">
+    {{ content | safe }}
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur">
+      <p class="pied__etiquette">Contact</p>
+      <a class="pied__cta" href="mailto:{{ site.auteur.email }}">{{ site.auteur.email }}</a>
+      <div class="pied__bas">
+        <span>© {{ annee }} {{ site.auteur.nom }}</span>
+        <a href="/feed.xml">Flux RSS</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

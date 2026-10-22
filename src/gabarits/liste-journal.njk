@@ -1,0 +1,14 @@
+{#- Variable attendue : entrees (liste d'articles du journal) #}
+<ul class="liste liste--journal">
+  {%- for e in entrees %}
+  <li class="ligne">
+    <time class="meta" datetime="{{ e.date | dateIso }}">{{ e.date | dateIso }}</time>
+    <div>
+      <a class="ligne__titre" href="{{ e.url }}">{{ e.data.title }}</a>
+      {%- if e.data.description %}
+      <p class="ligne__desc">{{ e.data.description }}</p>
+      {%- endif %}
+    </div>
+  </li>
+  {%- endfor %}
+</ul>

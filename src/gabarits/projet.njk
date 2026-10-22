@@ -1,0 +1,32 @@
+---
+layout: base.njk
+---
+<article>
+  <header class="entete-contenu">
+    <h1>{{ title }}</h1>
+    <p class="chapo">{{ description }}</p>
+    {%- if status or year or (tech and tech.length) or github or demo %}
+    <dl class="fiche">
+      {%- if status %}
+      <div><dt>Statut</dt><dd><span class="statut statut--{{ status }}">{{ status | statut }}</span></dd></div>
+      {%- endif %}
+      {%- if year %}
+      <div><dt>Année</dt><dd>{{ year }}</dd></div>
+      {%- endif %}
+      {%- if tech and tech.length %}
+      <div><dt>Technologies</dt><dd>{{ tech | join(", ") }}</dd></div>
+      {%- endif %}
+      {%- if github or demo %}
+      <div><dt>Liens</dt><dd>
+        {%- if github %}<a href="{{ github }}">Code source ↗</a>{% endif %}
+        {%- if demo %}<a href="{{ demo }}">Démo ↗</a>{% endif %}
+      </dd></div>
+      {%- endif %}
+    </dl>
+    {%- endif %}
+  </header>
+
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+</article>

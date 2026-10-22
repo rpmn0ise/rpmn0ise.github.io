@@ -1,459 +1,121 @@
-// eleventy.config.js
+import { readFileSync } from "node:fs";
+import pluginRss from "@11ty/eleventy-plugin-rss";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
-const { DateTime } = require("luxon");
-const markdownIt = require("markdown-it");
-const markdownItAnchor = require("markdown-it-anchor");
-const markdownItAttrs = require("markdown-it-attrs");
+const site = JSON.parse(readFileSync("./src/donnees/site.json", "utf8"));
 
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const pluginNavigation = require("@11ty/eleventy-navigation");
+// "build" = production (npm run build) ; "serve" = npm run dev
+const production = process.env.ELEVENTY_RUN_MODE === "build";
 
-// Source unique de vérité des domaines — voir src/_data/domains.json
-const domainsData = require("./src/_data/domains.json");
+const STATUTS = {
+  "en-cours": "en cours",
+  termine: "terminé",
+  "en-pause": "en pause",
+  abandonne: "abandonné",
+};
 
-module.exports = function (eleventyConfig) {
+const dateLongue = new Intl.DateTimeFormat("fr-FR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
-  // ─────────────────────────────────────────────
-  // Plugins
-  // ─────────────────────────────────────────────
+export default function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
-
-  eleventyConfig.addPlugin(pluginSyntaxHighlight, {
-    preAttributes: { tabindex: 0 },
-  });
-
-  eleventyConfig.addPlugin(pluginNavigation);
-
-  // ❌ supprimé: plugin reading-time (inexistant / inutile)
-
-  // ─────────────────────────────────────────────
-  // Markdown
-  // ─────────────────────────────────────────────
-  const md = markdownIt({
-    html: true,
-    breaks: false,
-    linkify: true,
-    typographer: true,
-  })
-    .use(markdownItAnchor, {
-      permalink: markdownItAnchor.permalink.ariaHidden({
-        placement: "after",
-        class: "header-anchor",
-        symbol: "#",
-      }),
-      level: [2, 3, 4],
-      slugify: eleventyConfig.getFilter("slugify"),
-    })
-    .use(markdownItAttrs);
-
-  eleventyConfig.setLibrary("md", md);
-
-  // ─────────────────────────────────────────────
-  // Passthrough
-  // ─────────────────────────────────────────────
-  eleventyConfig.addPassthroughCopy("src/assets/images");
-  eleventyConfig.addPassthroughCopy("src/assets/fonts");
-  eleventyConfig.addPassthroughCopy("src/assets/js");
-  eleventyConfig.addPassthroughCopy("src/assets/css");
-  eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
-  eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "favicon.ico" });
-
-  // ─────────────────────────────────────────────
-  // Watch
-  // ─────────────────────────────────────────────
-  eleventyConfig.addWatchTarget("src/assets/css/");
-  eleventyConfig.addWatchTarget("src/assets/js/");
-
-  // ─────────────────────────────────────────────
-  // Collections
-  // ─────────────────────────────────────────────
-  const isProd = process.env.NODE_ENV === "production";
-
-  eleventyConfig.addCollection("posts", (collectionApi) =>
-    collectionApi
-      .getFilteredByGlob("src/content/blog/**/*.md")
-      .filter((item) => !isProd || !item.data.draft)
-      .sort((a, b) => b.date - a.date)
-  );
-
-  eleventyConfig.addCollection("projects", (collectionApi) =>
-    collectionApi
-      .getFilteredByGlob("src/content/projects/**/*.md")
-      .filter((item) => !isProd || !item.data.draft)
-      .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
-  );
-
-  eleventyConfig.addCollection("notes", (collectionApi) =>
-    collectionApi
-      .getFilteredByGlob("src/content/notes/**/*.md")
-      .filter((item) => !isProd || !item.data.draft)
-      .sort((a, b) => b.date - a.date)
-  );
-
-  eleventyConfig.addCollection("tagList", (collectionApi) => {
-    const tagSet = new Set();
-
-    [
-      ...collectionApi.getFilteredByGlob("src/content/blog/**/*.md"),
-      ...collectionApi.getFilteredByGlob("src/content/notes/**/*.md"),
-    ]
-      .filter((item) => !isProd || !item.data.draft)
-      .forEach((item) => {
-        (item.data.tags || []).forEach((tag) => {
-          if (!["post", "posts", "all"].includes(tag)) {
-            tagSet.add(tag);
-          }
-        });
-      });
-
-    return [...tagSet].sort();
-  });
-
-  // "entries" — le flux unique du labo : articles + notes + projets
-  // mélangés chronologiquement. C'est la collection qui matérialise
-  // concrètement le concept de journal (homepage, page labo, pages domaine).
-  eleventyConfig.addCollection("entries", (collectionApi) => {
-    const tag = (items, entryType) =>
-      items
-        .filter((item) => !isProd || !item.data.draft)
-        .map((item) => {
-          item.data.entryType = entryType;
-          return item;
-        });
-
-    const posts = tag(
-      collectionApi.getFilteredByGlob("src/content/blog/**/*.md"),
-      "article"
-    );
-    const notes = tag(
-      collectionApi.getFilteredByGlob("src/content/notes/**/*.md"),
-      "note"
-    );
-    const projects = tag(
-      collectionApi.getFilteredByGlob("src/content/projects/**/*.md"),
-      "projet"
-    );
-
-    return [...posts, ...notes, ...projects].sort((a, b) => b.date - a.date);
-  });
-
-  // "domainStats" — comptage réel par domaine (articles/notes/projets),
-  // utilisé par le panneau de navigation et la répartition de la homepage.
-  // Une seule fonction de calcul, une seule source de vérité (domains.json).
-  eleventyConfig.addCollection("domainStats", (collectionApi) => {
-    const filterLive = (items) =>
-      items.filter((item) => !isProd || !item.data.draft);
-
-    const posts = filterLive(
-      collectionApi.getFilteredByGlob("src/content/blog/**/*.md")
-    );
-    const notes = filterLive(
-      collectionApi.getFilteredByGlob("src/content/notes/**/*.md")
-    );
-    const projects = filterLive(
-      collectionApi.getFilteredByGlob("src/content/projects/**/*.md")
-    );
-
-    const stats = domainsData.map((domain) => {
-      const articles = posts.filter((p) => p.data.domain === domain.id).length;
-      const noteCount = notes.filter((p) => p.data.domain === domain.id).length;
-      const projectCount = projects.filter((p) => p.data.domain === domain.id).length;
-
-      return {
-        ...domain,
-        articles,
-        notes: noteCount,
-        projects: projectCount,
-        total: articles + noteCount + projectCount,
-      };
-    });
-
-    const maxTotal = Math.max(1, ...stats.map((s) => s.total));
-
-    return stats.map((s) => ({
-      ...s,
-      pct: s.total > 0 ? Math.max(6, Math.round((s.total / maxTotal) * 100)) : 0,
-    }));
-  });
-
-  // ─────────────────────────────────────────────
-  // Filters
-  // ─────────────────────────────────────────────
-  eleventyConfig.addFilter("readingTime", (content) => {
-    const wordsPerMinute = 200;
-    const words = (content || "").split(/\s+/g).length;
-    return Math.max(1, Math.ceil(words / wordsPerMinute));
-  });
-
-  eleventyConfig.addFilter("readableDate", (date, format, zone) => {
-    return DateTime.fromJSDate(date, { zone: zone || "utc" }).toFormat(
-      format || "dd LLLL yyyy"
-    );
-  });
-
-  eleventyConfig.addFilter("htmlDateString", (date) =>
-    DateTime.fromJSDate(date, { zone: "utc" }).toFormat("yyyy-LL-dd")
-  );
-
-  eleventyConfig.addFilter("isoDate", (date) =>
-    DateTime.fromJSDate(date, { zone: "utc" }).toISO()
-  );
-
-  eleventyConfig.addFilter("year", () => new Date().getFullYear());
-
-  eleventyConfig.addFilter("limit", (arr, limit) => arr.slice(0, limit));
-
-  eleventyConfig.addFilter("exclude", (arr, item) =>
-    (arr || []).filter((i) => i !== item)
-  );
-
-  eleventyConfig.addFilter("where", (arr, key, value) =>
-    (arr || []).filter((item) => {
-      const actual = key.split(".").reduce((obj, k) => (obj == null ? obj : obj[k]), item);
-      return actual === value;
-    })
-  );
-
-  // Pour les champs tableau (ex: tags) — retient les items dont le tableau contient la valeur
-  eleventyConfig.addFilter("whereContains", (arr, key, value) =>
-    (arr || []).filter((item) => {
-      const actual = key.split(".").reduce((obj, k) => (obj == null ? obj : obj[k]), item);
-      return Array.isArray(actual) && actual.includes(value);
-    })
-  );
-
-  // Valeurs distinctes d'un champ, dans l'ordre d'apparition — ex: {{ miniatures | unique("marque") }}
-  eleventyConfig.addFilter("unique", (arr, key) => {
-    const seen = new Set();
-    const out = [];
-    (arr || []).forEach((item) => {
-      const value = key ? item[key] : item;
-      if (value && !seen.has(value)) {
-        seen.add(value);
-        out.push(value);
+  eleventyConfig.addPlugin(syntaxHighlight, { preAttributes: { tabindex: 0 } });
+  eleventyConfig.amendLibrary("md", (md) => {
+    md.set({ linkify: true });
+    // Listes de tâches « - [x] fait » / « - [ ] à faire » (syntaxe GFM, absente de markdown-it)
+    // taches:debut
+    md.core.ruler.after("inline", "taches", (state) => {
+      const t = state.tokens;
+      for (let i = 2; i < t.length; i++) {
+        if (t[i].type !== "inline" || t[i - 1].type !== "paragraph_open" || t[i - 2].type !== "list_item_open") continue;
+        const m = t[i].content.match(/^\[([ xX])\] /);
+        if (!m) continue;
+        t[i].content = t[i].content.slice(4);
+        let reste = 4; // retire « [x] » des premiers jetons texte
+        for (const c of t[i].children) {
+          if (reste <= 0 || c.type !== "text") break;
+          const n = Math.min(reste, c.content.length);
+          c.content = c.content.slice(n);
+          reste -= n;
+        }
+        t[i - 2].attrJoin("class", m[1] === " " ? "tache" : "tache tache--faite");
       }
     });
-    return out;
+    // taches:fin
   });
 
-  eleventyConfig.addFilter("slugify", (str = "") =>
-    str
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "")
-  );
+  // Tout ce qui est dans src/public est copié tel quel à la racine du site.
+  eleventyConfig.addPassthroughCopy({ "src/public": "/" });
 
-  eleventyConfig.addFilter("absoluteUrl", (url, base) => {
-    try {
-      return new URL(url, base).href;
-    } catch {
-      return url;
-    }
-  });
-
-  // Remplace l'ancien "relatedPosts" (limité à la collection posts) :
-  // travaille sur "entries" (articles + notes + projets) et pondère
-  // le domaine partagé en plus des tags partagés.
-  eleventyConfig.addFilter("relatedEntries", function (item, entries, limit = 3) {
-    if (!item || !entries) return [];
-
-    const tags = item.data?.tags || [];
-    const domain = item.data?.domain;
-
-    return entries
-      .filter((e) => e && e.url && e.url !== item.url && !e.data?.draft)
-      .map((e) => {
-        const eTags = e.data?.tags || [];
-        const sharedTags = eTags.filter((t) => tags.includes(t)).length;
-        const domainMatch = domain && e.data?.domain === domain ? 1 : 0;
-
-        return { entry: e, score: sharedTags * 2 + domainMatch };
-      })
-      .filter((x) => x.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, limit)
-      .map((x) => x.entry);
-  });
-
-  // Navigation précédent/suivant au sein du flux "entries" — remplace
-  // previousPost/nextPost qui n'étaient en réalité jamais renseignés
-  // nulle part dans le code existant (variables toujours vides).
-  eleventyConfig.addFilter("previousEntry", (item, entries) => {
-    if (!item || !entries) return null;
-    const idx = entries.findIndex((e) => e.url === item.url);
-    if (idx === -1 || idx === entries.length - 1) return null;
-    return entries[idx + 1];
-  });
-
-  eleventyConfig.addFilter("nextEntry", (item, entries) => {
-    if (!item || !entries) return null;
-    const idx = entries.findIndex((e) => e.url === item.url);
-    if (idx <= 0) return null;
-    return entries[idx - 1];
-  });
-
-  // Numéro de spécimen — stable dans le temps (basé sur l'ordre chronologique
-  // réel, pas sur la position dans une sous-liste filtrée). La plus ancienne
-  // entrée du labo porte le №1.
-  eleventyConfig.addFilter("entryId", (item, entries) => {
-    if (!item || !entries) return null;
-    const idx = entries.findIndex((e) => e.url === item.url);
-    if (idx === -1) return null;
-    return entries.length - idx;
-  });
-
-  eleventyConfig.addFilter("entryTypeGlyph", (entryType) => {
-    const glyphs = { article: "▮", note: "▪", projet: "▲" };
-    return glyphs[entryType] || "•";
-  });
-
-  // "labStats" — les chiffres du labo lui-même : combien d'entrées, depuis
-  // quand, combien de domaines actifs. Sert la homepage et le header —
-  // le site se documente lui-même, cohérent avec le concept de labo.
-  eleventyConfig.addCollection("labStats", (collectionApi) => {
-    const filterLive = (items) => items.filter((i) => !isProd || !i.data.draft);
-    const posts = filterLive(collectionApi.getFilteredByGlob("src/content/blog/**/*.md"));
-    const notes = filterLive(collectionApi.getFilteredByGlob("src/content/notes/**/*.md"));
-    const projects = filterLive(collectionApi.getFilteredByGlob("src/content/projects/**/*.md"));
-    const all = [...posts, ...notes, ...projects];
-
-    const years = all.map((i) => i.date.getFullYear()).filter(Boolean);
-    const domainsActive = new Set(all.map((i) => i.data.domain).filter(Boolean));
-    const activeProjects = projects.filter((p) => p.data.status === "en-cours");
-
-    return {
-      totalEntries: all.length,
-      totalArticles: posts.length,
-      totalNotes: notes.length,
-      totalProjects: projects.length,
-      activeProjectsCount: activeProjects.length,
-      domainsActiveCount: domainsActive.size,
-      sinceYear: years.length ? Math.min(...years) : new Date().getFullYear(),
+  // Champs obligatoires + brouillons (visibles en dev, exclus du build).
+  eleventyConfig.addPreprocessor("contenu", "md", (data) => {
+    const fichier = data.page.inputPath;
+    const exiger = (...champs) => {
+      const manquants = champs.filter((c) => !data[c]);
+      if (manquants.length) {
+        throw new Error(`${fichier} : champ(s) obligatoire(s) manquant(s) : ${manquants.join(", ")}`);
+      }
     };
+    if (fichier.includes("/contenu/journal/")) exiger("title", "date");
+    if (fichier.includes("/contenu/projets/")) exiger("title", "description");
+    if (production && data.draft) return false;
   });
 
-  // Sommaire — lit les ancres déjà posées par markdown-it-anchor (id sur
-  // H2/H3/H4) plutôt que de reparser le Markdown. Une seule source pour
-  // les ancres : le rendu HTML final.
-  eleventyConfig.addFilter("extractHeadings", (html) => {
-    if (!html) return [];
-    const regex = /<h([23])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g;
-    const headings = [];
-    let match;
-
-    while ((match = regex.exec(html)) !== null) {
-      const text = match[3]
-        .replace(/<a[^>]*class="header-anchor"[\s\S]*?<\/a>/g, "")
-        .replace(/<[^>]+>/g, "")
-        .trim();
-
-      if (text) {
-        headings.push({ level: parseInt(match[1], 10), id: match[2], text });
-      }
-    }
-
-    return headings;
-  });
-
-  // Articles liés de la marge — strictement même domaine, contrairement à
-  // relatedEntries (footer) qui pondère par tags partagés. Deux besoins
-  // différents : rester dans le domaine vs découverte thématique large.
-  eleventyConfig.addFilter("sameDomainEntries", (item, entries, limit = 4) => {
-    if (!item || !entries || !item.data?.domain) return [];
-
-    return entries
-      .filter(
-        (e) =>
-          e &&
-          e.url &&
-          e.url !== item.url &&
-          !e.data?.draft &&
-          e.data?.domain === item.data.domain
-      )
-      .slice(0, limit);
-  });
-
-  // Lookup domaine — source unique domains.json (règle de cohérence n°4)
-  eleventyConfig.addFilter("domainInfo", (id) =>
-    domainsData.find((d) => d.id === id) || null
+  // Journal : du plus récent au plus ancien.
+  eleventyConfig.addCollection("journal", (api) =>
+    api.getFilteredByGlob("src/contenu/journal/*.md").sort((a, b) => b.date - a.date)
   );
 
-  // Ligne d'état du header — fonctionnelle, calculée depuis la vraie
-  // date de la dernière entrée. Remplace l'ancien compteur "142 entrées".
-  eleventyConfig.addFilter("timeAgo", (date) => {
-    if (!date) return "";
+  // Projets : année décroissante, puis ordre alphabétique.
+  eleventyConfig.addCollection("projets", (api) =>
+    api
+      .getFilteredByGlob("src/contenu/projets/*.md")
+      .sort(
+        (a, b) =>
+          (b.data.year || 0) - (a.data.year || 0) ||
+          a.data.title.localeCompare(b.data.title, "fr")
+      )
+  );
 
-    const dt = DateTime.fromJSDate(date, { zone: "utc" });
-    const days = Math.floor(DateTime.utc().diff(dt, "days").days);
-
-    if (days <= 0) return "aujourd'hui";
-    if (days === 1) return "hier";
-    if (days < 30) return `il y a ${days} jours`;
-
-    const months = Math.floor(days / 30);
-    if (months < 12) return `il y a ${months} mois`;
-
-    const years = Math.floor(months / 12);
-    return `il y a ${years} an${years > 1 ? "s" : ""}`;
-  });
-
-  // ─────────────────────────────────────────────
-  // Shortcodes
-  // ─────────────────────────────────────────────
-  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
-
-  eleventyConfig.addPairedShortcode("callout", (content, type = "info") => {
-    return `<div class="callout callout--${type}">${md.render(content)}</div>`;
-  });
-
-  eleventyConfig.addShortcode("image", (src, alt = "", caption = "") => {
-    return `
-      <figure class="post-figure">
-        <img src="${src}" alt="${alt}" loading="lazy" decoding="async">
-        ${caption ? `<figcaption>${caption}</figcaption>` : ""}
-      </figure>
-    `;
-  });
-
-  // ─────────────────────────────────────────────
-  // HTML minify (prod only)
-  // ─────────────────────────────────────────────
-  if (isProd) {
-    const { minify } = require("html-minifier-terser");
-
-    eleventyConfig.addTransform("htmlmin", async function (content) {
-      if ((this.page.outputPath || "").endsWith(".html")) {
-        return await minify(content, {
-          useShortDoctype: true,
-          removeComments: true,
-          collapseWhitespace: true,
-          minifyCSS: true,
-          minifyJS: true,
-        });
+  // Tags du journal : [{ nom, slug, entrees }], triés par nom.
+  eleventyConfig.addCollection("tagList", (api) => {
+    const slugify = eleventyConfig.getFilter("slugify");
+    const parTag = new Map();
+    for (const entree of api.getFilteredByGlob("src/contenu/journal/*.md").sort((a, b) => b.date - a.date)) {
+      for (const nom of [].concat(entree.data.tags ?? [])) {
+        if (!parTag.has(nom)) parTag.set(nom, []);
+        parTag.get(nom).push(entree);
       }
-      return content;
-    });
-  }
+    }
+    return [...parTag]
+      .map(([nom, entrees]) => ({ nom, slug: slugify(nom), entrees }))
+      .sort((a, b) => a.nom.localeCompare(b.nom, "fr"));
+  });
 
-  // ─────────────────────────────────────────────
-  // Base config
-  // ─────────────────────────────────────────────
+  eleventyConfig.addFilter("dateLongue", (date) => dateLongue.format(date));
+  eleventyConfig.addFilter("dateIso", (date) => date.toISOString().slice(0, 10));
+  eleventyConfig.addFilter("statut", (cle) => STATUTS[cle] ?? cle);
+  eleventyConfig.addFilter("limite", (liste, n) => liste.slice(0, n));
+  eleventyConfig.addFilter("misEnAvant", (liste) => liste.filter((p) => p.data.featured));
+  eleventyConfig.addGlobalData("annee", () => new Date().getFullYear());
+
+  eleventyConfig.on("eleventy.before", () => {
+    if (production && site.url.includes("example.com")) {
+      console.warn('[!] src/donnees/site.json : "url" est encore le texte provisoire (example.com). À remplacer avant la mise en ligne.');
+    }
+  });
+
   return {
-    templateFormats: ["md", "njk", "html", "liquid"],
-    markdownTemplateEngine: "njk",
-    htmlTemplateEngine: "njk",
-
     dir: {
       input: "src",
       output: "_site",
-      includes: "_includes",
-      layouts: "_includes/layouts",
-      data: "_data",
+      includes: "gabarits",
+      layouts: "gabarits",
+      data: "donnees",
     },
-
-    pathPrefix: "/",
   };
-};
+}

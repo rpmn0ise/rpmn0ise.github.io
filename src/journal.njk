@@ -1,0 +1,27 @@
+---
+layout: base.njk
+title: Journal
+description: Articles et notes.
+permalink: /journal/
+---
+<header class="entete-contenu">
+  <h1>Journal</h1>
+</header>
+
+{#- Seuls les tags utilisés au moins 2 fois sont listés ici ; les autres restent accessibles depuis leurs articles. #}
+{%- if collections.tagList.length %}
+<ul class="tags" aria-label="Tags">
+  {%- for tag in collections.tagList %}
+  {%- if tag.entrees.length > 1 %}
+  <li><a href="/tags/{{ tag.slug }}/">#{{ tag.nom }}</a></li>
+  {%- endif %}
+  {%- endfor %}
+</ul>
+{%- endif %}
+
+{%- if collections.journal.length %}
+{%- set entrees = collections.journal %}
+{% include "liste-journal.njk" %}
+{%- else %}
+<p class="vide">Rien de publié pour l'instant.</p>
+{%- endif %}
