@@ -81,8 +81,11 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: 
 
 ::selection { background: var(--texte); color: var(--fond); }
 
+html { overflow-x: clip; }
+
 body {
   margin: 0;
+  overflow-x: clip;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -146,12 +149,12 @@ img { max-width: 100%; height: auto; }
 .evitement:focus { left: 0.5rem; }
 
 /* Libellés en petites capitales espacées */
-.entete nav a, .theme, .suite, .section-titre, .liens-projet, .pied__etiquette, .pied__bas a, .fiche dt, .hero__index { margin-top: clamp(2rem, 5vw, 3.5rem); }
-
-.hero__defiler {
+.hero__defiler, .section-titre, .pied__etiquette, .fiche dt {
+  font-family: var(--ui);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.12em;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
@@ -222,8 +225,8 @@ img { max-width: 100%; height: auto; }
   margin-top: 1rem;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2rem, 7.4vw, 5.25rem);
-  letter-spacing: -0.03em;
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
+  letter-spacing: -0.02em;
   line-height: 1;
   text-decoration: none;
   overflow-wrap: anywhere;
@@ -247,8 +250,8 @@ img { max-width: 100%; height: auto; }
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -30% -25% -10% -25%;
-  background: radial-gradient(ellipse 45% 42% at 28% 42%, color-mix(in srgb, var(--accent) var(--halo), transparent), transparent 72%);
+  inset: -40% -50%;
+  background: radial-gradient(ellipse 28% 36% at 36% 48%, color-mix(in srgb, var(--accent) var(--halo), transparent), transparent);
   pointer-events: none;
 }
 
@@ -267,6 +270,13 @@ img { max-width: 100%; height: auto; }
   font-size: clamp(1.6rem, 4vw, 2.5rem);
   line-height: 1.2;
   letter-spacing: -0.01em;
+  color: var(--discret);
+}
+
+.hero__index {
+  margin-top: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
   color: var(--discret);
 }
 
