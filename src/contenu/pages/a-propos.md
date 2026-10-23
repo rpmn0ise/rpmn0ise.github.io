@@ -1,6 +1,9 @@
 ---
 title: À propos
 description: Qui je suis et ce que je fais.
+# Photo ou avatar (carré, 480 px minimum) : déposer le fichier dans src/public/images/ puis retirer les # ci-dessous.
+# portrait: /images/portrait.jpg
+# portraitAlt: "Description courte de l'image"
 ---
 
 Je suis rpmn0ise. Je construis des projets autour de sujets qui m'intéressent, sans me limiter à un seul domaine. Développement web, simulation automobile, hard music, informatique : je passe de l'un à l'autre selon les idées qui me viennent et les problèmes que j'ai envie de résoudre.

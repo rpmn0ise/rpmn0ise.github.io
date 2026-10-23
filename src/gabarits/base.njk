@@ -27,13 +27,13 @@
   {%- endif %}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="alternate" type="application/atom+xml" title="{{ site.titre }}" href="/feed.xml">
-  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}d.dataset.theme=t})()</script>
   <link rel="preload" href="/fonts/instrument-serif.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="/fonts/instrument-sans-400.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
   <script src="/js/theme.js" defer></script>
 </head>
-<body>
+<body id="top">
   <a class="evitement" href="#contenu">Aller au contenu</a>
 
   <header class="entete">
@@ -56,13 +56,16 @@
   </main>
 
   <footer class="pied">
-    <div class="conteneur">
-      <p class="pied__etiquette">Contact</p>
-      <a class="pied__cta" href="mailto:{{ site.auteur.email }}">{{ site.auteur.email }}</a>
-      <div class="pied__bas">
-        <span>© {{ annee }} {{ site.auteur.nom }}</span>
-        <a href="/feed.xml">Flux RSS</a>
-      </div>
+    <div class="conteneur pied__int">
+      <a class="pied__mail" href="mailto:{{ site.auteur.email }}">{{ site.auteur.email }}</a>
+      <ul class="pied__liens" aria-label="Liens">
+        {%- for lien in site.liens %}
+        <li><a href="{{ lien.url }}" rel="noopener">{{ lien.libelle }}</a></li>
+        {%- endfor %}
+        <li><a href="/feed.xml">RSS</a></li>
+      </ul>
+      <p class="pied__droit">© {{ annee }} {{ site.auteur.nom }}</p>
+      <a class="pied__haut" href="#top">Haut ↑</a>
     </div>
   </footer>
 </body>

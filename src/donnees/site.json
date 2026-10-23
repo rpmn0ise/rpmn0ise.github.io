@@ -24,5 +24,15 @@
       "libelle": "Contact",
       "url": "/contact/"
     }
+  ],
+  "liens": [
+    {
+      "libelle": "GitHub",
+      "url": "https://github.com/rpmn0ise"
+    },
+    {
+      "libelle": "YouTube",
+      "url": "https://www.youtube.com/@rpmn0ise_official"
+    }
   ]
 }

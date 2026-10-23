@@ -5,6 +5,9 @@ layout: base.njk
   <header class="entete-contenu">
     <h1>{{ title }}</h1>
   </header>
+  {%- if portrait %}
+  <figure class="portrait"><img src="{{ portrait }}" alt="{{ portraitAlt or '' }}" width="480" height="480" decoding="async"></figure>
+  {%- endif %}
   <div class="prose page__lead">
     {{ content | safe }}
   </div>

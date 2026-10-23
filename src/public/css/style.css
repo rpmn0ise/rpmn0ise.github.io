@@ -9,54 +9,8 @@
 @font-face { font-family: "Rpm Sans"; src: url("/fonts/instrument-sans-700.woff") format("woff"); font-weight: 700; font-display: swap; }
 @font-face { font-family: "Rpm Mono"; src: url("/fonts/geist-mono-400.woff") format("woff"); font-weight: 400; font-display: swap; }
 
-/* ── Variables : thème clair (défaut) ───────────────────────── */
+/* ── Variables : thème sombre (défaut) ──────────────────────── */
 :root {
-  --fond: #fafafa;
-  --fond-code: #f0f0f2;
-  --texte: #0b0b0c;
-  --discret: #5d5d63;
-  --filet: #dcdcdf;
-  --accent: #1a3cff;
-  --halo: 9%;
-  --grain: 0.05;
-  --grain-inv: 0;
-  --code-chaine: #1f6b3a;
-  --code-nombre: #8a5a00;
-  --code-fonction: #1d4f91;
-
-  --titre: "Rpm Titre", "Arial Black", "Helvetica Neue", Arial, system-ui, sans-serif;           /* Bricolage Grotesque : titres de projets, intertitres */
-  --serif: "Rpm Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;                   /* Instrument Serif : nom, grands titres, citations */
-  --ui: "Rpm Sans", "Helvetica Neue", Arial, system-ui, sans-serif;                               /* Instrument Sans : texte courant et libellés */
-  --mono: "Rpm Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;       /* Geist Mono : dates, métadonnées */
-
-  --largeur: 64rem;
-  --mesure: 40rem;
-  --marge: clamp(1.25rem, 5vw, 3rem);
-
-  color-scheme: light;
-}
-
-/* ── Thème sombre : préférence système, sauf choix manuel « clair » ── */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --fond: #0a0a0b;
-    --fond-code: #131316;
-    --texte: #f4f4f5;
-    --discret: #9b9ba2;
-    --filet: #26262a;
-    --accent: #8fa3ff;
-    --halo: 20%;
-    --grain: 0.06;
-    --grain-inv: 1;
-    --code-chaine: #8fd9a8;
-    --code-nombre: #f0c674;
-    --code-fonction: #8fb8ff;
-    color-scheme: dark;
-  }
-}
-
-/* ── Thème sombre : choix manuel ───────────────────────────── */
-:root[data-theme="dark"] {
   --fond: #0a0a0b;
   --fond-code: #131316;
   --texte: #f4f4f5;
@@ -70,6 +24,30 @@
   --code-nombre: #f0c674;
   --code-fonction: #8fb8ff;
   color-scheme: dark;
+  --titre: "Rpm Titre", "Arial Black", "Helvetica Neue", Arial, system-ui, sans-serif;           /* Bricolage Grotesque : titres de projets, intertitres */
+  --serif: "Rpm Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;                   /* Instrument Serif : nom, grands titres, citations */
+  --ui: "Rpm Sans", "Helvetica Neue", Arial, system-ui, sans-serif;                               /* Instrument Sans : texte courant et libellés */
+  --mono: "Rpm Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;       /* Geist Mono : dates, métadonnées */
+  --largeur: 64rem;
+  --mesure: 40rem;
+  --marge: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ── Thème clair : choix manuel ─────────────────────────────── */
+:root[data-theme="light"] {
+  --fond: #fafafa;
+  --fond-code: #f0f0f2;
+  --texte: #0b0b0c;
+  --discret: #5d5d63;
+  --filet: #dcdcdf;
+  --accent: #1a3cff;
+  --halo: 9%;
+  --grain: 0.05;
+  --grain-inv: 0;
+  --code-chaine: #1f6b3a;
+  --code-nombre: #8a5a00;
+  --code-fonction: #1d4f91;
+  color-scheme: light;
 }
 
 /* ── Base ──────────────────────────────────────────────────── */
@@ -149,7 +127,7 @@ img { max-width: 100%; height: auto; }
 .evitement:focus { left: 0.5rem; }
 
 /* Libellés en petites capitales espacées */
-.hero__defiler, .section-titre, .pied__etiquette, .fiche dt {
+.hero__defiler, .section-titre, .fiche dt {
   font-family: var(--ui);
   font-size: 0.6875rem;
   font-weight: 700;
@@ -166,6 +144,7 @@ img { max-width: 100%; height: auto; }
   grid-template-columns: 1fr auto;
   grid-template-areas: "marque theme" "nav nav";
   align-items: center;
+  row-gap: 0.25rem;
   padding-block: 0.75rem 0.25rem;
 }
 
@@ -177,71 +156,65 @@ img { max-width: 100%; height: auto; }
   min-height: 2.75rem;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 1.7rem;
+  font-size: 1.75rem;
+  line-height: 1;
   letter-spacing: -0.02em;
   text-decoration: none;
 }
 
 .entete nav { grid-area: nav; }
-
 .entete ul { display: flex; flex-wrap: wrap; gap: 0 1.5rem; margin: 0; padding: 0; list-style: none; }
 
 .entete nav a {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
+  font-size: 0.9375rem;
+  line-height: 1;
   color: var(--discret);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  box-shadow: inset 0 -1px 0 transparent;
+  transition: color 0.15s, box-shadow 0.15s;
 }
 .entete nav a:hover { color: var(--texte); }
-.entete nav a[aria-current="page"] { color: var(--texte); border-bottom-color: var(--texte); }
+.entete nav a[aria-current="page"] { color: var(--texte); box-shadow: inset 0 -1px 0 var(--texte); }
 
 .theme {
   grid-area: theme;
-  min-height: 2.5rem;
+  height: 2.25rem;
   padding: 0 1rem;
   background: none;
   border: 1px solid var(--filet);
   border-radius: 999px;
   color: var(--texte);
-  font-family: inherit;
+  font: inherit;
+  font-size: 0.8125rem;
+  line-height: 1;
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s;
 }
 .theme:hover { color: var(--accent); border-color: currentColor; }
 
 @media (min-width: 40rem) {
-  .entete__int { grid-template-columns: auto 1fr auto; grid-template-areas: "marque nav theme"; column-gap: 3rem; padding-block: 1.25rem; }
-  .entete ul { gap: 0 2rem; }
+  .entete__int { grid-template-columns: 1fr auto auto; grid-template-areas: "marque nav theme"; column-gap: 2rem; row-gap: 0; padding-block: 1.25rem; }
+  .entete ul { gap: 0 1.75rem; }
   main { padding-block: 2.5rem 7rem; }
 }
 
-/* ── Pied de page ──────────────────────────────────────────── */
-.pied { padding-block: clamp(3.5rem, 10vw, 6.5rem) 2rem; border-top: 1px solid var(--filet); }
-.pied__etiquette { color: var(--discret); }
-.pied__cta {
-  display: inline-block;
-  margin-top: 1rem;
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(1.5rem, 4vw, 2.75rem);
-  letter-spacing: -0.02em;
-  line-height: 1;
-  text-decoration: none;
-  overflow-wrap: anywhere;
+/* ── Pied de page : une seule rangée ───────────────────────── */
+.pied { margin-top: 2rem; padding-block: 1.5rem; border-top: 1px solid var(--filet); font-size: 0.875rem; color: var(--discret); }
+.pied__int { display: grid; grid-template-columns: 1fr auto; gap: 0 1.5rem; align-items: center; justify-items: start; }
+.pied__mail, .pied__liens { grid-column: 1 / -1; }
+.pied__haut { justify-self: end; }
+.pied a { display: inline-flex; align-items: center; min-height: 2.5rem; color: inherit; text-decoration: none; transition: color 0.15s; }
+.pied a:hover { color: var(--accent); }
+.pied__mail { color: var(--texte); font-size: 0.9375rem; overflow-wrap: anywhere; }
+.pied__liens { display: flex; flex-wrap: wrap; gap: 0 1.25rem; margin: 0; padding: 0; list-style: none; }
+.pied__droit { margin: 0; min-height: 2.5rem; display: inline-flex; align-items: center; }
+@media (min-width: 48rem) {
+  .pied__int { grid-template-columns: auto 1fr auto auto; gap: 0 2rem; }
+  .pied__mail, .pied__liens { grid-column: auto; }
 }
-.pied__cta:hover { color: var(--accent); }
-.pied__bas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.5rem 1.5rem;
-  margin-top: clamp(2.5rem, 8vw, 5rem);
-  font-size: 0.8125rem;
-  color: var(--discret);
-}
-.pied__bas a { text-decoration: none; }
 
 /* ── Accueil ───────────────────────────────────────────────── */
 .hero { position: relative; isolation: isolate; padding-block: clamp(3.5rem, 17vh, 9.5rem) clamp(4rem, 14vh, 8rem); }
@@ -323,13 +296,13 @@ img { max-width: 100%; height: auto; }
 .meta a { color: inherit; }
 
 /* Projets : grandes lignes numérotées, ligne entière cliquable */
-.liste--projets .ligne { position: relative; padding-block: clamp(1.75rem, 4.5vw, 2.75rem); }
+.liste--projets .ligne { --t: clamp(1.9rem, 5.4vw, 3.4rem); position: relative; padding-block: clamp(1.75rem, 4.5vw, 2.75rem); }
 .ligne__num { font-family: var(--mono); font-size: 0.8125rem; color: var(--discret); transition: color 0.2s; }
 
 .liste--projets .ligne__titre {
   font-family: var(--titre);
   font-weight: 700;
-  font-size: clamp(1.9rem, 5.4vw, 3.4rem);
+  font-size: var(--t);
   letter-spacing: -0.04em;
   line-height: 1.04;
   transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.15s;
@@ -363,8 +336,9 @@ img { max-width: 100%; height: auto; }
 .liste--journal .ligne__titre:hover { color: var(--accent); }
 
 @media (min-width: 40rem) {
-  .liste--projets .ligne { grid-template-columns: 4.5rem 1fr auto; gap: 0 1.5rem; align-items: baseline; }
-  .ligne__etat { flex-direction: column; align-items: flex-end; margin-top: 0; text-align: right; }
+  .liste--projets .ligne { grid-template-columns: 4.5rem 1fr auto; gap: 0 1.5rem; align-items: start; }
+  .liste--projets .ligne__num, .liste--projets .ligne__etat { margin-top: calc(var(--t) * 0.52 - 0.65rem); }
+  .ligne__etat { flex-direction: column; align-items: flex-end; text-align: right; }
   .liste--journal .ligne { grid-template-columns: 9rem 1fr; gap: 1rem; }
 }
 
@@ -389,7 +363,7 @@ img { max-width: 100%; height: auto; }
 .fiche dd a { display: inline-block; margin-right: 1rem; }
 
 /* Pages libres : titre à gauche, texte à droite sur grand écran */
-.page__lead > p:first-child { font-family: var(--serif); font-size: clamp(1.75rem, 4vw, 2.6rem); line-height: 1.15; letter-spacing: -0.015em; }
+.page__lead > p:first-child { font-family: var(--serif); font-size: clamp(1.5rem, 3.2vw, 2.05rem); line-height: 1.25; letter-spacing: -0.015em; }
 @media (min-width: 56rem) {
   .page { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, var(--mesure)); gap: 0 clamp(3rem, 8vw, 6rem); align-items: start; }
   .page .entete-contenu { position: sticky; top: 2rem; margin: 0; }
@@ -446,4 +420,20 @@ pre code { background: none; padding: 0; font-size: inherit; }
 /* ── Mouvement réduit ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* ── Portrait (page À propos) ──────────────────────────────── */
+.portrait { margin: 0 0 2.5rem; }
+.portrait img { display: block; width: min(100%, 15rem); aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; background: var(--fond-code); }
+
+/* ── Apparition au défilement (sans JS, ignorée si non prise en charge) ── */
+@keyframes apparaitre { from { opacity: 0; transform: translateY(1.5rem); } }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .ligne, .bloc__tete, .fiche, .prose h2, .prose h3, .prose blockquote, .prose pre, .prose figure {
+      animation: apparaitre linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
 }

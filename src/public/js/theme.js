@@ -1,11 +1,10 @@
-// Bascule clair/sombre. Sans ce script, le site suit la préférence du système.
+// Bascule clair/sombre. Au premier passage, le thème suit celui du système (sombre à défaut) ; le choix est ensuite mémorisé.
 (() => {
   const racine = document.documentElement;
   const bouton = document.querySelector("[data-theme-toggle]");
   if (!bouton) return;
 
-  const sysSombre = window.matchMedia("(prefers-color-scheme: dark)");
-  const actuel = () => racine.dataset.theme || (sysSombre.matches ? "dark" : "light");
+  const actuel = () => (racine.dataset.theme === "light" ? "light" : "dark");
 
   function afficher() {
     const cible = actuel() === "dark" ? "clair" : "sombre";
@@ -21,6 +20,5 @@
     afficher();
   });
 
-  sysSombre.addEventListener("change", afficher);
   afficher();
 })();

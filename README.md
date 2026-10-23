@@ -76,7 +76,7 @@ Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-h
 
 ## Thème clair et sombre
 
-Les couleurs sont des variables CSS au début de `style.css` (une palette claire, deux fois la palette sombre : préférence système et choix manuel). Sans JavaScript, le site suit le thème du système. Avec JavaScript, le bouton du menu bascule et mémorise le choix dans `localStorage` (aucun cookie).
+Les couleurs sont des variables CSS au début de `style.css` (palette sombre par défaut, palette claire via `data-theme="light"`). Un petit script dans `<head>` applique au premier passage le thème du système, puis le bouton du menu bascule et mémorise le choix dans `localStorage` (aucun cookie). Sans JavaScript, le site reste en sombre.
 
 ## Déploiement sur Cloudflare Pages
 
