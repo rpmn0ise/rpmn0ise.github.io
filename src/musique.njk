@@ -1,0 +1,51 @@
+---
+layout: base.njk
+title: Musique
+description: Ce que j'écoute en ce moment, mes dernières écoutes et mes extraits sur SoundCloud.
+permalink: /musique/
+avecMusique: true
+---
+<header class="entete-contenu">
+  <h1>Musique</h1>
+  <p class="chapo">Ce que j'écoute, en direct ou presque, et mes extraits sur SoundCloud.</p>
+</header>
+
+<section class="bloc">
+  <div class="bloc__tete">
+    <h2 class="section-titre">En ce moment</h2>
+    <a class="suite" href="{{ musique.lastfm.profil }}" rel="noopener">Profil Last.fm ↗</a>
+  </div>
+  {%- set grand = true %}{%- set nombre = 9 %}{%- set liste = true %}
+  {% include "ecoute.njk" %}
+  <p class="vide" data-ecoute-vide hidden>Rien à afficher pour l'instant. Last.fm n'a pas répondu.</p>
+  <noscript><p class="vide">L'indicateur d'écoute demande JavaScript. Mon profil est ici : <a href="{{ musique.lastfm.profil }}" rel="noopener">Last.fm</a>.</p></noscript>
+</section>
+
+<section class="bloc">
+  <div class="bloc__tete">
+    <h2 class="section-titre">SoundCloud</h2>
+  </div>
+  <a class="lien-grand" href="{{ musique.soundcloud }}" rel="noopener">
+    <span class="lien-grand__texte">Mes morceaux et extraits</span>
+    <span class="lien-grand__fleche" aria-hidden="true">↗</span>
+  </a>
+</section>
+
+{%- if musique.selection.length %}
+<section class="bloc">
+  <div class="bloc__tete">
+    <h2 class="section-titre">Sélection</h2>
+  </div>
+  <ul class="liste liste--journal">
+    {%- for m in musique.selection %}
+    <li class="ligne">
+      <p class="meta">{{ m.artiste }}</p>
+      <div class="ligne__corps">
+        {%- if m.url %}<a class="ligne__titre" href="{{ m.url }}" rel="noopener">{{ m.titre }}</a>{%- else %}<p class="ligne__titre">{{ m.titre }}</p>{%- endif %}
+        {%- if m.note %}<p class="ligne__desc">{{ m.note }}</p>{%- endif %}
+      </div>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}

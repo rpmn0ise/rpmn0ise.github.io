@@ -1,5 +1,6 @@
 ---
 layout: base.njk
+avecMusique: true
 ---
 <section class="hero">
   <h1 class="hero__nom">{{ site.titre }}</h1>
@@ -17,6 +18,30 @@ layout: base.njk
   {%- if aLaUne.length %}
   <a class="hero__defiler" href="#projets">↓ Projets</a>
   {%- endif %}
+</section>
+
+{%- set enCeMoment = maintenant.ecoute or maintenant.joue or maintenant.travaille %}
+<section class="maintenant" aria-label="En ce moment" data-maintenant{% if not enCeMoment %} hidden{% endif %}>
+  <div class="bloc__tete">
+    <h2 class="section-titre">En ce moment</h2>
+    <a class="suite" href="/musique/">Musique →</a>
+  </div>
+  <div class="maintenant__grille">
+    {%- set grand = false %}{%- set nombre = 1 %}{%- set liste = false %}
+    {% include "ecoute.njk" %}
+    {%- if maintenant.joue %}
+    <div class="maintenant__cellule">
+      <p class="etiquette">Joue à</p>
+      <p class="maintenant__texte">{{ maintenant.joue }}</p>
+    </div>
+    {%- endif %}
+    {%- if maintenant.travaille %}
+    <div class="maintenant__cellule">
+      <p class="etiquette">Travaille sur</p>
+      <p class="maintenant__texte">{{ maintenant.travaille }}</p>
+    </div>
+    {%- endif %}
+  </div>
 </section>
 
 {%- if aLaUne.length %}

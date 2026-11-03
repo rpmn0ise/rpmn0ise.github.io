@@ -17,6 +17,10 @@
       "url": "/journal/"
     },
     {
+      "libelle": "Musique",
+      "url": "/musique/"
+    },
+    {
       "libelle": "À propos",
       "url": "/a-propos/"
     },
@@ -33,6 +37,10 @@
     {
       "libelle": "YouTube",
       "url": "https://www.youtube.com/@rpmn0ise_official"
+    },
+    {
+      "libelle": "SoundCloud",
+      "url": "https://soundcloud.com/rpmn0ise"
     }
   ]
 }

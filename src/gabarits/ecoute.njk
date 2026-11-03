@@ -1,0 +1,15 @@
+{#- Indicateur d'écoute (Last.fm). Variables : grand (booléen), nombre (pistes demandées), liste (booléen).
+    Masqué tant que le script n'a rien reçu, sauf s'il y a une ligne « ecoute » manuelle dans maintenant.json. #}
+<div class="ecoute{% if grand %} ecoute--grand{% endif %}" data-ecoute data-utilisateur="{{ musique.lastfm.utilisateur }}" data-cle="{{ musique.lastfm.cle }}" data-nombre="{{ nombre or 1 }}"{% if not maintenant.ecoute %} hidden{% endif %}>
+  <div class="ecoute__piste" data-ecoute-piste>
+    {%- if maintenant.ecoute %}
+    <div class="ecoute__texte">
+      <p class="etiquette ecoute__statut">Écoute</p>
+      <p class="ecoute__titre">{{ maintenant.ecoute }}</p>
+    </div>
+    {%- endif %}
+  </div>
+  {%- if liste %}
+  <div class="ecoutes" data-ecoute-liste></div>
+  {%- endif %}
+</div>
