@@ -218,8 +218,12 @@ img { max-width: 100%; height: auto; }
 .pied__liens { display: flex; flex-wrap: wrap; gap: 0 1.25rem; margin: 0; padding: 0; list-style: none; }
 .pied__droit { margin: 0; min-height: 2.5rem; display: inline-flex; align-items: center; }
 @media (min-width: 48rem) {
-  .pied__int { grid-template-columns: auto 1fr auto auto; gap: 0 2rem; }
-  .pied__mail, .pied__liens { grid-column: auto; }
+  .pied__int { grid-template-columns: auto 1fr; gap: 0 2rem; }
+  .pied__mail, .pied__liens { grid-column: auto; grid-row: 1; }
+  .pied__liens { justify-self: end; justify-content: flex-end; }
+  .pied__droit, .pied__haut { grid-row: 2; }
+  .pied__droit { grid-column: 1; }
+  .pied__haut { grid-column: 2; }
 }
 
 /* ── Accueil ───────────────────────────────────────────────── */
@@ -407,9 +411,37 @@ a.ecoutes__titre:hover { color: var(--accent); }
   .ecoutes__liste li { grid-template-columns: 9rem 1fr; align-items: baseline; }
 }
 
+.bouton-plus {
+  margin-top: 1.25rem;
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  background: none;
+  border: 1px solid var(--filet);
+  border-radius: 999px;
+  color: var(--texte);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.bouton-plus:hover { color: var(--accent); border-color: currentColor; }
+.bouton-plus:disabled { opacity: 0.6; cursor: progress; }
+.bouton-plus[hidden], [data-classements-section][hidden] { display: none; }
+
+.classements { display: grid; gap: 2.5rem 4rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); align-items: start; }
+.classement__etiquette { margin-bottom: 0.75rem; color: var(--discret); }
+.classement__liste { margin: 0; padding: 0; list-style: none; }
+.classement__liste li { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 0 0.75rem; align-items: baseline; padding-block: 0.8rem; border-top: 1px solid var(--filet); }
+.classement__liste li:last-child { border-bottom: 1px solid var(--filet); }
+.classement__corps { display: flex; flex-wrap: wrap; gap: 0 0.6rem; align-items: baseline; min-width: 0; }
+.classement__nom { font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+a.classement__nom:hover { color: var(--accent); }
+.classement__artiste { color: var(--discret); }
+.classement__n { white-space: nowrap; }
+
 .lien-grand {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding-block: clamp(1.25rem, 3.5vw, 2rem);
@@ -417,6 +449,8 @@ a.ecoutes__titre:hover { color: var(--accent); }
   text-decoration: none;
   transition: color 0.15s;
 }
+.lien-grand__corps { display: grid; gap: 0.5rem; min-width: 0; }
+.lien-grand__sous { color: var(--discret); font-size: 1.0625rem; }
 .lien-grand__texte { font-family: var(--titre); font-weight: 700; font-size: clamp(1.6rem, 5vw, 2.75rem); letter-spacing: -0.04em; line-height: 1.05; }
 .lien-grand__fleche { color: var(--accent); font-size: clamp(1.25rem, 3vw, 1.75rem); transition: transform 0.25s; }
 .lien-grand:hover { color: var(--accent); }

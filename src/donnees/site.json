@@ -2,7 +2,7 @@
   "titre": "rpmn0ise",
   "description": "Projets, notes et articles de rpmn0ise.",
   "accroche": "Je construis des projets autour de sujets qui m'intéressent, sans me limiter à un seul domaine.",
-  "url": "https://example.com",
+  "url": "https://rpmn0ise.pages.dev/",
   "auteur": {
     "nom": "rpmn0ise",
     "email": "rpmn0ise@proton.me"
@@ -41,6 +41,14 @@
     {
       "libelle": "SoundCloud",
       "url": "https://soundcloud.com/rpmn0ise"
+    },
+    {
+      "libelle": "Discord Retour de Force",
+      "url": "https://discord.gg/XZuxq9hpTb"
+    },
+    {
+      "libelle": "Discord Hard Music FR",
+      "url": "https://discord.gg/AQBuVjqNxs"
     }
   ]
 }

@@ -35,7 +35,7 @@ src/
   index.njk journal.njk projets.njk musique.njk tags.njk  pages générées
   404.njk feed.njk sitemap.njk robots.txt.njk            pages techniques
 docs/modeles/             modèles à copier : article.md, projet.md
-docs/prompts/             prompts ChatGPT qui génèrent un article ou un projet avec le bon frontmatter
+docs/prompts/             prompts ChatGPT : article, projet, note courte (loisirs), avec le bon frontmatter
 ```
 
 Conventions : le **nom du fichier devient l'URL** (minuscules, sans accent, tirets). Les noms de champs sont ceux de la section suivante. Rien n'est dupliqué : titre et menu dans `site.json`, couleurs dans les variables du CSS.
@@ -44,7 +44,7 @@ Conventions : le **nom du fichier devient l'URL** (minuscules, sans accent, tire
 
 ### Ajouter un article ou une note
 
-0. Variante : coller `docs/prompts/prompt-article.md` dans ChatGPT avec tes notes, il renvoie le fichier complet.
+0. Variante : coller `docs/prompts/prompt-article.md` dans ChatGPT avec tes notes, il renvoie le fichier complet. Pour une note courte sur un loisir (jeu, audio, coup de cœur), utiliser `docs/prompts/prompt-note.md`.
 1. Copier `docs/modeles/article.md` dans `src/contenu/journal/` et le renommer (ex. `mon-sujet.md` → `/journal/mon-sujet/`).
 2. Remplir `title` et `date` (les seuls champs obligatoires) ; `description` et `tags` sont facultatifs.
 3. Écrire en Markdown. Une **note** est un article avec le tag `note`.
@@ -62,7 +62,7 @@ Les tags utilisés au moins 2 fois sont listés sur la page Journal ; chaque tag
 ### Modifier les informations personnelles et les liens
 
 - Titre du site, description, adresse du site, e-mail, menu, phrase d'accueil (`accroche`) : `src/donnees/site.json`.
-- Liens du pied de page (GitHub, YouTube, SoundCloud…) : `liens` dans `site.json`. Liste de la page Contact : `src/contenu/pages/contact.md`.
+- Liens du pied de page (GitHub, YouTube, SoundCloud, Discord…) : `liens` dans `site.json`. Liste de la page Contact : `src/contenu/pages/contact.md`.
 - Pages À propos et Contact : fichiers Markdown de `src/contenu/pages/`.
 
 ### Images
@@ -79,22 +79,29 @@ Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-h
 
 ## Musique et « En ce moment »
 
-**Indicateur d'écoute.** Spotify envoie ses écoutes à Last.fm ; le navigateur du visiteur interroge l'API publique de Last.fm (`user.getRecentTracks`) toutes les 30 secondes tant que l'onglet est visible. S'affichent : « En écoute » avec le titre, ou « Dernière écoute · il y a X min », et sur la page Musique les 8 écoutes précédentes. Le délai dépend de Spotify et de Last.fm (de quelques secondes à quelques minutes), et un morceau en pause peut rester « en écoute » un moment.
+**Page `/musique/`**, dans l'ordre : En ce moment (indicateur et dernières écoutes), Coups de cœur, Spotify, SoundCloud, Classements. Les sections qui dépendent de Last.fm sont en dernier pour que la numérotation des autres ne bouge pas.
 
+**Indicateur d'écoute.** Spotify envoie ses écoutes à Last.fm ; le navigateur du visiteur interroge l'API publique de Last.fm (`user.getRecentTracks`) toutes les 30 secondes tant que l'onglet est visible. S'affichent : « En écoute » avec le titre, ou « Dernier morceau enregistré · il y a X min », et sur la page Musique les 9 écoutes précédentes, avec un bouton **Voir plus** (9 de plus à chaque clic, 10 pages au maximum).
+
+- Quand un morceau est mis en pause, Last.fm le retire de « en cours » et ne l'enregistre que s'il a été écouté à moitié ou 4 minutes : le site affiche alors le dernier morceau réellement enregistré. C'est le comportement de Last.fm, pas un défaut du site.
 - Réglages : `src/donnees/musique.json` (`utilisateur`, `cle`, `profil`). La clé d'API est lisible dans le code de la page, c'est normal pour une clé en lecture seule ; ne jamais y mettre le « shared secret » de Last.fm. En cas d'abus, la régénérer sur Last.fm et la remplacer ici.
-- **Pochettes** (Last.fm donne une image générique pour les écoutes Spotify, ignorée) : 1) Cover Art Archive, grâce à l'identifiant d'album fourni par Last.fm ; 2) sinon recherche iTunes, acceptée seulement si l'artiste et le titre correspondent ; 3) sinon une tuile typographique avec l'initiale de l'artiste.
+- **Pochettes** (Last.fm donne une image générique pour beaucoup d'écoutes Spotify, ignorée) : 1) l'image de Last.fm si elle est réelle ; 2) Cover Art Archive, grâce à l'identifiant d'album fourni par Last.fm, quand il existe ; 3) recherche iTunes, acceptée seulement si l'artiste et le titre correspondent ; 4) sinon une tuile typographique avec l'initiale de l'artiste.
 - **Si Last.fm ne répond pas** : l'indicateur reste masqué sur l'accueil (ou affiche la ligne `ecoute` de `maintenant.json` si elle est remplie) et la page Musique affiche « Rien à afficher pour l'instant ». Le reste du site n'est pas touché. Sans JavaScript, même comportement.
 - **Vie privée** : l'adresse IP du visiteur est visible de Last.fm, et pour les pochettes de archive.org (Cover Art Archive) et d'Apple (iTunes). Aucun cookie. Pour tout désactiver, retirer `avecMusique: true` dans `src/index.njk` et `src/musique.njk`.
 
+**Classements** (section en bas de la page Musique) : « Morceaux du mois » et « Artistes de la semaine » (5 chacun, `user.getTopTracks` et `user.getTopArtists`). La section n'apparaît que si Last.fm renvoie des résultats. Les périodes se changent dans `musique.js` (`1month`, `7day` ; autres valeurs : `3month`, `6month`, `12month`, `overall`).
+
 **« En ce moment » (accueil).** `src/donnees/maintenant.json` : `ecoute` (ligne de secours, facultative), `joue`, `travaille`. Une ligne vide n'est pas affichée ; si tout est vide et que Last.fm ne répond pas, la zone disparaît.
 
-**Sélection de morceaux** (page Musique, masquée tant qu'elle est vide). Ajouter dans `selection` de `musique.json` :
+**Coups de cœur.** Ajouter dans `selection` de `musique.json` (la section est masquée tant que la liste est vide) :
 
 ```json
 { "artiste": "Nom de l'artiste", "titre": "Titre du morceau", "note": "Une phrase sur pourquoi il compte.", "url": "https://…" }
 ```
 
-`note` et `url` sont facultatifs.
+`note` et `url` sont facultatifs. Vérifier l'orthographe exacte des titres sur Spotify.
+
+**Playlist Spotify** : `playlist` dans `musique.json` (`titre`, `note`, `url` ; la section disparaît si `url` est vide). Utiliser l'adresse sans le paramètre `?si=…`, qui ne sert qu'au suivi du partage.
 
 **SoundCloud** : simple lien, adresse dans `musique.json` (`soundcloud`).
 
@@ -119,13 +126,14 @@ Les couleurs sont des variables CSS au début de `style.css` (palette sombre par
 - [ ] Relire les articles d'exemple (`journal/pourquoi-ce-site.md`, `journal/aide-memoire-mise-en-forme.md`) : les garder, les réécrire ou les supprimer.
 - [ ] Vérifier l'e-mail (`site.json`) et les liens GitHub / YouTube (`contact.md`), repris de l'ancien site.
 - [ ] Après le premier déploiement, ouvrir `/musique/` avec la console du navigateur ouverte : l'appel à Last.fm n'a pas pu être testé contre le vrai service (voir « Tests »).
-- [ ] Remplir `maintenant.json` (`joue`, `travaille`) et la sélection de `musique.json`, ou laisser vide.
+- [ ] Vérifier l'orthographe des 4 titres de `selection` dans `musique.json` (« Together » a été corrigé depuis « Togheter » sans pouvoir le confirmer).
 
 ## Tests effectués
 
 - `npm run build` exécuté (Eleventy 3.1.7) : 20 fichiers générés sans erreur, avec l'avertissement attendu sur `url`.
 - `musique.js` testé dans Chromium (Playwright) avec de **fausses réponses** de Last.fm, de Cover Art Archive et d'iTunes, y compris ton exemple de réponse : écoute en cours, pause, pochette trouvée, repli iTunes, tuile typographique, erreur de l'API, réseau coupé. Aucune erreur JavaScript. Affichage vérifié à 1 280 px et 360 px, sans débordement horizontal.
 - Menu : une seule ligne de 360 à 1 280 px ; à 320 px, il passe sur deux lignes.
+- Voir plus (9→18→27 écoutes, bouton masqué à la dernière page, aucun doublon), classements (masqués s'ils sont vides), libellé de pause : testés avec de fausses réponses de Last.fm.
 - Vérifications faites sur la version précédente du design (pas refaites ensuite) : contraste texte/fond d'au moins 5,5:1 dans les deux thèmes, ordre de tabulation, thème mémorisé après rechargement.
 
 **Non vérifié** : l'appel réel à Last.fm depuis un navigateur (accès réseau impossible depuis mon environnement ; l'API est conçue pour être appelée ainsi, mais c'est le premier point à contrôler en ligne), le déploiement Cloudflare Pages, les performances mesurées (Lighthouse).

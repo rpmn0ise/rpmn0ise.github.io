@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Musique
-description: Ce que j'écoute en ce moment, mes dernières écoutes et mes extraits sur SoundCloud.
+description: Ce que j'écoute en ce moment, mes coups de cœur, ma playlist hard music et mes extraits sur SoundCloud.
 permalink: /musique/
 avecMusique: true
 ---
@@ -21,20 +21,10 @@ avecMusique: true
   <noscript><p class="vide">L'indicateur d'écoute demande JavaScript. Mon profil est ici : <a href="{{ musique.lastfm.profil }}" rel="noopener">Last.fm</a>.</p></noscript>
 </section>
 
-<section class="bloc">
-  <div class="bloc__tete">
-    <h2 class="section-titre">SoundCloud</h2>
-  </div>
-  <a class="lien-grand" href="{{ musique.soundcloud }}" rel="noopener">
-    <span class="lien-grand__texte">Mes morceaux et extraits</span>
-    <span class="lien-grand__fleche" aria-hidden="true">↗</span>
-  </a>
-</section>
-
 {%- if musique.selection.length %}
 <section class="bloc">
   <div class="bloc__tete">
-    <h2 class="section-titre">Sélection</h2>
+    <h2 class="section-titre">Coups de cœur</h2>
   </div>
   <ul class="liste liste--journal">
     {%- for m in musique.selection %}
@@ -49,3 +39,39 @@ avecMusique: true
   </ul>
 </section>
 {%- endif %}
+
+{%- if musique.playlist.url %}
+<section class="bloc">
+  <div class="bloc__tete">
+    <h2 class="section-titre">Spotify</h2>
+  </div>
+  <a class="lien-grand" href="{{ musique.playlist.url }}" rel="noopener">
+    <span class="lien-grand__corps">
+      <span class="lien-grand__texte">{{ musique.playlist.titre }}</span>
+      {%- if musique.playlist.note %}<span class="lien-grand__sous">{{ musique.playlist.note }}</span>{%- endif %}
+    </span>
+    <span class="lien-grand__fleche" aria-hidden="true">↗</span>
+  </a>
+</section>
+{%- endif %}
+
+<section class="bloc">
+  <div class="bloc__tete">
+    <h2 class="section-titre">SoundCloud</h2>
+  </div>
+  <a class="lien-grand" href="{{ musique.soundcloud }}" rel="noopener">
+    <span class="lien-grand__corps">
+      <span class="lien-grand__texte">Mes morceaux et extraits</span>
+    </span>
+    <span class="lien-grand__fleche" aria-hidden="true">↗</span>
+  </a>
+</section>
+
+{#- Masqué tant que Last.fm n'a pas répondu ; en dernier pour ne pas décaler la numérotation des autres sections. #}
+<section class="bloc" data-classements-section hidden>
+  <div class="bloc__tete">
+    <h2 class="section-titre">Classements</h2>
+    <a class="suite" href="{{ musique.lastfm.profil }}" rel="noopener">D'après Last.fm ↗</a>
+  </div>
+  <div class="classements" data-classements data-utilisateur="{{ musique.lastfm.utilisateur }}" data-cle="{{ musique.lastfm.cle }}"></div>
+</section>

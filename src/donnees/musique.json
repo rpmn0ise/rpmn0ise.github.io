@@ -4,6 +4,32 @@
     "cle": "adf8a9773894f49dc29da7a38a3f352a",
     "profil": "https://www.last.fm/user/rpmn0ise"
   },
+  "playlist": {
+    "titre": "Ma playlist hard music",
+    "note": "Mes découvertes et coups de cœur.",
+    "url": "https://open.spotify.com/playlist/7CqRoiaINCWw4tU3Pp2sFO"
+  },
   "soundcloud": "https://soundcloud.com/rpmn0ise",
-  "selection": []
+  "selection": [
+    {
+      "artiste": "RDØ",
+      "titre": "Le Bruit",
+      "note": "J'adore, tout simplement. C'est français, et les kicks sont bien lourds : de la slowtempo comme on l'aime."
+    },
+    {
+      "artiste": "Hysta, RDØ",
+      "titre": "Together",
+      "note": "Deux de mes artistes préférés sur le même morceau : des kicks hardcore, puis une montée uptempo signée RDØ. Que du bonheur."
+    },
+    {
+      "artiste": "Hysta",
+      "titre": "Belong to One",
+      "note": "Un morceau bien hardcore de Hysta, qui est pour moi la meilleure."
+    },
+    {
+      "artiste": "Antenora, RDØ, KRUELLA",
+      "titre": "Distorshøn",
+      "note": "Antenora, RDØ et KRUELLA sur le même morceau. Tout simplement trop bien."
+    }
+  ]
 }
