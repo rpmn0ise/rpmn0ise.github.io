@@ -25,6 +25,7 @@ src/
     site.json             titre, description, url, e-mail, menu, liens du pied de page, phrase d'accueil (`accroche`)
     musique.json          compte Last.fm, lien SoundCloud, sélection de morceaux
     maintenant.json       lignes « En ce moment » de l'accueil (écoute, joue à, travaille sur)
+    citations.json        citations tirées au hasard sur l'accueil (texte, auteur, source)
   gabarits/               modèles HTML : base, article, projet, page, deux listes
   public/                 copié tel quel à la racine du site :
     css/style.css         toute la mise en forme (variables de couleur en tête de fichier)
@@ -35,7 +36,7 @@ src/
   index.njk journal.njk projets.njk musique.njk tags.njk  pages générées
   404.njk feed.njk sitemap.njk robots.txt.njk            pages techniques
 docs/modeles/             modèles à copier : article.md, projet.md
-docs/prompts/             prompts ChatGPT : article, projet, note courte (loisirs), avec le bon frontmatter
+docs/prompts/             prompts IA : article, projet, note courte (loisirs), 100 citations
 ```
 
 Conventions : le **nom du fichier devient l'URL** (minuscules, sans accent, tirets). Les noms de champs sont ceux de la section suivante. Rien n'est dupliqué : titre et menu dans `site.json`, couleurs dans les variables du CSS.
@@ -76,6 +77,15 @@ Placer le fichier dans `src/public/images/` (compressé avant, cible environ 100
 ## Design
 
 Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-hébergées (licence OFL, voir `src/public/fonts/LICENCES.txt`) : Instrument Serif pour le nom et les titres de page, Bricolage Grotesque pour les titres de section et de projet, Instrument Sans pour le texte, Geist Mono pour les petites mentions. Tout se règle dans les variables en tête de `style.css`. Menu : Projets, Journal, Musique, À propos, Contact. L'accueil montre le nom en grand, la phrase d'accueil, la zone « En ce moment », les projets `featured` et les 3 derniers articles.
+
+## Citation de l'accueil
+
+À chaque chargement de l'accueil, une citation de `src/donnees/citations.json` remplace la phrase d'accueil (`accroche` dans `site.json`), avec son auteur et sa source. Aucun appel réseau : les citations sont dans la page.
+
+- Format : `[{ "texte": "…", "auteur": "…", "source": "…" }]` (`source` facultative). Le build refuse une citation sans `texte` ou sans `auteur`, ou en double, et avertit au-delà de 140 caractères (au-delà, l'accueil devient haut).
+- Pas de répétition d'une citation à l'autre dans le même onglet. L'espace insécable avant `: ; ! ?` et les guillemets français sont ajoutés par le site.
+- Sans JavaScript, ou si `citations.json` est vide (`[]`), la phrase d'accueil reste affichée.
+- Les 4 citations actuelles (Descartes, Voltaire, Pascal, La Fontaine : domaine public, sources certaines) sont des exemples à remplacer. Pour en obtenir 100 : `docs/prompts/prompt-citations.md`, puis faire **vérifier chaque attribution** avant de publier.
 
 ## Musique et « En ce moment »
 
@@ -126,6 +136,7 @@ Les couleurs sont des variables CSS au début de `style.css` (palette sombre par
 - [ ] Relire les articles d'exemple (`journal/pourquoi-ce-site.md`, `journal/aide-memoire-mise-en-forme.md`) : les garder, les réécrire ou les supprimer.
 - [ ] Vérifier l'e-mail (`site.json`) et les liens GitHub / YouTube (`contact.md`), repris de l'ancien site.
 - [ ] Après le premier déploiement, ouvrir `/musique/` avec la console du navigateur ouverte : l'appel à Last.fm n'a pas pu être testé contre le vrai service (voir « Tests »).
+- [ ] Remplacer les 4 citations d'exemple de `citations.json` par ta liste vérifiée (100 visées).
 - [ ] Vérifier l'orthographe des 4 titres de `selection` dans `musique.json` (« Together » a été corrigé depuis « Togheter » sans pouvoir le confirmer).
 
 ## Tests effectués

@@ -256,6 +256,16 @@ img { max-width: 100%; height: auto; }
   color: var(--discret);
 }
 
+.hero__citation { margin: 0; }
+.hero__citation--active .hero__texte { max-width: 38rem; font-size: clamp(1.4rem, 3.2vw, 2.05rem); line-height: 1.25; }
+.hero__citation--active .hero__texte p { text-wrap: balance; }
+.hero__citation--active .hero__texte p::before { content: "«\00a0"; }
+.hero__citation--active .hero__texte p::after { content: "\00a0»"; }
+.hero__auteur { max-width: 38rem; margin-top: 1rem; font-family: var(--mono); font-size: 0.8125rem; line-height: 1.6; color: var(--discret); }
+.hero__auteur::before { content: "— "; }
+.hero__auteur cite { font-style: normal; }
+.hero__citation + .hero__index { margin-top: clamp(1.25rem, 3vw, 1.75rem); }
+
 .hero__index {
   margin-top: clamp(1.5rem, 3.5vw, 2.25rem);
   font-family: var(--mono);

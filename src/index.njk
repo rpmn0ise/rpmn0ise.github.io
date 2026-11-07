@@ -4,7 +4,35 @@ avecMusique: true
 ---
 <section class="hero">
   <h1 class="hero__nom">{{ site.titre }}</h1>
-  {%- if site.accroche %}
+  {%- if citations.length %}
+  {#- Une citation au hasard à chaque chargement. Sans JavaScript, la phrase d'accueil reste affichée. #}
+  <figure class="hero__citation" data-citation>
+    <blockquote class="hero__texte"><p>{{ site.accroche }}</p></blockquote>
+    <figcaption class="hero__auteur meta" hidden></figcaption>
+  </figure>
+  <script type="application/json" id="citations-donnees">{{ citations | dump | replace("<", "\\u003c") | safe }}</script>
+  <script>
+  (function () {
+    var f = document.querySelector("[data-citation]"), d = document.getElementById("citations-donnees");
+    if (!f || !d) return;
+    try {
+      var l = JSON.parse(d.textContent);
+      if (!l.length) return;
+      var i = Math.floor(Math.random() * l.length), p = -1;
+      try { p = parseInt(sessionStorage.getItem("citation"), 10); } catch (e) {}
+      if (l.length > 1 && i === p) i = (i + 1 + Math.floor(Math.random() * (l.length - 1))) % l.length;
+      try { sessionStorage.setItem("citation", String(i)); } catch (e) {}
+      var c = l[i], fr = function (s) { return s.replace(/ ([:;!?»])/g, "\u00a0$1").replace(/« /g, "«\u00a0"); };
+      f.querySelector("blockquote p").textContent = fr(c.texte);
+      var a = f.querySelector("figcaption");
+      a.textContent = fr(c.auteur);
+      if (c.source) { a.append(" · "); var e = document.createElement("cite"); e.textContent = fr(c.source); a.append(e); }
+      a.hidden = false;
+      f.classList.add("hero__citation--active");
+    } catch (e) {}
+  })();
+  </script>
+  {%- elif site.accroche %}
   <p class="hero__texte">{{ site.accroche }}</p>
   {%- endif %}
   {%- set aLaUne = collections.projets | misEnAvant %}

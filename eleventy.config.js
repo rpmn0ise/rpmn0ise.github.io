@@ -3,6 +3,7 @@ import pluginRss from "@11ty/eleventy-plugin-rss";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 const site = JSON.parse(readFileSync("./src/donnees/site.json", "utf8"));
+const citations = JSON.parse(readFileSync("./src/donnees/citations.json", "utf8"));
 
 // "build" = production (npm run build) ; "serve" = npm run dev
 const production = process.env.ELEVENTY_RUN_MODE === "build";
@@ -104,6 +105,14 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("annee", () => new Date().getFullYear());
 
   eleventyConfig.on("eleventy.before", () => {
+    // Citations de l'accueil : texte et auteur obligatoires, longueur raisonnable, pas de doublon.
+    const vus = new Set();
+    citations.forEach((c, i) => {
+      if (!c.texte || !c.auteur) throw new Error(`src/donnees/citations.json : la citation n° ${i + 1} doit avoir un "texte" et un "auteur".`);
+      if (vus.has(c.texte)) throw new Error(`src/donnees/citations.json : citation en double (n° ${i + 1}) : « ${c.texte} »`);
+      vus.add(c.texte);
+      if (c.texte.length > 140) console.warn(`[!] citations.json : la citation n° ${i + 1} fait ${c.texte.length} caractères (140 conseillés pour tenir sur l'accueil).`);
+    });
     if (production && site.url.includes("example.com")) {
       console.warn('[!] src/donnees/site.json : "url" est encore le texte provisoire (example.com). À remplacer avant la mise en ligne.');
     }
