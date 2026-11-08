@@ -305,11 +305,11 @@
   async function chargerClassements() {
     const [morceaux, artistes] = await Promise.allSettled([
       classement("user.gettoptracks", "1month", (j) => j.toptracks && j.toptracks.track),
-      classement("user.gettopartists", "7day", (j) => j.topartists && j.topartists.artist),
+      classement("user.gettopartists", "1month", (j) => j.topartists && j.topartists.artist),
     ]);
     const colonnes = [];
     if (morceaux.status === "fulfilled" && morceaux.value.length) colonnes.push(colonne("Morceaux du mois", morceaux.value));
-    if (artistes.status === "fulfilled" && artistes.value.length) colonnes.push(colonne("Artistes de la semaine", artistes.value));
+    if (artistes.status === "fulfilled" && artistes.value.length) colonnes.push(colonne("Artistes du mois", artistes.value));
     if (!colonnes.length) return;
     classements.replaceChildren(...colonnes);
     const section = classements.closest("[data-classements-section]");

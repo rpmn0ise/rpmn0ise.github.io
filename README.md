@@ -106,7 +106,7 @@ Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-h
 - **Si Last.fm ne répond pas** : l'indicateur reste masqué sur l'accueil (ou affiche la ligne `ecoute` de `maintenant.json` si elle est remplie) et la page Musique affiche « Rien à afficher pour l'instant ». Le reste du site n'est pas touché. Sans JavaScript, même comportement.
 - **Vie privée** : l'adresse IP du visiteur est visible de Last.fm, et pour les pochettes de archive.org (Cover Art Archive) et d'Apple (iTunes). Aucun cookie. Pour tout désactiver, retirer `avecMusique: true` dans `src/index.njk` et `src/musique.njk`.
 
-**Classements** (section en bas de la page Musique) : « Morceaux du mois » et « Artistes de la semaine » (5 chacun, `user.getTopTracks` et `user.getTopArtists`). La section n'apparaît que si Last.fm renvoie des résultats. Les périodes se changent dans `musique.js` (`1month`, `7day` ; autres valeurs : `3month`, `6month`, `12month`, `overall`).
+**Classements** (section en bas de la page Musique) : « Morceaux du mois » et « Artistes du mois » (5 chacun, `user.getTopTracks` et `user.getTopArtists`). La section n'apparaît que si Last.fm renvoie des résultats. Les périodes se changent dans `musique.js` (`1month` pour les deux ; autres valeurs : `7day`, `3month`, `6month`, `12month`, `overall`).
 
 **« En ce moment » (accueil).** `src/donnees/maintenant.json` : `ecoute` (ligne de secours, facultative), `joue`, `travaille`. Une ligne vide n'est pas affichée ; si tout est vide et que Last.fm ne répond pas, la zone disparaît.
 
