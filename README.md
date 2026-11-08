@@ -78,6 +78,10 @@ Placer le fichier dans `src/public/images/` (compressé avant, cible environ 100
 
 Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-hébergées (licence OFL, voir `src/public/fonts/LICENCES.txt`) : Instrument Serif pour le nom et les titres de page, Bricolage Grotesque pour les titres de section et de projet, Instrument Sans pour le texte, Geist Mono pour les petites mentions. Tout se règle dans les variables en tête de `style.css`. Menu : Projets, Journal, Musique, À propos, Contact. L'accueil montre le nom en grand, la phrase d'accueil, la zone « En ce moment », les projets `featured` et les 3 derniers articles.
 
+## Page Setup
+
+`src/contenu/pages/setup.md` : ton matériel et tes logiciels, en Markdown simple (une liste par section). Pour modifier, édite le fichier et change la date de mise à jour dans le premier paragraphe. Le lien « Setup » est dans le pied de page (`liens` de `site.json`) ; pour l'ajouter au menu, déplace-le dans `nav`.
+
 ## Page 404 et aperçu de partage
 
 - **404** : `src/404.njk` affiche un message tiré au hasard dans `src/donnees/erreurs404.json` (`[{ "titre": "…", "texte": "…" }]`), sans répétition d'un chargement à l'autre, avec un bouton « Un autre message ». Sans JavaScript, un message neutre s'affiche. Pour en ajouter, ajoute une ligne au fichier.

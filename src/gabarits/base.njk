@@ -82,7 +82,7 @@
       <a class="pied__mail" href="mailto:{{ site.auteur.email }}">{{ site.auteur.email }}</a>
       <ul class="pied__liens" aria-label="Liens">
         {%- for lien in site.liens %}
-        <li><a href="{{ lien.url }}" rel="noopener">{{ lien.libelle }}</a></li>
+        <li><a href="{{ lien.url }}"{% if not lien.url.startsWith("/") %} rel="noopener"{% endif %}>{{ lien.libelle }}</a></li>
         {%- endfor %}
         <li><a href="/feed.xml">RSS</a></li>
       </ul>

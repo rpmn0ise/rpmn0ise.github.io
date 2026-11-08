@@ -33,6 +33,10 @@
   ],
   "liens": [
     {
+      "libelle": "Setup",
+      "url": "/setup/"
+    },
+    {
       "libelle": "GitHub",
       "url": "https://github.com/rpmn0ise"
     },
