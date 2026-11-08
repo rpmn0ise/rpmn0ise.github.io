@@ -1,0 +1,13 @@
+[
+  { "titre": "Drop introuvable.", "texte": "Le build-up est là, mais le drop n'a jamais été mixé. Cette page n'existe pas." },
+  { "titre": "Crash total.", "texte": "Cette page a touché un mur à pleine vitesse. Il ne reste que des débris et une adresse." },
+  { "titre": "Kick sans sub.", "texte": "L'adresse existe, mais il n'y a rien en dessous. Pas de basses, pas de page." },
+  { "titre": "Mod manquant.", "texte": "Le dossier est là, mais le fichier n'y est pas. Vérifie l'adresse, ou retourne à l'accueil." },
+  { "titre": "Tempo perdu.", "texte": "Cette page est sortie du BPM, et personne ne l'a retrouvée." },
+  { "titre": "Silence radio.", "texte": "Plus de signal sur cette fréquence. Essaie une autre station." },
+  { "titre": "Clipping.", "texte": "Le signal a dépassé le maximum et la page a saturé. Il ne reste que de la distorsion." },
+  { "titre": "Hors piste.", "texte": "Tu as quitté la route, et il n'y a aucun circuit à cet endroit. Remets-toi sur la voie." },
+  { "titre": "Respawn.", "texte": "Cette page n'existe pas. Reviens en arrière pour réapparaître au dernier point de contrôle." },
+  { "titre": "Roue libre.", "texte": "Cette page descend toute seule, sans moteur, et elle n'est arrivée nulle part." },
+  { "titre": "Mauvaise playlist.", "texte": "Ce morceau n'est pas dans la liste. Essaie le suivant." }
+]

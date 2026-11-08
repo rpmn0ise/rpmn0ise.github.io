@@ -78,6 +78,13 @@ Placer le fichier dans `src/public/images/` (compressé avant, cible environ 100
 
 Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-hébergées (licence OFL, voir `src/public/fonts/LICENCES.txt`) : Instrument Serif pour le nom et les titres de page, Bricolage Grotesque pour les titres de section et de projet, Instrument Sans pour le texte, Geist Mono pour les petites mentions. Tout se règle dans les variables en tête de `style.css`. Menu : Projets, Journal, Musique, À propos, Contact. L'accueil montre le nom en grand, la phrase d'accueil, la zone « En ce moment », les projets `featured` et les 3 derniers articles.
 
+## Page 404 et aperçu de partage
+
+- **404** : `src/404.njk` affiche un message tiré au hasard dans `src/donnees/erreurs404.json` (`[{ "titre": "…", "texte": "…" }]`), sans répétition d'un chargement à l'autre, avec un bouton « Un autre message ». Sans JavaScript, un message neutre s'affiche. Pour en ajouter, ajoute une ligne au fichier.
+- **Aperçu de partage (OpenGraph, Twitter/Discord)** : tout est dans `src/gabarits/base.njk`. L'image par défaut est `src/public/images/og-defaut.png` (1200×630), réglée par `imageOg` et `imageOgAlt` dans `site.json`. Une page peut avoir la sienne avec `image: /images/ma-page.png` (et `imageAlt`) dans son en-tête. Les articles ajoutent la date de publication.
+- Régénérer l'image par défaut (nom, description, couleurs) : `pip install pillow fonttools`, puis `python3 outils/generer-og.py`. Il produit aussi `apple-touch-icon.png`.
+- Les adresses d'images sont absolues à partir de `url` dans `site.json` : tant que c'est `example.com`, l'aperçu ne marchera pas en ligne.
+
 ## Citation de l'accueil
 
 À chaque chargement de l'accueil, une citation de `src/donnees/citations.json` remplace la phrase d'accueil (`accroche` dans `site.json`), avec son auteur et sa source. Aucun appel réseau : les citations sont dans la page.
@@ -136,6 +143,7 @@ Les couleurs sont des variables CSS au début de `style.css` (palette sombre par
 - [ ] Relire les articles d'exemple (`journal/pourquoi-ce-site.md`, `journal/aide-memoire-mise-en-forme.md`) : les garder, les réécrire ou les supprimer.
 - [ ] Vérifier l'e-mail (`site.json`) et les liens GitHub / YouTube (`contact.md`), repris de l'ancien site.
 - [ ] Après le premier déploiement, ouvrir `/musique/` avec la console du navigateur ouverte : l'appel à Last.fm n'a pas pu être testé contre le vrai service (voir « Tests »).
+- [ ] Tester l'aperçu de partage une fois `url` renseignée (coller le lien dans un salon Discord).
 - [ ] Vérifier les 64 citations de `citations.json` (attributions non contrôlées en ligne) et compléter si tu veux aller vers 100.
 - [ ] Vérifier l'orthographe des 4 titres de `selection` dans `musique.json` (« Together » a été corrigé depuis « Togheter » sans pouvoir le confirmer).
 

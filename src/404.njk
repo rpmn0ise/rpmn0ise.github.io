@@ -5,7 +5,41 @@ permalink: /404.html
 noindex: true
 eleventyExcludeFromCollections: true
 ---
-<header class="entete-contenu">
-  <h1>Page introuvable</h1>
+<header class="entete-contenu erreur">
+  <p class="meta">Erreur 404<span data-erreur-chemin></span></p>
+  <h1 data-erreur-titre>Page introuvable.</h1>
+  <p class="chapo" data-erreur-texte>Cette adresse n'existe pas ou a changé.</p>
 </header>
-<p>Cette adresse n'existe pas ou a changé. <a href="/">Retour à l'accueil</a>.</p>
+<p class="erreur__actions">
+  <a href="/">Retour à l'accueil</a>
+  <button class="bouton-plus" type="button" data-erreur-autre hidden>Un autre message</button>
+</p>
+{%- if erreurs404.length %}
+<script type="application/json" id="erreurs404-donnees">{{ erreurs404 | dump | replace("<", "\\u003c") | safe }}</script>
+<script>
+(function () {
+  var el = document.getElementById("erreurs404-donnees");
+  var titre = document.querySelector("[data-erreur-titre]");
+  var texte = document.querySelector("[data-erreur-texte]");
+  var chemin = document.querySelector("[data-erreur-chemin]");
+  var bouton = document.querySelector("[data-erreur-autre]");
+  if (!el || !titre || !texte) return;
+  var liste;
+  try { liste = JSON.parse(el.textContent); } catch (e) { return; }
+  if (!Array.isArray(liste) || !liste.length) return;
+  var dernier = -1;
+  try { dernier = parseInt(sessionStorage.getItem("erreur404"), 10); } catch (e) {}
+  function tirer() {
+    var i;
+    do { i = Math.floor(Math.random() * liste.length); } while (liste.length > 1 && i === dernier);
+    dernier = i;
+    try { sessionStorage.setItem("erreur404", String(i)); } catch (e) {}
+    titre.textContent = liste[i].titre;
+    texte.textContent = liste[i].texte;
+  }
+  tirer();
+  if (chemin && location.pathname && location.pathname !== "/") chemin.textContent = " · " + location.pathname;
+  if (bouton && liste.length > 1) { bouton.hidden = false; bouton.addEventListener("click", tirer); }
+})();
+</script>
+{%- endif %}

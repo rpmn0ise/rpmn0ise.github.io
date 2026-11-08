@@ -21,10 +21,29 @@
   <meta property="og:site_name" content="{{ site.titre }}">
   {%- if image %}
   <meta property="og:image" content="{{ image | absoluteUrl(site.url) }}">
-  <meta name="twitter:card" content="summary_large_image">
-  {%- else %}
-  <meta name="twitter:card" content="summary">
+  {%- if imageAlt %}
+  <meta property="og:image:alt" content="{{ imageAlt }}">
   {%- endif %}
+  <meta name="twitter:image" content="{{ image | absoluteUrl(site.url) }}">
+  {%- else %}
+  <meta property="og:image" content="{{ site.imageOg | absoluteUrl(site.url) }}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ site.imageOgAlt }}">
+  <meta name="twitter:image" content="{{ site.imageOg | absoluteUrl(site.url) }}">
+  <meta name="twitter:image:alt" content="{{ site.imageOgAlt }}">
+  {%- endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ titrePage }}">
+  <meta name="twitter:description" content="{{ descriptionPage }}">
+  {%- if typeOg == "article" and date %}
+  <meta property="article:published_time" content="{{ date | dateIso }}">
+  <meta property="article:author" content="{{ site.auteur.nom }}">
+  {%- endif %}
+  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="alternate" type="application/atom+xml" title="{{ site.titre }}" href="/feed.xml">
   <script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}d.dataset.theme=t})()</script>

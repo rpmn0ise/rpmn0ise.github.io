@@ -567,3 +567,8 @@ pre code { background: none; padding: 0; font-size: inherit; }
     }
   }
 }
+
+/* Page 404 */
+.erreur .meta { overflow-wrap: anywhere; }
+.erreur .chapo { max-width: 34rem; }
+.erreur__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; margin-top: 2rem; }

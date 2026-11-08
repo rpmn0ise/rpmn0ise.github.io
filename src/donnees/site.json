@@ -3,6 +3,8 @@
   "description": "Projets, notes et articles de rpmn0ise.",
   "accroche": "Je construis des projets autour de sujets qui m'intéressent, sans me limiter à un seul domaine.",
   "url": "https://example.com",
+  "imageOg": "/images/og-defaut.png",
+  "imageOgAlt": "rpmn0ise : projets, notes et articles",
   "auteur": {
     "nom": "rpmn0ise",
     "email": "rpmn0ise@proton.me"
