@@ -85,7 +85,7 @@ Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-h
 - Format : `[{ "texte": "…", "auteur": "…", "source": "…" }]` (`source` facultative). Le build refuse une citation sans `texte` ou sans `auteur`, ou en double, et avertit au-delà de 140 caractères (au-delà, l'accueil devient haut).
 - Pas de répétition d'une citation à l'autre dans le même onglet. L'espace insécable avant `: ; ! ?` et les guillemets français sont ajoutés par le site.
 - Sans JavaScript, ou si `citations.json` est vide (`[]`), la phrase d'accueil reste affichée.
-- Les 4 citations actuelles (Descartes, Voltaire, Pascal, La Fontaine : domaine public, sources certaines) sont des exemples à remplacer. Pour en obtenir 100 : `docs/prompts/prompt-citations.md`, puis faire **vérifier chaque attribution** avant de publier.
+- La liste actuelle compte 64 citations (science, culture française moderne, quelques classiques). Les attributions n'ont **pas** été vérifiées en ligne (sources de référence inaccessibles depuis l'environnement de travail) : relis-les avant de publier. Pour compléter jusqu'à 100 : `docs/prompts/prompt-citations.md`, puis faire **vérifier chaque attribution**.
 
 ## Musique et « En ce moment »
 
@@ -136,7 +136,7 @@ Les couleurs sont des variables CSS au début de `style.css` (palette sombre par
 - [ ] Relire les articles d'exemple (`journal/pourquoi-ce-site.md`, `journal/aide-memoire-mise-en-forme.md`) : les garder, les réécrire ou les supprimer.
 - [ ] Vérifier l'e-mail (`site.json`) et les liens GitHub / YouTube (`contact.md`), repris de l'ancien site.
 - [ ] Après le premier déploiement, ouvrir `/musique/` avec la console du navigateur ouverte : l'appel à Last.fm n'a pas pu être testé contre le vrai service (voir « Tests »).
-- [ ] Remplacer les 4 citations d'exemple de `citations.json` par ta liste vérifiée (100 visées).
+- [ ] Vérifier les 64 citations de `citations.json` (attributions non contrôlées en ligne) et compléter si tu veux aller vers 100.
 - [ ] Vérifier l'orthographe des 4 titres de `selection` dans `musique.json` (« Together » a été corrigé depuis « Togheter » sans pouvoir le confirmer).
 
 ## Tests effectués

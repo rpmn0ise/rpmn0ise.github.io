@@ -12,14 +12,15 @@ Tu m'aides à préparer 100 citations en français pour la page d'accueil de mon
 
 Réponds en **4 lots de 25 citations**. Fais uniquement le lot 1 maintenant ; je te dirai « suite » pour chaque lot suivant. Pour chaque lot, réponds avec **un seul bloc de code JSON**, rien avant, rien après.
 
+Orientation : **culture française moderne et science**. Pas de poésie du XIXe siècle (Baudelaire, Verlaine, Rimbaud, Lamartine, Musset…), peu de classiques. Je veux des phrases qui sonnent actuelles.
+
 Répartition sur les 100 (indicative) :
-- 20 de philosophie, de morale ou d'esprit, auteurs classiques (Montaigne, Pascal, La Rochefoucauld, Voltaire, Camus, etc.).
-- 20 de littérature et de poésie (Hugo, Baudelaire, Rimbaud, Prévert, etc.).
-- 15 d'humour, de répliques ou de phrases drôles dont l'auteur est certain.
-- 15 sur la création, le travail, l'apprentissage, la persévérance.
-- 10 de sciences et de techniques (Pasteur, Curie, Poincaré, Turing, etc.).
-- 10 sur la musique, le son, la culture électronique (artistes, compositeurs, écrits sur la musique).
-- 10 de cinéma, de séries ou de jeux vidéo francophones (répliques courtes et célèbres).
+- 30 de sciences et de techniques (Lavoisier, Pasteur, Curie, Poincaré, Monod, Jean Perrin, Hubert Reeves, Verne, etc.).
+- 20 d'humour et d'esprit (Desproges, Devos, Coluche, Pierre Dac, Allais, Shadoks, etc.), uniquement si la formulation et la source sont établies.
+- 15 de cinéma, séries, BD et jeux vidéo francophones (répliques courtes et célèbres : Audiard, Kaamelott, Astérix, Tintin, La Haine, etc.).
+- 15 sur la musique, le son, la culture électronique (artistes, compositeurs, écrits sur la musique, titres de chansons).
+- 10 de pensée du XXe et XXIe siècle (Camus, Sartre, Beauvoir, Weil, Perec, Serres, etc.).
+- 10 de classiques courts et très connus (Descartes, Pascal, Montaigne, Voltaire).
 
 ## Format exact
 
@@ -53,6 +54,6 @@ Répartition sur les 100 (indicative) :
 
 ## Ton
 
-Je cherche un mélange : des phrases qui font réfléchir, d'autres qui font sourire, certaines qui donnent envie de créer ou de s'entêter. Pas de clichés motivationnels, pas de phrase creuse.
+Je cherche un mélange : des phrases qui font réfléchir, d'autres qui font sourire, certaines qui donnent envie de créer ou de s'entêter, avec une dominante science et culture populaire française. Pas de clichés motivationnels, pas de phrase creuse.
 
 Commence par le lot 1 (25 citations).

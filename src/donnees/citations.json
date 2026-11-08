@@ -5,14 +5,14 @@
     "source": "Discours de la méthode, 1637"
   },
   {
+    "texte": "Le bon sens est la chose du monde la mieux partagée.",
+    "auteur": "René Descartes",
+    "source": "Discours de la méthode, 1637"
+  },
+  {
     "texte": "Le cœur a ses raisons que la raison ne connaît point.",
     "auteur": "Blaise Pascal",
     "source": "Pensées, 1670"
-  },
-  {
-    "texte": "Que sais-je ?",
-    "auteur": "Michel de Montaigne",
-    "source": "Essais, 1580"
   },
   {
     "texte": "Tout le malheur des hommes vient d'une seule chose, qui est de ne savoir pas demeurer en repos dans une chambre.",
@@ -20,14 +20,9 @@
     "source": "Pensées, 1670"
   },
   {
-    "texte": "Nous avons tous assez de force pour supporter les maux d'autrui.",
-    "auteur": "François de La Rochefoucauld",
-    "source": "Maximes, 1665"
-  },
-  {
-    "texte": "L'hypocrisie est un hommage que le vice rend à la vertu.",
-    "auteur": "François de La Rochefoucauld",
-    "source": "Maximes, 1665"
+    "texte": "Travaillons donc à bien penser : voilà le principe de la morale.",
+    "auteur": "Blaise Pascal",
+    "source": "Pensées, 1670"
   },
   {
     "texte": "Il faut cultiver notre jardin.",
@@ -35,99 +30,9 @@
     "source": "Candide, 1759"
   },
   {
-    "texte": "Le mieux est l'ennemi du bien.",
+    "texte": "Le travail éloigne de nous trois grands maux : l'ennui, le vice et le besoin.",
     "auteur": "Voltaire",
-    "source": "La Bégueule, 1772"
-  },
-  {
-    "texte": "Il faut imaginer Sisyphe heureux.",
-    "auteur": "Albert Camus",
-    "source": "Le Mythe de Sisyphe, 1942"
-  },
-  {
-    "texte": "La lutte elle-même vers les sommets suffit à remplir un cœur d'homme.",
-    "auteur": "Albert Camus",
-    "source": "Le Mythe de Sisyphe, 1942"
-  },
-  {
-    "texte": "Travaillons donc à bien penser : voilà le principe de la morale.",
-    "auteur": "Blaise Pascal",
-    "source": "Pensées, 1670"
-  },
-  {
-    "texte": "L'homme est condamné à être libre.",
-    "auteur": "Jean-Paul Sartre",
-    "source": "L'existentialisme est un humanisme, 1946"
-  },
-  {
-    "texte": "On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux.",
-    "auteur": "Antoine de Saint-Exupéry",
-    "source": "Le Petit Prince, 1943"
-  },
-  {
-    "texte": "Ce que l'on conçoit bien s'énonce clairement, et les mots pour le dire arrivent aisément.",
-    "auteur": "Nicolas Boileau",
-    "source": "L'Art poétique, 1674"
-  },
-  {
-    "texte": "Hâtez-vous lentement, et sans perdre courage, vingt fois sur le métier remettez votre ouvrage.",
-    "auteur": "Nicolas Boileau",
-    "source": "L'Art poétique, 1674"
-  },
-  {
-    "texte": "La beauté n'est que la promesse du bonheur.",
-    "auteur": "Stendhal",
-    "source": "De l'amour, 1822"
-  },
-  {
-    "texte": "Adieu tristesse. Bonjour tristesse.",
-    "auteur": "Paul Éluard",
-    "source": "La Vie immédiate, 1932"
-  },
-  {
-    "texte": "Je est un autre.",
-    "auteur": "Arthur Rimbaud",
-    "source": "Lettre à Paul Demeny, 1871"
-  },
-  {
-    "texte": "Il faut être absolument moderne.",
-    "auteur": "Arthur Rimbaud",
-    "source": "Une saison en enfer, 1873"
-  },
-  {
-    "texte": "Sois sage, ô ma Douleur, et tiens-toi plus tranquille.",
-    "auteur": "Charles Baudelaire",
-    "source": "Les Fleurs du mal, 1857"
-  },
-  {
-    "texte": "Il faut être toujours ivre. Tout est là : c'est l'unique question.",
-    "auteur": "Charles Baudelaire",
-    "source": "Le Spleen de Paris, 1869"
-  },
-  {
-    "texte": "Il y a un spectacle plus grand que la mer, c'est le ciel ; il y a un spectacle plus grand que le ciel, c'est l'intérieur de l'âme.",
-    "auteur": "Victor Hugo",
-    "source": "Les Misérables, 1862"
-  },
-  {
-    "texte": "Le hasard ne favorise que les esprits préparés.",
-    "auteur": "Louis Pasteur",
-    "source": "Discours à l'université de Lille, 1854"
-  },
-  {
-    "texte": "La pensée n'est qu'un éclair au milieu d'une longue nuit. Mais c'est cet éclair qui est tout.",
-    "auteur": "Henri Poincaré",
-    "source": "La Valeur de la science, 1905"
-  },
-  {
-    "texte": "La science est faite de faits comme une maison est faite de pierres.",
-    "auteur": "Henri Poincaré",
-    "source": "La Science et l'Hypothèse, 1902"
-  },
-  {
-    "texte": "C'est une étrange entreprise que celle de faire rire les honnêtes gens.",
-    "auteur": "Molière",
-    "source": "La Critique de l'École des femmes, 1663"
+    "source": "Candide, 1759"
   },
   {
     "texte": "Rien ne sert de courir ; il faut partir à point.",
@@ -140,19 +45,24 @@
     "source": "Fables, « Le Lion et le Rat », 1668"
   },
   {
-    "texte": "Les grandes pensées viennent du cœur.",
-    "auteur": "Vauvenargues",
-    "source": "Réflexions et maximes, 1746"
+    "texte": "Le style est l'homme même.",
+    "auteur": "Buffon",
+    "source": "Discours sur le style, 1753"
   },
   {
-    "texte": "Il pleure dans mon cœur comme il pleut sur la ville.",
-    "auteur": "Paul Verlaine",
-    "source": "Romances sans paroles, 1874"
+    "texte": "Ce que l'on conçoit bien s'énonce clairement, et les mots pour le dire arrivent aisément.",
+    "auteur": "Nicolas Boileau",
+    "source": "L'Art poétique, 1674"
   },
   {
-    "texte": "De la musique avant toute chose.",
-    "auteur": "Paul Verlaine",
-    "source": "Jadis et naguère, « Art poétique », 1884"
+    "texte": "Science sans conscience n'est que ruine de l'âme.",
+    "auteur": "François Rabelais",
+    "source": "Pantagruel, 1532"
+  },
+  {
+    "texte": "Plus ça change, plus c'est la même chose.",
+    "auteur": "Alphonse Karr",
+    "source": "Les Guêpes, 1849"
   },
   {
     "texte": "Le seul véritable voyage, le seul bain de Jouvence, ce ne serait pas d'aller vers de nouveaux paysages, mais d'avoir d'autres yeux…",
@@ -160,27 +70,127 @@
     "source": "La Prisonnière, 1923"
   },
   {
-    "texte": "La bêtise consiste à vouloir conclure.",
-    "auteur": "Gustave Flaubert",
-    "source": "Lettre à Louis Bouilhet, 1850"
+    "texte": "On ne découvre pas de terre nouvelle sans consentir à perdre de vue, d'abord et longtemps, tout rivage.",
+    "auteur": "André Gide",
+    "source": "Les Faux-monnayeurs, 1925"
   },
   {
-    "texte": "Ceux qui vivent, ce sont ceux qui luttent.",
-    "auteur": "Victor Hugo",
-    "source": "Les Châtiments, 1853"
+    "texte": "Il faut imaginer Sisyphe heureux.",
+    "auteur": "Albert Camus",
+    "source": "Le Mythe de Sisyphe, 1942"
   },
   {
-    "texte": "Le vent se lève !... Il faut tenter de vivre !",
+    "texte": "La lutte elle-même vers les sommets suffit à remplir un cœur d'homme.",
+    "auteur": "Albert Camus",
+    "source": "Le Mythe de Sisyphe, 1942"
+  },
+  {
+    "texte": "L'homme est condamné à être libre.",
+    "auteur": "Jean-Paul Sartre",
+    "source": "L'existentialisme est un humanisme, 1946"
+  },
+  {
+    "texte": "L'enfer, c'est les autres.",
+    "auteur": "Jean-Paul Sartre",
+    "source": "Huis clos, 1944"
+  },
+  {
+    "texte": "On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux.",
+    "auteur": "Antoine de Saint-Exupéry",
+    "source": "Le Petit Prince, 1943"
+  },
+  {
+    "texte": "Pour ce qui est de l'avenir, il ne s'agit pas de le prévoir, mais de le rendre possible.",
+    "auteur": "Antoine de Saint-Exupéry",
+    "source": "Citadelle, 1948"
+  },
+  {
+    "texte": "Être homme, c'est précisément être responsable.",
+    "auteur": "Antoine de Saint-Exupéry",
+    "source": "Terre des hommes, 1939"
+  },
+  {
+    "texte": "Adieu tristesse. Bonjour tristesse.",
+    "auteur": "Paul Éluard",
+    "source": "La Vie immédiate, 1932"
+  },
+  {
+    "texte": "Il n'y a pas d'amour heureux.",
+    "auteur": "Louis Aragon",
+    "source": "La Diane française, 1944"
+  },
+  {
+    "texte": "Impose ta chance, serre ton bonheur et va vers ton risque.",
+    "auteur": "René Char",
+    "source": "Feuillets d'Hypnos, 1946"
+  },
+  {
+    "texte": "Je me sentais responsable de la beauté du monde.",
+    "auteur": "Marguerite Yourcenar",
+    "source": "Mémoires d'Hadrien, 1951"
+  },
+  {
+    "texte": "Le tact dans l'audace, c'est de savoir jusqu'où on peut aller trop loin.",
+    "auteur": "Jean Cocteau",
+    "source": "Le Rappel à l'ordre, 1926"
+  },
+  {
+    "texte": "La vérité est en marche et rien ne l'arrêtera.",
+    "auteur": "Émile Zola",
+    "source": "Le Figaro, 25 novembre 1897"
+  },
+  {
+    "texte": "Ah ! non ! c'est un peu court, jeune homme !",
+    "auteur": "Edmond Rostand",
+    "source": "Cyrano de Bergerac, 1897"
+  },
+  {
+    "texte": "Le hasard ne favorise que les esprits préparés.",
+    "auteur": "Louis Pasteur",
+    "source": "Discours à l'université de Lille, 1854"
+  },
+  {
+    "texte": "La science n'a pas de patrie, parce que le savoir est le patrimoine de l'humanité.",
+    "auteur": "Louis Pasteur",
+    "source": "Inauguration de l'Institut Pasteur, 1888"
+  },
+  {
+    "texte": "La pensée n'est qu'un éclair au milieu d'une longue nuit. Mais c'est cet éclair qui est tout.",
+    "auteur": "Henri Poincaré",
+    "source": "La Valeur de la science, 1905"
+  },
+  {
+    "texte": "La science est faite de faits comme une maison est faite de pierres.",
+    "auteur": "Henri Poincaré",
+    "source": "La Science et l'Hypothèse, 1902"
+  },
+  {
+    "texte": "Douter de tout ou tout croire, ce sont deux solutions également commodes, qui l'une et l'autre nous dispensent de réfléchir.",
+    "auteur": "Henri Poincaré",
+    "source": "La Science et l'Hypothèse, 1902"
+  },
+  {
+    "texte": "L'art, c'est moi ; la science, c'est nous.",
+    "auteur": "Claude Bernard",
+    "source": "Introduction à l'étude de la médecine expérimentale, 1865"
+  },
+  {
+    "texte": "Rien n'est donné. Tout est construit.",
+    "auteur": "Gaston Bachelard",
+    "source": "La Formation de l'esprit scientifique, 1938"
+  },
+  {
+    "texte": "Ce qui est simple est toujours faux. Ce qui ne l'est pas est inutilisable.",
     "auteur": "Paul Valéry",
-    "source": "Le Cimetière marin, 1920"
-  },
-  {
-    "texte": "Je me presse de rire de tout, de peur d'être obligé d'en pleurer.",
-    "auteur": "Beaumarchais",
-    "source": "Le Barbier de Séville, 1775"
+    "source": "Mauvaises pensées et autres, 1942"
   },
   {
     "texte": "Je suis venu au monde très jeune dans un monde très vieux.",
+    "auteur": "Erik Satie",
+    "source": "Mémoires d'un amnésique, 1912"
+  },
+  {
+    "texte": "Quand j'étais jeune, on me disait : vous verrez quand vous aurez cinquante ans. J'ai cinquante ans, je n'ai rien vu.",
     "auteur": "Erik Satie",
     "source": "Mémoires d'un amnésique, 1912"
   },
@@ -190,44 +200,14 @@
     "source": "Mourir pour des idées (chanson), 1972"
   },
   {
-    "texte": "On ne découvre pas de terre nouvelle sans consentir à perdre de vue, d'abord et longtemps, tout rivage.",
-    "auteur": "André Gide",
-    "source": "Les Faux-monnayeurs, 1925"
+    "texte": "Je suis venu te dire que je m'en vais.",
+    "auteur": "Serge Gainsbourg",
+    "source": "Je suis venu te dire que je m'en vais (chanson), 1973"
   },
   {
-    "texte": "Le style est l'homme même.",
-    "auteur": "Buffon",
-    "source": "Discours sur le style, 1753"
-  },
-  {
-    "texte": "Le travail éloigne de nous trois grands maux : l'ennui, le vice et le besoin.",
-    "auteur": "Voltaire",
-    "source": "Candide, 1759"
-  },
-  {
-    "texte": "Douter de tout ou tout croire, ce sont deux solutions également commodes, qui l'une et l'autre nous dispensent de réfléchir.",
-    "auteur": "Henri Poincaré",
-    "source": "La Science et l'Hypothèse, 1902"
-  },
-  {
-    "texte": "Le bon sens est la chose du monde la mieux partagée.",
-    "auteur": "René Descartes",
-    "source": "Discours de la méthode, 1637"
-  },
-  {
-    "texte": "L'attention est la forme la plus rare et la plus pure de la générosité.",
-    "auteur": "Simone Weil",
-    "source": "Lettre à Joë Bousquet, 1942"
-  },
-  {
-    "texte": "Pour ce qui est de l'avenir, il ne s'agit pas de le prévoir, mais de le rendre possible.",
-    "auteur": "Antoine de Saint-Exupéry",
-    "source": "Citadelle, 1948"
-  },
-  {
-    "texte": "Ah ! non ! c'est un peu court, jeune homme !",
-    "auteur": "Edmond Rostand",
-    "source": "Cyrano de Bergerac, 1897"
+    "texte": "Ne me quitte pas, il faut oublier.",
+    "auteur": "Jacques Brel",
+    "source": "Ne me quitte pas (chanson), 1959"
   },
   {
     "texte": "En essayant continuellement on finit par réussir. Donc : plus ça rate, plus on a de chances que ça marche.",
@@ -250,241 +230,6 @@
     "source": "Quai des brumes, 1938"
   },
   {
-    "texte": "Qui craint de souffrir, il souffre déjà de ce qu'il craint.",
-    "auteur": "Michel de Montaigne",
-    "source": "Essais, III, 13, 1588"
-  },
-  {
-    "texte": "Parce que c'était lui, parce que c'était moi.",
-    "auteur": "Michel de Montaigne",
-    "source": "Essais, I, 28, 1580"
-  },
-  {
-    "texte": "Le soleil ni la mort ne se peuvent regarder fixement.",
-    "auteur": "François de La Rochefoucauld",
-    "source": "Maximes, 1665"
-  },
-  {
-    "texte": "Tout est dit, et l'on vient trop tard depuis plus de sept mille ans qu'il y a des hommes, et qui pensent.",
-    "auteur": "Jean de La Bruyère",
-    "source": "Les Caractères, 1688"
-  },
-  {
-    "texte": "L'homme est né libre, et partout il est dans les fers.",
-    "auteur": "Jean-Jacques Rousseau",
-    "source": "Du contrat social, 1762"
-  },
-  {
-    "texte": "La liberté est le droit de faire tout ce que les lois permettent.",
-    "auteur": "Montesquieu",
-    "source": "De l'esprit des lois, 1748"
-  },
-  {
-    "texte": "Ce qui est simple est toujours faux. Ce qui ne l'est pas est inutilisable.",
-    "auteur": "Paul Valéry",
-    "source": "Mauvaises pensées et autres, 1942"
-  },
-  {
-    "texte": "L'enfer, c'est les autres.",
-    "auteur": "Jean-Paul Sartre",
-    "source": "Huis clos, 1944"
-  },
-  {
-    "texte": "Il ne suffit pas d'avoir l'esprit bon, mais le principal est de l'appliquer bien.",
-    "auteur": "René Descartes",
-    "source": "Discours de la méthode, 1637"
-  },
-  {
-    "texte": "Science sans conscience n'est que ruine de l'âme.",
-    "auteur": "François Rabelais",
-    "source": "Pantagruel, 1532"
-  },
-  {
-    "texte": "Mieux est de ris que de larmes écrire, pour ce que rire est le propre de l'homme.",
-    "auteur": "François Rabelais",
-    "source": "Gargantua, 1534"
-  },
-  {
-    "texte": "Les vrais paradis sont les paradis qu'on a perdus.",
-    "auteur": "Marcel Proust",
-    "source": "Le Temps retrouvé, 1927"
-  },
-  {
-    "texte": "Au milieu de l'hiver, j'apprenais enfin qu'il y avait en moi un invincible été.",
-    "auteur": "Albert Camus",
-    "source": "L'Été, « Retour à Tipasa », 1954"
-  },
-  {
-    "texte": "Il faut manger pour vivre, et non pas vivre pour manger.",
-    "auteur": "Molière",
-    "source": "L'Avare, 1668"
-  },
-  {
-    "texte": "Je vis de bonne soupe, et non de beau langage.",
-    "auteur": "Molière",
-    "source": "Les Femmes savantes, 1672"
-  },
-  {
-    "texte": "La raison du plus fort est toujours la meilleure.",
-    "auteur": "Jean de La Fontaine",
-    "source": "Fables, « Le Loup et l'Agneau », 1668"
-  },
-  {
-    "texte": "Plus ça change, plus c'est la même chose.",
-    "auteur": "Alphonse Karr",
-    "source": "Les Guêpes, 1849"
-  },
-  {
-    "texte": "À vaincre sans péril, on triomphe sans gloire.",
-    "auteur": "Pierre Corneille",
-    "source": "Le Cid, 1637"
-  },
-  {
-    "texte": "Va, je ne te hais point.",
-    "auteur": "Pierre Corneille",
-    "source": "Le Cid, 1637"
-  },
-  {
-    "texte": "Je t'aimais inconstant, qu'aurais-je fait fidèle ?",
-    "auteur": "Jean Racine",
-    "source": "Andromaque, 1667"
-  },
-  {
-    "texte": "Cueillez dès aujourd'hui les roses de la vie.",
-    "auteur": "Pierre de Ronsard",
-    "source": "Sonnets pour Hélène, 1578"
-  },
-  {
-    "texte": "Heureux qui, comme Ulysse, a fait un beau voyage.",
-    "auteur": "Joachim du Bellay",
-    "source": "Les Regrets, 1558"
-  },
-  {
-    "texte": "Ô temps ! suspends ton vol, et vous, heures propices, suspendez votre cours !",
-    "auteur": "Alphonse de Lamartine",
-    "source": "Méditations poétiques, « Le Lac », 1820"
-  },
-  {
-    "texte": "Les plus désespérés sont les chants les plus beaux.",
-    "auteur": "Alfred de Musset",
-    "source": "Poésies nouvelles, « La Nuit de mai », 1835"
-  },
-  {
-    "texte": "Je suis le Ténébreux, – le Veuf, – l'Inconsolé.",
-    "auteur": "Gérard de Nerval",
-    "source": "Les Chimères, « El Desdichado », 1854"
-  },
-  {
-    "texte": "Vienne la nuit sonne l'heure, les jours s'en vont je demeure.",
-    "auteur": "Guillaume Apollinaire",
-    "source": "Alcools, « Le Pont Mirabeau », 1913"
-  },
-  {
-    "texte": "Un coup de dés jamais n'abolira le hasard.",
-    "auteur": "Stéphane Mallarmé",
-    "source": "Un coup de dés jamais n'abolira le hasard, 1897"
-  },
-  {
-    "texte": "La musique souvent me prend comme une mer !",
-    "auteur": "Charles Baudelaire",
-    "source": "Les Fleurs du mal, « La Musique », 1857"
-  },
-  {
-    "texte": "Les sanglots longs des violons de l'automne blessent mon cœur d'une langueur monotone.",
-    "auteur": "Paul Verlaine",
-    "source": "Poèmes saturniens, « Chanson d'automne », 1866"
-  },
-  {
-    "texte": "Elle est retrouvée. Quoi ? L'éternité.",
-    "auteur": "Arthur Rimbaud",
-    "source": "Derniers vers, « L'Éternité », 1872"
-  },
-  {
-    "texte": "Rappelle-toi Barbara. Il pleuvait sans cesse sur Brest ce jour-là.",
-    "auteur": "Jacques Prévert",
-    "source": "Paroles, « Barbara », 1946"
-  },
-  {
-    "texte": "Il n'y a pas d'amour heureux.",
-    "auteur": "Louis Aragon",
-    "source": "La Diane française, 1944"
-  },
-  {
-    "texte": "Impose ta chance, serre ton bonheur et va vers ton risque.",
-    "auteur": "René Char",
-    "source": "Feuillets d'Hypnos, 1946"
-  },
-  {
-    "texte": "Seul le silence est grand ; tout le reste est faiblesse.",
-    "auteur": "Alfred de Vigny",
-    "source": "Les Destinées, « La Mort du loup », 1864"
-  },
-  {
-    "texte": "Mais où sont les neiges d'antan ?",
-    "auteur": "François Villon",
-    "source": "Le Testament, « Ballade des dames du temps jadis », 1461"
-  },
-  {
-    "texte": "Levez-vous vite, orages désirés.",
-    "auteur": "François-René de Chateaubriand",
-    "source": "René, 1802"
-  },
-  {
-    "texte": "Je me sentais responsable de la beauté du monde.",
-    "auteur": "Marguerite Yourcenar",
-    "source": "Mémoires d'Hadrien, 1951"
-  },
-  {
-    "texte": "Être homme, c'est précisément être responsable.",
-    "auteur": "Antoine de Saint-Exupéry",
-    "source": "Terre des hommes, 1939"
-  },
-  {
-    "texte": "On ne se bat pas dans l'espoir du succès ! Non, non, c'est bien plus beau lorsque c'est inutile !",
-    "auteur": "Edmond Rostand",
-    "source": "Cyrano de Bergerac, 1897"
-  },
-  {
-    "texte": "Le tact dans l'audace, c'est de savoir jusqu'où on peut aller trop loin.",
-    "auteur": "Jean Cocteau",
-    "source": "Le Rappel à l'ordre, 1926"
-  },
-  {
-    "texte": "La vérité est en marche et rien ne l'arrêtera.",
-    "auteur": "Émile Zola",
-    "source": "Le Figaro, 25 novembre 1897"
-  },
-  {
-    "texte": "L'art, c'est moi ; la science, c'est nous.",
-    "auteur": "Claude Bernard",
-    "source": "Introduction à l'étude de la médecine expérimentale, 1865"
-  },
-  {
-    "texte": "Rien n'est donné. Tout est construit.",
-    "auteur": "Gaston Bachelard",
-    "source": "La Formation de l'esprit scientifique, 1938"
-  },
-  {
-    "texte": "La science n'a pas de patrie, parce que le savoir est le patrimoine de l'humanité.",
-    "auteur": "Louis Pasteur",
-    "source": "Inauguration de l'Institut Pasteur, 1888"
-  },
-  {
-    "texte": "Quand j'étais jeune, on me disait : vous verrez quand vous aurez cinquante ans. J'ai cinquante ans, je n'ai rien vu.",
-    "auteur": "Erik Satie",
-    "source": "Mémoires d'un amnésique, 1912"
-  },
-  {
-    "texte": "Je suis venu te dire que je m'en vais.",
-    "auteur": "Serge Gainsbourg",
-    "source": "Je suis venu te dire que je m'en vais (chanson), 1973"
-  },
-  {
-    "texte": "Ne me quitte pas, il faut oublier.",
-    "auteur": "Jacques Brel",
-    "source": "Ne me quitte pas (chanson), 1959"
-  },
-  {
     "texte": "Faut reconnaître... c'est du brutal.",
     "auteur": "Lino Ventura (Fernand Naudin, dialogues de Michel Audiard)",
     "source": "Les Tontons flingueurs, 1963"
@@ -498,5 +243,80 @@
     "texte": "Merdre !",
     "auteur": "Alfred Jarry",
     "source": "Ubu roi, 1896"
+  },
+  {
+    "texte": "L'attention est la forme la plus rare et la plus pure de la générosité.",
+    "auteur": "Simone Weil",
+    "source": "Lettre à Joë Bousquet, 1942"
+  },
+  {
+    "texte": "Rien ne se crée, ni dans les opérations de l'art, ni dans celles de la nature.",
+    "auteur": "Antoine Lavoisier",
+    "source": "Traité élémentaire de chimie, 1789"
+  },
+  {
+    "texte": "La science, mon garçon, est faite d'erreurs, mais d'erreurs qu'il est bon de commettre, car elles mènent peu à peu à la vérité.",
+    "auteur": "Jules Verne",
+    "source": "Voyage au centre de la Terre, 1864"
+  },
+  {
+    "texte": "L'ancienne alliance est rompue ; l'homme sait enfin qu'il est seul dans l'immensité indifférente de l'Univers d'où il a émergé par hasard.",
+    "auteur": "Jacques Monod",
+    "source": "Le Hasard et la Nécessité, 1970"
+  },
+  {
+    "texte": "On ne naît pas femme : on le devient.",
+    "auteur": "Simone de Beauvoir",
+    "source": "Le Deuxième Sexe, 1949"
+  },
+  {
+    "texte": "Je me révolte, donc nous sommes.",
+    "auteur": "Albert Camus",
+    "source": "L'Homme révolté, 1951"
+  },
+  {
+    "texte": "Une maison est une machine à habiter.",
+    "auteur": "Le Corbusier",
+    "source": "Vers une architecture, 1923"
+  },
+  {
+    "texte": "Sur cette terre, il y a une chose épouvantable, c'est que tout le monde a ses raisons.",
+    "auteur": "Jean Renoir (Octave)",
+    "source": "La Règle du jeu, 1939"
+  },
+  {
+    "texte": "Ils sont fous, ces Romains !",
+    "auteur": "Obélix (René Goscinny et Albert Uderzo)",
+    "source": "Astérix"
+  },
+  {
+    "texte": "Mille milliards de mille sabords !",
+    "auteur": "Capitaine Haddock (Hergé)",
+    "source": "Les Aventures de Tintin"
+  },
+  {
+    "texte": "M'enfin !",
+    "auteur": "Gaston (André Franquin)",
+    "source": "Gaston Lagaffe"
+  },
+  {
+    "texte": "Jusqu'ici tout va bien.",
+    "auteur": "Hubert (dialogues de Mathieu Kassovitz)",
+    "source": "La Haine, 1995"
+  },
+  {
+    "texte": "Non, je ne regrette rien.",
+    "auteur": "Édith Piaf",
+    "source": "Non, je ne regrette rien (chanson), 1960"
+  },
+  {
+    "texte": "Harder, better, faster, stronger.",
+    "auteur": "Daft Punk",
+    "source": "Harder, Better, Faster, Stronger (chanson), 2001"
+  },
+  {
+    "texte": "Alors on danse.",
+    "auteur": "Stromae",
+    "source": "Alors on danse (chanson), 2009"
   }
 ]
