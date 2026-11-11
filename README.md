@@ -36,7 +36,7 @@ src/
   index.njk journal.njk projets.njk musique.njk tags.njk  pages générées
   404.njk feed.njk sitemap.njk robots.txt.njk            pages techniques
 docs/modeles/             modèles à copier : article.md, projet.md
-docs/prompts/             prompts IA : article, projet, note courte (loisirs), 100 citations
+docs/prompts/             prompts IA : article, projet, note courte (loisirs), 100 citations, idées de premiers contenus
 ```
 
 Conventions : le **nom du fichier devient l'URL** (minuscules, sans accent, tirets). Les noms de champs sont ceux de la section suivante. Rien n'est dupliqué : titre et menu dans `site.json`, couleurs dans les variables du CSS.
