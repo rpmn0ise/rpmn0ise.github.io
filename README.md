@@ -78,6 +78,20 @@ Placer le fichier dans `src/public/images/` (compressé avant, cible environ 100
 
 Monochrome, une seule couleur d'accent (bleu), beaucoup d'espace. Polices auto-hébergées (licence OFL, voir `src/public/fonts/LICENCES.txt`) : Instrument Serif pour le nom et les titres de page, Bricolage Grotesque pour les titres de section et de projet, Instrument Sans pour le texte, Geist Mono pour les petites mentions. Tout se règle dans les variables en tête de `style.css`. Menu : Projets, Journal, Musique, À propos, Contact. L'accueil montre le nom en grand, la phrase d'accueil, la zone « En ce moment », les projets `featured` et les 3 derniers articles.
 
+## Apparence : modes et couleurs
+
+Le menu rond (palette) en haut à droite permet de choisir :
+- **Apparence** : Auto (suit l'appareil), Clair, Sombre, AMOLED (noir pur) ;
+- **Couleur dominante** : orange (défaut), vert acide, rouge, rose, bleu, violet, cyan.
+
+Le choix est gardé dans le navigateur du visiteur (`localStorage`, clés `theme` et `accent`), sans serveur. Le menu n'apparaît qu'avec JavaScript ; sans lui, le site reste en sombre ou clair selon l'appareil, en orange.
+
+Où modifier :
+- Les couleurs et les trois apparences : début de `src/public/css/style.css` (variables `--a-d` et `--a-l` par couleur : version sur fond sombre et sur fond clair, plus foncée pour rester lisible).
+- La liste des couleurs du menu : le tableau `couleurs` dans `src/gabarits/base.njk` (et un bloc `[data-accent="…"]` dans le CSS pour en ajouter une).
+- L'accueil : centres d'intérêt dans `site.json` (`centres`), carte Setup dans `maintenant.json` (`setup`).
+- Image de partage : `python3 outils/generer-og.py` (couleur orange du site).
+
 ## Page Setup
 
 `src/contenu/pages/setup.md` : ton matériel et tes logiciels, en Markdown simple (une liste par section). Pour modifier, édite le fichier et change la date de mise à jour dans le premier paragraphe. Le lien « Setup » est dans le pied de page (`liens` de `site.json`) ; pour l'ajouter au menu, déplace-le dans `nav`.

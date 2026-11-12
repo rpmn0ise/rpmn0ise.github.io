@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFont
 RACINE = Path(__file__).resolve().parent.parent
 POLICES = RACINE / "src/public/fonts"
 SITE = json.loads((RACINE / "src/donnees/site.json").read_text(encoding="utf-8"))
-FOND, TEXTE, DISCRET, ACCENT = "#0a0a0b", "#f4f4f5", "#8b8b93", "#8fa3ff"
+FOND, TEXTE, DISCRET, ACCENT = "#141416", "#f6f6f7", "#a6a6ae", "#ff6a1a"
 
 tmp = Path(tempfile.mkdtemp())
 def police(nom, taille):
@@ -27,10 +27,13 @@ L, H = 1200, 630
 img = Image.new("RGB", (L, H), FOND)
 d = ImageDraw.Draw(img)
 d.rectangle([80, 96, 152, 102], fill=ACCENT)
-nom = police("instrument-serif.woff", 190)
-d.text((74, 150), SITE["titre"], font=nom, fill=TEXTE)
+nom = police("bricolage-700.woff", 200)
+x, y = 74, 140
+for morceau, couleur in zip(SITE["titre"].partition("0"), (TEXTE, ACCENT, TEXTE)):
+    d.text((x, y), morceau, font=nom, fill=couleur)
+    x += d.textlength(morceau, font=nom) - 6
 desc = police("instrument-sans-400.woff", 40)
-d.text((80, 410), SITE["description"], font=desc, fill=DISCRET)
+d.text((80, 420), SITE["description"], font=desc, fill=DISCRET)
 mono = police("geist-mono-400.woff", 28)
 d.text((80, 540), "projets  ·  musique  ·  jeux  ·  notes", font=mono, fill=ACCENT)
 (RACINE / "src/public/images").mkdir(parents=True, exist_ok=True)

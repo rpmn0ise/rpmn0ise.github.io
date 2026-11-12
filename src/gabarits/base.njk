@@ -46,7 +46,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="alternate" type="application/atom+xml" title="{{ site.titre }}" href="/feed.xml">
-  <script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}d.dataset.theme=t})()</script>
+  <script>(function(){var d=document.documentElement,m=null,a=null;try{m=localStorage.getItem("theme");a=localStorage.getItem("accent")}catch(e){}if(["auto","light","dark","amoled"].indexOf(m)<0)m="auto";var l=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches;d.dataset.mode=m;d.dataset.theme=m==="auto"?(l?"light":"dark"):m;d.dataset.accent=/^(orange|lime|red|pink|blue|violet|cyan)$/.test(a)?a:"orange"})()</script>
   <link rel="preload" href="/fonts/instrument-serif.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="/fonts/instrument-sans-400.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
@@ -60,7 +60,7 @@
 
   <header class="entete">
     <div class="conteneur entete__int">
-      <a class="marque" href="/">{{ site.titre }}</a>
+      <a class="marque" href="/">{{ site.titre | replace("0", "<em>0</em>") | safe }}</a>
       <nav aria-label="Navigation principale">
         <ul>
           {%- for lien in site.nav %}
@@ -69,7 +69,27 @@
           {%- endfor %}
         </ul>
       </nav>
-      <button class="theme" type="button" data-theme-toggle hidden></button>
+      {%- set couleurs = [{ id: "orange", nom: "Orange", c: "#ff6a1a" }, { id: "lime", nom: "Vert acide", c: "#d9ff3f" }, { id: "red", nom: "Rouge", c: "#ff4d4d" }, { id: "pink", nom: "Rose", c: "#ff5fa2" }, { id: "blue", nom: "Bleu", c: "#5f8fff" }, { id: "violet", nom: "Violet", c: "#a98bff" }, { id: "cyan", nom: "Cyan", c: "#2bd9f2" }] %}
+      <div class="apparence">
+        <button class="theme" type="button" data-theme-toggle aria-haspopup="true" aria-expanded="false" aria-controls="menu-apparence" aria-label="Apparence et couleur" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2Z"/><circle cx="7.5" cy="11" r="1" fill="currentColor"/><circle cx="10.5" cy="7" r="1" fill="currentColor"/><circle cx="15" cy="7.5" r="1" fill="currentColor"/></svg>
+        </button>
+        <div class="apparence__menu" id="menu-apparence" hidden>
+          <p class="etiquette">Apparence</p>
+          <div class="apparence__modes" role="group" aria-label="Apparence">
+            <button type="button" data-mode="auto" aria-pressed="false"><span aria-hidden="true">◐</span>Auto</button>
+            <button type="button" data-mode="light" aria-pressed="false"><span aria-hidden="true">☀</span>Clair</button>
+            <button type="button" data-mode="dark" aria-pressed="false"><span aria-hidden="true">☾</span>Sombre</button>
+            <button type="button" data-mode="amoled" aria-pressed="false"><span aria-hidden="true">●</span>AMOLED</button>
+          </div>
+          <p class="etiquette">Couleur</p>
+          <div class="apparence__couleurs" role="group" aria-label="Couleur dominante">
+            {%- for c in couleurs %}
+            <button class="pastille" type="button" data-accent="{{ c.id }}" style="--c: {{ c.c }}" aria-label="{{ c.nom }}" title="{{ c.nom }}" aria-pressed="false"></button>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 

@@ -3,7 +3,8 @@ layout: base.njk
 avecMusique: true
 ---
 <section class="hero">
-  <h1 class="hero__nom">{{ site.titre }}</h1>
+  <p class="hero__etiquette etiquette"><b>//</b> Accueil</p>
+  <h1 class="hero__nom">{{ site.titre | replace("0", "<em>0</em>") | safe }}</h1>
   {%- if citations.length %}
   {#- Une citation au hasard à chaque chargement. Sans JavaScript, la phrase d'accueil reste affichée. #}
   <figure class="hero__citation" data-citation>
@@ -35,6 +36,11 @@ avecMusique: true
   {%- elif site.accroche %}
   <p class="hero__texte">{{ site.accroche }}</p>
   {%- endif %}
+  {%- if site.centres.length %}
+  <ul class="puces" aria-label="Centres d'intérêt">
+    {%- for c in site.centres %}<li>{{ c }}</li>{%- endfor %}
+  </ul>
+  {%- endif %}
   {%- set aLaUne = collections.projets | misEnAvant %}
   {%- if collections.projets.length or collections.journal.length %}
   <p class="hero__index meta">
@@ -48,7 +54,7 @@ avecMusique: true
   {%- endif %}
 </section>
 
-{%- set enCeMoment = maintenant.ecoute or maintenant.joue or maintenant.travaille %}
+{%- set enCeMoment = maintenant.ecoute or maintenant.joue or maintenant.travaille or maintenant.setup.titre %}
 <section class="maintenant" aria-label="En ce moment" data-maintenant{% if not enCeMoment %} hidden{% endif %}>
   <div class="bloc__tete">
     <h2 class="section-titre">En ce moment</h2>
@@ -68,6 +74,15 @@ avecMusique: true
       <p class="etiquette">Travaille sur</p>
       <p class="maintenant__texte">{{ maintenant.travaille }}</p>
     </div>
+    {%- endif %}
+    {%- if maintenant.setup.titre %}
+    <a class="maintenant__cellule maintenant__cellule--large" href="/setup/">
+      <p class="etiquette">Setup</p>
+      <div>
+        <p class="maintenant__texte">{{ maintenant.setup.titre }}</p>
+        {%- if maintenant.setup.note %}<p class="maintenant__note">{{ maintenant.setup.note }}</p>{%- endif %}
+      </div>
+    </a>
     {%- endif %}
   </div>
 </section>
