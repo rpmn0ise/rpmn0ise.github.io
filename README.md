@@ -140,6 +140,15 @@ Où modifier :
 
 **SoundCloud** : simple lien, adresse dans `musique.json` (`soundcloud`).
 
+## RPMN0ISE RADIO
+
+Petit lecteur de musique aléatoire, fixé en bas à gauche de toutes les pages. Trois états : barre compacte (par défaut), panneau déroulé (progression, volume, derniers morceaux), bouton rond masqué. L'état, le volume et l'historique sont gardés dans le navigateur (`localStorage`, clé `radio`).
+
+- Rien n'est chargé avant le premier clic sur lecture ; la musique ne démarre jamais seule.
+- La lecture continue d'une page à l'autre grâce à `js/navigation.js` (navigation douce : seul le contenu change). Si un lien échoue, le site retombe sur une navigation classique. Un rechargement complet (F5, fermeture de l'onglet) coupe la musique.
+- Les morceaux ne sont **pas** dans ce dépôt : ils viennent d'un second projet Cloudflare Pages, `rpmn0ise-radio`, géré dans le dossier séparé `rpmn0ise-radio/` (voir son README). Le site ne connaît que l'adresse de cette bibliothèque : `radio.url` dans `src/donnees/site.json`.
+- Pour désactiver la radio : retirer l'élément `<aside id="radio">` de `src/gabarits/base.njk`.
+
 ## Thème clair et sombre
 
 Les couleurs sont des variables CSS au début de `style.css` (palette sombre par défaut, palette claire via `data-theme="light"`). Un petit script dans `<head>` applique au premier passage le thème du système, puis le bouton du menu bascule et mémorise le choix dans `localStorage` (aucun cookie). Sans JavaScript, le site reste en sombre.
@@ -173,7 +182,9 @@ Les couleurs sont des variables CSS au début de `style.css` (palette sombre par
 - Voir plus (9→18→27 écoutes, bouton masqué à la dernière page, aucun doublon), classements (masqués s'ils sont vides), libellé de pause : testés avec de fausses réponses de Last.fm.
 - Vérifications faites sur la version précédente du design (pas refaites ensuite) : contraste texte/fond d'au moins 5,5:1 dans les deux thèmes, ordre de tabulation, thème mémorisé après rechargement.
 
-**Non vérifié** : l'appel réel à Last.fm depuis un navigateur (accès réseau impossible depuis mon environnement ; l'API est conçue pour être appelée ainsi, mais c'est le premier point à contrôler en ligne), le déploiement Cloudflare Pages, les performances mesurées (Lighthouse).
+- Radio (Chromium, Playwright, vrais MP3 servis par le vrai `_worker.js` en local) : aucune requête avant le clic ; lecture ; navigation douce sans couper le son (le document n'est pas rechargé) ; retour arrière ; seek ; enchaînement automatique en fin de morceau, sans répétition consécutive ; états compact, déroulé et masqué (mémorisés après rechargement) ; index inaccessible et fichiers en 404 (message, pas de boucle) ; `musique.js` et la citation de l'accueil se relancent après une navigation douce ; mobile 390 px sans débordement ; aucune erreur console.
+
+**Non vérifié** : Safari et iOS (lecture, volume, Range sur Pages), le vrai déploiement Cloudflare Pages et le Worker en production, une vraie bibliothèque de 100 à 200 morceaux en 320 kbps, l'appel réel à Last.fm depuis un navigateur (accès réseau impossible depuis mon environnement ; l'API est conçue pour être appelée ainsi, mais c'est le premier point à contrôler en ligne), le déploiement Cloudflare Pages, les performances mesurées (Lighthouse).
 
 ## Limites connues
 

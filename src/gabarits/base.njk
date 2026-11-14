@@ -51,9 +51,9 @@
   <link rel="preload" href="/fonts/instrument-sans-400.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
   <script src="/js/theme.js" defer></script>
-  {%- if avecMusique %}
   <script src="/js/musique.js" defer></script>
-  {%- endif %}
+  <script src="/js/radio.js" defer></script>
+  <script src="/js/navigation.js" defer></script>
 </head>
 <body id="top">
   <a class="evitement" href="#contenu">Aller au contenu</a>
@@ -110,5 +110,8 @@
       <a class="pied__haut" href="#top">Haut ↑</a>
     </div>
   </footer>
+
+  <aside id="radio" class="radio radio--masque" data-url="{{ site.radio.url }}" aria-label="RPMN0ISE RADIO" hidden></aside>
+  <div id="annonce-page" class="sr-seulement" role="status" aria-live="polite"></div>
 </body>
 </html>

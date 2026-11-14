@@ -9,6 +9,9 @@
     "nom": "rpmn0ise",
     "email": "rpmn0ise@proton.me"
   },
+  "radio": {
+    "url": "https://rpmn0ise-radio.pages.dev"
+  },
   "nav": [
     {
       "libelle": "Projets",
