@@ -2,7 +2,7 @@
 
 Site statique fait avec [Eleventy](https://www.11ty.dev/) 3, en français. Pas de backend, pas de base de données, aucun service externe obligatoire (seul l'indicateur d'écoute en contacte, et il est facultatif : voir « Musique »). Hébergement prévu : Cloudflare Pages.
 
-> **À faire avant la mise en ligne** (voir « Avant la mise en ligne ») : `url` du site, nom définitif, contenus d'exemple à relire, marqueurs `[À CONFIRMER]`.
+> **À faire avant la mise en ligne** (voir « Avant la mise en ligne ») : contenus d'exemple à relire, vérifications en ligne.
 
 ## Commandes
 
@@ -142,7 +142,7 @@ Où modifier :
 
 ## RPMN0ISE RADIO
 
-Petit lecteur de musique aléatoire, fixé en bas à gauche de toutes les pages. Trois états : barre compacte (par défaut), panneau déroulé (progression, volume, derniers morceaux), bouton rond masqué. L'état, le volume et l'historique sont gardés dans le navigateur (`localStorage`, clé `radio`).
+Petit lecteur de musique aléatoire, fixé en bas à gauche de toutes les pages. Boutons précédent / suivant, historique cliquable pour rejouer un morceau. Trois états : barre compacte (par défaut), panneau déroulé (progression, volume, derniers morceaux), bouton rond masqué. L'état, le volume et l'historique sont gardés dans le navigateur (`localStorage`, clé `radio`).
 
 - Rien n'est chargé avant le premier clic sur lecture ; la musique ne démarre jamais seule.
 - La lecture continue d'une page à l'autre grâce à `js/navigation.js` (navigation douce : seul le contenu change). Si un lien échoue, le site retombe sur une navigation classique. Un rechargement complet (F5, fermeture de l'onglet) coupe la musique.
@@ -164,9 +164,9 @@ Les couleurs sont des variables CSS au début de `style.css` (palette sombre par
 
 ## Avant la mise en ligne
 
-- [ ] Remplacer `url` dans `src/donnees/site.json` (le build prévient tant que c'est `example.com`) : il sert au sitemap, au flux RSS et aux liens canoniques.
-- [ ] Décider du nom définitif du site (`titre` dans `site.json`, provisoirement `rpmn0ise`).
-- [ ] Résoudre les marqueurs `[À CONFIRMER]` encore visibles dans `projets/interligne.md` et `projets/collection-hot-wheels.md` (recherche : `grep -rn "À CONFIRMER" src/contenu`).
+- [x] `url` renseignée (`https://rpmn0ise.pages.dev`) : à changer si tu prends un nom de domaine.
+- [x] Nom définitif : `rpmn0ise`.
+- [x] Marqueurs `[À CONFIRMER]` résolus (ceux des prompts dans `docs/prompts/` sont voulus).
 - [ ] Relire les articles d'exemple (`journal/pourquoi-ce-site.md`, `journal/aide-memoire-mise-en-forme.md`) : les garder, les réécrire ou les supprimer.
 - [ ] Vérifier l'e-mail (`site.json`) et les liens GitHub / YouTube (`contact.md`), repris de l'ancien site.
 - [ ] Après le premier déploiement, ouvrir `/musique/` avec la console du navigateur ouverte : l'appel à Last.fm n'a pas pu être testé contre le vrai service (voir « Tests »).

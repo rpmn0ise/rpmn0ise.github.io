@@ -40,7 +40,7 @@ python prepare_photos.py photos_brutes/lot-01 --start 1 --out site/photos --csv 
 
 ## Où en est le projet
 
-Pour l'instant, 10 voitures sont recensées et photographiées, de `HW-001` à `HW-010`. [À CONFIRMER : nombre de voitures recensées au moment de la publication de cette page] Je continue le recensement lot par lot.
+Le recensement est en cours : les voitures sont photographiées et ajoutées au catalogue au fur et à mesure. Je continue le recensement lot par lot.
 
 ## Liens
 

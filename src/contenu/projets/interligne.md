@@ -29,7 +29,7 @@ Je voulais une publication à moi, avec une vraie liberté de sujets, sans me li
 - Je donne le texte de ces sources à l'IA, qui rédige l'article.
 - Je vérifie les chiffres, les dates, les noms et les citations dans les sources.
 - J'écris moi-même l'avis qui accompagne chaque article.
-- J'ai conçu le fonctionnement du site et sa mise en page. [À CONFIRMER : préciser la part de l'IA dans l'écriture du code du site]
+- J'ai conçu le fonctionnement du site et sa mise en page, et l'IA a écrit le code.
 
 ## Comment ça marche
 

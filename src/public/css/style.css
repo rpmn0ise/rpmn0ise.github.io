@@ -731,7 +731,11 @@ pre code { background: none; padding: 0; font-size: inherit; }
 .radio__progres, .radio__volume { display: flex; align-items: center; gap: 0.6rem; }
 .radio__progres input, .radio__volume input { flex: 1; min-width: 0; height: 2.5rem; accent-color: var(--accent); }
 .radio__histo { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
-.radio__histo li { display: grid; gap: 0.05rem; padding-block: 0.35rem; border-top: 1px solid var(--filet); font-size: 0.8125rem; }
+.radio__histo li { border-top: 1px solid var(--filet); font-size: 0.8125rem; }
+.radio__histo-bouton { display: grid; gap: 0.05rem; width: 100%; min-height: 2.5rem; padding: 0.35rem 0; background: none; border: 0; text-align: left; }
+.radio__histo-bouton:hover .radio__histo-titre { color: var(--accent); }
+.radio__histo-bouton:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.radio__histo-vide { padding-block: 0.35rem; }
 .radio__histo-titre { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .radio__histo-artiste, .radio__histo-vide { font-family: var(--mono); font-size: 0.75rem; color: var(--discret); }
 .radio__histo-courant .radio__histo-titre { color: var(--accent); }
@@ -740,6 +744,7 @@ pre code { background: none; padding: 0; font-size: inherit; }
 .radio--masque .radio__barre, .radio--masque .radio__panneau { display: none; }
 .radio--masque .radio__rond { display: grid; }
 .radio-actif .pied { padding-bottom: 5.5rem; }
+@media (max-width: 23rem) { .radio__eq { display: none; } }
 @media (max-width: 30rem) {
   .radio { left: 0.75rem; bottom: max(0.75rem, env(safe-area-inset-bottom)); width: calc(100vw - 1.5rem); }
   .radio--masque { width: auto; }

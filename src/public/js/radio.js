@@ -25,6 +25,7 @@
   const ICONES = {
     lecture: '<path d="M8 5v14l11-7z"/>',
     pause: '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>',
+    precedent: '<path d="M18 5L9 12l9 7zM5 5h2v14H5z"/>',
     suivant: '<path d="M6 5l9 7-9 7zM17 5h2v14h-2z"/>',
     plus: '<circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/>',
     son: '<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
@@ -62,6 +63,7 @@
         <p class="radio__artiste" data-artiste>Lancer la lecture</p>
       </div>
       <span class="eq radio__eq" aria-hidden="true"><i></i><i></i><i></i></span>
+      <button class="radio__bouton" type="button" data-act="precedent" aria-label="Morceau précédent">${svg("precedent")}</button>
       <button class="radio__bouton" type="button" data-act="suivant" aria-label="Morceau suivant">${svg("suivant")}</button>
       <button class="radio__bouton" type="button" data-act="deroule" aria-expanded="false" aria-controls="radio-panneau" aria-label="Plus d'options">${svg("plus")}</button>
     </div>
@@ -130,6 +132,11 @@
   function majHistorique() {
     const lignes = etat.historique.slice(-AFFICHES).reverse().map((h, i) => {
       const li = document.createElement("li");
+      const bt = document.createElement("button");
+      bt.type = "button";
+      bt.className = "radio__histo-bouton";
+      bt.dataset.rejouer = h.id;
+      bt.setAttribute("aria-label", `Rejouer ${h.titre}, ${h.artiste}`);
       if (i === 0 && courant && h.id === courant.id) li.className = "radio__histo-courant";
       const t = document.createElement("span");
       t.className = "radio__histo-titre";
@@ -137,7 +144,8 @@
       const a = document.createElement("span");
       a.className = "radio__histo-artiste";
       a.textContent = h.artiste;
-      li.append(t, a);
+      bt.append(t, a);
+      li.append(bt);
       return li;
     });
     if (!lignes.length) {
@@ -213,12 +221,33 @@
     demarrer(sac.shift(), 0, true);
   }
 
+  async function rejouer(id) {
+    try { await charger(); } catch (e) { noter("Radio indisponible pour l'instant."); return; }
+    const m = index.find((x) => x.id === id);
+    if (!m) { noter("Ce morceau n'est plus dans la radio."); return; }
+    sac = sac.filter((x) => x.id !== id);
+    demarrer(m, 0, true);
+  }
+
+  async function precedente() {
+    if (audio.src && audio.currentTime > 3) { audio.currentTime = 0; return; }
+    const h = etat.historique;
+    const cible = courant && h.length && h[h.length - 1].id === courant.id ? h[h.length - 2] : h[h.length - 1];
+    if (!cible) { if (audio.src) audio.currentTime = 0; return; }
+    try { await charger(); } catch (e) { noter("Radio indisponible pour l'instant."); return; }
+    const m = index.find((x) => x.id === cible.id);
+    if (!m) { noter("Ce morceau n'est plus dans la radio."); return; }
+    if (courant && h.length && h[h.length - 1].id === courant.id) etat.historique = h.slice(0, -1);
+    demarrer(m, 0, true);
+  }
+
   function demarrer(m, position, noterHistorique) {
     courant = { id: m.id, titre: m.titre, artiste: m.artiste, fichier: m.fichier, pochette: m.pochette || "" };
     const url = urlDe(m.fichier);
     audio.src = url;
     if (position > 0) audio.addEventListener("loadedmetadata", () => { try { audio.currentTime = position; } catch (e) { /* ignoré */ } }, { once: true });
     if (noterHistorique) {
+      etat.historique = etat.historique.filter((h) => h.id !== m.id);
       etat.historique.push({ id: m.id, titre: m.titre, artiste: m.artiste });
       etat.historique = etat.historique.slice(-HISTORIQUE_MAX);
     }
@@ -276,11 +305,14 @@
   }
 
   racine.addEventListener("click", (e) => {
+    const r = e.target.closest("[data-rejouer]");
+    if (r) { rejouer(r.dataset.rejouer); return; }
     const b = e.target.closest("[data-act]");
     if (!b) return;
     switch (b.dataset.act) {
       case "lecture": basculer(); break;
       case "suivant": suivante(); break;
+      case "precedent": precedente(); break;
       case "deroule": ouvrir(ui.panneau.hidden); break;
       case "masquer": afficherEtat(true); break;
       case "afficher": afficherEtat(false); ui.lecture.focus(); break;
@@ -310,7 +342,7 @@
     action("play", basculer);
     action("pause", () => audio.pause());
     action("nexttrack", suivante);
-    action("previoustrack", null);
+    action("previoustrack", precedente);
     action("seekto", (d) => { if (d && typeof d.seekTime === "number") { try { audio.currentTime = d.seekTime; } catch (e) { /* ignoré */ } } });
   }
 
