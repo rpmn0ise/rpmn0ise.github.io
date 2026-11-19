@@ -1,0 +1,5 @@
+{
+  "layout": "projet.njk",
+  "lang": "en",
+  "permalink": "/en/projects/{{ page.fileSlug }}/"
+}

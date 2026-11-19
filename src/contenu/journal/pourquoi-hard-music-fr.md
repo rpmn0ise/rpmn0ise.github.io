@@ -2,6 +2,7 @@
 title: "Pourquoi j'ai créé Hard Music FR"
 date: 2026-11-11
 description: "Pourquoi j'ai lancé une communauté francophone de hard music, ce qui a été dur, ce que j'ai appris et ce que je ferais autrement."
+translationKey: pourquoi-hard-music-fr
 tags:
   - hard-music
   - discord

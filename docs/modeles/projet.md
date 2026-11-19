@@ -9,6 +9,7 @@ github: ""              # facultatif : lien du dépôt (supprimer la ligne si vi
 demo: ""                # facultatif : lien de la démo ou du site
 featured: false         # true = affiché sur la page d'accueil
 # draft: true           # invisible en production
+# translationKey: nom-du-fichier-sans-.md   (facultatif en français ; obligatoire dans la version anglaise)
 ---
 
 Présentation du projet en Markdown.

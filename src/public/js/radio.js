@@ -14,6 +14,20 @@
   const HISTORIQUE_MAX = 20;
   const AFFICHES = 10;
 
+  // ── Textes d'interface : lus dans <script id="i18n-js"> (changent avec la langue, voir navigation.js)
+  let cacheTextes = { brut: null, textes: {} };
+  const T = (cle, vals) => {
+    const el = document.getElementById("i18n-js");
+    const brut = el ? el.textContent : "";
+    if (brut !== cacheTextes.brut) {
+      let j = {};
+      try { j = (JSON.parse(brut) || {}).radio || {}; } catch (e) { /* textes par défaut */ }
+      cacheTextes = { brut, textes: j };
+    }
+    const modele = cacheTextes.textes[cle] ?? cle;
+    return vals ? modele.replace(/\{(\w+)\}/g, (m, k) => (vals[k] ?? m)) : modele;
+  };
+
   // ── Mémoire locale (volume, état du lecteur, dernier morceau, historique)
   const lire = () => { try { return JSON.parse(localStorage.getItem(CLE)) || {}; } catch (e) { return {}; } };
   let etat = lire();
@@ -37,37 +51,37 @@
     <div class="radio__panneau" id="radio-panneau" hidden>
       <div class="radio__entete">
         <p class="etiquette">RPMN0ISE RADIO</p>
-        <button class="radio__lien" type="button" data-act="masquer">Masquer</button>
+        <button class="radio__lien" type="button" data-act="masquer" data-r="masquer"></button>
       </div>
       <div class="radio__progres">
         <span class="meta" data-temps>0:00</span>
-        <input type="range" min="0" max="1000" value="0" step="1" disabled data-progres aria-label="Position dans le morceau">
+        <input type="range" min="0" max="1000" value="0" step="1" disabled data-progres data-ra="position">
         <span class="meta" data-duree>0:00</span>
       </div>
       <div class="radio__volume">
-        <button class="radio__bouton" type="button" data-act="muet" aria-label="Couper le son">${svg("son")}</button>
-        <input type="range" min="0" max="100" value="80" step="1" data-volume aria-label="Volume">
+        <button class="radio__bouton" type="button" data-act="muet">${svg("son")}</button>
+        <input type="range" min="0" max="100" value="80" step="1" data-volume data-ra="volume">
       </div>
-      <p class="etiquette radio__sous-titre">Derniers morceaux</p>
+      <p class="etiquette radio__sous-titre" data-r="derniers"></p>
       <ol class="radio__histo" data-histo></ol>
-      <p class="meta radio__note" data-note>Lecture aléatoire</p>
+      <p class="meta radio__note" data-note></p>
     </div>
     <div class="radio__barre">
-      <button class="radio__pochette" type="button" data-act="lecture" aria-label="Lancer la radio">
+      <button class="radio__pochette" type="button" data-act="lecture">
         <span class="radio__tuile" data-tuile aria-hidden="true"></span>
         <img data-image alt="" width="44" height="44" decoding="async" referrerpolicy="no-referrer" hidden>
         <span class="radio__icone" data-icone aria-hidden="true">${svg("lecture")}</span>
       </button>
       <div class="radio__texte">
         <p class="radio__titre" data-titre>RPMN0ISE RADIO</p>
-        <p class="radio__artiste" data-artiste>Lancer la lecture</p>
+        <p class="radio__artiste" data-artiste></p>
       </div>
       <span class="eq radio__eq" aria-hidden="true"><i></i><i></i><i></i></span>
-      <button class="radio__bouton" type="button" data-act="precedent" aria-label="Morceau précédent">${svg("precedent")}</button>
-      <button class="radio__bouton" type="button" data-act="suivant" aria-label="Morceau suivant">${svg("suivant")}</button>
-      <button class="radio__bouton" type="button" data-act="deroule" aria-expanded="false" aria-controls="radio-panneau" aria-label="Plus d'options">${svg("plus")}</button>
+      <button class="radio__bouton" type="button" data-act="precedent" data-ra="precedent">${svg("precedent")}</button>
+      <button class="radio__bouton" type="button" data-act="suivant" data-ra="suivant">${svg("suivant")}</button>
+      <button class="radio__bouton" type="button" data-act="deroule" aria-expanded="false" aria-controls="radio-panneau" data-ra="options">${svg("plus")}</button>
     </div>
-    <button class="radio__rond" type="button" data-act="afficher" aria-label="Afficher RPMN0ISE RADIO">
+    <button class="radio__rond" type="button" data-act="afficher" data-ra="afficher">
       <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
     </button>
     <p class="sr-seulement" role="status" data-annonce></p>`;
@@ -109,13 +123,13 @@
   function majIcone() {
     const joue = !audio.paused && !audio.ended;
     ui.icone.innerHTML = svg(joue ? "pause" : "lecture");
-    ui.lecture.setAttribute("aria-label", joue ? "Mettre en pause" : courant ? "Reprendre la lecture" : "Lancer la radio");
+    ui.lecture.setAttribute("aria-label", T(joue ? "pause" : courant ? "reprendre" : "lancerRadio"));
     racine.classList.toggle("radio--lecture", joue);
   }
 
   function majMorceau() {
     ui.titre.textContent = courant ? courant.titre : "RPMN0ISE RADIO";
-    ui.artiste.textContent = courant ? courant.artiste : "Lancer la lecture";
+    ui.artiste.textContent = courant ? courant.artiste : T("lancerLecture");
     const lettre = courant ? (courant.artiste || courant.titre || "").trim().charAt(0) : "";
     ui.tuile.textContent = lettre;
     const src = courant && courant.pochette ? urlDe(courant.pochette) : "";
@@ -136,7 +150,7 @@
       bt.type = "button";
       bt.className = "radio__histo-bouton";
       bt.dataset.rejouer = h.id;
-      bt.setAttribute("aria-label", `Rejouer ${h.titre}, ${h.artiste}`);
+      bt.setAttribute("aria-label", T("rejouer", { titre: h.titre, artiste: h.artiste }));
       if (i === 0 && courant && h.id === courant.id) li.className = "radio__histo-courant";
       const t = document.createElement("span");
       t.className = "radio__histo-titre";
@@ -151,13 +165,20 @@
     if (!lignes.length) {
       const li = document.createElement("li");
       li.className = "radio__histo-vide";
-      li.textContent = "Rien pour l'instant.";
+      li.textContent = T("rien");
       lignes.push(li);
     }
     ui.histo.replaceChildren(...lignes);
   }
 
-  function noter(texte) { ui.note.textContent = texte; }
+  // La note du panneau est mémorisée par clé pour être retraduite si la langue change.
+  let etatNote = null;
+  function noter(cle, vals) { etatNote = { cle, vals }; ui.note.textContent = T(cle, vals); }
+  function libeller() {
+    racine.querySelectorAll("[data-r]").forEach((e) => { e.textContent = T(e.dataset.r); });
+    racine.querySelectorAll("[data-ra]").forEach((e) => { e.setAttribute("aria-label", T(e.dataset.ra)); });
+    ui.note.textContent = etatNote ? T(etatNote.cle, etatNote.vals) : T("aleatoire");
+  }
 
   function majProgression() {
     const d = audio.duration;
@@ -166,13 +187,13 @@
     if (!glisse) ui.progres.value = ok ? String(Math.round((audio.currentTime / d) * 1000)) : "0";
     ui.temps.textContent = fmt(audio.currentTime);
     ui.duree.textContent = ok ? fmt(d) : "0:00";
-    ui.progres.setAttribute("aria-valuetext", ok ? `${fmt(audio.currentTime)} sur ${fmt(d)}` : "");
+    ui.progres.setAttribute("aria-valuetext", ok ? T("positionTexte", { a: fmt(audio.currentTime), b: fmt(d) }) : "");
   }
 
   function majVolume() {
     ui.volume.value = String(Math.round(etat.volume * 100));
     ui.muet.innerHTML = svg(audio.muted || etat.volume === 0 ? "muet" : "son");
-    ui.muet.setAttribute("aria-label", audio.muted ? "Remettre le son" : "Couper le son");
+    ui.muet.setAttribute("aria-label", T(audio.muted ? "remettreSon" : "couperSon"));
   }
 
   // ── Bibliothèque et programmation
@@ -185,7 +206,7 @@
       m && typeof m.id === "string" && typeof m.titre === "string" && typeof m.artiste === "string" && urlDe(m.fichier));
     if (!liste.length) throw new Error("bibliothèque vide");
     index = liste;
-    noter(`Lecture aléatoire · ${index.length} morceau${index.length > 1 ? "x" : ""}`);
+    noter(index.length > 1 ? "aleatoireN" : "aleatoire1", { n: index.length });
     return index;
   }
 
@@ -212,8 +233,8 @@
     try {
       await charger();
     } catch (e) {
-      noter("Radio indisponible pour l'instant.");
-      ui.artiste.textContent = "Indisponible pour l'instant";
+      noter("indispoNote");
+      ui.artiste.textContent = T("indispo");
       majIcone();
       return;
     }
@@ -222,9 +243,9 @@
   }
 
   async function rejouer(id) {
-    try { await charger(); } catch (e) { noter("Radio indisponible pour l'instant."); return; }
+    try { await charger(); } catch (e) { noter("indispoNote"); return; }
     const m = index.find((x) => x.id === id);
-    if (!m) { noter("Ce morceau n'est plus dans la radio."); return; }
+    if (!m) { noter("absent"); return; }
     sac = sac.filter((x) => x.id !== id);
     demarrer(m, 0, true);
   }
@@ -234,9 +255,9 @@
     const h = etat.historique;
     const cible = courant && h.length && h[h.length - 1].id === courant.id ? h[h.length - 2] : h[h.length - 1];
     if (!cible) { if (audio.src) audio.currentTime = 0; return; }
-    try { await charger(); } catch (e) { noter("Radio indisponible pour l'instant."); return; }
+    try { await charger(); } catch (e) { noter("indispoNote"); return; }
     const m = index.find((x) => x.id === cible.id);
-    if (!m) { noter("Ce morceau n'est plus dans la radio."); return; }
+    if (!m) { noter("absent"); return; }
     if (courant && h.length && h[h.length - 1].id === courant.id) etat.historique = h.slice(0, -1);
     demarrer(m, 0, true);
   }
@@ -254,7 +275,7 @@
     etat.piste = { ...courant, position: position || 0 };
     garder();
     majMorceau();
-    ui.annonce.textContent = `En lecture : ${m.titre}, ${m.artiste}`;
+    ui.annonce.textContent = T("enLecture", { titre: m.titre, artiste: m.artiste });
     const p = audio.play();
     if (p && p.catch) p.catch((e) => { if (e && e.name !== "AbortError") majIcone(); });
   }
@@ -277,7 +298,7 @@
   audio.addEventListener("error", () => {
     if (!audio.src) return;
     erreurs++;
-    if (erreurs >= ERREURS_MAX) { noter("Lecture impossible pour l'instant. Réessaie plus tard."); ui.artiste.textContent = "Lecture impossible"; audio.pause(); majIcone(); return; }
+    if (erreurs >= ERREURS_MAX) { noter("impossibleNote"); ui.artiste.textContent = T("impossible"); audio.pause(); majIcone(); return; }
     setTimeout(suivante, 400);
   });
 
@@ -350,9 +371,10 @@
   if (etat.piste && typeof etat.piste.titre === "string" && typeof etat.piste.fichier === "string" && urlDe(etat.piste.fichier)) {
     courant = { id: String(etat.piste.id || ""), titre: etat.piste.titre, artiste: String(etat.piste.artiste || ""), fichier: etat.piste.fichier, pochette: String(etat.piste.pochette || "") };
   }
-  majMorceau();
-  majVolume();
-  majProgression();
+  const rafraichir = () => { libeller(); majMorceau(); majVolume(); majProgression(); };
+  rafraichir();
+  // Changement de langue (navigation douce) : on retraduit l'interface sans toucher à la lecture.
+  document.addEventListener("rpm:langue", rafraichir);
   afficherEtat(etat.mode === "masque");
   racine.hidden = false;
 })();

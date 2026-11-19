@@ -2,6 +2,7 @@
 title: "Ma façon de jouer à BeamNG"
 date: 2026-11-11
 description: "Réaliste, balade, drift, derby : comment je passe d'un style à l'autre dans BeamNG.drive, au volant ou non."
+translationKey: ma-facon-de-jouer-a-beamng
 tags:
   - note
   - beamng

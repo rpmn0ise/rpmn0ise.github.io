@@ -20,12 +20,15 @@ src/
   contenu/
     journal/              1 fichier .md par article ou note   → /journal/<nom-du-fichier>/
     projets/              1 fichier .md par projet            → /projets/<nom-du-fichier>/
-    pages/                pages libres : a-propos, contact → /<nom-du-fichier>/
+    pages/                pages libres : a-propos, contact, setup → /<nom-du-fichier>/
+    en/                   version ANGLAISE, même organisation (journal/, projets/, pages/) → /en/…
   donnees/
-    site.json             titre, description, url, e-mail, menu, liens du pied de page, phrase d'accueil (`accroche`)
-    musique.json          compte Last.fm, lien SoundCloud, sélection de morceaux
-    maintenant.json       lignes « En ce moment » de l'accueil (écoute, joue à, travaille sur)
-    citations.json        citations tirées au hasard sur l'accueil (texte, auteur, source)
+    site.json             titre, url, e-mail, liens du pied de page, adresse de la radio
+    i18n.json             TOUS les textes d'interface en français et en anglais (menus, libellés, routes, accroche…)
+    nomsTags.json         nom anglais de chaque tag du journal
+    musique.json          compte Last.fm, lien SoundCloud, sélection de morceaux (notes en fr + en)
+    maintenant.json       lignes « En ce moment » de l'accueil (textes en fr + en)
+    citations.json        citations tirées au hasard sur l'accueil (texte, auteur, source, traduction `en`)
   gabarits/               modèles HTML : base, article, projet, page, deux listes
   public/                 copié tel quel à la racine du site :
     css/style.css         toute la mise en forme (variables de couleur en tête de fichier)
@@ -36,10 +39,12 @@ src/
   index.njk journal.njk projets.njk musique.njk tags.njk  pages générées
   404.njk feed.njk sitemap.njk robots.txt.njk            pages techniques
 docs/modeles/             modèles à copier : article.md, projet.md
-docs/prompts/             prompts IA : article, projet, note courte (loisirs), 100 citations, idées de premiers contenus
+docs/traduction.md        guide complet de la traduction FR → EN
+docs/prompts/             prompts IA : article, projet, note courte (loisirs), citations, idées de premiers contenus, traduction
+outils/traductions.mjs    suivi des traductions FR → EN (voir « Français et anglais »)
 ```
 
-Conventions : le **nom du fichier devient l'URL** (minuscules, sans accent, tirets). Les noms de champs sont ceux de la section suivante. Rien n'est dupliqué : titre et menu dans `site.json`, couleurs dans les variables du CSS.
+Conventions : le **nom du fichier devient l'URL** (minuscules, sans accent, tirets). Les noms de champs sont ceux de la section suivante. Rien n'est dupliqué : titre dans `site.json`, menu et textes d'interface dans `i18n.json`, couleurs dans les variables du CSS.
 
 ## Procédures
 
@@ -98,19 +103,19 @@ Où modifier :
 
 ## Page 404 et aperçu de partage
 
-- **404** : `src/404.njk` affiche un message tiré au hasard dans `src/donnees/erreurs404.json` (`[{ "titre": "…", "texte": "…" }]`), sans répétition d'un chargement à l'autre, avec un bouton « Un autre message ». Sans JavaScript, un message neutre s'affiche. Pour en ajouter, ajoute une ligne au fichier.
+- **404** : `src/404.njk` affiche un message tiré au hasard dans `src/donnees/erreurs404.json` (`[{ "fr": { "titre": "…", "texte": "…" }, "en": { "titre": "…", "texte": "…" } }]`), sans répétition d'un chargement à l'autre, avec un bouton « Un autre message ». Sans JavaScript, un message neutre s'affiche. Pour en ajouter, ajoute une ligne au fichier.
 - **Aperçu de partage (OpenGraph, Twitter/Discord)** : tout est dans `src/gabarits/base.njk`. L'image par défaut est `src/public/images/og-defaut.png` (1200×630), réglée par `imageOg` et `imageOgAlt` dans `site.json`. Une page peut avoir la sienne avec `image: /images/ma-page.png` (et `imageAlt`) dans son en-tête. Les articles ajoutent la date de publication.
 - Régénérer l'image par défaut (nom, description, couleurs) : `pip install pillow fonttools`, puis `python3 outils/generer-og.py`. Il produit aussi `apple-touch-icon.png`.
 - Les adresses d'images sont absolues à partir de `url` dans `site.json` : tant que c'est `example.com`, l'aperçu ne marchera pas en ligne.
 
 ## Citation de l'accueil
 
-À chaque chargement de l'accueil, une citation de `src/donnees/citations.json` remplace la phrase d'accueil (`accroche` dans `site.json`), avec son auteur et sa source. Aucun appel réseau : les citations sont dans la page.
+À chaque chargement de l'accueil, une citation de `src/donnees/citations.json` remplace la phrase d'accueil (`accroche` dans `i18n.json`), avec son auteur et sa source. Aucun appel réseau : les citations sont dans la page.
 
-- Format : `[{ "texte": "…", "auteur": "…", "source": "…" }]` (`source` facultative). Le build refuse une citation sans `texte` ou sans `auteur`, ou en double, et avertit au-delà de 140 caractères (au-delà, l'accueil devient haut).
+- Format : `[{ "texte": "…", "auteur": "…", "source": "…", "en": "traduction anglaise" }]` (`source` facultative). Sur la version anglaise, la citation reste en français (`lang="fr"`) avec sa traduction dessous ; le build avertit si `en` manque. Le build refuse une citation sans `texte` ou sans `auteur`, ou en double, et avertit au-delà de 140 caractères (au-delà, l'accueil devient haut).
 - Pas de répétition d'une citation à l'autre dans le même onglet. L'espace insécable avant `: ; ! ?` et les guillemets français sont ajoutés par le site.
 - Sans JavaScript, ou si `citations.json` est vide (`[]`), la phrase d'accueil reste affichée.
-- La liste actuelle compte 64 citations (science, culture française moderne, quelques classiques). Les attributions n'ont **pas** été vérifiées en ligne (sources de référence inaccessibles depuis l'environnement de travail) : relis-les avant de publier. Pour compléter jusqu'à 100 : `docs/prompts/prompt-citations.md`, puis faire **vérifier chaque attribution**.
+- La liste actuelle compte 23 citations (répliques de films et séries françaises). Les attributions et les traductions anglaises n'ont **pas** été vérifiées en ligne (sources de référence inaccessibles depuis l'environnement de travail) : relis-les avant de publier. Pour compléter jusqu'à 100 : `docs/prompts/prompt-citations.md`, puis faire **vérifier chaque attribution**.
 
 ## Musique et « En ce moment »
 
@@ -149,6 +154,44 @@ Petit lecteur de musique aléatoire, fixé en bas à gauche de toutes les pages.
 - Les morceaux ne sont **pas** dans ce dépôt : ils viennent d'un second projet Cloudflare Pages, `rpmn0ise-radio`, géré dans le dossier séparé `rpmn0ise-radio/` (voir son README). Le site ne connaît que l'adresse de cette bibliothèque : `radio.url` dans `src/donnees/site.json`.
 - Pour désactiver la radio : retirer l'élément `<aside id="radio">` de `src/gabarits/base.njk`.
 
+## Français et anglais
+
+> **Guide complet (workflow, prompts, cas du quotidien, dépannage) : [`docs/traduction.md`](docs/traduction.md).**
+
+Le site existe en deux versions indépendantes : français (`/`, langue par défaut, adresses inchangées) et anglais (`/en/`, adresses traduites : `/en/about/`, `/en/projects/`, `/en/journal/…`). Les deux sont complètes et modifiables séparément.
+
+**Comment ça marche**
+- Les **textes d'interface** (menu, boutons, étiquettes, messages de la radio et de l'indicateur d'écoute) sont dans `src/donnees/i18n.json`, une section `fr` et une section `en`. Les adresses des pages d'interface y sont aussi (`routes`).
+- Les **textes courts** des fichiers de données ont les deux langues côte à côte : `{ "fr": "…", "en": "…" }` (notes de `musique.json`, `maintenant.json`, `erreurs404.json`).
+- Les **contenus** (articles, projets, pages) ont un fichier par langue : le français dans `src/contenu/<type>/`, l'anglais dans `src/contenu/en/<type>/`. Le nom du fichier anglais est son adresse (il peut être traduit : `pourquoi-ce-site.md` → `why-this-site.md`).
+- Les deux versions sont reliées par le même **`translationKey`** dans leur en-tête. Pour le français, c'est par défaut le nom du fichier ; l'anglais doit l'indiquer. Les tags gardent la même clé dans les deux langues ; leur nom anglais est dans `nomsTags.json`.
+- Le **sélecteur FR / EN** (en-tête) mène à la version correspondante, ou à l'accueil de l'autre langue si elle n'existe pas. Il passe par la navigation douce : la radio ne s'arrête pas.
+- **SEO** : `<html lang>`, `hreflang` réciproques (avec `x-default` = français) et URL canoniques n'apparaissent que pour les pages qui ont leurs deux versions ; le sitemap contient les liens entre versions ; deux flux RSS (`/feed.xml`, `/en/feed.xml`). Une page sans traduction n'a pas de version anglaise et n'est pas présentée comme traduite.
+
+**Ajouter un contenu traduit**
+1. Écris le contenu en français, comme avant.
+2. `npm run traductions -- preparer <cle>` : crée `traductions/a-traduire/<cle>.md` (consignes de ton + source française). `<cle>` est le nom du fichier français sans `.md`.
+3. Colle ce fichier dans Claude, enregistre la réponse dans `src/contenu/en/<type>/<slug-anglais>.md` (ou crée d'abord un squelette : `npm run traductions -- nouveau <cle> <slug-anglais>`, en brouillon `draft: true`).
+4. Relis, corrige, retire `draft: true` si présent.
+5. `npm run traductions -- valider <cle>` : enregistre l'empreinte du français (`sourceHash`) dans le fichier anglais.
+
+Aucune API, aucune clé, aucun service externe : Claude n'est utilisé qu'en dehors du site, par copier-coller.
+
+**Suivre l'état**
+- `npm run traductions` : liste chaque contenu (à jour, à traduire, obsolète, à valider) plus les textes de données sans traduction et les anomalies (clé en double, version anglaise orpheline).
+- Un contenu est **obsolète** quand le français (titre, description ou texte) a changé depuis la dernière validation ; **à valider** quand l'anglais existe mais n'a pas encore été relu et validé.
+- `npm run verifier` : même contrôle avec un code d'erreur s'il reste quelque chose (utile avant de publier).
+- Le build (`npm run build`) affiche un résumé d'une ligne, sans jamais échouer pour cela.
+- Un contenu français nouveau n'est jamais considéré comme traduit : sans fichier anglais, il reste « à traduire » et aucune page anglaise n'est créée.
+- Après avoir relu toutes les traductions existantes : `npm run traductions -- valider --tout`.
+
+**Autres points**
+- Pour ajouter une langue d'interface ou changer un libellé : `i18n.json`. Pour un nouveau tag : sa clé française dans les articles, son nom anglais dans `nomsTags.json` (le suivi le signale s'il manque).
+- Dans le Markdown anglais, les liens internes pointent vers l'anglais (`/en/projects/…`, `/en/music/`, `/en/setup/`, `/en/about/`).
+- La page 404 anglaise est `/en/404.html` ; Cloudflare Pages la sert pour les erreurs sous `/en/` (il choisit la 404 la plus proche).
+- Aucun changement de langue automatique selon le navigateur : le français reste la langue par défaut.
+- Un texte écrit en dur dans un modèle (`src/*.njk`, `src/gabarits/`) est à éviter : mets-le dans `i18n.json`.
+
 ## Thème clair et sombre
 
 Les couleurs sont des variables CSS au début de `style.css` (palette sombre par défaut, palette claire via `data-theme="light"`). Un petit script dans `<head>` applique au premier passage le thème du système, puis le bouton du menu bascule et mémorise le choix dans `localStorage` (aucun cookie). Sans JavaScript, le site reste en sombre.
@@ -182,9 +225,10 @@ Les couleurs sont des variables CSS au début de `style.css` (palette sombre par
 - Voir plus (9→18→27 écoutes, bouton masqué à la dernière page, aucun doublon), classements (masqués s'ils sont vides), libellé de pause : testés avec de fausses réponses de Last.fm.
 - Vérifications faites sur la version précédente du design (pas refaites ensuite) : contraste texte/fond d'au moins 5,5:1 dans les deux thèmes, ordre de tabulation, thème mémorisé après rechargement.
 
+- Bilingue (Chromium, Playwright) : changement FR → EN sans rechargement (marqueur de document conservé, radio toujours en lecture, textes de la radio, du menu d'apparence et du pied de page retraduits, retour arrière), citation de l'accueil avec traduction, indicateur d'écoute en anglais (« Now playing », « 2 h ago »), 404 anglaise, 390 et 320 px sans débordement. Contrôles sur le HTML généré : liens internes sans lien cassé ni lien FR dans une page EN, `hreflang` réciproques sur toutes les pages jumelées, URL canoniques, sitemap avec liens entre versions, aucun texte français dans l'interface EN.
 - Radio (Chromium, Playwright, vrais MP3 servis par le vrai `_worker.js` en local) : aucune requête avant le clic ; lecture ; navigation douce sans couper le son (le document n'est pas rechargé) ; retour arrière ; seek ; enchaînement automatique en fin de morceau, sans répétition consécutive ; états compact, déroulé et masqué (mémorisés après rechargement) ; index inaccessible et fichiers en 404 (message, pas de boucle) ; `musique.js` et la citation de l'accueil se relancent après une navigation douce ; mobile 390 px sans débordement ; aucune erreur console.
 
-**Non vérifié** : Safari et iOS (lecture, volume, Range sur Pages), le vrai déploiement Cloudflare Pages et le Worker en production, une vraie bibliothèque de 100 à 200 morceaux en 320 kbps, l'appel réel à Last.fm depuis un navigateur (accès réseau impossible depuis mon environnement ; l'API est conçue pour être appelée ainsi, mais c'est le premier point à contrôler en ligne), le déploiement Cloudflare Pages, les performances mesurées (Lighthouse).
+**Non vérifié** : les traductions n'ont pas été relues par toi (état « à valider »), Safari et iOS (lecture, volume, Range sur Pages), le vrai déploiement Cloudflare Pages et le Worker en production, une vraie bibliothèque de 100 à 200 morceaux en 320 kbps, l'appel réel à Last.fm depuis un navigateur (accès réseau impossible depuis mon environnement ; l'API est conçue pour être appelée ainsi, mais c'est le premier point à contrôler en ligne), le déploiement Cloudflare Pages, les performances mesurées (Lighthouse).
 
 ## Limites connues
 

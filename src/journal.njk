@@ -1,27 +1,37 @@
 ---
 layout: base.njk
-title: Journal
-description: Articles et notes.
-permalink: /journal/
+pagination:
+  data: langues
+  size: 1
+  alias: L
+  addAllPagesToCollections: true
+permalink: "{{ i18n[L].routes.journal }}"
+eleventyComputed:
+  lang: "{{ L }}"
+  translationKey: journal-index
+  title: "{{ i18n[L].pages.journal.titre }}"
+  description: "{{ i18n[L].pages.journal.description }}"
 ---
+{%- set j = collections["journal-" + lang] %}
 <header class="entete-contenu">
-  <h1>Journal</h1>
+  <h1>{{ t.pages.journal.titre }}</h1>
 </header>
 
 {#- Seuls les tags utilisés au moins 2 fois sont listés ici ; les autres restent accessibles depuis leurs articles. #}
-{%- if collections.tagList.length %}
-<ul class="tags" aria-label="Tags">
-  {%- for tag in collections.tagList %}
+{%- set mesTags = collections.tagPages | tagsDeLangue(lang) %}
+{%- if mesTags.length %}
+<ul class="tags" aria-label="{{ t.ui.tags }}">
+  {%- for tag in mesTags %}
   {%- if tag.entrees.length > 1 %}
-  <li><a href="/tags/{{ tag.slug }}/">#{{ tag.nom }}</a></li>
+  <li><a href="{{ tag.url }}">#{{ tag.nom }}</a></li>
   {%- endif %}
   {%- endfor %}
 </ul>
 {%- endif %}
 
-{%- if collections.journal.length %}
-{%- set entrees = collections.journal %}
+{%- if j.length %}
+{%- set entrees = j %}
 {% include "liste-journal.njk" %}
 {%- else %}
-<p class="vide">Rien de publié pour l'instant.</p>
+<p class="vide">{{ t.pages.journal.vide }}</p>
 {%- endif %}

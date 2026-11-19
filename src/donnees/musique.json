@@ -6,7 +6,10 @@
   },
   "playlist": {
     "titre": "HARD MUSIC DISCOVERIES — rpmn0ise",
-    "note": "Ma playlist principale de découverte hard music.",
+    "note": {
+      "fr": "Ma playlist principale de découverte hard music.",
+      "en": "My main hard music discovery playlist."
+    },
     "url": "https://open.spotify.com/playlist/7CqRoiaINCWw4tU3Pp2sFO"
   },
   "soundcloud": "https://soundcloud.com/rpmn0ise",
@@ -14,22 +17,34 @@
     {
       "artiste": "RDØ",
       "titre": "Le Bruit",
-      "note": "J'adore, tout simplement. C'est français, et les kicks sont bien lourds : de la slowtempo comme on l'aime."
+      "note": {
+        "fr": "J'adore, tout simplement. C'est français, et les kicks sont bien lourds : de la slowtempo comme on l'aime.",
+        "en": "I just love it. It's French, and the kicks are properly heavy: slowtempo the way we like it."
+      }
     },
     {
       "artiste": "Hysta, RDØ",
       "titre": "Together",
-      "note": "Deux de mes artistes préférés sur le même morceau : des kicks hardcore, puis une montée uptempo signée RDØ. Que du bonheur."
+      "note": {
+        "fr": "Deux de mes artistes préférés sur le même morceau : des kicks hardcore, puis une montée uptempo signée RDØ. Que du bonheur.",
+        "en": "Two of my favourite artists on the same track: hardcore kicks, then an uptempo build-up by RDØ. Pure joy."
+      }
     },
     {
       "artiste": "Hysta",
       "titre": "Belong to One",
-      "note": "Un morceau bien hardcore de Hysta, qui est pour moi la meilleure."
+      "note": {
+        "fr": "Un morceau bien hardcore de Hysta, qui est pour moi la meilleure.",
+        "en": "A properly hardcore track by Hysta, who is the best one for me."
+      }
     },
     {
       "artiste": "Antenora, RDØ, KRUELLA",
       "titre": "Distorshøn",
-      "note": "Antenora, RDØ et KRUELLA sur le même morceau. Tout simplement trop bien."
+      "note": {
+        "fr": "Antenora, RDØ et KRUELLA sur le même morceau. Tout simplement trop bien.",
+        "en": "Antenora, RDØ and KRUELLA on the same track. Simply too good."
+      }
     }
   ]
 }

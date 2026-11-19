@@ -4,7 +4,7 @@ typeOg: article
 ---
 <article class="article">
   <header class="entete-contenu">
-    <p class="meta"><time datetime="{{ date | dateIso }}">{{ date | dateLongue }}</time></p>
+    <p class="meta"><time datetime="{{ date | dateIso }}">{{ date | dateLongue(lang) }}</time></p>
     <h1>{{ title }}</h1>
     {%- if description %}
     <p class="chapo">{{ description }}</p>
@@ -16,9 +16,9 @@ typeOg: article
   </div>
 
   {%- if tags and tags.length %}
-  <ul class="tags" aria-label="Tags">
+  <ul class="tags" aria-label="{{ t.ui.tags }}">
     {%- for tag in tags %}
-    <li><a href="/tags/{{ tag | slugify }}/">#{{ tag }}</a></li>
+    <li><a href="{{ tag | urlTag(lang) }}">#{{ tag | nomTag(lang) }}</a></li>
     {%- endfor %}
   </ul>
   {%- endif %}

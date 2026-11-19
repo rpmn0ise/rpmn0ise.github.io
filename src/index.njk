@@ -1,15 +1,28 @@
 ---
 layout: base.njk
-avecMusique: true
+pagination:
+  data: langues
+  size: 1
+  alias: L
+  addAllPagesToCollections: true
+permalink: "{{ i18n[L].routes.accueil }}"
+eleventyComputed:
+  lang: "{{ L }}"
+  translationKey: accueil
 ---
+{%- set j = collections["journal-" + lang] %}
+{%- set pr = collections["projets-" + lang] %}
+{%- set h = t.accueil %}
 <section class="hero">
-  <p class="hero__etiquette etiquette"><b>//</b> Accueil</p>
+  <p class="hero__etiquette etiquette"><b>//</b> {{ h.etiquette }}</p>
   <h1 class="hero__nom">{{ site.titre | replace("0", "<em>0</em>") | safe }}</h1>
   {%- if citations.length %}
+  {%- set accroche = t.site.accroche %}
   {#- Une citation au hasard à chaque chargement. Sans JavaScript, la phrase d'accueil reste affichée. #}
   <figure class="hero__citation" data-citation>
-    <blockquote class="hero__texte"><p>{{ site.accroche }}</p></blockquote>
+    <blockquote class="hero__texte"><p>{{ accroche }}</p></blockquote>
     <figcaption class="hero__auteur meta" hidden></figcaption>
+    <p class="hero__trad" lang="{{ lang }}" hidden></p>
   </figure>
   <script type="application/json" id="citations-donnees">{{ citations | dump | replace("<", "\\u003c") | safe }}</script>
   <script>
@@ -24,7 +37,13 @@ avecMusique: true
       if (l.length > 1 && i === p) i = (i + 1 + Math.floor(Math.random() * (l.length - 1))) % l.length;
       try { sessionStorage.setItem("citation", String(i)); } catch (e) {}
       var c = l[i], fr = function (s) { return s.replace(/ ([:;!?»])/g, "\u00a0$1").replace(/« /g, "«\u00a0"); };
+      var bq = f.querySelector("blockquote");
       f.querySelector("blockquote p").textContent = fr(c.texte);
+      // Les citations sont en français : sur la version anglaise, l'original reste (lang="fr") et la traduction s'ajoute dessous.
+      var anglais = document.documentElement.lang === "en";
+      bq.lang = "fr";
+      var tr = f.querySelector(".hero__trad");
+      if (tr) { if (anglais && c.en) { tr.textContent = c.en; tr.hidden = false; } else { tr.hidden = true; } }
       var a = f.querySelector("figcaption");
       a.textContent = fr(c.auteur);
       if (c.source) { a.append(" · "); var e = document.createElement("cite"); e.textContent = fr(c.source); a.append(e); }
@@ -33,54 +52,54 @@ avecMusique: true
     } catch (e) {}
   })();
   </script>
-  {%- elif site.accroche %}
-  <p class="hero__texte">{{ site.accroche }}</p>
+  {%- elif t.site.accroche %}
+  <p class="hero__texte">{{ t.site.accroche }}</p>
   {%- endif %}
-  {%- if site.centres.length %}
-  <ul class="puces" aria-label="Centres d'intérêt">
-    {%- for c in site.centres %}<li>{{ c }}</li>{%- endfor %}
+  {%- if t.site.centres.length %}
+  <ul class="puces" aria-label="{{ h.centres }}" data-tta="centres">
+    {%- for c in t.site.centres %}<li>{{ c }}</li>{%- endfor %}
   </ul>
   {%- endif %}
-  {%- set aLaUne = collections.projets | misEnAvant %}
-  {%- if collections.projets.length or collections.journal.length %}
+  {%- set aLaUne = pr | misEnAvant %}
+  {%- if pr.length or j.length %}
   <p class="hero__index meta">
-    {%- if collections.projets.length %}{{ collections.projets.length }} projet{% if collections.projets.length > 1 %}s{% endif %}{% endif %}
-    {%- if collections.projets.length and collections.journal.length %} · {% endif %}
-    {%- if collections.journal.length %}{{ collections.journal.length }} entrée{% if collections.journal.length > 1 %}s{% endif %} au journal{% endif %}
+    {%- if pr.length %}{{ pr.length }} {{ h.projets if pr.length > 1 else h.projet }}{% endif %}
+    {%- if pr.length and j.length %} · {% endif %}
+    {%- if j.length %}{{ j.length }} {{ h.entrees if j.length > 1 else h.entree }}{% endif %}
   </p>
   {%- endif %}
   {%- if aLaUne.length %}
-  <a class="hero__defiler" href="#projets">↓ Projets</a>
+  <a class="hero__defiler" href="#projets">{{ h.defiler }}</a>
   {%- endif %}
 </section>
 
 {%- set enCeMoment = maintenant.ecoute or maintenant.joue or maintenant.travaille or maintenant.setup.titre %}
-<section class="maintenant" aria-label="En ce moment" data-maintenant{% if not enCeMoment %} hidden{% endif %}>
+<section class="maintenant" aria-label="{{ h.enCeMoment }}" data-maintenant{% if not enCeMoment %} hidden{% endif %}>
   <div class="bloc__tete">
-    <h2 class="section-titre">En ce moment</h2>
-    <a class="suite" href="/musique/">Musique →</a>
+    <h2 class="section-titre">{{ h.enCeMoment }}</h2>
+    <a class="suite" href="{{ t.routes.musique }}">{{ h.musiqueSuite }}</a>
   </div>
   <div class="maintenant__grille">
     {%- set grand = false %}{%- set nombre = 1 %}{%- set liste = false %}
     {% include "ecoute.njk" %}
     {%- if maintenant.joue %}
     <div class="maintenant__cellule">
-      <p class="etiquette">Joue à</p>
-      <p class="maintenant__texte">{{ maintenant.joue }}</p>
+      <p class="etiquette">{{ h.joue }}</p>
+      <p class="maintenant__texte">{{ maintenant.joue | loc(lang) }}</p>
     </div>
     {%- endif %}
     {%- if maintenant.travaille %}
     <div class="maintenant__cellule">
-      <p class="etiquette">Travaille sur</p>
-      <p class="maintenant__texte">{{ maintenant.travaille }}</p>
+      <p class="etiquette">{{ h.travaille }}</p>
+      <p class="maintenant__texte">{{ maintenant.travaille | loc(lang) }}</p>
     </div>
     {%- endif %}
     {%- if maintenant.setup.titre %}
-    <a class="maintenant__cellule maintenant__cellule--large" href="/setup/">
-      <p class="etiquette">Setup</p>
+    <a class="maintenant__cellule maintenant__cellule--large" href="{{ t.routes.setup }}">
+      <p class="etiquette">{{ h.setup }}</p>
       <div>
-        <p class="maintenant__texte">{{ maintenant.setup.titre }}</p>
-        {%- if maintenant.setup.note %}<p class="maintenant__note">{{ maintenant.setup.note }}</p>{%- endif %}
+        <p class="maintenant__texte">{{ maintenant.setup.titre | loc(lang) }}</p>
+        {%- if maintenant.setup.note %}<p class="maintenant__note">{{ maintenant.setup.note | loc(lang) }}</p>{%- endif %}
       </div>
     </a>
     {%- endif %}
@@ -90,21 +109,21 @@ avecMusique: true
 {%- if aLaUne.length %}
 <section class="bloc" id="projets">
   <div class="bloc__tete">
-    <h2 class="section-titre">Projets</h2>
-    <a class="suite" href="/projets/">Tous les projets →</a>
+    <h2 class="section-titre">{{ h.projetsTitre }}</h2>
+    <a class="suite" href="{{ t.routes.projets }}">{{ h.tousProjets }}</a>
   </div>
   {%- set projets = aLaUne | limite(3) %}
   {% include "liste-projets.njk" %}
 </section>
 {%- endif %}
 
-{%- if collections.journal.length %}
+{%- if j.length %}
 <section class="bloc">
   <div class="bloc__tete">
-    <h2 class="section-titre">Journal</h2>
-    <a class="suite" href="/journal/">Tout le journal →</a>
+    <h2 class="section-titre">{{ h.journalTitre }}</h2>
+    <a class="suite" href="{{ t.routes.journal }}">{{ h.toutJournal }}</a>
   </div>
-  {%- set entrees = collections.journal | limite(3) %}
+  {%- set entrees = j | limite(3) %}
   {% include "liste-journal.njk" %}
 </section>
 {%- endif %}

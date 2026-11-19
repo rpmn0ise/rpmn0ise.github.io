@@ -1,19 +1,26 @@
 ---
-permalink: /feed.xml
+pagination:
+  data: langues
+  size: 1
+  alias: L
+permalink: "{{ i18n[L].routes.flux }}"
+eleventyComputed:
+  lang: "{{ L }}"
 eleventyExcludeFromCollections: true
 ---
+{%- set j = collections["journal-" + lang] -%}
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="fr">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ lang }}">
   <title>{{ site.titre }}</title>
-  <subtitle>{{ site.description }}</subtitle>
-  <link href="{{ '/feed.xml' | absoluteUrl(site.url) }}" rel="self"/>
-  <link href="{{ site.url }}/"/>
-  <updated>{{ collections.journal | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
-  <id>{{ site.url }}/</id>
+  <subtitle>{{ t.site.description }}</subtitle>
+  <link href="{{ t.routes.flux | absoluteUrl(site.url) }}" rel="self"/>
+  <link href="{{ t.routes.accueil | absoluteUrl(site.url) }}"/>
+  <updated>{{ j | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>{{ t.routes.accueil | absoluteUrl(site.url) }}</id>
   <author>
     <name>{{ site.auteur.nom }}</name>
   </author>
-  {%- for post in collections.journal | limite(20) %}
+  {%- for post in j | limite(20) %}
   {%- set urlArticle = post.url | absoluteUrl(site.url) %}
   <entry>
     <title>{{ post.data.title }}</title>
@@ -23,7 +30,7 @@ eleventyExcludeFromCollections: true
     {%- if post.data.description %}
     <summary>{{ post.data.description }}</summary>
     {%- endif %}
-    <content xml:lang="fr" type="html">{{ post.templateContent | htmlToAbsoluteUrls(urlArticle) }}</content>
+    <content xml:lang="{{ lang }}" type="html">{{ post.templateContent | htmlToAbsoluteUrls(urlArticle) }}</content>
   </entry>
   {%- endfor %}
 </feed>

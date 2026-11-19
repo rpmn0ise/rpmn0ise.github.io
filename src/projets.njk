@@ -1,16 +1,25 @@
 ---
 layout: base.njk
-title: Projets
-description: Mes projets personnels, terminés ou en cours.
-permalink: /projets/
+pagination:
+  data: langues
+  size: 1
+  alias: L
+  addAllPagesToCollections: true
+permalink: "{{ i18n[L].routes.projets }}"
+eleventyComputed:
+  lang: "{{ L }}"
+  translationKey: projets-index
+  title: "{{ i18n[L].pages.projets.titre }}"
+  description: "{{ i18n[L].pages.projets.description }}"
 ---
+{%- set pr = collections["projets-" + lang] %}
 <header class="entete-contenu">
-  <h1>Projets</h1>
+  <h1>{{ t.pages.projets.titre }}</h1>
 </header>
 
-{%- if collections.projets.length %}
-{%- set projets = collections.projets %}
+{%- if pr.length %}
+{%- set projets = pr %}
 {% include "liste-projets.njk" %}
 {%- else %}
-<p class="vide">Aucun projet publié pour l'instant.</p>
+<p class="vide">{{ t.pages.projets.vide }}</p>
 {%- endif %}

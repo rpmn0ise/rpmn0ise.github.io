@@ -7,6 +7,7 @@ tags:
   - note
 # draft: true   ← décommenter pour le garder invisible en production
 # image: /images/couverture.jpg   ← facultatif, utilisé pour les aperçus sociaux
+# translationKey: nom-du-fichier-sans-.md   (facultatif en français ; obligatoire dans la version anglaise)
 ---
 
 Premier paragraphe.

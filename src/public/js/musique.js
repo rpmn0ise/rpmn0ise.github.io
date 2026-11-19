@@ -13,6 +13,15 @@
     const DELAI = 8000;
     const PAGES_MAX = 10; // « Voir plus » s'arrête après 10 pages
 
+    // Textes d'interface et langue (changent avec la page : voir <script id="i18n-js">)
+    const T = (cle, vals) => {
+      let t = {};
+      try { t = (JSON.parse(document.getElementById("i18n-js").textContent) || {}).musique || {}; } catch (e) { /* textes par défaut */ }
+      const m = t[cle] ?? cle;
+      return vals ? m.replace(/\{(\w+)\}/g, (x, k) => (vals[k] ?? x)) : m;
+    };
+    const locale = () => (document.documentElement.lang === "en" ? "en-GB" : "fr-FR");
+
     const el = (tag, classe, texte) => {
       const e = document.createElement(tag);
       if (classe) e.className = classe;
@@ -24,11 +33,11 @@
 
     function depuis(uts) {
       const s = Math.max(0, Math.floor(Date.now() / 1000) - uts);
-      if (s < 60) return "à l'instant";
-      if (s < 3600) return `il y a ${Math.floor(s / 60)} min`;
-      if (s < 86400) return `il y a ${Math.floor(s / 3600)} h`;
-      if (s < 7 * 86400) return `il y a ${Math.floor(s / 86400)} j`;
-      return new Date(uts * 1000).toLocaleDateString("fr-FR", { day: "numeric", month: "long" });
+      if (s < 60) return T("instant");
+      if (s < 3600) return T("minutes", { n: Math.floor(s / 60) });
+      if (s < 86400) return T("heures", { n: Math.floor(s / 3600) });
+      if (s < 7 * 86400) return T("jours", { n: Math.floor(s / 86400) });
+      return new Date(uts * 1000).toLocaleDateString(locale(), { day: "numeric", month: "long" });
     }
 
     async function requete(url) {
@@ -140,9 +149,9 @@
         const eq = el("span", "eq");
         eq.setAttribute("aria-hidden", "true");
         eq.append(el("i"), el("i"), el("i"));
-        r.statut.append(eq, document.createTextNode("En écoute"));
+        r.statut.append(eq, document.createTextNode(T("enEcoute")));
       } else {
-        r.statut.textContent = "Dernier morceau enregistré" + (t.date ? " · " + depuis(t.date) : "");
+        r.statut.textContent = T("dernier") + (t.date ? " · " + depuis(t.date) : "");
       }
       const memo = t.artiste + "|" + t.titre;
       if (bloc._cle === memo) return;
@@ -180,9 +189,9 @@
     function construireListe(bloc) {
       const cible = bloc.querySelector("[data-ecoute-liste]");
       const liste = {
-        etiquette: el("p", "etiquette ecoutes__etiquette", "Dernières écoutes"),
+        etiquette: el("p", "etiquette ecoutes__etiquette", T("dernieresEcoutes")),
         ol: el("ol", "ecoutes__liste"),
-        plus: el("button", "bouton-plus", "Voir plus"),
+        plus: el("button", "bouton-plus", T("voirPlus")),
         extras: [], // lignes des pages 2, 3… déjà chargées
         page: 1,
         pages: 1,
@@ -210,7 +219,7 @@
     async function pageSuivante(bloc) {
       const L = bloc._liste;
       L.plus.disabled = true;
-      L.plus.textContent = "Chargement…";
+      L.plus.textContent = T("chargement");
       try {
         const r = await ecoutes(limite, L.page + 1);
         L.page += 1;
@@ -220,10 +229,10 @@
           const li = ligne(t);
           if (!connues.has(li.dataset.cle)) L.extras.push(li);
         }
-        L.plus.textContent = "Voir plus";
+        L.plus.textContent = T("voirPlus");
         afficherListe(bloc);
       } catch (e) {
-        L.plus.textContent = "Réessayer";
+        L.plus.textContent = T("reessayer");
       } finally {
         L.plus.disabled = false;
       }
@@ -299,7 +308,7 @@
         if (x.url) { nom.href = x.url; nom.rel = "noopener"; }
         corps.append(nom);
         if (x.artiste) corps.append(el("span", "classement__artiste", x.artiste));
-        li.append(corps, el("span", "meta classement__n", x.n + (x.n > 1 ? " écoutes" : " écoute")));
+        li.append(corps, el("span", "meta classement__n", x.n + (" " + T(x.n > 1 ? "ecoutes" : "ecoute"))));
         ol.append(li);
       });
       bloc.append(ol);
@@ -312,8 +321,8 @@
         classement("user.gettopartists", "1month", (j) => j.topartists && j.topartists.artist),
       ]);
       const colonnes = [];
-      if (morceaux.status === "fulfilled" && morceaux.value.length) colonnes.push(colonne("Morceaux du mois", morceaux.value));
-      if (artistes.status === "fulfilled" && artistes.value.length) colonnes.push(colonne("Artistes du mois", artistes.value));
+      if (morceaux.status === "fulfilled" && morceaux.value.length) colonnes.push(colonne(T("morceauxDuMois"), morceaux.value));
+      if (artistes.status === "fulfilled" && artistes.value.length) colonnes.push(colonne(T("artistesDuMois"), artistes.value));
       if (!colonnes.length) return;
       classements.replaceChildren(...colonnes);
       const section = classements.closest("[data-classements-section]");

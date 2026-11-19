@@ -1,9 +1,15 @@
 {
   "ecoute": "",
   "joue": "BeamNG.drive",
-  "travaille": "La musique, le site web, et plein d'autres trucs",
+  "travaille": {
+    "fr": "La musique, le site web, et plein d'autres trucs",
+    "en": "Music, this website, and plenty of other stuff"
+  },
   "setup": {
     "titre": "Ryzen 5 7600X, RTX 4060, FL Studio Producer",
-    "note": "Je mixe au casque et je vérifie sur d'autres appareils."
+    "note": {
+      "fr": "Je mixe au casque et je vérifie sur d'autres appareils.",
+      "en": "I mix on headphones and check on other devices."
+    }
   }
 }

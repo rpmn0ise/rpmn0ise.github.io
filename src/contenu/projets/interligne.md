@@ -1,6 +1,7 @@
 ---
 title: "Interligne"
 description: "Fanzine francophone d'actualités et de découvertes : articles rédigés par IA, sujets choisis et vérifiés par moi, sources et fiabilité affichées."
+translationKey: interligne
 status: en-cours
 year: 2026
 tech:

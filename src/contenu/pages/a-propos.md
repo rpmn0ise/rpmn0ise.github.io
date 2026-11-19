@@ -1,6 +1,7 @@
 ---
 title: À propos
 description: Qui je suis et ce que je fais.
+translationKey: a-propos
 # Photo ou avatar (carré, 480 px minimum) : déposer le fichier dans src/public/images/ puis retirer les # ci-dessous.
 # portrait: /images/portrait.jpg
 # portraitAlt: "Description courte de l'image"

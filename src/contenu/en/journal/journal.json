@@ -1,0 +1,5 @@
+{
+  "layout": "article.njk",
+  "lang": "en",
+  "permalink": "/en/journal/{{ page.fileSlug }}/"
+}

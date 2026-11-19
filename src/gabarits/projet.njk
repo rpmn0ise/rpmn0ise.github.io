@@ -8,18 +8,18 @@ layout: base.njk
     {%- if status or year or (tech and tech.length) or github or demo %}
     <dl class="fiche">
       {%- if status %}
-      <div><dt>Statut</dt><dd><span class="statut statut--{{ status }}">{{ status | statut }}</span></dd></div>
+      <div><dt>{{ t.projet.statut }}</dt><dd><span class="statut statut--{{ status }}">{{ status | statut(lang) }}</span></dd></div>
       {%- endif %}
       {%- if year %}
-      <div><dt>Année</dt><dd>{{ year }}</dd></div>
+      <div><dt>{{ t.projet.annee }}</dt><dd>{{ year }}</dd></div>
       {%- endif %}
       {%- if tech and tech.length %}
-      <div><dt>Technologies</dt><dd>{{ tech | join(", ") }}</dd></div>
+      <div><dt>{{ t.projet.technologies }}</dt><dd>{{ tech | join(", ") }}</dd></div>
       {%- endif %}
       {%- if github or demo %}
-      <div><dt>Liens</dt><dd>
-        {%- if github %}<a href="{{ github }}">Code source ↗</a>{% endif %}
-        {%- if demo %}<a href="{{ demo }}">Démo ↗</a>{% endif %}
+      <div><dt>{{ t.projet.liens }}</dt><dd>
+        {%- if github %}<a href="{{ github }}">{{ t.projet.code }}</a>{% endif %}
+        {%- if demo %}<a href="{{ demo }}">{{ t.projet.demo }}</a>{% endif %}
       </dd></div>
       {%- endif %}
     </dl>

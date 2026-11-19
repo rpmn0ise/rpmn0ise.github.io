@@ -1,4 +1,5 @@
 {
   "layout": "page.njk",
+  "lang": "fr",
   "permalink": "/{{ page.fileSlug }}/"
 }

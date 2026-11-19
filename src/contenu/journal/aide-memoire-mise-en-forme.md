@@ -2,6 +2,7 @@
 title: "Aide-mémoire : mettre en forme un article"
 date: 2026-10-20
 description: "Titres, listes, citations, code, tâches : à quoi ressemble chaque élément sur le site."
+translationKey: aide-memoire-mise-en-forme
 tags:
   - note
   - markdown

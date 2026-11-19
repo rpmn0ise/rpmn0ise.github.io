@@ -2,6 +2,7 @@
 title: "Quatre coups de cœur hard music"
 date: 2026-11-11
 description: "RDØ, Hysta, Antenora et KRUELLA : quatre morceaux hard music que j'adore, avec pourquoi, et le lien vers ma playlist de découvertes."
+translationKey: quatre-coups-de-coeur-hard-music
 tags:
   - note
   - musique

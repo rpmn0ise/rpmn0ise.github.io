@@ -2,6 +2,7 @@
 title: "Comment j'ai construit ce site"
 date: 2026-11-11
 description: "Eleventy, Markdown, Cloudflare Pages et un indicateur d'écoute sans serveur : les choix techniques de ce site, expliqués simplement."
+translationKey: comment-ce-site-est-construit
 tags:
   - site
   - eleventy
@@ -21,7 +22,7 @@ J'ai plein d'autres projets qui me prennent du temps. Je ne voulais pas d'un sit
 - **Markdown** : les articles, les pages et les projets sont de simples fichiers texte avec un en-tête. Pour publier, j'ajoute un fichier.
 - **Cloudflare Pages** : l'hébergement.
 - **Thème clair et sombre**, qui suit le réglage de ton appareil, et un site pensé d'abord pour le mobile.
-- **Français uniquement**, pour ne pas multiplier le travail.
+- **Deux langues**, le français et l'anglais, chaque page ayant sa propre version.
 
 ## Un indicateur d'écoute sans serveur
 

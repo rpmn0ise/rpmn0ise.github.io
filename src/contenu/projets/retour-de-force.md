@@ -1,6 +1,7 @@
 ---
 title: "Retour de Force"
 description: "Plateforme privée de mods BeamNG.drive testés à la main, avec une communauté Discord. Téléchargements accessibles après connexion Discord."
+translationKey: retour-de-force
 status: en-cours
 year: 2026
 tech:

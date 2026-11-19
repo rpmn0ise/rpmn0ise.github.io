@@ -12,7 +12,7 @@
     </div>
     {%- if p.data.status or p.data.year %}
     <p class="ligne__etat meta">
-      {%- if p.data.status %}<span class="statut statut--{{ p.data.status }}">{{ p.data.status | statut }}</span>{% endif %}
+      {%- if p.data.status %}<span class="statut statut--{{ p.data.status }}">{{ p.data.status | statut(lang) }}</span>{% endif %}
       {%- if p.data.year %}<span>{{ p.data.year }}</span>{% endif %}
     </p>
     {%- endif %}

@@ -6,7 +6,9 @@
   "description": "Site personnel statique (Eleventy).",
   "scripts": {
     "dev": "eleventy --serve",
-    "build": "eleventy"
+    "build": "eleventy",
+    "traductions": "node outils/traductions.mjs",
+    "verifier": "node outils/traductions.mjs statut --strict"
   },
   "engines": {
     "node": ">=20"

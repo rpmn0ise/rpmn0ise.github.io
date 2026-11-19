@@ -2,6 +2,7 @@
 title: "Pourquoi ce site, et pourquoi de zéro"
 date: 2026-10-22
 description: "Une sélection de projets, un journal, et une base volontairement simple."
+translationKey: pourquoi-ce-site
 tags:
   - site
   - eleventy

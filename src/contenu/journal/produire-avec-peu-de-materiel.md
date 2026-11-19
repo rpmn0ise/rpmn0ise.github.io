@@ -2,6 +2,7 @@
 title: "Produire de la hard music avec un casque et des enceintes home cinéma"
 date: 2026-11-11
 description: "Moins de trois mois de production, FL Studio, un casque et mes potes comme contrôle qualité : ce que ça m'apprend déjà."
+translationKey: produire-avec-peu-de-materiel
 tags:
   - note
   - fl-studio

@@ -1,13 +1,112 @@
 [
-  { "titre": "Drop introuvable.", "texte": "Le build-up est là, mais le drop n'a jamais été mixé. Cette page n'existe pas." },
-  { "titre": "Crash total.", "texte": "Cette page a touché un mur à pleine vitesse. Il ne reste que des débris et une adresse." },
-  { "titre": "Kick sans sub.", "texte": "L'adresse existe, mais il n'y a rien en dessous. Pas de basses, pas de page." },
-  { "titre": "Mod manquant.", "texte": "Le dossier est là, mais le fichier n'y est pas. Vérifie l'adresse, ou retourne à l'accueil." },
-  { "titre": "Tempo perdu.", "texte": "Cette page est sortie du BPM, et personne ne l'a retrouvée." },
-  { "titre": "Silence radio.", "texte": "Plus de signal sur cette fréquence. Essaie une autre station." },
-  { "titre": "Clipping.", "texte": "Le signal a dépassé le maximum et la page a saturé. Il ne reste que de la distorsion." },
-  { "titre": "Hors piste.", "texte": "Tu as quitté la route, et il n'y a aucun circuit à cet endroit. Remets-toi sur la voie." },
-  { "titre": "Respawn.", "texte": "Cette page n'existe pas. Reviens en arrière pour réapparaître au dernier point de contrôle." },
-  { "titre": "Roue libre.", "texte": "Cette page descend toute seule, sans moteur, et elle n'est arrivée nulle part." },
-  { "titre": "Mauvaise playlist.", "texte": "Ce morceau n'est pas dans la liste. Essaie le suivant." }
+  {
+    "fr": {
+      "titre": "Drop introuvable.",
+      "texte": "Le build-up est là, mais le drop n'a jamais été mixé. Cette page n'existe pas."
+    },
+    "en": {
+      "titre": "Missing drop.",
+      "texte": "The build-up is there, but the drop was never mixed. This page doesn't exist."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Crash total.",
+      "texte": "Cette page a touché un mur à pleine vitesse. Il ne reste que des débris et une adresse."
+    },
+    "en": {
+      "titre": "Total crash.",
+      "texte": "This page hit a wall at full speed. All that's left is debris and an address."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Kick sans sub.",
+      "texte": "L'adresse existe, mais il n'y a rien en dessous. Pas de basses, pas de page."
+    },
+    "en": {
+      "titre": "Kick without sub.",
+      "texte": "The address exists, but there's nothing underneath. No bass, no page."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Mod manquant.",
+      "texte": "Le dossier est là, mais le fichier n'y est pas. Vérifie l'adresse, ou retourne à l'accueil."
+    },
+    "en": {
+      "titre": "Missing mod.",
+      "texte": "The folder is there, but the file isn't. Check the address, or head back to the home page."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Tempo perdu.",
+      "texte": "Cette page est sortie du BPM, et personne ne l'a retrouvée."
+    },
+    "en": {
+      "titre": "Lost tempo.",
+      "texte": "This page drifted off the BPM and nobody found it again."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Silence radio.",
+      "texte": "Plus de signal sur cette fréquence. Essaie une autre station."
+    },
+    "en": {
+      "titre": "Radio silence.",
+      "texte": "No more signal on this frequency. Try another station."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Clipping.",
+      "texte": "Le signal a dépassé le maximum et la page a saturé. Il ne reste que de la distorsion."
+    },
+    "en": {
+      "titre": "Clipping.",
+      "texte": "The signal went past the maximum and the page overloaded. All that's left is distortion."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Hors piste.",
+      "texte": "Tu as quitté la route, et il n'y a aucun circuit à cet endroit. Remets-toi sur la voie."
+    },
+    "en": {
+      "titre": "Off track.",
+      "texte": "You left the road, and there's no circuit here. Get back on the track."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Respawn.",
+      "texte": "Cette page n'existe pas. Reviens en arrière pour réapparaître au dernier point de contrôle."
+    },
+    "en": {
+      "titre": "Respawn.",
+      "texte": "This page doesn't exist. Go back to respawn at the last checkpoint."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Roue libre.",
+      "texte": "Cette page descend toute seule, sans moteur, et elle n'est arrivée nulle part."
+    },
+    "en": {
+      "titre": "Coasting.",
+      "texte": "This page is rolling down by itself, with no engine, and it never arrived anywhere."
+    }
+  },
+  {
+    "fr": {
+      "titre": "Mauvaise playlist.",
+      "texte": "Ce morceau n'est pas dans la liste. Essaie le suivant."
+    },
+    "en": {
+      "titre": "Wrong playlist.",
+      "texte": "This track isn't on the list. Try the next one."
+    }
+  }
 ]

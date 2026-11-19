@@ -1,10 +1,14 @@
 <!doctype html>
-<html lang="fr">
+<html lang="{{ lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- set titrePage = (title + " — " + site.titre) if title else site.titre %}
-  {%- set descriptionPage = description or site.description %}
+  {%- set descriptionPage = description or t.site.description %}
+  {%- set versionsPage = collections.all | versions(cleTraduction) %}
+  {%- set autre = "en" if lang == "fr" else "fr" %}
+  {%- set urlAutre = i18n[autre].routes.accueil %}
+  {%- for v in versionsPage %}{% if v.lang == autre %}{% set urlAutre = v.url %}{% endif %}{% endfor %}
   {%- set urlCanonique = page.url | absoluteUrl(site.url) %}
   <title>{{ titrePage }}</title>
   <meta name="description" content="{{ descriptionPage }}">
@@ -13,11 +17,22 @@
   {%- else %}
   <link rel="canonical" href="{{ urlCanonique }}">
   {%- endif %}
+  {%- if versionsPage.length > 1 and not noindex %}
+  {%- for v in versionsPage %}
+  <link rel="alternate" hreflang="{{ v.lang }}" href="{{ v.url | absoluteUrl(site.url) }}">
+  {%- if v.lang == "fr" %}
+  <link rel="alternate" hreflang="x-default" href="{{ v.url | absoluteUrl(site.url) }}">
+  {%- endif %}
+  {%- endfor %}
+  {%- endif %}
   <meta property="og:title" content="{{ titrePage }}">
   <meta property="og:description" content="{{ descriptionPage }}">
   <meta property="og:type" content="{{ typeOg or 'website' }}">
   <meta property="og:url" content="{{ urlCanonique }}">
-  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale" content="{{ t.ogLocale }}">
+  {%- for v in versionsPage %}{% if v.lang != lang %}
+  <meta property="og:locale:alternate" content="{{ i18n[v.lang].ogLocale }}">
+  {%- endif %}{% endfor %}
   <meta property="og:site_name" content="{{ site.titre }}">
   {%- if image %}
   <meta property="og:image" content="{{ image | absoluteUrl(site.url) }}">
@@ -30,9 +45,9 @@
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="{{ site.imageOgAlt }}">
+  <meta property="og:image:alt" content="{{ t.site.imageOgAlt }}">
   <meta name="twitter:image" content="{{ site.imageOg | absoluteUrl(site.url) }}">
-  <meta name="twitter:image:alt" content="{{ site.imageOgAlt }}">
+  <meta name="twitter:image:alt" content="{{ t.site.imageOgAlt }}">
   {%- endif %}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ titrePage }}">
@@ -45,7 +60,7 @@
   <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="alternate" type="application/atom+xml" title="{{ site.titre }}" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.titre }}" href="{{ t.routes.flux }}">
   <script>(function(){var d=document.documentElement,m=null,a=null;try{m=localStorage.getItem("theme");a=localStorage.getItem("accent")}catch(e){}if(["auto","light","dark","amoled"].indexOf(m)<0)m="auto";var l=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches;d.dataset.mode=m;d.dataset.theme=m==="auto"?(l?"light":"dark"):m;d.dataset.accent=/^(orange|lime|red|pink|blue|violet|cyan)$/.test(a)?a:"orange"})()</script>
   <link rel="preload" href="/fonts/instrument-serif.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="/fonts/instrument-sans-400.woff" as="font" type="font/woff" crossorigin>
@@ -56,39 +71,51 @@
   <script src="/js/navigation.js" defer></script>
 </head>
 <body id="top">
-  <a class="evitement" href="#contenu">Aller au contenu</a>
+  <a class="evitement" href="#contenu" data-tt="evitement">{{ t.ui.evitement }}</a>
 
   <header class="entete">
     <div class="conteneur entete__int">
-      <a class="marque" href="/">{{ site.titre | replace("0", "<em>0</em>") | safe }}</a>
-      <nav aria-label="Navigation principale">
+      <a class="marque" href="{{ t.routes.accueil }}">{{ site.titre | replace("0", "<em>0</em>") | safe }}</a>
+      <nav aria-label="{{ t.ui.navPrincipale }}" data-tta="navPrincipale">
         <ul>
-          {%- for lien in site.nav %}
-          {%- set actif = (page.url == lien.url) or (lien.url != "/" and page.url.startsWith(lien.url)) %}
-          <li><a href="{{ lien.url }}"{% if actif %} aria-current="page"{% endif %}>{{ lien.libelle }}</a></li>
+          {%- for lien in t.nav %}
+          {%- set adresse = t.routes[lien.route] %}
+          {%- set actif = (page.url == adresse) or page.url.startsWith(adresse) %}
+          <li><a href="{{ adresse }}"{% if actif %} aria-current="page"{% endif %}>{{ lien.libelle }}</a></li>
           {%- endfor %}
         </ul>
       </nav>
-      {%- set couleurs = [{ id: "orange", nom: "Orange", c: "#ff6a1a" }, { id: "lime", nom: "Vert acide", c: "#d9ff3f" }, { id: "red", nom: "Rouge", c: "#ff4d4d" }, { id: "pink", nom: "Rose", c: "#ff5fa2" }, { id: "blue", nom: "Bleu", c: "#5f8fff" }, { id: "violet", nom: "Violet", c: "#a98bff" }, { id: "cyan", nom: "Cyan", c: "#2bd9f2" }] %}
+      {%- set couleurs = [{ id: "orange", c: "#ff6a1a" }, { id: "lime", c: "#d9ff3f" }, { id: "red", c: "#ff4d4d" }, { id: "pink", c: "#ff5fa2" }, { id: "blue", c: "#5f8fff" }, { id: "violet", c: "#a98bff" }, { id: "cyan", c: "#2bd9f2" }] %}
+      <div class="outils">
+      <nav class="langues" aria-label="{{ t.ui.langue }}" data-tta="langue">
+        {%- for l in ["fr", "en"] %}
+        {%- if l == lang %}
+        <span class="langues__actuelle" lang="{{ l }}" aria-current="true" title="{{ i18n[l].nomLangue }}">{{ l | upper }}</span>
+        {%- else %}
+        <a href="{{ urlAutre }}" hreflang="{{ l }}" lang="{{ l }}" title="{{ i18n[l].nomLangue }}">{{ l | upper }}</a>
+        {%- endif %}
+        {%- endfor %}
+      </nav>
       <div class="apparence">
-        <button class="theme" type="button" data-theme-toggle aria-haspopup="true" aria-expanded="false" aria-controls="menu-apparence" aria-label="Apparence et couleur" hidden>
+        <button class="theme" type="button" data-theme-toggle aria-haspopup="true" aria-expanded="false" aria-controls="menu-apparence" aria-label="{{ t.ui.apparenceEtCouleur }}" data-tta="apparenceEtCouleur" hidden>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2Z"/><circle cx="7.5" cy="11" r="1" fill="currentColor"/><circle cx="10.5" cy="7" r="1" fill="currentColor"/><circle cx="15" cy="7.5" r="1" fill="currentColor"/></svg>
         </button>
         <div class="apparence__menu" id="menu-apparence" hidden>
-          <p class="etiquette">Apparence</p>
-          <div class="apparence__modes" role="group" aria-label="Apparence">
-            <button type="button" data-mode="auto" aria-pressed="false"><span aria-hidden="true">◐</span>Auto</button>
-            <button type="button" data-mode="light" aria-pressed="false"><span aria-hidden="true">☀</span>Clair</button>
-            <button type="button" data-mode="dark" aria-pressed="false"><span aria-hidden="true">☾</span>Sombre</button>
-            <button type="button" data-mode="amoled" aria-pressed="false"><span aria-hidden="true">●</span>AMOLED</button>
+          <p class="etiquette" data-tt="apparence">{{ t.ui.apparence }}</p>
+          <div class="apparence__modes" role="group" aria-label="{{ t.ui.apparence }}" data-tta="apparence">
+            <button type="button" data-mode="auto" aria-pressed="false"><span aria-hidden="true">◐</span><span data-tt="mode.auto">{{ t.ui.modes.auto }}</span></button>
+            <button type="button" data-mode="light" aria-pressed="false"><span aria-hidden="true">☀</span><span data-tt="mode.light">{{ t.ui.modes.light }}</span></button>
+            <button type="button" data-mode="dark" aria-pressed="false"><span aria-hidden="true">☾</span><span data-tt="mode.dark">{{ t.ui.modes.dark }}</span></button>
+            <button type="button" data-mode="amoled" aria-pressed="false"><span aria-hidden="true">●</span><span data-tt="mode.amoled">{{ t.ui.modes.amoled }}</span></button>
           </div>
-          <p class="etiquette">Couleur</p>
-          <div class="apparence__couleurs" role="group" aria-label="Couleur dominante">
+          <p class="etiquette" data-tt="couleur">{{ t.ui.couleur }}</p>
+          <div class="apparence__couleurs" role="group" aria-label="{{ t.ui.couleurDominante }}" data-tta="couleurDominante">
             {%- for c in couleurs %}
-            <button class="pastille" type="button" data-accent="{{ c.id }}" style="--c: {{ c.c }}" aria-label="{{ c.nom }}" title="{{ c.nom }}" aria-pressed="false"></button>
+            <button class="pastille" type="button" data-accent="{{ c.id }}" style="--c: {{ c.c }}" aria-label="{{ t.ui.couleurs[c.id] }}" title="{{ t.ui.couleurs[c.id] }}" data-tta="couleur.{{ c.id }}" aria-pressed="false"></button>
             {%- endfor %}
           </div>
         </div>
+      </div>
       </div>
     </div>
   </header>
@@ -100,18 +127,20 @@
   <footer class="pied">
     <div class="conteneur pied__int">
       <a class="pied__mail" href="mailto:{{ site.auteur.email }}">{{ site.auteur.email }}</a>
-      <ul class="pied__liens" aria-label="Liens">
+      <ul class="pied__liens" aria-label="{{ t.ui.liens }}">
+        <li><a href="{{ t.routes.setup }}">Setup</a></li>
         {%- for lien in site.liens %}
-        <li><a href="{{ lien.url }}"{% if not lien.url.startsWith("/") %} rel="noopener"{% endif %}>{{ lien.libelle }}</a></li>
+        <li><a href="{{ lien.url }}" rel="noopener">{{ lien.libelle }}</a></li>
         {%- endfor %}
-        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="{{ t.routes.flux }}">{{ t.ui.rss }}</a></li>
       </ul>
       <p class="pied__droit">© {{ annee }} {{ site.auteur.nom }}</p>
-      <a class="pied__haut" href="#top">Haut ↑</a>
+      <a class="pied__haut" href="#top">{{ t.ui.haut }}</a>
     </div>
   </footer>
 
   <aside id="radio" class="radio radio--masque" data-url="{{ site.radio.url }}" aria-label="RPMN0ISE RADIO" hidden></aside>
+  <script type="application/json" id="i18n-js">{{ t.js | dump | replace("<", "\\u003c") | safe }}</script>
   <div id="annonce-page" class="sr-seulement" role="status" aria-live="polite"></div>
 </body>
 </html>

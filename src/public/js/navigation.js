@@ -5,7 +5,7 @@
   if (!window.fetch || !window.DOMParser || !window.history || !history.pushState) return;
 
   const PRINCIPAL = "contenu";
-  const METAS = 'meta[name="description"], meta[name="robots"], meta[property^="og:"], meta[property^="article:"], meta[name^="twitter:"], link[rel="canonical"]';
+  const METAS = 'meta[name="description"], meta[name="robots"], meta[property^="og:"], meta[property^="article:"], meta[name^="twitter:"], link[rel="canonical"], link[rel="alternate"][hreflang], link[rel="alternate"][type="application/atom+xml"]';
   let jeton = 0;
   let courante = location.pathname + location.search;
 
@@ -55,6 +55,34 @@
     document.title = doc.title;
   }
 
+  // Changement de langue sans recharger : on met à jour <html lang>, les textes d'interface (data-tt, data-tta),
+  // la navigation, le sélecteur FR/EN, le pied de page et les textes lus par les scripts (#i18n-js).
+  function synchroniserLangue(doc) {
+    const neuve = doc.documentElement.lang;
+    if (!neuve || neuve === document.documentElement.lang) return;
+    document.documentElement.lang = neuve;
+    const remplacer = (sel) => {
+      const a = document.querySelector(sel), b = doc.querySelector(sel);
+      if (a && b) a.replaceChildren(...[...b.childNodes].map((n) => document.importNode(n, true)));
+    };
+    const marque = document.querySelector(".marque"), marqueNeuve = doc.querySelector(".marque");
+    if (marque && marqueNeuve) marque.setAttribute("href", marqueNeuve.getAttribute("href"));
+    remplacer(".entete nav");
+    remplacer(".langues");
+    remplacer(".pied");
+    const j = doc.getElementById("i18n-js"), jc = document.getElementById("i18n-js");
+    if (j && jc) jc.textContent = j.textContent;
+    document.querySelectorAll("[data-tt]").forEach((el) => {
+      const src = doc.querySelector(`[data-tt="${el.dataset.tt}"]`);
+      if (src) el.textContent = src.textContent;
+    });
+    document.querySelectorAll("[data-tta]").forEach((el) => {
+      const src = doc.querySelector(`[data-tta="${el.dataset.tta}"]`);
+      if (!src) return;
+      ["aria-label", "title"].forEach((a) => { if (src.hasAttribute(a)) el.setAttribute(a, src.getAttribute(a)); });
+    });
+  }
+
   function reactiverScripts(racine) {
     racine.querySelectorAll("script").forEach((ancien) => {
       const neuf = document.createElement("script");
@@ -67,6 +95,13 @@
   function appliquer(doc, u, y) {
     document.dispatchEvent(new CustomEvent("rpm:avant-page"));
     synchroniserTete(doc);
+    const langueChange = doc.documentElement.lang !== document.documentElement.lang;
+    synchroniserLangue(doc);
+    // Même langue : seuls la navigation (page courante) et le sélecteur (lien vers l'équivalent) changent.
+    if (!langueChange) {
+      const l = document.querySelector(".langues"), ln = doc.querySelector(".langues");
+      if (l && ln) l.replaceChildren(...[...ln.childNodes].map((n) => document.importNode(n, true)));
+    }
     const nav = document.querySelector(".entete nav");
     const navNeuve = doc.querySelector(".entete nav");
     if (nav && navNeuve) nav.replaceChildren(...[...navNeuve.childNodes].map((n) => document.importNode(n, true)));
@@ -84,6 +119,7 @@
     principal.setAttribute("tabindex", "-1");
     principal.focus({ preventScroll: true });
     courante = u.pathname + u.search;
+    if (langueChange) document.dispatchEvent(new CustomEvent("rpm:langue"));
     document.dispatchEvent(new CustomEvent("rpm:page"));
   }
 

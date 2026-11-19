@@ -1,6 +1,7 @@
 ---
 title: Setup
 description: Le matériel et les logiciels que j'utilise pour jouer, produire de la musique et construire mes projets.
+translationKey: setup
 ---
 
 Voici ce que j'utilise au quotidien, avec ce que j'en pense quand j'ai un avis. Page mise à jour le 8 novembre 2026.

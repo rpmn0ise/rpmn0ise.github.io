@@ -1,21 +1,29 @@
 ---
 layout: base.njk
-title: Page introuvable
-permalink: /404.html
+pagination:
+  data: langues
+  size: 1
+  alias: L
+permalink: "{{ i18n[L].routes.erreur }}"
+eleventyComputed:
+  lang: "{{ L }}"
+  title: "{{ i18n[L].pages.erreur.titre }}"
 noindex: true
 eleventyExcludeFromCollections: true
 ---
+{%- set e = t.pages.erreur %}
 <header class="entete-contenu erreur">
-  <p class="meta">Erreur 404<span data-erreur-chemin></span></p>
-  <h1 data-erreur-titre>Page introuvable.</h1>
-  <p class="chapo" data-erreur-texte>Cette adresse n'existe pas ou a changé.</p>
+  <p class="meta">{{ e.code }}<span data-erreur-chemin></span></p>
+  <h1 data-erreur-titre>{{ e.titreDefaut }}</h1>
+  <p class="chapo" data-erreur-texte>{{ e.texteDefaut }}</p>
 </header>
 <p class="erreur__actions">
-  <a href="/">Retour à l'accueil</a>
-  <button class="bouton-plus" type="button" data-erreur-autre hidden>Un autre message</button>
+  <a href="{{ t.routes.accueil }}">{{ e.retour }}</a>
+  <button class="bouton-plus" type="button" data-erreur-autre hidden>{{ e.autre }}</button>
 </p>
-{%- if erreurs404.length %}
-<script type="application/json" id="erreurs404-donnees">{{ erreurs404 | dump | replace("<", "\\u003c") | safe }}</script>
+{%- set messages = erreurs404 | listeLoc(lang) %}
+{%- if messages.length %}
+<script type="application/json" id="erreurs404-donnees">{{ messages | dump | replace("<", "\\u003c") | safe }}</script>
 <script>
 (function () {
   var el = document.getElementById("erreurs404-donnees");
@@ -38,7 +46,7 @@ eleventyExcludeFromCollections: true
     texte.textContent = liste[i].texte;
   }
   tirer();
-  if (chemin && location.pathname && location.pathname !== "/") chemin.textContent = " · " + location.pathname;
+  if (chemin && location.pathname && location.pathname !== "/" && location.pathname !== "/en/") chemin.textContent = " · " + location.pathname;
   if (bouton && liste.length > 1) { bouton.hidden = false; bouton.addEventListener("click", tirer); }
 })();
 </script>

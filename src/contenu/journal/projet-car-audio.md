@@ -2,6 +2,7 @@
 title: "Mon projet car audio : où j'en suis"
 date: 2026-11-11
 description: "Je n'ai encore rien acheté : je me renseigne, j'économise et je prépare un plan détaillé pour un rendu équilibré avec de bonnes basses."
+translationKey: projet-car-audio
 tags:
   - note
   - car-audio

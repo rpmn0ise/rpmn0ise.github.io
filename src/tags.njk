@@ -1,16 +1,19 @@
 ---
 layout: base.njk
 pagination:
-  data: collections.tagList
+  data: collections.tagPages
   size: 1
   alias: tag
-permalink: "/tags/{{ tag.slug }}/"
+  addAllPagesToCollections: true
+permalink: "{{ tag.url }}"
 eleventyComputed:
+  lang: "{{ tag.lang }}"
+  translationKey: "tag-{{ tag.cle }}"
   title: "#{{ tag.nom }}"
-  description: "Entrées du journal avec le tag {{ tag.nom }}."
+  description: "{{ i18n[tag.lang].pages.tag.description | remplir({ tag: tag.nom }) }}"
 ---
 <header class="entete-contenu">
-  <p class="meta"><a class="retour" href="/journal/">← Journal</a></p>
+  <p class="meta"><a class="retour" href="{{ t.routes.journal }}">{{ t.ui.retourJournal }}</a></p>
   <h1>#{{ tag.nom }}</h1>
 </header>
 

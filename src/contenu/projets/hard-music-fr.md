@@ -1,6 +1,7 @@
 ---
 title: "Hard Music FR"
 description: "Communauté Discord francophone dédiée à toute la hard music, du hardstyle au gabber en passant par la hard techno et le frenchcore."
+translationKey: hard-music-fr
 status: en-cours
 year: 2026
 tech:

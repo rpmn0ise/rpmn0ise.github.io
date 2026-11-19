@@ -1,38 +1,46 @@
 ---
 layout: base.njk
-title: Musique
-description: Ce que j'écoute en ce moment, mes coups de cœur, ma playlist hard music et mes extraits sur SoundCloud.
-permalink: /musique/
-avecMusique: true
+pagination:
+  data: langues
+  size: 1
+  alias: L
+  addAllPagesToCollections: true
+permalink: "{{ i18n[L].routes.musique }}"
+eleventyComputed:
+  lang: "{{ L }}"
+  translationKey: musique-index
+  title: "{{ i18n[L].pages.musique.titre }}"
+  description: "{{ i18n[L].pages.musique.description }}"
 ---
+{%- set m = t.pages.musique %}
 <header class="entete-contenu">
-  <h1>Musique</h1>
-  <p class="chapo">Ce que j'écoute, en direct ou presque, et mes extraits sur SoundCloud.</p>
+  <h1>{{ m.titre }}</h1>
+  <p class="chapo">{{ m.chapo }}</p>
 </header>
 
 <section class="bloc">
   <div class="bloc__tete">
-    <h2 class="section-titre">En ce moment</h2>
-    <a class="suite" href="{{ musique.lastfm.profil }}" rel="noopener">Profil Last.fm ↗</a>
+    <h2 class="section-titre">{{ m.enCeMoment }}</h2>
+    <a class="suite" href="{{ musique.lastfm.profil }}" rel="noopener">{{ m.profilLastfm }}</a>
   </div>
   {%- set grand = true %}{%- set nombre = 9 %}{%- set liste = true %}
   {% include "ecoute.njk" %}
-  <p class="vide" data-ecoute-vide hidden>Rien à afficher pour l'instant. Last.fm n'a pas répondu.</p>
-  <noscript><p class="vide">L'indicateur d'écoute demande JavaScript. Mon profil est ici : <a href="{{ musique.lastfm.profil }}" rel="noopener">Last.fm</a>.</p></noscript>
+  <p class="vide" data-ecoute-vide hidden>{{ m.vide }}</p>
+  <noscript><p class="vide">{{ m.sansJs }} <a href="{{ musique.lastfm.profil }}" rel="noopener">Last.fm</a>.</p></noscript>
 </section>
 
 {%- if musique.selection.length %}
 <section class="bloc">
   <div class="bloc__tete">
-    <h2 class="section-titre">Coups de cœur</h2>
+    <h2 class="section-titre">{{ m.coupsDeCoeur }}</h2>
   </div>
   <ul class="liste liste--journal">
-    {%- for m in musique.selection %}
+    {%- for x in musique.selection %}
     <li class="ligne">
-      <p class="meta">{{ m.artiste }}</p>
+      <p class="meta">{{ x.artiste }}</p>
       <div class="ligne__corps">
-        {%- if m.url %}<a class="ligne__titre" href="{{ m.url }}" rel="noopener">{{ m.titre }}</a>{%- else %}<p class="ligne__titre">{{ m.titre }}</p>{%- endif %}
-        {%- if m.note %}<p class="ligne__desc">{{ m.note }}</p>{%- endif %}
+        {%- if x.url %}<a class="ligne__titre" href="{{ x.url }}" rel="noopener">{{ x.titre }}</a>{%- else %}<p class="ligne__titre">{{ x.titre }}</p>{%- endif %}
+        {%- if x.note %}<p class="ligne__desc">{{ x.note | loc(lang) }}</p>{%- endif %}
       </div>
     </li>
     {%- endfor %}
@@ -43,12 +51,12 @@ avecMusique: true
 {%- if musique.playlist.url %}
 <section class="bloc">
   <div class="bloc__tete">
-    <h2 class="section-titre">Spotify</h2>
+    <h2 class="section-titre">{{ m.spotify }}</h2>
   </div>
   <a class="lien-grand" href="{{ musique.playlist.url }}" rel="noopener">
     <span class="lien-grand__corps">
       <span class="lien-grand__texte">{{ musique.playlist.titre }}</span>
-      {%- if musique.playlist.note %}<span class="lien-grand__sous">{{ musique.playlist.note }}</span>{%- endif %}
+      {%- if musique.playlist.note %}<span class="lien-grand__sous">{{ musique.playlist.note | loc(lang) }}</span>{%- endif %}
     </span>
     <span class="lien-grand__fleche" aria-hidden="true">↗</span>
   </a>
@@ -57,11 +65,11 @@ avecMusique: true
 
 <section class="bloc">
   <div class="bloc__tete">
-    <h2 class="section-titre">SoundCloud</h2>
+    <h2 class="section-titre">{{ m.soundcloud }}</h2>
   </div>
   <a class="lien-grand" href="{{ musique.soundcloud }}" rel="noopener">
     <span class="lien-grand__corps">
-      <span class="lien-grand__texte">Mes morceaux et extraits</span>
+      <span class="lien-grand__texte">{{ m.soundcloudTexte }}</span>
     </span>
     <span class="lien-grand__fleche" aria-hidden="true">↗</span>
   </a>
@@ -70,8 +78,8 @@ avecMusique: true
 {#- Masqué tant que Last.fm n'a pas répondu ; en dernier pour ne pas décaler la numérotation des autres sections. #}
 <section class="bloc" data-classements-section hidden>
   <div class="bloc__tete">
-    <h2 class="section-titre">Classements</h2>
-    <a class="suite" href="{{ musique.lastfm.profil }}" rel="noopener">D'après Last.fm ↗</a>
+    <h2 class="section-titre">{{ m.classements }}</h2>
+    <a class="suite" href="{{ musique.lastfm.profil }}" rel="noopener">{{ m.dApresLastfm }}</a>
   </div>
   <div class="classements" data-classements data-utilisateur="{{ musique.lastfm.utilisateur }}" data-cle="{{ musique.lastfm.cle }}"></div>
 </section>

@@ -1,0 +1,50 @@
+{
+  "audio": {
+    "en": "audio"
+  },
+  "beamng": {
+    "en": "beamng"
+  },
+  "car-audio": {
+    "en": "car-audio"
+  },
+  "communaute": {
+    "en": "community"
+  },
+  "discord": {
+    "en": "discord"
+  },
+  "eleventy": {
+    "en": "eleventy"
+  },
+  "fl-studio": {
+    "en": "fl-studio"
+  },
+  "hard-music": {
+    "en": "hard-music"
+  },
+  "jeux-video": {
+    "en": "video-games"
+  },
+  "markdown": {
+    "en": "markdown"
+  },
+  "musique": {
+    "en": "music"
+  },
+  "note": {
+    "en": "note"
+  },
+  "projet": {
+    "en": "project"
+  },
+  "site": {
+    "en": "site"
+  },
+  "technique": {
+    "en": "technical"
+  },
+  "exemple": {
+    "en": "example"
+  }
+}

@@ -1,6 +1,7 @@
 ---
 title: "Collection Hot Wheels"
 description: "Catalogue en ligne de ma collection de Hot Wheels sous blister, alimenté par un tableur Google Sheets, avec photos, filtres et fiches détaillées."
+translationKey: collection-hot-wheels
 status: en-cours
 year: 2026
 tech:

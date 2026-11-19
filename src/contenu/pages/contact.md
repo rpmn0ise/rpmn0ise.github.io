@@ -1,6 +1,7 @@
 ---
 title: Contact
 description: Comment me contacter.
+translationKey: contact
 ---
 
 Le plus simple est de m'écrire par e-mail : [{{ site.auteur.email }}](mailto:{{ site.auteur.email }}).

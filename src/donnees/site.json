@@ -1,10 +1,7 @@
 {
   "titre": "rpmn0ise",
-  "description": "Projets, notes et articles de rpmn0ise.",
-  "accroche": "Je construis des projets autour de sujets qui m'intéressent, sans me limiter à un seul domaine.",
   "url": "https://rpmn0ise.pages.dev",
   "imageOg": "/images/og-defaut.png",
-  "imageOgAlt": "rpmn0ise : projets, notes et articles",
   "auteur": {
     "nom": "rpmn0ise",
     "email": "rpmn0ise@proton.me"
@@ -12,33 +9,7 @@
   "radio": {
     "url": "https://rpmn0ise-radio.pages.dev"
   },
-  "nav": [
-    {
-      "libelle": "Projets",
-      "url": "/projets/"
-    },
-    {
-      "libelle": "Journal",
-      "url": "/journal/"
-    },
-    {
-      "libelle": "Musique",
-      "url": "/musique/"
-    },
-    {
-      "libelle": "À propos",
-      "url": "/a-propos/"
-    },
-    {
-      "libelle": "Contact",
-      "url": "/contact/"
-    }
-  ],
   "liens": [
-    {
-      "libelle": "Setup",
-      "url": "/setup/"
-    },
     {
       "libelle": "GitHub",
       "url": "https://github.com/rpmn0ise"
@@ -59,12 +30,5 @@
       "libelle": "Discord Hard Music FR",
       "url": "https://discord.gg/AQBuVjqNxs"
     }
-  ],
-  "centres": [
-    "hard music",
-    "BeamNG",
-    "FL Studio",
-    "car audio",
-    "développement web"
   ]
 }
